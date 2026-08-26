@@ -1,0 +1,13 @@
+{
+  "name": "marketings",
+  "description": "39 marketing skills: content creation, SEO/AEO, demand generation, product marketing, brand strategy, and campaign analytics",
+  "version": "1.0.0",
+  "author": {
+    "name": "borghei",
+    "url": "https://borghei.me"
+  },
+  "homepage": "https://github.com/borghei/Claude-Skills/tree/main/marketing",
+  "repository": "https://github.com/borghei/Claude-Skills",
+  "license": "MIT",
+  "skills": "./"
+}

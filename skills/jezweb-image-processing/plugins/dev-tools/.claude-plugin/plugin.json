@@ -1,0 +1,8 @@
+{
+  "name": "dev-tools",
+  "description": "Project health and permission management, dev sessions, team updates with feedback triage, GitHub releases, multi-model brains trust, git workflows, UX audits, responsive layout testing, and browser automation.",
+  "author": {
+    "name": "Jeremy Dawes / Jezweb",
+    "email": "jeremy@jezweb.net"
+  }
+}

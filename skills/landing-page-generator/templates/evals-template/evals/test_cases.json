@@ -1,0 +1,21 @@
+{
+  "skill": "TEMPLATE_REPLACE_WITH_SKILL_NAME",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "case-001",
+      "prompt": "TEMPLATE: a realistic user request this skill should handle",
+      "expected": {
+        "format": "markdown",
+        "must_contain": [],
+        "must_not_contain": []
+      },
+      "rubric": {
+        "structure": "Output follows the skill's documented workflow",
+        "accuracy": "TEMPLATE: a concrete correctness claim this case checks",
+        "scope": "Stays inside the skill's stated scope"
+      },
+      "weight": 1.0
+    }
+  ]
+}

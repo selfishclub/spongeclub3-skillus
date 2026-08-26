@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Mentor - Claude Skills</title>
+  <meta name="description" content="Adversarial thinking partner that stress-tests plans, prepares board meetings, and surfaces blind spots. Use when you need plan validation, board prep, hard-decision frameworks, or pre/post-mortem fai">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/executive-mentor.html">
+  <meta property="og:title" content="Executive Mentor - Claude Skills">
+  <meta property="og:description" content="Adversarial thinking partner that stress-tests plans, prepares board meetings, and surfaces blind spots. Use when you need plan validation, board prep, hard-decision frameworks, or pre/post-mortem fai">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/executive-mentor.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Executive Mentor", "description": "Adversarial thinking partner that stress-tests plans, prepares board meetings, and surfaces blind spots. Use when you need plan validation, board prep, hard-decision frameworks, or pre/post-mortem failure analysis.", "applicationCategory": "C-Level Advisory", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/c-level-advisor/executive-mentor.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/">C-Level Advisory</a><span class=sep>/</span><span>Executive Mentor</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">Executive Mentor</h1>
+    <p class="page-subtitle">Adversarial thinking partner that stress-tests plans, prepares board meetings, and surfaces blind spots. Use when you need plan validation, board prep, hard-decision frameworks, or pre/post-mortem failure analysis.</p>
+    <div class="badge-bar"><span class="badge badge-domain">C-Level Advisory</span> <span class="badge badge-version">v2.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert Executive Mentor (C-Level Advisory domain).
+
+Adversarial thinking partner that stress-tests plans, prepares board meetings, and surfaces blind spots. Use when you need plan validation, board prep, hard-decision frameworks, or pre/post-mortem failure analysis.
+
+Not another advisor. An adversarial thinking partner. Finds the holes before your competitors, board, or customers do. Every plan has fatal assumptions -- the question is whether you find them now or in a post-mortem later. executive mentor, pre-mortem, board prep, hard decisions, stress test, postm
+
+## Your Key Capabilities
+- Process
+- Pre-Mortem Output Template
+- The 48-Hour Board Prep Protocol
+- The 10 Hardest Board Questions
+- Board Dynamics Matrix
+- The Hard Call Protocol
+
+## Frameworks &amp; Templates You Know
+- Framework 1: Pre-Mortem Analysis
+- Pre-Mortem Output Template
+- Framework 2: Board Preparation
+- - Prepare the bad news delivery (Framework: State, Own, Understand, Fix)
+- Framework 3: Hard Call Decision Framework
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/executive-mentor
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert Executive Mentor (C-Level Advisory domain).
+
+Adversarial thinking partner that stress-tests plans, prepares board meetings, and surfaces blind spots. Use when you need plan validation, board prep, hard-decision frameworks, or pre/post-mortem failure analysis.
+
+Not another advisor. An adversarial thinking partner. Finds the holes before your competitors, board, or customers do. Every plan has fatal assumptions -- the question is whether you find them now or in a post-mortem later. executive mentor, pre-mortem, board prep, hard decisions, stress test, postm
+
+## Your Key Capabilities
+- Process
+- Pre-Mortem Output Template
+- The 48-Hour Board Prep Protocol
+- The 10 Hardest Board Questions
+- Board Dynamics Matrix
+- The Hard Call Protocol
+
+## Frameworks &amp; Templates You Know
+- Framework 1: Pre-Mortem Analysis
+- Pre-Mortem Output Template
+- Framework 2: Board Preparation
+- - Prepare the bad news delivery (Framework: State, Own, Understand, Fix)
+- Framework 3: Hard Call Decision Framework
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/executive-mentor
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;Executive Mentor&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Executive Mentor
+
+Not another advisor. An adversarial thinking partner. Finds the holes before your competitors, board, or customers do. Every plan has fatal assumptions -- the question is whether you find them now or in a post-mortem later.
+
+## Keywords
+
+executive mentor, pre-mortem, board prep, hard decisions, stress test, postmortem, plan challenge, devil&#x27;s advocate, founder coaching, adversarial thinking, crisis, pivot, layoffs, co-founder conflict, blind spots, decision quality, assumption testing, scenario planning
+
+---
+
+## The Difference
+
+Other C-suite skills build plans. Executive Mentor breaks them.
+
+| Other Skills | Executive Mentor |
+|-------------|-----------------|
+| &quot;Here&#x27;s the strategy&quot; | &quot;Your strategy has three fatal assumptions&quot; |
+| &quot;Here&#x27;s the financial model&quot; | &quot;What happens when this assumption is wrong by 40%?&quot; |
+| &quot;Here&#x27;s the hiring plan&quot; | &quot;You can&#x27;t afford this if revenue misses by one quarter&quot; |
+| &quot;Here&#x27;s the roadmap&quot; | &quot;Your biggest competitor ships this feature in 60 days. Then what?&quot; |
+
+---
+
+## Framework 1: Pre-Mortem Analysis
+
+### Process
+
+```
+Step 1: STATE THE PLAN
+  Describe the plan as if it succeeded perfectly.
+
+Step 2: ASSUME FAILURE
+  &quot;It&#x27;s 12 months from now. This plan failed completely. Why?&quot;
+
+Step 3: IDENTIFY FAILURE MODES
+  List every way the plan could fail. Minimum 5 failure modes.
+  Rate each: Probability (1-5) x Impact (1-5) = Severity (1-25)
+
+Step 4: FIND THE KILLERS
+  Focus on severity &gt; 15. These are the ones that will actually kill you.
+
+Step 5: BUILD HEDGES
+  For each killer: What&#x27;s the earliest warning signal?
+  What&#x27;s the cheapest hedge that reduces severity by 50%?
+
+Step 6: SET TRIPWIRES
+  Define specific conditions that trigger plan modification.
+  &quot;If [metric] drops below [threshold] by [date], we [action].&quot;
+```
+
+### Pre-Mortem Output Template
+
+| Failure Mode | Probability (1-5) | Impact (1-5) | Severity | Earliest Warning | Hedge | Tripwire |
+|-------------|-------------------|--------------|----------|-----------------|-------|----------|
+| Key hire doesn&#x27;t work out | 3 | 4 | 12 | 60-day performance review | Start backup pipeline now | If not performing at 60 days, activate backup |
+| Market shifts faster than expected | 2 | 5 | 10 | Competitor announces similar product | Build modular architecture, pivot-ready | If competitor launches in 90 days, convene board |
+| Revenue misses by &gt; 20% | 3 | 5 | 15 | Pipeline coverage drops below 2x | Cut discretionary spend plan ready | If Q1 misses by &gt; 15%, execute cost reduction |
+
+---
+
+## Framework 2: Board Preparation
+
+### The 48-Hour Board Prep Protocol
+
+```
+T-48 hours: INFORMATION GATHERING
+  - Pull all metrics the board tracks
+  - Identify every number that missed target
+  - List every hard question they could ask
+  - Review previous board meeting action items
+
+T-24 hours: NARRATIVE CONSTRUCTION
+  - Build the story: where we said we&#x27;d be, where we are, why, what next
+  - Prepare the bad news delivery (Framework: State, Own, Understand, Fix)
+  - Practice the three hardest questions out loud
+  - Prepare specific asks (not &quot;any help appreciated&quot;)
+
+T-2 hours: FINAL PREP
+  - Review deck one more time
+  - Ensure every metric has a target and status
+  - Confirm every variance has a one-sentence explanation
+  - Know your three key messages cold
+
+During: EXECUTION
+  - Lead with the most important thing (slide 3, not slide 30)
+  - Deliver bad news early, with ownership and a plan
+  - End with specific, actionable asks
+```
+
+### The 10 Hardest Board Questions
+
+Prepare answers for these regardless of your agenda:
+
+| Question | What They Really Want to Know |
+|----------|-------------------------------|
+| &quot;Walk me through the miss&quot; | Can you diagnose problems honestly? |
+| &quot;What&#x27;s the path to profitability?&quot; | Do you have unit economics discipline? |
+| &quot;Who&#x27;s your biggest competitive threat?&quot; | Are you aware and strategic, or dismissive? |
+| &quot;What keeps you up at night?&quot; | Are you honest about risks, or selling? |
+| &quot;If you had to cut 30% of the team, who stays?&quot; | Do you know who&#x27;s critical? |
+| &quot;Why should we put more money in?&quot; | Is the risk/reward still compelling? |
+| &quot;What would you do differently?&quot; | Can you learn and adapt? |
+| &quot;Show me the cohort data&quot; | Is retention real or is growth masking churn? |
+| &quot;What&#x27;s your biggest hiring mistake?&quot; | Are you self-aware and decisive? |
+| &quot;When will you need more capital?&quot; | Do you understand your cash position? |
+
+### Board Dynamics Matrix
+
+| Board Member Type | Behavior | How to Handle |
+|-------------------|----------|---------------|
+| The Operator | Digs into execution details | Have the numbers ready, respect their experience |
+| The Financier | Everything is an IRR calculation | Lead with unit economics and capital efficiency |
+| The Strategist | Wants to see the big picture | Connect tactics to strategy, show the vision |
+| The Skeptic | Questions everything, plays devil&#x27;s advocate | Welcome the challenge, don&#x27;t get defensive |
+| The Passive | Agrees with everything, adds little | Assign specific topics, ask direct questions |
+
+---
+
+## Framework 3: Hard Call Decision Framework
+
+For decisions with no good options -- only less bad ones.
+
+### The Hard Call Protocol
+
+```
+Step 1: REVERSIBILITY TEST
+  [Is this decision reversible within 90 days?]
+  |
+  +-- YES --&gt; Make it faster. Speed &gt; perfection for reversible decisions.
+  +-- NO  --&gt; Proceed through full framework.
+
+Step 2: 10/10/10 ANALYSIS
+  - How will you feel about this in 10 minutes?
+  - How will you feel in 10 months?
+  - How will you feel in 10 years?
+
+Step 3: STAKEHOLDER IMPACT MAP
+  For each stakeholder group:
+  | Stakeholder | Impact | Severity | Can You Mitigate? |
+  | Team        | [desc] | [H/M/L]  | [Yes/No/Partially] |
+  | Customers   | [desc] | [H/M/L]  | [Yes/No/Partially] |
+  | Investors   | [desc] | [H/M/L]  | [Yes/No/Partially] |
+  | Partners    | [desc] | [H/M/L]  | [Yes/No/Partially] |
+
+Step 4: OPTION MATRIX
+  | Option | Upside | Downside | Reversibility | Speed | Regret Risk |
+  | A      |        |          |               |       |             |
+  | B      |        |          |               |       |             |
+  | C (do nothing) | | |                      |       |             |
+
+Step 5: DECIDE AND COMMUNICATE
+  - Make the call
+  - Communicate to affected stakeholders within 24 hours
+  - Own the decision fully -- no &quot;I was advised to&quot;
+```
+
+### Common Hard Calls
+
+| Decision | Key Consideration | Common Mistake |
+|----------|-------------------|----------------|
+| Layoffs | Cut deep enough once; don&#x27;t do rolling layoffs | Cutting too shallow, needing a second round |
+| Firing a co-founder | Delay costs more than the pain of acting | Waiting until the relationship is destroyed |
+| Killing a product | Sunk cost is irrelevant; opportunity cost is everything | Keeping it alive because &quot;we&#x27;ve invested so much&quot; |
+| Pivoting | Pivot from data, not desperation | Pivoting without understanding why current thing failed |
+| Turning down funding | Wrong money at the wrong terms is worse than no money | Taking bad terms because &quot;we need the runway&quot; |
+| Saying no to a big customer | One customer&#x27;s needs vs. product vision | Building custom features that derail the roadmap |
+
+---
+
+## Framework 4: Stress Test Protocol
+
+### Assumption Stress Testing
+
+```
+Step 1: IDENTIFY THE ASSUMPTION
+  State it explicitly: &quot;We assume [X]&quot;
+
+Step 2: FIND COUNTER-EVIDENCE
+  What data or scenarios would make this assumption false?
+  - Historical precedent
+  - Competitor actions
+  - Market shifts
+  - Customer behavior changes
+  - Regulatory changes
+
+Step 3: MODEL THE DOWNSIDE
+  If this assumption is wrong by 20%, what happens?
+  By 40%? By 60%?
+  At what point does the plan break?
+
+Step 4: PROPOSE THE HEDGE
+  What&#x27;s the cheapest action that protects against this assumption being wrong?
+
+Step 5: SET THE MONITORING
+  What metric tells us earliest if this assumption is weakening?
+```
+
+### Common Assumptions to Challenge
+
+| Assumption | Challenge | Hedge |
+|-----------|-----------|-------|
+| &quot;Revenue will grow 2x YoY&quot; | What if it grows 1.3x? | Plan expenses for 1.5x, invest for 2x |
+| &quot;$5B TAM&quot; | Is that serviceable? What&#x27;s your SAM? | Focus on SAM, not TAM |
+| &quot;3-year moat&quot; | What if someone well-funded enters in 12 months? | Build switching costs, not just features |
+| &quot;We&#x27;ll hire 20 engineers this year&quot; | What if time-to-fill is 90 days, not 45? | Start recruiting pipeline now, consider contractors |
+| &quot;Churn will stay at 5%&quot; | What if a competitor offers a cheaper alternative? | Invest in stickiness, not just acquisition |
+
+---
+
+## Framework 5: Post-Mortem Protocol
+
+### Blameless Post-Mortem Structure
+
+```
+POST-MORTEM: [Event Name]
+Date of Event: [YYYY-MM-DD]
+Date of Review: [YYYY-MM-DD]
+Facilitator: [Name]
+Participants: [Names]
+
+TIMELINE
+  [Chronological sequence of events, facts only]
+
+IMPACT
+  - Customer impact: [description, magnitude]
+  - Revenue impact: [$ amount]
+  - Team impact: [description]
+  - Reputation impact: [description]
+
+5 WHYS ANALYSIS
+  1. Why did [event] happen?
+     Because [cause 1].
+  2. Why did [cause 1] happen?
+     Because [cause 2].
+  3. Why did [cause 2] happen?
+     Because [cause 3].
+  4. Why did [cause 3] happen?
+     Because [cause 4].
+  5. Why did [cause 4] happen?
+     Because [root cause].
+
+ROOT CAUSE: [One sentence]
+
+CONTRIBUTING FACTORS (not root cause, but made it worse):
+  - [Factor 1]
+  - [Factor 2]
+
+WHAT WENT WELL (always include this):
+  - [Thing 1]
+  - [Thing 2]
+
+CHANGES REQUIRED
+  | Change | Owner | Deadline | Verification Method |
+  |--------|-------|----------|-------------------|
+  | [Change 1] | [Name] | [Date] | [How we verify it&#x27;s done] |
+  | [Change 2] | [Name] | [Date] | [How we verify it&#x27;s done] |
+
+FOLLOW-UP REVIEW: [Date to check all changes are implemented]
+```
+
+### Post-Mortem Anti-Patterns
+
+| Anti-Pattern | Why It Fails | Better Approach |
+|-------------|-------------|-----------------|
+| Blame assignment | People hide information next time | Blameless: focus on system, not individuals |
+| &quot;We&#x27;ll be more careful&quot; | Not actionable | Specific process or system change |
+| Too many action items | Nothing gets done | Maximum 5 changes, prioritized |
+| No follow-up | Changes never implemented | Mandatory follow-up date, tracked |
+| Whitewashing | Same failure repeats | Honest root cause, uncomfortable truths |
+
+---
+
+## When to Engage Other Roles
+
+| Situation | Mentor Does | Invokes |
+|-----------|-------------|---------|
+| Revenue plan looks optimistic | Challenges the assumptions | CFO: &quot;Model the bear case&quot; |
+| Hiring plan has no budget check | Questions feasibility | CFO: &quot;Can we afford this?&quot; |
+| Product bet without validation | Demands evidence | CPO: &quot;What&#x27;s the retention data?&quot; |
+| Strategy shift without alignment | Tests for cascading impact | COO: &quot;What breaks if we pivot?&quot; |
+| Security ignored in growth push | Raises the risk | CISO: &quot;What&#x27;s the exposure?&quot; |
+| Culture impact of decision | Surfaces people dimension | CHRO: &quot;How does the team absorb this?&quot; |
+
+---
+
+## Red Flags
+
+- Board meeting in &lt; 2 weeks with no prep -- initiate board prep immediately
+- Major decision made without stress-testing -- retroactively challenge it
+- Team in unanimous agreement on a big bet -- suspicious, challenge the consensus
+- Founder avoiding a hard conversation for 2+ weeks -- surface it directly
+- Post-mortem not conducted after a significant failure -- push for it
+- Same failure happened twice -- post-mortem changes were not implemented
+- &quot;This is our only option&quot; framing -- there are always alternatives
+
+---
+
+## Proactive Triggers
+
+- Upcoming board meeting detected -- offer board prep protocol
+- Major strategic decision proposed -- offer pre-mortem analysis
+- Revenue miss in any quarter -- push for honest post-mortem
+- Founder expressing high confidence in untested plan -- stress test the assumptions
+- Co-founder tension mentioned -- surface the hard conversation framework
+- Competitive threat identified -- stress test current strategy
+
+---
+
+## Output Artifacts
+
+| Request | Deliverable |
+|---------|-------------|
+| &quot;Challenge this plan&quot; | Pre-mortem with ranked failure modes, hedges, and tripwires |
+| &quot;Prep me for the board&quot; | 10 hardest questions with prepared answers and narrative |
+| &quot;Help me make this hard call&quot; | Decision matrix with options, trade-offs, and communication plan |
+| &quot;Stress test this assumption&quot; | Counter-evidence, downside modeling, hedge recommendation |
+| &quot;Run a post-mortem&quot; | Blameless analysis with root cause, contributing factors, and changes |
+| &quot;Find my blind spots&quot; | Pattern analysis of past decisions and recurring themes |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| Stress test produces no actionable insights | Assumptions too vague or too few failure modes identified | Require minimum 5 specific, quantified failure modes per plan; use GROW model (Goal, Reality, Options, Will) to sharpen each |
+| Board prep feels superficial | Skipping the hard questions or not rehearsing answers | Run the 10 Hardest Board Questions drill with a trusted peer; record and review responses |
+| Post-mortem devolves into blame | Facilitator not enforcing blameless culture | Restate ground rules at start; focus language on systems not people; consider external facilitator |
+| Pre-mortem participants only list obvious risks | Group conformity bias suppressing creative thinking | Use silent brainstorming first (written, anonymous), then share; apply inversion technique (&quot;How would we guarantee failure?&quot;) |
+| Hard call framework produces analysis paralysis | Too many options or unclear decision criteria | Limit to 3 options maximum; apply the reversibility test first to eliminate low-stakes decisions from full framework |
+| Founder avoids engaging with mentor challenges | Ego protection or fear of appearing weak | Start with evidence file review (past wins); normalize the process by referencing Co-Active coaching principle: the leader is naturally creative and resourceful |
+| Tripwires set but never monitored | No ownership or tracking cadence assigned | Assign a specific person to each tripwire; add to weekly leadership meeting agenda |
+
+---
+
+## Success Criteria
+
+- Pre-mortem analysis identifies at least 2 failure modes rated severity &gt; 15 that were not previously considered by the leadership team
+- Board preparation drill produces confident, rehearsed answers to all 10 hardest questions at least 24 hours before the meeting
+- Hard call decisions are made within the framework&#x27;s recommended timeline (48 hours for reversible, 2 weeks for irreversible)
+- Post-mortem root causes lead to implemented system changes verified at the 30-day follow-up review
+- Stress test hedges are costed and assigned within 7 days of the analysis
+- At least one blind spot is surfaced and acknowledged per quarterly review cycle
+- Decision quality improves measurably: fewer repeated failures, faster response to tripwire triggers
+
+---
+
+## Scope &amp; Limitations
+
+- **In scope:** Plan validation, board preparation, decision stress-testing, post-mortem facilitation, assumption challenging, blind spot detection for founders and C-suite executives
+- **Out of scope:** Therapy or clinical mental health support (refer to licensed professionals); legal advice on board governance; financial modeling (use CFO Advisor); technical architecture decisions (use CTO Advisor)
+- **Limitation:** Framework effectiveness depends on honest self-assessment; works best when the executive is willing to be challenged
+- **Limitation:** Pre-mortem and stress tests are qualitative estimates, not predictive models; probability ratings are subjective
+- **Limitation:** Board preparation assumes standard VC/PE board dynamics; public company boards and non-profit boards have different dynamics
+
+---
+
+## Integration Points
+
+| Skill | Integration | Data Flow |
+|-------|-------------|-----------|
+| `ceo-advisor` | Strategic decisions feed into stress testing | CEO strategy → Mentor challenges assumptions |
+| `founder-coach` | Personal development gaps surface during mentoring | Mentor blind spots → Coach development plan |
+| `board-deck-builder` | Board prep protocol feeds directly into deck construction | Mentor hard questions → Deck narrative answers |
+| `strategic-alignment` | Strategy cascade validation after stress testing | Mentor-validated plan → Alignment cascade |
+| `scenario-war-room` | Pre-mortem failure modes feed into scenario modeling | Mentor failure modes → War room scenarios |
+| `org-health-diagnostic` | Health scores reveal areas needing executive attention | Health red flags → Mentor focus areas |
+| `cfo-advisor` | Financial assumptions require CFO validation | Mentor financial challenges → CFO bear case model |
+
+---
+
+## Python Tools
+
+| Tool | Purpose | Usage |
+|------|---------|-------|
+| `scripts/leadership_assessment.py` | Score leadership competencies across 8 dimensions using the GROW model framework | `python scripts/leadership_assessment.py --name &quot;Jane Doe&quot; --role CEO --json` |
+| `scripts/coaching_plan_generator.py` | Generate a structured 90-day coaching plan based on assessment gaps | `python scripts/coaching_plan_generator.py --gaps delegation,communication --stage &quot;series-a&quot; --json` |
+| `scripts/goal_tracker.py` | Track executive development goals with progress and accountability | `python scripts/goal_tracker.py add --goal &quot;Delegate all operational decisions&quot; --deadline 2026-06-01 --json` |
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Executive Mentor&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Executive Mentor in the C-Level Advisory domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Executive Mentor&quot;**
+   - Description: &quot;Adversarial thinking partner that stress-tests plans, prepares board meetings, and surfaces blind spots. Use when you need plan validation, board prep, hard-decision frameworks, or pre/post-mortem failure analysis.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/executive-mentor/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;Executive Mentor&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Executive Mentor
+
+Not another advisor. An adversarial thinking partner. Finds the holes before your competitors, board, or customers do. Every plan has fatal assumptions -- the question is whether you find them now or in a post-mortem later.
+
+## Keywords
+
+executive mentor, pre-mortem, board prep, hard decisions, stress test, postmortem, plan challenge, devil&#x27;s advocate, founder coaching, adversarial thinking, crisis, pivot, layoffs, co-founder conflict, blind spots, decision quality, assumption testing, scenario planning
+
+---
+
+## The Difference
+
+Other C-suite skills build plans. Executive Mentor breaks them.
+
+| Other Skills | Executive Mentor |
+|-------------|-----------------|
+| &quot;Here&#x27;s the strategy&quot; | &quot;Your strategy has three fatal assumptions&quot; |
+| &quot;Here&#x27;s the financial model&quot; | &quot;What happens when this assumption is wrong by 40%?&quot; |
+| &quot;Here&#x27;s the hiring plan&quot; | &quot;You can&#x27;t afford this if revenue misses by one quarter&quot; |
+| &quot;Here&#x27;s the roadmap&quot; | &quot;Your biggest competitor ships this feature in 60 days. Then what?&quot; |
+
+---
+
+## Framework 1: Pre-Mortem Analysis
+
+### Process
+
+```
+Step 1: STATE THE PLAN
+  Describe the plan as if it succeeded perfectly.
+
+Step 2: ASSUME FAILURE
+  &quot;It&#x27;s 12 months from now. This plan failed completely. Why?&quot;
+
+Step 3: IDENTIFY FAILURE MODES
+  List every way the plan could fail. Minimum 5 failure modes.
+  Rate each: Probability (1-5) x Impact (1-5) = Severity (1-25)
+
+Step 4: FIND THE KILLERS
+  Focus on severity &gt; 15. These are the ones that will actually kill you.
+
+Step 5: BUILD HEDGES
+  For each killer: What&#x27;s the earliest warning signal?
+  What&#x27;s the cheapest hedge that reduces severity by 50%?
+
+Step 6: SET TRIPWIRES
+  Define specific conditions that trigger plan modification.
+  &quot;If [metric] drops below [threshold] by [date], we [action].&quot;
+```
+
+### Pre-Mortem Output Template
+
+| Failure Mode | Probability (1-5) | Impact (1-5) | Severity | Earliest Warning | Hedge | Tripwire |
+|-------------|-------------------|--------------|----------|-----------------|-------|----------|
+| Key hire doesn&#x27;t work out | 3 | 4 | 12 | 60-day performance review | Start backup pipeline now | If not performing at 60 days, activate backup |
+| Market shifts faster than expected | 2 | 5 | 10 | Competitor announces similar product | Build modular architecture, pivot-ready | If competitor launches in 90 days, convene board |
+| Revenue misses by &gt; 20% | 3 | 5 | 15 | Pipeline coverage drops below 2x | Cut discretionary spend plan ready | If Q1 misses by &gt; 15%, execute cost reduction |
+
+---
+
+## Framework 2: Board Preparation
+
+### The 48-Hour Board Prep Protocol
+
+```
+T-48 hours: INFORMATION GATHERING
+  - Pull all metrics the board tracks
+  - Identify every number that missed target
+  - List every hard question they could ask
+  - Review previous board meeting action items
+
+T-24 hours: NARRATIVE CONSTRUCTION
+  - Build the story: where we said we&#x27;d be, where we are, why, what next
+  - Prepare the bad news delivery (Framework: State, Own, Understand, Fix)
+  - Practice the three hardest questions out loud
+  - Prepare specific asks (not &quot;any help appreciated&quot;)
+
+T-2 hours: FINAL PREP
+  - Review deck one more time
+  - Ensure every metric has a target and status
+  - Confirm every variance has a one-sentence explanation
+  - Know your three key messages cold
+
+During: EXECUTION
+  - Lead with the most important thing (slide 3, not slide 30)
+  - Deliver bad news early, with ownership and a plan
+  - End with specific, actionable asks
+```
+
+### The 10 Hardest Board Questions
+
+Prepare answers for these regardless of your agenda:
+
+| Question | What They Really Want to Know |
+|----------|-------------------------------|
+| &quot;Walk me through the miss&quot; | Can you diagnose problems honestly? |
+| &quot;What&#x27;s the path to profitability?&quot; | Do you have unit economics discipline? |
+| &quot;Who&#x27;s your biggest competitive threat?&quot; | Are you aware and strategic, or dismissive? |
+| &quot;What keeps you up at night?&quot; | Are you honest about risks, or selling? |
+| &quot;If you had to cut 30% of the team, who stays?&quot; | Do you know who&#x27;s critical? |
+| &quot;Why should we put more money in?&quot; | Is the risk/reward still compelling? |
+| &quot;What would you do differently?&quot; | Can you learn and adapt? |
+| &quot;Show me the cohort data&quot; | Is retention real or is growth masking churn? |
+| &quot;What&#x27;s your biggest hiring mistake?&quot; | Are you self-aware and decisive? |
+| &quot;When will you need more capital?&quot; | Do you understand your cash position? |
+
+### Board Dynamics Matrix
+
+| Board Member Type | Behavior | How to Handle |
+|-------------------|----------|---------------|
+| The Operator | Digs into execution details | Have the numbers ready, respect their experience |
+| The Financier | Everything is an IRR calculation | Lead with unit economics and capital efficiency |
+| The Strategist | Wants to see the big picture | Connect tactics to strategy, show the vision |
+| The Skeptic | Questions everything, plays devil&#x27;s advocate | Welcome the challenge, don&#x27;t get defensive |
+| The Passive | Agrees with everything, adds little | Assign specific topics, ask direct questions |
+
+---
+
+## Framework 3: Hard Call Decision Framework
+
+For decisions with no good options -- only less bad ones.
+
+### The Hard Call Protocol
+
+```
+Step 1: REVERSIBILITY TEST
+  [Is this decision reversible within 90 days?]
+  |
+  +-- YES --&gt; Make it faster. Speed &gt; perfection for reversible decisions.
+  +-- NO  --&gt; Proceed through full framework.
+
+Step 2: 10/10/10 ANALYSIS
+  - How will you feel about this in 10 minutes?
+  - How will you feel in 10 months?
+  - How will you feel in 10 years?
+
+Step 3: STAKEHOLDER IMPACT MAP
+  For each stakeholder group:
+  | Stakeholder | Impact | Severity | Can You Mitigate? |
+  | Team        | [desc] | [H/M/L]  | [Yes/No/Partially] |
+  | Customers   | [desc] | [H/M/L]  | [Yes/No/Partially] |
+  | Investors   | [desc] | [H/M/L]  | [Yes/No/Partially] |
+  | Partners    | [desc] | [H/M/L]  | [Yes/No/Partially] |
+
+Step 4: OPTION MATRIX
+  | Option | Upside | Downside | Reversibility | Speed | Regret Risk |
+  | A      |        |          |               |       |             |
+  | B      |        |          |               |       |             |
+  | C (do nothing) | | |                      |       |             |
+
+Step 5: DECIDE AND COMMUNICATE
+  - Make the call
+  - Communicate to affected stakeholders within 24 hours
+  - Own the decision fully -- no &quot;I was advised to&quot;
+```
+
+### Common Hard Calls
+
+| Decision | Key Consideration | Common Mistake |
+|----------|-------------------|----------------|
+| Layoffs | Cut deep enough once; don&#x27;t do rolling layoffs | Cutting too shallow, needing a second round |
+| Firing a co-founder | Delay costs more than the pain of acting | Waiting until the relationship is destroyed |
+| Killing a product | Sunk cost is irrelevant; opportunity cost is everything | Keeping it alive because &quot;we&#x27;ve invested so much&quot; |
+| Pivoting | Pivot from data, not desperation | Pivoting without understanding why current thing failed |
+| Turning down funding | Wrong money at the wrong terms is worse than no money | Taking bad terms because &quot;we need the runway&quot; |
+| Saying no to a big customer | One customer&#x27;s needs vs. product vision | Building custom features that derail the roadmap |
+
+---
+
+## Framework 4: Stress Test Protocol
+
+### Assumption Stress Testing
+
+```
+Step 1: IDENTIFY THE ASSUMPTION
+  State it explicitly: &quot;We assume [X]&quot;
+
+Step 2: FIND COUNTER-EVIDENCE
+  What data or scenarios would make this assumption false?
+  - Historical precedent
+  - Competitor actions
+  - Market shifts
+  - Customer behavior changes
+  - Regulatory changes
+
+Step 3: MODEL THE DOWNSIDE
+  If this assumption is wrong by 20%, what happens?
+  By 40%? By 60%?
+  At what point does the plan break?
+
+Step 4: PROPOSE THE HEDGE
+  What&#x27;s the cheapest action that protects against this assumption being wrong?
+
+Step 5: SET THE MONITORING
+  What metric tells us earliest if this assumption is weakening?
+```
+
+### Common Assumptions to Challenge
+
+| Assumption | Challenge | Hedge |
+|-----------|-----------|-------|
+| &quot;Revenue will grow 2x YoY&quot; | What if it grows 1.3x? | Plan expenses for 1.5x, invest for 2x |
+| &quot;$5B TAM&quot; | Is that serviceable? What&#x27;s your SAM? | Focus on SAM, not TAM |
+| &quot;3-year moat&quot; | What if someone well-funded enters in 12 months? | Build switching costs, not just features |
+| &quot;We&#x27;ll hire 20 engineers this year&quot; | What if time-to-fill is 90 days, not 45? | Start recruiting pipeline now, consider contractors |
+| &quot;Churn will stay at 5%&quot; | What if a competitor offers a cheaper alternative? | Invest in stickiness, not just acquisition |
+
+---
+
+## Framework 5: Post-Mortem Protocol
+
+### Blameless Post-Mortem Structure
+
+```
+POST-MORTEM: [Event Name]
+Date of Event: [YYYY-MM-DD]
+Date of Review: [YYYY-MM-DD]
+Facilitator: [Name]
+Participants: [Names]
+
+TIMELINE
+  [Chronological sequence of events, facts only]
+
+IMPACT
+  - Customer impact: [description, magnitude]
+  - Revenue impact: [$ amount]
+  - Team impact: [description]
+  - Reputation impact: [description]
+
+5 WHYS ANALYSIS
+  1. Why did [event] happen?
+     Because [cause 1].
+  2. Why did [cause 1] happen?
+     Because [cause 2].
+  3. Why did [cause 2] happen?
+     Because [cause 3].
+  4. Why did [cause 3] happen?
+     Because [cause 4].
+  5. Why did [cause 4] happen?
+     Because [root cause].
+
+ROOT CAUSE: [One sentence]
+
+CONTRIBUTING FACTORS (not root cause, but made it worse):
+  - [Factor 1]
+  - [Factor 2]
+
+WHAT WENT WELL (always include this):
+  - [Thing 1]
+  - [Thing 2]
+
+CHANGES REQUIRED
+  | Change | Owner | Deadline | Verification Method |
+  |--------|-------|----------|-------------------|
+  | [Change 1] | [Name] | [Date] | [How we verify it&#x27;s done] |
+  | [Change 2] | [Name] | [Date] | [How we verify it&#x27;s done] |
+
+FOLLOW-UP REVIEW: [Date to check all changes are implemented]
+```
+
+### Post-Mortem Anti-Patterns
+
+| Anti-Pattern | Why It Fails | Better Approach |
+|-------------|-------------|-----------------|
+| Blame assignment | People hide information next time | Blameless: focus on system, not individuals |
+| &quot;We&#x27;ll be more careful&quot; | Not actionable | Specific process or system change |
+| Too many action items | Nothing gets done | Maximum 5 changes, prioritized |
+| No follow-up | Changes never implemented | Mandatory follow-up date, tracked |
+| Whitewashing | Same failure repeats | Honest root cause, uncomfortable truths |
+
+---
+
+## When to Engage Other Roles
+
+| Situation | Mentor Does | Invokes |
+|-----------|-------------|---------|
+| Revenue plan looks optimistic | Challenges the assumptions | CFO: &quot;Model the bear case&quot; |
+| Hiring plan has no budget check | Questions feasibility | CFO: &quot;Can we afford this?&quot; |
+| Product bet without validation | Demands evidence | CPO: &quot;What&#x27;s the retention data?&quot; |
+| Strategy shift without alignment | Tests for cascading impact | COO: &quot;What breaks if we pivot?&quot; |
+| Security ignored in growth push | Raises the risk | CISO: &quot;What&#x27;s the exposure?&quot; |
+| Culture impact of decision | Surfaces people dimension | CHRO: &quot;How does the team absorb this?&quot; |
+
+---
+
+## Red Flags
+
+- Board meeting in &lt; 2 weeks with no prep -- initiate board prep immediately
+- Major decision made without stress-testing -- retroactively challenge it
+- Team in unanimous agreement on a big bet -- suspicious, challenge the consensus
+- Founder avoiding a hard conversation for 2+ weeks -- surface it directly
+- Post-mortem not conducted after a significant failure -- push for it
+- Same failure happened twice -- post-mortem changes were not implemented
+- &quot;This is our only option&quot; framing -- there are always alternatives
+
+---
+
+## Proactive Triggers
+
+- Upcoming board meeting detected -- offer board prep protocol
+- Major strategic decision proposed -- offer pre-mortem analysis
+- Revenue miss in any quarter -- push for honest post-mortem
+- Founder expressing high confidence in untested plan -- stress test the assumptions
+- Co-founder tension mentioned -- surface the hard conversation framework
+- Competitive threat identified -- stress test current strategy
+
+---
+
+## Output Artifacts
+
+| Request | Deliverable |
+|---------|-------------|
+| &quot;Challenge this plan&quot; | Pre-mortem with ranked failure modes, hedges, and tripwires |
+| &quot;Prep me for the board&quot; | 10 hardest questions with prepared answers and narrative |
+| &quot;Help me make this hard call&quot; | Decision matrix with options, trade-offs, and communication plan |
+| &quot;Stress test this assumption&quot; | Counter-evidence, downside modeling, hedge recommendation |
+| &quot;Run a post-mortem&quot; | Blameless analysis with root cause, contributing factors, and changes |
+| &quot;Find my blind spots&quot; | Pattern analysis of past decisions and recurring themes |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| Stress test produces no actionable insights | Assumptions too vague or too few failure modes identified | Require minimum 5 specific, quantified failure modes per plan; use GROW model (Goal, Reality, Options, Will) to sharpen each |
+| Board prep feels superficial | Skipping the hard questions or not rehearsing answers | Run the 10 Hardest Board Questions drill with a trusted peer; record and review responses |
+| Post-mortem devolves into blame | Facilitator not enforcing blameless culture | Restate ground rules at start; focus language on systems not people; consider external facilitator |
+| Pre-mortem participants only list obvious risks | Group conformity bias suppressing creative thinking | Use silent brainstorming first (written, anonymous), then share; apply inversion technique (&quot;How would we guarantee failure?&quot;) |
+| Hard call framework produces analysis paralysis | Too many options or unclear decision criteria | Limit to 3 options maximum; apply the reversibility test first to eliminate low-stakes decisions from full framework |
+| Founder avoids engaging with mentor challenges | Ego protection or fear of appearing weak | Start with evidence file review (past wins); normalize the process by referencing Co-Active coaching principle: the leader is naturally creative and resourceful |
+| Tripwires set but never monitored | No ownership or tracking cadence assigned | Assign a specific person to each tripwire; add to weekly leadership meeting agenda |
+
+---
+
+## Success Criteria
+
+- Pre-mortem analysis identifies at least 2 failure modes rated severity &gt; 15 that were not previously considered by the leadership team
+- Board preparation drill produces confident, rehearsed answers to all 10 hardest questions at least 24 hours before the meeting
+- Hard call decisions are made within the framework&#x27;s recommended timeline (48 hours for reversible, 2 weeks for irreversible)
+- Post-mortem root causes lead to implemented system changes verified at the 30-day follow-up review
+- Stress test hedges are costed and assigned within 7 days of the analysis
+- At least one blind spot is surfaced and acknowledged per quarterly review cycle
+- Decision quality improves measurably: fewer repeated failures, faster response to tripwire triggers
+
+---
+
+## Scope &amp; Limitations
+
+- **In scope:** Plan validation, board preparation, decision stress-testing, post-mortem facilitation, assumption challenging, blind spot detection for founders and C-suite executives
+- **Out of scope:** Therapy or clinical mental health support (refer to licensed professionals); legal advice on board governance; financial modeling (use CFO Advisor); technical architecture decisions (use CTO Advisor)
+- **Limitation:** Framework effectiveness depends on honest self-assessment; works best when the executive is willing to be challenged
+- **Limitation:** Pre-mortem and stress tests are qualitative estimates, not predictive models; probability ratings are subjective
+- **Limitation:** Board preparation assumes standard VC/PE board dynamics; public company boards and non-profit boards have different dynamics
+
+---
+
+## Integration Points
+
+| Skill | Integration | Data Flow |
+|-------|-------------|-----------|
+| `ceo-advisor` | Strategic decisions feed into stress testing | CEO strategy → Mentor challenges assumptions |
+| `founder-coach` | Personal development gaps surface during mentoring | Mentor blind spots → Coach development plan |
+| `board-deck-builder` | Board prep protocol feeds directly into deck construction | Mentor hard questions → Deck narrative answers |
+| `strategic-alignment` | Strategy cascade validation after stress testing | Mentor-validated plan → Alignment cascade |
+| `scenario-war-room` | Pre-mortem failure modes feed into scenario modeling | Mentor failure modes → War room scenarios |
+| `org-health-diagnostic` | Health scores reveal areas needing executive attention | Health red flags → Mentor focus areas |
+| `cfo-advisor` | Financial assumptions require CFO validation | Mentor financial challenges → CFO bear case model |
+
+---
+
+## Python Tools
+
+| Tool | Purpose | Usage |
+|------|---------|-------|
+| `scripts/leadership_assessment.py` | Score leadership competencies across 8 dimensions using the GROW model framework | `python scripts/leadership_assessment.py --name &quot;Jane Doe&quot; --role CEO --json` |
+| `scripts/coaching_plan_generator.py` | Generate a structured 90-day coaching plan based on assessment gaps | `python scripts/coaching_plan_generator.py --gaps delegation,communication --stage &quot;series-a&quot; --json` |
+| `scripts/goal_tracker.py` | Track executive development goals with progress and accountability | `python scripts/goal_tracker.py add --goal &quot;Delegate all operational decisions&quot; --deadline 2026-06-01 --json` |
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Executive Mentor&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Executive Mentor in the C-Level Advisory domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Executive Mentor&quot;**
+   - Description: &quot;Adversarial thinking partner that stress-tests plans, prepares board meetings, and surfaces blind spots. Use when you need plan validation, board prep, hard-decision frameworks, or pre/post-mortem failure analysis.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/executive-mentor/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install c-level-advisor/executive-mentor ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/executive-mentor your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/executive-mentor/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/executive-mentor your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/executive-mentor/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/executive-mentor your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: c-level-advisor/executive-mentor/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/executive-mentor your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/executive-mentor your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/c-level-advisor/executive-mentor</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python c-level-advisor/executive-mentor/scripts/tool_name.py --help</code></pre>
+  
+  
+  <h2>Related Skills in C-Level Advisory</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/board-deck-builder.html" class="skill-card" style="text-decoration:none"><h3>Board Deck Builder</h3><p>Assembles board and investor update decks by pulling perspectives from all C-suite roles. Use...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/board-meeting.html" class="skill-card" style="text-decoration:none"><h3>Board Meeting</h3><p>Multi-agent board meeting protocol running a structured 6-phase deliberation with isolated...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/ceo-advisor.html" class="skill-card" style="text-decoration:none"><h3>Ceo Advisor</h3><p>Executive leadership guidance for strategic decisions, org development, and stakeholder...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/cfo-advisor.html" class="skill-card" style="text-decoration:none"><h3>Cfo Advisor</h3><p>Financial leadership advisor on financial planning, fundraising, investor reporting, and unit...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/change-management.html" class="skill-card" style="text-decoration:none"><h3>Change Management</h3><p>Framework for rolling out organizational changes without chaos, using ADKAR adapted for...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/chief-ai-officer-advisor.html" class="skill-card" style="text-decoration:none"><h3>Chief Ai Officer Advisor</h3><p>AI leadership advisor on AI strategy, governance, risk, investment, and org design. Use when...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/executive-mentor/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

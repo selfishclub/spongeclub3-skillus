@@ -1,0 +1,121 @@
+{
+  "skill": "north-star-metric",
+  "version": "1.0.0",
+  "description": "Scores an NSM specification against the Amplitude / Sean Ellis framework: single NSM, 3-5 input metrics with formula, leading indicators per input, counter-metrics with thresholds, anti-metrics, archetype declaration, baseline+target.",
+  "criteria": [
+    {
+      "id": "nsm_section_present",
+      "name": "North Star Metric section present",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "^##\\s+(?:The\\s+)?North Star Metric", "flags": "im"}
+    },
+    {
+      "id": "single_nsm_named",
+      "name": "Single NSM stated (not a list of candidates)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["NSM:", "**NSM", "north star metric (NSM)", "The North Star Metric"]}
+    },
+    {
+      "id": "baseline_present",
+      "name": "Current baseline value present",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["Current:", "Current baseline", "current value", "baseline:", "trajectory"]}
+    },
+    {
+      "id": "target_with_deadline",
+      "name": "NSM target with deadline",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "(target|Q[1-4]).{0,40}(20\\d{2}|Q[1-4])", "flags": "im"}
+    },
+    {
+      "id": "input_metrics_section",
+      "name": "Input metrics section present",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "^##\\s+(Input(s| metrics|s? \\()|Input metric tree)", "flags": "im"}
+    },
+    {
+      "id": "three_to_five_inputs",
+      "name": "3-5 input metrics named",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "(Input\\s*[1-5]|IN[1-5]|Input #[1-5])", "flags": ""}
+    },
+    {
+      "id": "formula_explicit",
+      "name": "Explicit formula relating inputs to NSM",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["Formula", "Math:", "NSM =", "= Input", "multiplies", "multiplicative", "additive"]}
+    },
+    {
+      "id": "leading_indicators",
+      "name": "Leading indicators per input",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["Leading indicator", "leading indicators", "Lead:", "early-warning", "leads"]}
+    },
+    {
+      "id": "counter_metrics",
+      "name": "Counter-metrics section present",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["Counter-metric", "counter metrics", "Counter:", "guardrail"]}
+    },
+    {
+      "id": "anti_metrics",
+      "name": "Anti-metrics section present",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Anti-metric", "anti metrics", "anti-metrics"]}
+    },
+    {
+      "id": "counter_threshold",
+      "name": "Counter-metric has explicit threshold (number/%)",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "(must\\s+(stay|not)\\s+(below|above|exceed)|threshold[:\\s]+[<>]|stay below \\d|stay above \\d|<\\s*\\d|>\\s*\\d)", "flags": "im"}
+    },
+    {
+      "id": "archetype_declared",
+      "name": "NSM archetype declared (attention/transaction/productivity/communication/subscriber)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["archetype", "Productivity", "Attention", "Transaction", "Communication", "Subscriber"]}
+    },
+    {
+      "id": "not_just_revenue",
+      "name": "NSM is not naked revenue / MRR / ARR alone",
+      "weight": 5,
+      "check": {"type": "regex_not", "pattern": "^##\\s+(?:The\\s+)?North Star Metric\\s*$[\\s\\S]{0,200}(NSM[:\\s]+(MRR|ARR|Revenue|Total revenue)\\s*$)", "flags": "im"}
+    },
+    {
+      "id": "not_dau_mau_alone",
+      "name": "NSM is not raw DAU/MAU alone",
+      "weight": 4,
+      "check": {"type": "regex_not", "pattern": "^\\s*\\*?\\*?NSM[:\\s]+(DAU|MAU)\\s*\\*?\\*?\\s*$", "flags": "im"}
+    },
+    {
+      "id": "value_oriented_language",
+      "name": "NSM language oriented to customer value (action verb / completion / engagement)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["completed", "published", "engaged", "delivered", "share", "complete a deliverable", "active", "consumed"]}
+    },
+    {
+      "id": "tree_visualization",
+      "name": "Tree or table representation (mermaid or markdown table)",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "(```mermaid|graph\\s+(TD|LR)|\\|---|^\\|.*\\|.*\\|)", "flags": "im"}
+    },
+    {
+      "id": "five_tests_acknowledged",
+      "name": "5 tests / criteria acknowledged (customer value, leading, single number, movable, strategic)",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["Customer value", "leading, not lagging", "single number", "Movable", "Strategic alignment", "passes the", "5 tests"]}
+    },
+    {
+      "id": "owner_per_input",
+      "name": "Owner or squad named per input metric",
+      "weight": 3,
+      "check": {"type": "keyword_any", "keywords": ["Owner:", "squad", "PM:", "team:"]}
+    },
+    {
+      "id": "no_vanity_only",
+      "name": "Does not list vanity-only metrics ('total dashboards', 'total seats')",
+      "weight": 3,
+      "check": {"type": "regex_not", "pattern": "(?:^|\\n)\\s*\\*?\\*?NSM[:\\s]+Total\\s+(dashboards|seats|signups)\\s*\\*?\\*?\\s*$", "flags": "im"}
+    }
+  ]
+}

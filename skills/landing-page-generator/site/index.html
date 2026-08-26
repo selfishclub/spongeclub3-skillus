@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/Claude-Skills/">
+  <title>Claude Skills: AI skills for every team, not just engineering</title>
+  <meta name="description" content="368 production-ready AI skills across 20 domains. The only OSS skills library covering regulated industries (SOC 2, ISO 13485, MDR, FDA, EU AI Act, NIS2, DORA, HIPAA, GDPR). Project Management is the deepest domain (68 skills). Works with 11 AI assistants.">
+  <meta property="og:title" content="Claude Skills: AI skills for every team, not just engineering">
+  <meta property="og:description" content="368 skills · 20 domains · 76 expert agents · 18 compliance frameworks · 11 AI assistants. Ship a SOC 2 audit, run a sprint retro, draft a board update. Paste into any AI chat, or install via npx.">
+  <meta property="og:image" content="https://borghei.github.io/Claude-Skills/assets/header.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="./" class="nav-logo">Claude Skills</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="skills/">Skills</a>
+        <a href="./#bundles">Bundles</a>
+        <a href="agents/">Agents</a>
+        <a href="commands/">Commands</a>
+        <a href="./#install">Install</a>
+        <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <h1 class="hero-title fade-in">AI skills for every team, not just engineering.</h1>
+      <p class="hero-subtitle fade-in">Ship a SOC 2 audit. Run a sprint retro. Draft a board update. The only OSS skills library covering regulated industries. Paste into any AI chat, or install with one command.</p>
+      <div class="stats-row fade-in" id="stats">
+        <span class="stat-item"><span class="stat-number" data-target="338">0</span> Skills</span>
+        <span class="dot">&middot;</span>
+        <span class="stat-item"><span class="stat-number" data-target="16">0</span> Domains</span>
+        <span class="dot">&middot;</span>
+        <span class="stat-item"><span class="stat-number" data-target="74">0</span> Expert Agents</span>
+        <span class="dot">&middot;</span>
+        <span class="stat-item"><span class="stat-number" data-target="18">0</span> Compliance Frameworks</span>
+        <span class="dot">&middot;</span>
+        <span class="stat-item"><span class="stat-number" data-target="11">0</span> AI Assistants</span>
+      </div>
+      <div class="hero-buttons fade-in" style="margin-top: 40px;">
+        <a href="skills/" class="btn btn-primary">Browse skills</a>
+        <a href="#install" class="btn btn-secondary">Install options</a>
+      </div>
+      <p class="install-hint fade-in" style="margin-top: 24px; opacity: 0.7;">No setup needed. Open a skill page, click <strong>Try it now</strong>, paste into Claude.ai, ChatGPT, or Gemini.</p>
+    </div>
+  </section>
+
+  <!-- Domains -->
+  <section class="domains" id="domains">
+    <div class="container">
+      <h2 class="section-title fade-in">Skill Domains</h2>
+      <p class="section-subtitle fade-in">Production-ready packages across every business function</p>
+      <div class="domains-grid">
+
+        <a href="skills/engineering/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3>Engineering</h3>
+          <span class="badge">82 skills</span>
+          <p>Architecture, DevOps, security, AI/ML, fullstack development</p>
+          <div class="domain-tags">
+            <span class="tag">docker</span>
+            <span class="tag">terraform</span>
+            <span class="tag">playwright</span>
+            <span class="tag">kubernetes</span>
+          </div>
+        </a>
+
+        <a href="skills/marketing/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+          </div>
+          <h3>Marketing</h3>
+          <span class="badge">39 skills</span>
+          <p>Content creation, SEO, demand gen, campaign analytics</p>
+          <div class="domain-tags">
+            <span class="tag">seo</span>
+            <span class="tag">content</span>
+            <span class="tag">demand-gen</span>
+            <span class="tag">analytics</span>
+          </div>
+        </a>
+
+        <a href="skills/c-level-advisor/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          </div>
+          <h3>C-Level Advisory</h3>
+          <span class="badge">31 skills</span>
+          <p>CEO, CTO, CFO, CMO, CRO, CPO, COO, CHRO, CISO, CAIO, CDO, CCO, GC, VPE</p>
+          <div class="domain-tags">
+            <span class="tag">ceo</span>
+            <span class="tag">cto</span>
+            <span class="tag">caio</span>
+            <span class="tag">ciso</span>
+          </div>
+        </a>
+
+        <a href="skills/ra-qm-team/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>Compliance</h3>
+          <span class="badge">27 skills</span>
+          <p>ISO 13485, MDR, FDA, SOC 2, GDPR, EU AI Act, NIS2</p>
+          <div class="domain-tags">
+            <span class="tag">soc2</span>
+            <span class="tag">gdpr</span>
+            <span class="tag">hipaa</span>
+            <span class="tag">iso</span>
+          </div>
+        </a>
+
+        <a href="skills/business-growth/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h3>Business & Growth</h3>
+          <span class="badge">20 skills</span>
+          <p>Customer success, sales engineering, revenue operations</p>
+          <div class="domain-tags">
+            <span class="tag">revenue</span>
+            <span class="tag">churn</span>
+            <span class="tag">onboarding</span>
+          </div>
+        </a>
+
+        <a href="skills/product-team/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <h3>Product</h3>
+          <span class="badge">13 skills</span>
+          <p>RICE, OKRs, UX research, product analytics, Apple HIG, spec-to-repo, roadmap communication</p>
+          <div class="domain-tags">
+            <span class="tag">rice</span>
+            <span class="tag">pestel</span>
+            <span class="tag">positioning</span>
+          </div>
+        </a>
+
+        <a href="skills/project-management/" class="domain-card fade-in" id="pm-card" style="border: 2px solid var(--accent, #7c3aed); position: relative;">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+          </div>
+          <h3>Project Management ★</h3>
+          <span class="badge">68 skills</span>
+          <p>Most-used domain. Discovery, execution, career growth, strategy frameworks (BMC / Lean / SWOT / Porter's / Ansoff), and GTM (gtm-strategy / ICP). Every skill ships with a worked example, a red-flag library, and a deterministic scoring rubric. 15 PM skills callable as MCP tools. Jira / Linear / Notion / Productboard / Confluence.</p>
+          <div class="domain-tags">
+            <span class="tag">ai-prd</span>
+            <span class="tag">linear</span>
+            <span class="tag">notion</span>
+            <span class="tag">productboard</span>
+            <span class="tag">mcp</span>
+          </div>
+        </a>
+
+        <a href="skills/data-analytics/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3>Data Analytics</h3>
+          <span class="badge">5 skills</span>
+          <p>BI, ML ops, analytics engineering, data pipelines</p>
+          <div class="domain-tags">
+            <span class="tag">ml-ops</span>
+            <span class="tag">pipelines</span>
+            <span class="tag">bi</span>
+          </div>
+        </a>
+
+        <a href="skills/sales-success/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Sales</h3>
+          <span class="badge">5 skills</span>
+          <p>Account executive, sales ops, solutions architect</p>
+          <div class="domain-tags">
+            <span class="tag">pipeline</span>
+            <span class="tag">discovery</span>
+            <span class="tag">deals</span>
+          </div>
+        </a>
+
+        <a href="skills/hr-operations/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>HR Operations</h3>
+          <span class="badge">4 skills</span>
+          <p>Talent acquisition, people analytics, HR business partner</p>
+        </a>
+
+        <a href="skills/legal/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Legal</h3>
+          <span class="badge">17 skills</span>
+          <p>Contract review, NDA, privacy, DPIA, risk, compliance</p>
+          <div class="domain-tags">
+            <span class="tag">contracts</span>
+            <span class="tag">privacy</span>
+            <span class="tag">nda</span>
+          </div>
+        </a>
+
+        <a href="skills/finance/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/><path d="M6 16h4"/></svg>
+          </div>
+          <h3>Finance</h3>
+          <span class="badge">3 skills</span>
+          <p>DCF valuation, budgeting, forecasting, ratio analysis</p>
+          <div class="domain-tags">
+            <span class="tag">dcf</span>
+            <span class="tag">saas-metrics</span>
+            <span class="tag">budgeting</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/borghei/Claude-Skills/tree/main/personal-productivity" class="domain-card fade-in" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"/><polyline points="9 6 12 3 15 6"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <h3>Personal Productivity</h3>
+          <span class="badge">10 skills</span>
+          <p>Resume tailoring, lead research, meeting insights, naming, invoices, email triage, calendar prep, investor updates, pitch deck review, weekly review</p>
+          <div class="domain-tags">
+            <span class="tag">resume</span>
+            <span class="tag">leads</span>
+            <span class="tag">inbox-zero</span>
+            <span class="tag">weekly-review</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/borghei/Claude-Skills/tree/main/documents" class="domain-card fade-in" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>Documents</h3>
+          <span class="badge">4 skills</span>
+          <p>Audit Microsoft Office and PDF files (docx, pdf, pptx, xlsx) using stdlib-only OOXML parsing, no external dependencies</p>
+          <div class="domain-tags">
+            <span class="tag">docx</span>
+            <span class="tag">pdf</span>
+            <span class="tag">pptx</span>
+            <span class="tag">xlsx</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/borghei/Claude-Skills/tree/main/vertical-advisors" class="domain-card fade-in" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Vertical Advisors</h3>
+          <span class="badge">7 skills</span>
+          <p>Strategic advisory for industry-specific founders: fintech, healthtech, edtech, ecommerce, proptech, climate-tech, marketplace</p>
+          <div class="domain-tags">
+            <span class="tag">fintech</span>
+            <span class="tag">healthtech</span>
+            <span class="tag">climate-tech</span>
+            <span class="tag">marketplace</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/borghei/Claude-Skills/tree/main/research" class="domain-card fade-in" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3>Research</h3>
+          <span class="badge">4 skills</span>
+          <p>Structured research workflows: literature review (PRISMA), grant proposals (NIH/NSF/SBIR), patent landscape, intelligence dossiers</p>
+          <div class="domain-tags">
+            <span class="tag">litreview</span>
+            <span class="tag">grants</span>
+            <span class="tag">patent</span>
+            <span class="tag">dossier</span>
+          </div>
+        </a>
+
+        <a href="skills/business-operations/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <h3>Business Operations</h3>
+          <span class="badge">6 skills</span>
+          <p>The internal operating layer: capacity planning, process mapping, vendor and procurement management, internal comms, knowledge base health</p>
+          <div class="domain-tags">
+            <span class="tag">capacity-planner</span>
+            <span class="tag">process-mapper</span>
+            <span class="tag">vendor-management</span>
+            <span class="tag">procurement-optimizer</span>
+          </div>
+        </a>
+
+        <a href="skills/research-ops/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </div>
+          <h3>Research Ops</h3>
+          <span class="badge">4 skills</span>
+          <p>Applied research as a funded function: market sizing (TAM/SAM/SOM), discovery study design, clinical sample-size and protocol planning, research budgeting</p>
+          <div class="domain-tags">
+            <span class="tag">market-research</span>
+            <span class="tag">product-research</span>
+            <span class="tag">clinical-research</span>
+            <span class="tag">research-finance</span>
+          </div>
+        </a>
+
+        <a href="skills/markdown-html/" class="domain-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>
+          </div>
+          <h3>Markdown → HTML</h3>
+          <span class="badge">4 skills</span>
+          <p>Publishing pipeline: polished self-contained documents and slide decks, a CI-ready pre-publication review gate, and a shared design-token layer. Stdlib only, zero network calls</p>
+          <div class="domain-tags">
+            <span class="tag">md-document</span>
+            <span class="tag">md-slides</span>
+            <span class="tag">md-review</span>
+            <span class="tag">design-system</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Bundles -->
+  <section class="domains" id="bundles">
+    <div class="container">
+      <h2 class="section-title fade-in">Plugin Bundles</h2>
+      <p class="section-subtitle fade-in">5 curated Claude Code plugins, one install command each</p>
+      <div class="domains-grid">
+
+        <a href="https://github.com/borghei/Claude-Skills/tree/main/bundles/engineering-skills" class="domain-card fade-in" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+          </div>
+          <h3>engineering-skills</h3>
+          <span class="badge">8 flagship</span>
+          <p>Fullstack, DevOps, security, Docker, Terraform, MCP, RAG, code review</p>
+        </a>
+
+        <a href="https://github.com/borghei/Claude-Skills/tree/main/bundles/compliance-skills" class="domain-card fade-in" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>compliance-skills</h3>
+          <span class="badge">9 flagship</span>
+          <p>ISO 27001, SOC 2, GDPR, EU AI Act, NIS2, DORA, ISO 13485, MDR, FDA</p>
+        </a>
+
+        <a href="https://github.com/borghei/Claude-Skills/tree/main/bundles/c-level-skills" class="domain-card fade-in" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          </div>
+          <h3>c-level-skills</h3>
+          <span class="badge">7 flagship</span>
+          <p>CEO, CTO, CFO, CISO, CMO advisors plus board meeting and deck building</p>
+        </a>
+
+        <a href="https://github.com/borghei/Claude-Skills/tree/main/bundles/marketing-skills" class="domain-card fade-in" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+          </div>
+          <h3>marketing-skills</h3>
+          <span class="badge">6 flagship</span>
+          <p>Content, SEO audit, demand gen, analytics, landing pages, X growth</p>
+        </a>
+
+        <a href="https://github.com/borghei/Claude-Skills/tree/main/bundles/product-skills" class="domain-card fade-in" target="_blank" rel="noopener">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>product-skills</h3>
+          <span class="badge">6 flagship</span>
+          <p>Product management, strategy, agile ownership, UX research, design systems</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title fade-in">How it works</h2>
+      <p class="section-subtitle fade-in">Scripts that actually run, not just prompt templates</p>
+      <div class="features-grid">
+
+        <div class="feature-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3>Pre-built expert identities</h3>
+          <p>Call one persona, get a stack of skills behind it: startup CTO, growth marketer, solo founder, fintech advisor, and 70 more.</p>
+        </div>
+
+        <div class="feature-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          </div>
+          <h3>26 slash commands</h3>
+          <p>One-line workflows for the things you actually do: /tdd, /prd, /retro, /security-scan, /rice, /sprint-plan.</p>
+        </div>
+
+        <div class="feature-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>Regulated industries, built in</h3>
+          <p>18 compliance frameworks (SOC 2, ISO 13485, MDR, FDA, EU AI Act, NIS2, DORA, HIPAA, GDPR) with checklists and audit-ready outputs.</p>
+        </div>
+
+        <div class="feature-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="m8 10 3 3-3 3"/><line x1="14" y1="16" x2="18" y2="16"/></svg>
+          </div>
+          <h3>Real Python automation</h3>
+          <p>859 CLI tools: code quality, DCF valuation, SEO audits, flow metrics, weekly status updates. Standard library only, no pip cliffs.</p>
+        </div>
+
+        <div class="feature-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <h3>Works with your AI assistant</h3>
+          <p>Claude Code, Codex, Cursor, Gemini CLI, Copilot, Windsurf, Cline, Aider, Goose, OpenCode, and ChatGPT / Claude.ai.</p>
+        </div>
+
+        <div class="feature-card fade-in">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <h3>Ready-made kits by role</h3>
+          <p>Pre-configured skill bundles: SaaS Founder, DevOps, Compliance, Growth, Product, PM Starter Pack, PM Career Track.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <section class="install" id="install">
+    <div class="container">
+      <h2 class="section-title fade-in">Install in seconds</h2>
+      <p class="section-subtitle fade-in">No terminal needed, or one command for developers</p>
+
+      <h3 class="section-title fade-in" style="font-size: 1.2rem; margin-top: 16px;">Try it now</h3>
+      <div class="install-block fade-in">
+        <span class="prompt">copy</span><code>open a skill page → click Try it now → paste into your AI</code>
+      </div>
+      <p class="install-hint fade-in">Browse any <a href="skills/">skill page</a>, click <strong>Try it now</strong>, and paste into Claude.ai, ChatGPT, or Gemini. No setup needed.</p>
+
+      <h3 class="section-title fade-in" style="font-size: 1.2rem; margin-top: 40px;">Save to my AI</h3>
+      <div class="install-block fade-in">
+        <span class="prompt">copy</span><code>open a skill page → click Save to my AI → follow the guided setup</code>
+      </div>
+      <p class="install-hint fade-in">Installs as a Claude Project or Custom GPT. Guided setup, no terminal.</p>
+
+      <h3 class="section-title fade-in" style="font-size: 1.2rem; margin-top: 40px;">For developers</h3>
+      <div class="install-block fade-in">
+        <span class="prompt">$</span><code>npx @borghei/claude-skills add senior-fullstack</code>
+      </div>
+      <p class="install-hint fade-in">Auto-detects Claude Code, Cursor, Codex, Gemini CLI, Copilot, Windsurf, Cline, Aider, and Goose. Drops the skill into the right directory. Node 18+, no Python required.</p>
+
+      <div class="install-block fade-in" style="margin-top: 16px;">
+        <span class="prompt">claude&gt;</span><code>/plugin marketplace add borghei/Claude-Skills</code>
+      </div>
+      <p class="install-hint fade-in">Claude Code native plugin. Installs the 5 curated bundles as plugins.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+        <span class="footer-sep">&middot;</span>
+        <span>MIT + Commons Clause</span>
+        <span class="footer-sep">&middot;</span>
+        <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+      </div>
+      <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html><meta charset="utf-8">
+<title>claude.ai 스킬 업로드 3단계</title>
+<style>
+/* claude.ai 설정 화면을 실제 화면 그대로 옮겨 그린 안내 그림.
+   실제 UI 를 보고 문구·배치·순서를 맞췄다. 캡처가 아니라 재현이라
+   claude.ai 가 UI 를 바꾸면 여기도 같이 고쳐야 한다. */
+:root{
+  --page:#0F0F0E; --panel:#232320; --panel2:#1C1C1A; --line:#35352F;
+  --ink:#F0EEE6; --dim:#9C9A90; --sel:#37372F;
+  --mark:#FF4438; --lime:#C8F135;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--page);color:var(--ink);
+  font:14px/1.5 'Pretendard','Apple SD Gothic Neo',-apple-system,sans-serif;
+  padding:52px 56px 44px}
+
+h1{font-size:38px;font-weight:800;letter-spacing:-.03em}
+h1 em{font-style:normal;color:var(--lime)}
+.lead{color:var(--dim);font-size:15px;margin:10px 0 34px}
+.lead b{color:var(--ink)}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start}
+
+.step > .cap{display:flex;gap:10px;align-items:flex-start;margin-bottom:13px;min-height:52px}
+.num{flex:0 0 27px;height:27px;border-radius:50%;background:var(--mark);color:#fff;
+  font-weight:800;font-size:14px;display:grid;place-items:center;margin-top:1px}
+.cap b{display:block;font-size:17px;font-weight:700;letter-spacing:-.02em}
+.cap i{font-style:normal;color:var(--dim);font-size:13px}
+
+/* ── 창 목업 ── */
+.win{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  overflow:hidden;position:relative;height:286px}
+.win.split{display:grid;grid-template-columns:112px 1fr}
+.nav{background:var(--panel2);border-right:1px solid var(--line);padding:11px 8px}
+.nav .sect{color:var(--dim);font-size:9.5px;padding:9px 6px 5px;letter-spacing:.04em}
+.nav .it{display:flex;align-items:center;gap:6px;padding:5px 7px;border-radius:6px;
+  font-size:11px;color:var(--ink);opacity:.72}
+.nav .it .ic{width:11px;height:11px;border:1.2px solid currentColor;border-radius:2.5px;opacity:.8;flex:0 0 auto}
+.nav .it.on{background:var(--sel);opacity:1;font-weight:600}
+.body{padding:13px 15px;position:relative}
+
+.bar{display:flex;align-items:center;gap:8px;margin-bottom:13px}
+.bar .t{font-size:14px;font-weight:600;margin-right:auto}
+.btn{background:#3A3A34;border-radius:7px;padding:4px 10px;font-size:11.5px;color:var(--ink)}
+.btn.ghost{background:#2E2E29}
+
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{text-align:left;color:var(--dim);font-weight:400;padding:0 0 7px;border-bottom:1px solid var(--line);font-size:10px}
+td{padding:8px 0;border-bottom:1px solid var(--line);color:var(--dim)}
+td:first-child{color:var(--ink)}
+
+/* 드롭다운 */
+.menu{position:absolute;top:37px;right:11px;background:#2E2E29;border:1px solid var(--line);
+  border-radius:9px;padding:5px;width:176px;box-shadow:0 14px 34px rgba(0,0,0,.55)}
+.menu div{white-space:nowrap;display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;font-size:11.5px;color:var(--dim)}
+.menu div.on{background:var(--sel);color:var(--ink);font-weight:700}
+.menu .ic{width:12px;height:12px;border:1.2px solid currentColor;border-radius:2.5px;flex:0 0 auto}
+
+/* 업로드 다이얼로그 */
+.dlg{position:absolute;inset:38px 22px auto 22px;background:var(--panel);
+  border:1px solid var(--line);border-radius:11px;padding:15px 16px 14px;
+  box-shadow:0 22px 50px rgba(0,0,0,.6)}
+.dlg .h{font-size:14px;font-weight:700;margin-bottom:12px}
+.drop{position:relative;border:1.6px dashed #4E4E45;border-radius:9px;padding:20px 10px;text-align:center;color:var(--dim);font-size:11px}
+.drop .up{font-size:19px;display:block;margin-bottom:5px;opacity:.75}
+.req{margin-top:11px;font-size:10px;color:var(--dim);line-height:1.75}
+.req b{color:#BFBDB2;display:block;margin-bottom:2px;font-size:10.5px}
+
+/* 빨간 표시 — 좌표로 얹지 않고 대상 요소 자체에 건다.
+   좌표로 얹으면 글자 길이가 조금만 달라져도 엉뚱한 줄을 가리킨다. */
+.hit{outline:2.5px solid var(--mark);outline-offset:2px;border-radius:7px;
+  box-shadow:0 0 0 6px rgba(255,68,56,.14)}
+.zip{position:absolute;right:-4px;top:-14px;transform:rotate(-6deg);
+  background:var(--lime);color:#12120F;font-weight:800;font-size:10.5px;
+  padding:4px 9px;border-radius:6px;white-space:nowrap;
+  box-shadow:0 9px 20px rgba(0,0,0,.55)}
+
+.foot{margin-top:30px;border-top:1px solid var(--line);padding-top:16px;
+  display:flex;gap:30px;align-items:flex-start;font-size:12.5px;color:var(--dim)}
+.foot .k{color:var(--lime);font-weight:700;flex:0 0 auto}
+.foot b{color:var(--ink)}
+.note{margin-top:11px;font-size:11px;color:#6E6C64}
+</style>
+
+<h1>claude.ai 에 올리기 — <em>3단계</em></h1>
+<div class="lead">웹·앱·폰 어디서든 씁니다. <b>PC에서 딱 한 번만</b> 올리면 끝입니다.</div>
+
+<div class="steps">
+
+  <!-- 1 -->
+  <div class="step">
+    <div class="cap"><div class="num">1</div><div>
+      <b>설정 › 사용자 지정 › 스킬</b>
+      <i>왼쪽 목록 아래쪽 "사용자 지정" 아래에 있습니다</i>
+    </div></div>
+    <div class="win split">
+      <div class="nav">
+        <div class="sect">설정</div>
+        <div class="it"><span class="ic"></span>일반</div>
+        <div class="it"><span class="ic"></span>계정</div>
+        <div class="it"><span class="ic"></span>개인정보보호</div>
+        <div class="it"><span class="ic"></span>결제</div>
+        <div class="it"><span class="ic"></span>사용량</div>
+        <div class="it"><span class="ic"></span>기능</div>
+        <div class="it"><span class="ic"></span>Claude Code</div>
+        <div class="sect">사용자 지정</div>
+        <div class="it on hit"><span class="ic"></span>스킬</div>
+        <div class="it"><span class="ic"></span>커넥터</div>
+        <div class="it"><span class="ic"></span>플러그인</div>
+      </div>
+      <div class="body">
+        <div class="bar"><span class="t">스킬</span>
+          <span class="btn ghost">찾아보기</span><span class="btn">추가 ⌄</span></div>
+        <table>
+          <tr><th>스킬</th><th>마지막 업데이트</th><th>작성자</th></tr>
+          <tr><td>morning</td><td>26. 8. 6.</td><td>Anthropic</td></tr>
+          <tr><td>skill-creator</td><td>26. 8. 6.</td><td>Anthropic</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="step">
+    <div class="cap"><div class="num">2</div><div>
+      <b>오른쪽 위 [추가 ⌄] › 스킬 업로드</b>
+      <i>세 개 중 맨 아래입니다</i>
+    </div></div>
+    <div class="win">
+      <div class="body">
+        <div class="bar"><span class="t">스킬</span>
+          <span class="btn ghost">찾아보기</span><span class="btn hit">추가 ⌄</span></div>
+        <table>
+          <tr><th>스킬</th><th>마지막 업데이트</th><th>작성자</th></tr>
+          <tr><td>morning</td><td>26. 8. 6.</td><td>Anthropic</td></tr>
+          <tr><td>skill-creator</td><td>26. 8. 6.</td><td>Anthropic</td></tr>
+        </table>
+        <div class="menu">
+          <div><span class="ic"></span>Claude와 함께 창작하기</div>
+          <div><span class="ic"></span>스킬 지침 작성</div>
+          <div class="on hit"><span class="ic"></span>스킬 업로드</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="step">
+    <div class="cap"><div class="num">3</div><div>
+      <b>받은 zip 을 상자에 끌어다 놓기</b>
+      <i>클릭해서 골라도 됩니다 → 끝</i>
+    </div></div>
+    <div class="win">
+      <div class="body" style="opacity:.35">
+        <div class="bar"><span class="t">스킬</span>
+          <span class="btn ghost">찾아보기</span><span class="btn">추가 ⌄</span></div>
+        <table>
+          <tr><th>스킬</th><th>마지막 업데이트</th><th>작성자</th></tr>
+          <tr><td>morning</td><td>26. 8. 6.</td><td>Anthropic</td></tr>
+        </table>
+      </div>
+      <div class="dlg">
+        <div class="h">스킬 업로드</div>
+        <div class="drop hit"><span class="zip">skillers-share-claude-ai.zip</span><span class="up">⤒</span>드래그 앤 드롭하거나 클릭하여 업로드</div>
+        <div class="req"><b>파일 요구사항</b>
+          · .md 파일에는 YAML 형식의 스킬 이름과 설명이 포함되어야 합니다<br>
+          · .zip 또는 .skill 파일에는 SKILL.md 파일이 포함되어야 합니다</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="foot">
+  <span class="k">zip 받는 곳</span>
+  <span>github.com/Koo-bon/skillers-share → <b>Releases</b> → <b>skillers-share-claude-ai.zip</b><br>
+  올리고 나면 새 채팅에서 <b>"공유회 준비해줘"</b> 라고 하면 됩니다. 폰 앱에서도 자동으로 떠요.</span>
+</div>
+<div class="note">※ claude.ai 설정 화면을 실제 화면 그대로 옮겨 그린 안내 그림입니다 (화면 캡처 아님).</div>

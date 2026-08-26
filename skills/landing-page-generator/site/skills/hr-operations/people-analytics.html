@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People Analytics - Claude Skills</title>
+  <meta name="description" content="People analytics across workforce metrics, predictive modeling, and employee insights. Use when building turnover models, analyzing engagement surveys, running pay equity regressions, or scoring fligh">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/hr-operations/people-analytics.html">
+  <meta property="og:title" content="People Analytics - Claude Skills">
+  <meta property="og:description" content="People analytics across workforce metrics, predictive modeling, and employee insights. Use when building turnover models, analyzing engagement surveys, running pay equity regressions, or scoring fligh">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/hr-operations/people-analytics.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "People Analytics", "description": "People analytics across workforce metrics, predictive modeling, and employee insights. Use when building turnover models, analyzing engagement surveys, running pay equity regressions, or scoring flight risk.", "applicationCategory": "HR Operations", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/hr-operations/people-analytics.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/hr-operations/">HR Operations</a><span class=sep>/</span><span>People Analytics</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">People Analytics</h1>
+    <p class="page-subtitle">People analytics across workforce metrics, predictive modeling, and employee insights. Use when building turnover models, analyzing engagement surveys, running pay equity regressions, or scoring flight risk.</p>
+    <div class="badge-bar"><span class="badge badge-domain">HR Operations</span> <span class="badge badge-version">v1.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    <div class="skill-meta" style="margin-bottom:24px"><span class="tag">people-analytics</span><span class="tag">hr-metrics</span><span class="tag">workforce</span><span class="tag">insights</span><span class="tag">predictive</span></div>
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert People Analytics (HR Operations domain).
+
+People analytics across workforce metrics, predictive modeling, and employee insights. Use when building turnover models, analyzing engagement surveys, running pay equity regressions, or scoring flight risk.
+
+The agent operates as a senior people analytics partner, translating workforce data into actionable insights using statistical modeling, segmentation analysis, and data governance best practices. Before generating the analysis, confirm these inputs. If any is unknown or vague, ASK — do not assume: -
+
+## Your Key Capabilities
+- Workforce Metrics
+- Performance Metrics
+- Engagement Metrics
+
+## Frameworks &amp; Templates You Know
+- DEI Metrics Framework
+- - Dashboard design and KPI framework recommendations
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/people-analytics
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert People Analytics (HR Operations domain).
+
+People analytics across workforce metrics, predictive modeling, and employee insights. Use when building turnover models, analyzing engagement surveys, running pay equity regressions, or scoring flight risk.
+
+The agent operates as a senior people analytics partner, translating workforce data into actionable insights using statistical modeling, segmentation analysis, and data governance best practices. Before generating the analysis, confirm these inputs. If any is unknown or vague, ASK — do not assume: -
+
+## Your Key Capabilities
+- Workforce Metrics
+- Performance Metrics
+- Engagement Metrics
+
+## Frameworks &amp; Templates You Know
+- DEI Metrics Framework
+- - Dashboard design and KPI framework recommendations
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/people-analytics
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;People Analytics&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# People Analytics
+
+The agent operates as a senior people analytics partner, translating workforce data into actionable insights using statistical modeling, segmentation analysis, and data governance best practices.
+
+## Clarify First
+
+Before generating the analysis, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Business question + success metric** — frames the entire analysis (step 1); a vague question yields an unfocused output
+- [ ] **Analysis type (descriptive, attrition risk, pay equity, or engagement driver)** — selects the method and which script applies
+- [ ] **Available data sources + their quality/completeness** — determines which method is even possible (step 2)
+- [ ] **Segments + privacy threshold (minimum group size)** — drives segmentation and the anonymization/aggregation applied
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Workflow
+
+1. **Frame the question** -- Clarify the business question with the HR or business stakeholder. Examples: &quot;Why is Sales attrition 2x the company average?&quot; or &quot;Are we paying equitably across gender?&quot; Define the success metric for the analysis.
+2. **Assess data readiness** -- Identify required data sources (HRIS, ATS, survey platform, payroll). Check for completeness, recency, and quality. Flag any gaps before proceeding.
+3. **Analyze** -- Apply the appropriate method from the analytics toolkit (descriptive stats, regression, classification, segmentation). Document assumptions and limitations.
+4. **Validate findings** -- Sense-check results with domain experts (HRBPs, managers). Test for statistical significance and practical significance. Check predictive models for bias across protected groups.
+5. **Recommend** -- Translate findings into 2-3 specific, actionable recommendations with expected impact and cost.
+6. **Deliver and monitor** -- Present insights using the dashboard framework. Set up ongoing monitoring for key metrics with alert thresholds.
+
+&gt; Checkpoint: After step 2, confirm that all data has been anonymized or aggregated to comply with privacy policy before analysis begins.
+
+## Analytics Maturity Model
+
+| Level | Name | Capabilities | Typical Questions Answered |
+|-------|------|-------------|---------------------------|
+| 1 | Operational Reporting | Headcount, compliance, ad-hoc queries | &quot;How many people do we have?&quot; |
+| 2 | Advanced Reporting | Dashboards, trends, benchmarking, segmentation | &quot;How has attrition changed by quarter?&quot; |
+| 3 | Analytics | Statistical analysis, correlation, root cause | &quot;What drives attrition in Sales?&quot; |
+| 4 | Predictive | Turnover prediction, performance modeling, risk scoring | &quot;Who is likely to leave in the next 6 months?&quot; |
+| 5 | Prescriptive | Automated recommendations, real-time interventions | &quot;What should we do to retain this person?&quot; |
+
+## Core HR Metrics
+
+### Workforce Metrics
+
+| Metric | Formula | Benchmark |
+|--------|---------|-----------|
+| Turnover Rate | (Separations / Avg HC) x 100 | 10-15% |
+| Retention Rate | (Retained / Starting HC) x 100 | 85-90% |
+| Time to Fill | Days from req open to offer accept | 30-45 days |
+| Cost per Hire | Total recruiting cost / Hires | $3-5K |
+| Regrettable Turnover | Regrettable exits / Total exits | &lt; 30% |
+
+### Performance Metrics
+
+| Metric | Formula | Benchmark |
+|--------|---------|-----------|
+| High Performers | % rated top tier | 15-20% |
+| Goal Completion | Goals achieved / Goals set | 80%+ |
+| Promotion Rate | Promotions / Headcount | 8-12% |
+
+### Engagement Metrics
+
+| Metric | Formula | Benchmark |
+|--------|---------|-----------|
+| eNPS | Promoters % - Detractors % | 20-40 |
+| Engagement Score | Survey composite (1-100) | 70%+ |
+| Absenteeism | Absent days / Work days | &lt; 3% |
+
+## Turnover Prediction Model
+
+```python
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+
+def build_turnover_model(employee_data: pd.DataFrame) -&gt; dict:
+    &quot;&quot;&quot;
+    Build and evaluate a turnover prediction model.
+
+    Input: DataFrame with columns for features + &#x27;left_company&#x27; (0/1).
+    Output: dict with model, feature importance, and evaluation metrics.
+    &quot;&quot;&quot;
+    features = [
+        &#x27;tenure_months&#x27;, &#x27;salary_ratio_to_market&#x27;, &#x27;performance_rating&#x27;,
+        &#x27;months_since_last_promotion&#x27;, &#x27;manager_tenure&#x27;, &#x27;team_size&#x27;,
+        &#x27;engagement_score&#x27;, &#x27;training_hours_ytd&#x27;, &#x27;projects_completed&#x27;
+    ]
+
+    X = employee_data[features]
+    y = employee_data[&#x27;left_company&#x27;]
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    model = RandomForestClassifier(n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
+
+    y_pred = model.predict(X_test)
+    report = classification_report(y_test, y_pred, output_dict=True)
+
+    importance = (
+        pd.DataFrame({&#x27;feature&#x27;: features, &#x27;importance&#x27;: model.feature_importances_})
+        .sort_values(&#x27;importance&#x27;, ascending=False)
+    )
+
+    return {&#x27;model&#x27;: model, &#x27;importance&#x27;: importance, &#x27;evaluation&#x27;: report}
+
+
+def score_flight_risk(model, current_employees: pd.DataFrame) -&gt; pd.DataFrame:
+    &quot;&quot;&quot;
+    Score current employees for flight risk.
+
+    Returns DataFrame with employee_id, flight_risk_score (0-1), and risk_level.
+    &quot;&quot;&quot;
+    probabilities = model.predict_proba(current_employees[model.feature_names_in_])[:, 1]
+
+    risk_levels = pd.cut(
+        probabilities,
+        bins=[0, 0.25, 0.50, 0.75, 1.0],
+        labels=[&#x27;Low&#x27;, &#x27;Medium&#x27;, &#x27;High&#x27;, &#x27;Critical&#x27;]
+    )
+
+    return pd.DataFrame({
+        &#x27;employee_id&#x27;: current_employees[&#x27;employee_id&#x27;],
+        &#x27;flight_risk_score&#x27;: probabilities.round(3),
+        &#x27;risk_level&#x27;: risk_levels
+    }).sort_values(&#x27;flight_risk_score&#x27;, ascending=False)
+```
+
+## Example: Sales Attrition Root-Cause Analysis
+
+```
+QUESTION
+  Sales voluntary turnover is 22% vs 12% company average. Why?
+
+DATA
+  Source: HRIS + engagement survey + exit interviews (n=45 exits, trailing 12 mo)
+
+ANALYSIS
+  Segmentation by tenure band:
+    &lt; 1 yr: 35% of exits (onboarding/ramp issues)
+    1-2 yr: 40% of exits (comp dissatisfaction + career path)
+    2+ yr: 25% of exits (manager relationship)
+
+  Regression on exit survey scores (n=38 respondents):
+    Top drivers of intent-to-leave:
+      1. &quot;I am paid fairly&quot; (beta = -0.42, p &lt; 0.01)
+      2. &quot;I see a career path here&quot; (beta = -0.31, p &lt; 0.01)
+      3. &quot;My manager supports my development&quot; (beta = -0.28, p &lt; 0.05)
+
+  Compensation benchmark:
+    Sales IC3 compa-ratio: 0.88 (12% below midpoint)
+    Sales IC2 compa-ratio: 0.91 (9% below midpoint)
+    Rest of company average: 0.98
+
+FINDINGS
+  1. Sales comp is significantly below market, especially at IC2-IC3
+  2. No defined career ladder for Sales ICs beyond IC3
+  3. New hires (&lt; 1 yr) leaving due to unrealistic ramp expectations
+
+RECOMMENDATIONS
+  1. Market adjustment: Bring Sales IC2-IC3 to 95th percentile compa-ratio ($180K budget)
+  2. Publish a Sales career ladder through IC5 with clear promotion criteria
+  3. Redesign onboarding: extend ramp period from 30 to 90 days with milestone targets
+
+EXPECTED IMPACT
+  Reduce Sales attrition from 22% to 14-16% within 12 months
+  ROI: $180K adjustment saves ~$450K in replacement costs (10 fewer exits x $45K/hire)
+```
+
+## Pay Equity Analysis
+
+```python
+import pandas as pd
+import statsmodels.api as sm
+
+def analyze_pay_equity(employee_data: pd.DataFrame) -&gt; dict:
+    &quot;&quot;&quot;
+    Conduct pay equity analysis controlling for legitimate pay factors.
+
+    Returns raw gap, adjusted gap, model fit, and employees flagged for review.
+    &quot;&quot;&quot;
+    # Raw gap
+    avg_by_gender = employee_data.groupby(&#x27;gender&#x27;)[&#x27;salary&#x27;].mean()
+    raw_gap = (avg_by_gender[&#x27;Female&#x27;] - avg_by_gender[&#x27;Male&#x27;]) / avg_by_gender[&#x27;Male&#x27;]
+
+    # Adjusted gap (control for level, tenure, performance, location)
+    controls = pd.get_dummies(
+        employee_data[[&#x27;job_level&#x27;, &#x27;tenure_years&#x27;, &#x27;performance_rating&#x27;, &#x27;department&#x27;, &#x27;location&#x27;]],
+        drop_first=True
+    )
+    controls = sm.add_constant(controls)
+    controls[&#x27;is_female&#x27;] = (employee_data[&#x27;gender&#x27;] == &#x27;Female&#x27;).astype(int)
+
+    model = sm.OLS(employee_data[&#x27;salary&#x27;], controls).fit()
+    adjusted_gap = model.params[&#x27;is_female&#x27;]
+
+    # Flag outliers (residual &gt; 2 std dev)
+    employee_data[&#x27;predicted&#x27;] = model.predict(controls)
+    employee_data[&#x27;residual&#x27;] = employee_data[&#x27;salary&#x27;] - employee_data[&#x27;predicted&#x27;]
+    threshold = 2 * employee_data[&#x27;residual&#x27;].std()
+    flagged = employee_data[abs(employee_data[&#x27;residual&#x27;]) &gt; threshold]
+
+    return {
+        &#x27;raw_gap_pct&#x27;: round(raw_gap * 100, 1),
+        &#x27;adjusted_gap_usd&#x27;: round(adjusted_gap, 0),
+        &#x27;model_r_squared&#x27;: round(model.rsquared, 3),
+        &#x27;employees_flagged&#x27;: len(flagged),
+        &#x27;flagged_details&#x27;: flagged[[&#x27;employee_id&#x27;, &#x27;salary&#x27;, &#x27;predicted&#x27;, &#x27;residual&#x27;]]
+    }
+```
+
+## Engagement Survey Analysis
+
+1. **Calculate response rate** -- Target 80%+ for statistical validity. Flag departments below 60%.
+2. **Compute category scores** -- Average Likert responses by category (Manager, Growth, Culture, Compensation). Compare to prior period.
+3. **Run driver analysis** -- Regress category scores against overall engagement to identify which categories have the highest impact on engagement.
+4. **Segment** -- Break results by department, level, tenure band, and location. Identify where scores diverge most from company average.
+5. **Prioritize** -- Plot categories on a 2x2 matrix (Impact vs Score). &quot;High impact, low score&quot; quadrant = priority action areas.
+
+&gt; Checkpoint: Suppress results for any segment with fewer than 5 respondents to protect anonymity.
+
+## DEI Metrics Framework
+
+| Domain | Metrics | Data Source |
+|--------|---------|-------------|
+| Representation | Gender / ethnicity distribution by level | HRIS |
+| Pay equity | Raw gap, adjusted gap (controlled regression) | Payroll + HRIS |
+| Progression | Promotion rates by demographic group | HRIS |
+| Hiring | Offer and accept rates by demographic group | ATS |
+| Inclusion | Inclusion index, belonging score, psychological safety | Survey |
+
+## Data Governance Checklist
+
+Before starting any people analytics project:
+
+- [ ] Business question and purpose clearly documented
+- [ ] Data minimization applied (only collect what is needed)
+- [ ] Privacy impact assessment completed
+- [ ] Anonymization or aggregation applied where possible
+- [ ] Predictive models tested for bias across protected groups
+- [ ] Role-based access controls implemented
+- [ ] Data retention policy defined
+- [ ] Employee communication planned (transparency principle)
+
+## Reference Materials
+
+- `references/hr_metrics.md` - Complete HR metrics guide
+- `references/predictive_models.md` - Predictive modeling approaches
+- `references/survey_design.md` - Survey methodology
+- `references/data_ethics.md` - Ethical analytics practices
+
+## Scripts
+
+```bash
+# Analyze engagement survey results with driver analysis
+python scripts/survey_analyzer.py --file survey_results.csv
+python scripts/survey_analyzer.py --file survey_results.csv --prior prior_survey.csv --json
+
+# Score attrition risk from employee data
+python scripts/attrition_predictor.py --file employees.csv
+python scripts/attrition_predictor.py --file employees.csv --threshold 0.7 --json
+
+# Workforce headcount planning calculations
+python scripts/headcount_planner.py --file workforce.csv --growth 0.15 --attrition 0.12
+python scripts/headcount_planner.py --file workforce.csv --growth 0.15 --attrition 0.12 --json
+```
+
+## Troubleshooting
+
+| Problem | Root Cause | Resolution |
+|---------|-----------|------------|
+| Low survey response rate (&lt; 70%) | Survey fatigue, lack of trust in anonymity, or no visible action from prior surveys | Shorten survey to 15-20 questions max; communicate anonymity safeguards clearly; publish and act on top 3 findings from prior survey before launching next one |
+| Attrition model produces too many false positives | Overfitting on historical data, missing key features, or class imbalance | Add regularization; use SMOTE or class weights to handle imbalance; validate with cross-validation not just train/test split; include manager quality and comp-ratio as features |
+| Stakeholders distrust analytics findings | Results contradict lived experience, or methodology is opaque | Present methodology transparently; validate findings with HRBPs before publishing; use confidence intervals not point estimates; start with descriptive analytics to build trust before predictive |
+| Data quality issues across HRIS sources | Inconsistent coding, missing fields, stale records, or duplicate entries | Establish data governance council; define data owners per field; run quarterly data quality audits; build automated validation checks at ingestion |
+| Privacy concerns block analysis | Insufficient anonymization, no consent framework, or regulatory gaps | Apply k-anonymity (minimum group size of 5); conduct privacy impact assessment before each project; engage Legal early; use aggregated data when individual-level is not required |
+| Engagement scores are flat despite interventions | Measuring wrong drivers, action plans not executed, or survey is too generic | Run driver analysis to identify high-impact low-score areas; assign action owners with quarterly check-ins; customize survey questions by department or function |
+| Leadership does not act on insights | Insights are too academic, lack business framing, or arrive too late | Lead with business impact (revenue, cost, risk); limit recommendations to 2-3 with clear owners and timelines; deliver insights within 2 weeks of data collection |
+
+## Success Criteria
+
+| Dimension | Metric | Target | Measurement |
+|-----------|--------|--------|-------------|
+| Data Quality | HRIS data completeness | &gt; 95% of required fields populated | Quarterly data audit report |
+| Data Quality | Data freshness | All records updated within 30 days | HRIS last-modified timestamps |
+| Adoption | Stakeholder usage of dashboards | &gt; 70% of HRBPs and VPs access monthly | Dashboard analytics / login tracking |
+| Adoption | Insight-to-action rate | &gt; 60% of recommendations result in initiatives | Quarterly tracking of recommendation outcomes |
+| Accuracy | Attrition prediction precision | &gt; 70% precision at 50% recall | Model evaluation against actuals (6-month lag) |
+| Accuracy | Survey driver analysis validity | Top 3 drivers validated by qualitative data | Cross-reference with exit interviews and focus groups |
+| Impact | Regrettable attrition reduction | 10-20% reduction within 12 months of intervention | HRIS voluntary termination data, regrettable flag |
+| Impact | Time from question to insight | &lt; 2 weeks for standard analyses | Request-to-delivery tracking |
+| Compliance | Privacy incidents | Zero breaches of anonymity thresholds | Audit log of all queries; minimum group size enforcement |
+| Maturity | Analytics maturity level progression | Advance 1 level per 12-18 months | Self-assessment against the Analytics Maturity Model |
+
+## Scope &amp; Limitations
+
+**In Scope:**
+- Workforce descriptive analytics: headcount, turnover, retention, demographics, tenure distribution
+- Engagement survey design, analysis, driver identification, and benchmarking
+- Attrition risk scoring using rule-based and statistical methods (standard library only)
+- Pay equity analysis: raw gap, controlled gap, outlier flagging
+- DEI metrics: representation, progression rates, hiring funnel equity
+- Workforce planning: headcount forecasting, scenario modeling, gap analysis
+- Dashboard design and KPI framework recommendations
+
+**Out of Scope:**
+- Real-time predictive models requiring ML frameworks (scikit-learn, TensorFlow) -- scripts use rule-based scoring for portability
+- Sentiment analysis of free-text survey responses (requires NLP libraries)
+- Individual employee profiling or surveillance -- all analysis uses aggregated or anonymized data
+- HRIS system administration, data pipeline engineering, or ETL development
+- Legal interpretation of pay equity findings (requires Employment Law counsel)
+- Organizational network analysis requiring email/calendar metadata
+
+**Known Limitations:**
+- Attrition risk scoring in scripts uses weighted heuristics, not trained ML models; accuracy depends on feature quality and weight calibration
+- Pay equity analysis in the SKILL.md examples requires statsmodels (external dependency); scripts use standard-library approximations
+- Survey analysis assumes Likert scale (1-5) responses; other formats require preprocessing
+- Small population segments (&lt; 30) produce unreliable statistical results; flag these in reporting
+- Historical data biases (e.g., biased performance ratings) propagate into predictive models if not addressed
+
+## Integration Points
+
+| System / Skill | Integration | Data Flow |
+|----------------|-------------|-----------|
+| **HRIS** (Workday, BambooHR, HiBob) | Employee master data, tenure, compensation, performance ratings | HRIS -&gt; analytics data lake; analytics insights -&gt; HRBP workforce plans |
+| **ATS** (Greenhouse, Lever) | Hiring funnel data, source-of-hire, time-to-fill | ATS -&gt; hiring analytics; quality-of-hire scoring feeds back to TA strategy |
+| **Survey Platform** (Culture Amp, Qualtrics, Lattice) | Engagement survey responses, eNPS, pulse check data | Survey platform -&gt; survey_analyzer.py; driver analysis -&gt; action planning |
+| **Talent Acquisition** skill | Hiring funnel metrics, source effectiveness, quality of hire | TA pipeline data -&gt; analytics models; analytics insights -&gt; sourcing optimization |
+| **HR Business Partner** skill | Workforce planning inputs, org health scoring, retention strategy | Analytics insights -&gt; HRBP recommendations; HRBP questions -&gt; analytics projects |
+| **Operations Manager** skill | Headcount forecasting, capacity planning, productivity metrics | Ops demand forecast -&gt; headcount_planner.py; workforce metrics -&gt; ops capacity models |
+| **Finance** skill | Compensation budgets, cost modeling, headcount budget vs actual | Finance comp data -&gt; pay equity analysis; headcount plan -&gt; Finance budget model |
+| **Payroll** (ADP, Gusto) | Compensation actuals, bonus payouts, overtime data | Payroll -&gt; comp analysis; pay equity findings -&gt; comp adjustment recommendations |
+| **BI Platform** (Tableau, Looker, Power BI) | Dashboard hosting, self-service analytics, scheduled reporting | Analytics outputs -&gt; BI dashboards; BI usage metrics -&gt; adoption tracking |
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;People Analytics&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert People Analytics in the HR Operations domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;People Analytics&quot;**
+   - Description: &quot;People analytics across workforce metrics, predictive modeling, and employee insights. Use when building turnover models, analyzing engagement surveys, running pay equity regressions, or scoring flight risk.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/hr-operations/people-analytics/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;People Analytics&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# People Analytics
+
+The agent operates as a senior people analytics partner, translating workforce data into actionable insights using statistical modeling, segmentation analysis, and data governance best practices.
+
+## Clarify First
+
+Before generating the analysis, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Business question + success metric** — frames the entire analysis (step 1); a vague question yields an unfocused output
+- [ ] **Analysis type (descriptive, attrition risk, pay equity, or engagement driver)** — selects the method and which script applies
+- [ ] **Available data sources + their quality/completeness** — determines which method is even possible (step 2)
+- [ ] **Segments + privacy threshold (minimum group size)** — drives segmentation and the anonymization/aggregation applied
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Workflow
+
+1. **Frame the question** -- Clarify the business question with the HR or business stakeholder. Examples: &quot;Why is Sales attrition 2x the company average?&quot; or &quot;Are we paying equitably across gender?&quot; Define the success metric for the analysis.
+2. **Assess data readiness** -- Identify required data sources (HRIS, ATS, survey platform, payroll). Check for completeness, recency, and quality. Flag any gaps before proceeding.
+3. **Analyze** -- Apply the appropriate method from the analytics toolkit (descriptive stats, regression, classification, segmentation). Document assumptions and limitations.
+4. **Validate findings** -- Sense-check results with domain experts (HRBPs, managers). Test for statistical significance and practical significance. Check predictive models for bias across protected groups.
+5. **Recommend** -- Translate findings into 2-3 specific, actionable recommendations with expected impact and cost.
+6. **Deliver and monitor** -- Present insights using the dashboard framework. Set up ongoing monitoring for key metrics with alert thresholds.
+
+&gt; Checkpoint: After step 2, confirm that all data has been anonymized or aggregated to comply with privacy policy before analysis begins.
+
+## Analytics Maturity Model
+
+| Level | Name | Capabilities | Typical Questions Answered |
+|-------|------|-------------|---------------------------|
+| 1 | Operational Reporting | Headcount, compliance, ad-hoc queries | &quot;How many people do we have?&quot; |
+| 2 | Advanced Reporting | Dashboards, trends, benchmarking, segmentation | &quot;How has attrition changed by quarter?&quot; |
+| 3 | Analytics | Statistical analysis, correlation, root cause | &quot;What drives attrition in Sales?&quot; |
+| 4 | Predictive | Turnover prediction, performance modeling, risk scoring | &quot;Who is likely to leave in the next 6 months?&quot; |
+| 5 | Prescriptive | Automated recommendations, real-time interventions | &quot;What should we do to retain this person?&quot; |
+
+## Core HR Metrics
+
+### Workforce Metrics
+
+| Metric | Formula | Benchmark |
+|--------|---------|-----------|
+| Turnover Rate | (Separations / Avg HC) x 100 | 10-15% |
+| Retention Rate | (Retained / Starting HC) x 100 | 85-90% |
+| Time to Fill | Days from req open to offer accept | 30-45 days |
+| Cost per Hire | Total recruiting cost / Hires | $3-5K |
+| Regrettable Turnover | Regrettable exits / Total exits | &lt; 30% |
+
+### Performance Metrics
+
+| Metric | Formula | Benchmark |
+|--------|---------|-----------|
+| High Performers | % rated top tier | 15-20% |
+| Goal Completion | Goals achieved / Goals set | 80%+ |
+| Promotion Rate | Promotions / Headcount | 8-12% |
+
+### Engagement Metrics
+
+| Metric | Formula | Benchmark |
+|--------|---------|-----------|
+| eNPS | Promoters % - Detractors % | 20-40 |
+| Engagement Score | Survey composite (1-100) | 70%+ |
+| Absenteeism | Absent days / Work days | &lt; 3% |
+
+## Turnover Prediction Model
+
+```python
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+
+def build_turnover_model(employee_data: pd.DataFrame) -&gt; dict:
+    &quot;&quot;&quot;
+    Build and evaluate a turnover prediction model.
+
+    Input: DataFrame with columns for features + &#x27;left_company&#x27; (0/1).
+    Output: dict with model, feature importance, and evaluation metrics.
+    &quot;&quot;&quot;
+    features = [
+        &#x27;tenure_months&#x27;, &#x27;salary_ratio_to_market&#x27;, &#x27;performance_rating&#x27;,
+        &#x27;months_since_last_promotion&#x27;, &#x27;manager_tenure&#x27;, &#x27;team_size&#x27;,
+        &#x27;engagement_score&#x27;, &#x27;training_hours_ytd&#x27;, &#x27;projects_completed&#x27;
+    ]
+
+    X = employee_data[features]
+    y = employee_data[&#x27;left_company&#x27;]
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    model = RandomForestClassifier(n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
+
+    y_pred = model.predict(X_test)
+    report = classification_report(y_test, y_pred, output_dict=True)
+
+    importance = (
+        pd.DataFrame({&#x27;feature&#x27;: features, &#x27;importance&#x27;: model.feature_importances_})
+        .sort_values(&#x27;importance&#x27;, ascending=False)
+    )
+
+    return {&#x27;model&#x27;: model, &#x27;importance&#x27;: importance, &#x27;evaluation&#x27;: report}
+
+
+def score_flight_risk(model, current_employees: pd.DataFrame) -&gt; pd.DataFrame:
+    &quot;&quot;&quot;
+    Score current employees for flight risk.
+
+    Returns DataFrame with employee_id, flight_risk_score (0-1), and risk_level.
+    &quot;&quot;&quot;
+    probabilities = model.predict_proba(current_employees[model.feature_names_in_])[:, 1]
+
+    risk_levels = pd.cut(
+        probabilities,
+        bins=[0, 0.25, 0.50, 0.75, 1.0],
+        labels=[&#x27;Low&#x27;, &#x27;Medium&#x27;, &#x27;High&#x27;, &#x27;Critical&#x27;]
+    )
+
+    return pd.DataFrame({
+        &#x27;employee_id&#x27;: current_employees[&#x27;employee_id&#x27;],
+        &#x27;flight_risk_score&#x27;: probabilities.round(3),
+        &#x27;risk_level&#x27;: risk_levels
+    }).sort_values(&#x27;flight_risk_score&#x27;, ascending=False)
+```
+
+## Example: Sales Attrition Root-Cause Analysis
+
+```
+QUESTION
+  Sales voluntary turnover is 22% vs 12% company average. Why?
+
+DATA
+  Source: HRIS + engagement survey + exit interviews (n=45 exits, trailing 12 mo)
+
+ANALYSIS
+  Segmentation by tenure band:
+    &lt; 1 yr: 35% of exits (onboarding/ramp issues)
+    1-2 yr: 40% of exits (comp dissatisfaction + career path)
+    2+ yr: 25% of exits (manager relationship)
+
+  Regression on exit survey scores (n=38 respondents):
+    Top drivers of intent-to-leave:
+      1. &quot;I am paid fairly&quot; (beta = -0.42, p &lt; 0.01)
+      2. &quot;I see a career path here&quot; (beta = -0.31, p &lt; 0.01)
+      3. &quot;My manager supports my development&quot; (beta = -0.28, p &lt; 0.05)
+
+  Compensation benchmark:
+    Sales IC3 compa-ratio: 0.88 (12% below midpoint)
+    Sales IC2 compa-ratio: 0.91 (9% below midpoint)
+    Rest of company average: 0.98
+
+FINDINGS
+  1. Sales comp is significantly below market, especially at IC2-IC3
+  2. No defined career ladder for Sales ICs beyond IC3
+  3. New hires (&lt; 1 yr) leaving due to unrealistic ramp expectations
+
+RECOMMENDATIONS
+  1. Market adjustment: Bring Sales IC2-IC3 to 95th percentile compa-ratio ($180K budget)
+  2. Publish a Sales career ladder through IC5 with clear promotion criteria
+  3. Redesign onboarding: extend ramp period from 30 to 90 days with milestone targets
+
+EXPECTED IMPACT
+  Reduce Sales attrition from 22% to 14-16% within 12 months
+  ROI: $180K adjustment saves ~$450K in replacement costs (10 fewer exits x $45K/hire)
+```
+
+## Pay Equity Analysis
+
+```python
+import pandas as pd
+import statsmodels.api as sm
+
+def analyze_pay_equity(employee_data: pd.DataFrame) -&gt; dict:
+    &quot;&quot;&quot;
+    Conduct pay equity analysis controlling for legitimate pay factors.
+
+    Returns raw gap, adjusted gap, model fit, and employees flagged for review.
+    &quot;&quot;&quot;
+    # Raw gap
+    avg_by_gender = employee_data.groupby(&#x27;gender&#x27;)[&#x27;salary&#x27;].mean()
+    raw_gap = (avg_by_gender[&#x27;Female&#x27;] - avg_by_gender[&#x27;Male&#x27;]) / avg_by_gender[&#x27;Male&#x27;]
+
+    # Adjusted gap (control for level, tenure, performance, location)
+    controls = pd.get_dummies(
+        employee_data[[&#x27;job_level&#x27;, &#x27;tenure_years&#x27;, &#x27;performance_rating&#x27;, &#x27;department&#x27;, &#x27;location&#x27;]],
+        drop_first=True
+    )
+    controls = sm.add_constant(controls)
+    controls[&#x27;is_female&#x27;] = (employee_data[&#x27;gender&#x27;] == &#x27;Female&#x27;).astype(int)
+
+    model = sm.OLS(employee_data[&#x27;salary&#x27;], controls).fit()
+    adjusted_gap = model.params[&#x27;is_female&#x27;]
+
+    # Flag outliers (residual &gt; 2 std dev)
+    employee_data[&#x27;predicted&#x27;] = model.predict(controls)
+    employee_data[&#x27;residual&#x27;] = employee_data[&#x27;salary&#x27;] - employee_data[&#x27;predicted&#x27;]
+    threshold = 2 * employee_data[&#x27;residual&#x27;].std()
+    flagged = employee_data[abs(employee_data[&#x27;residual&#x27;]) &gt; threshold]
+
+    return {
+        &#x27;raw_gap_pct&#x27;: round(raw_gap * 100, 1),
+        &#x27;adjusted_gap_usd&#x27;: round(adjusted_gap, 0),
+        &#x27;model_r_squared&#x27;: round(model.rsquared, 3),
+        &#x27;employees_flagged&#x27;: len(flagged),
+        &#x27;flagged_details&#x27;: flagged[[&#x27;employee_id&#x27;, &#x27;salary&#x27;, &#x27;predicted&#x27;, &#x27;residual&#x27;]]
+    }
+```
+
+## Engagement Survey Analysis
+
+1. **Calculate response rate** -- Target 80%+ for statistical validity. Flag departments below 60%.
+2. **Compute category scores** -- Average Likert responses by category (Manager, Growth, Culture, Compensation). Compare to prior period.
+3. **Run driver analysis** -- Regress category scores against overall engagement to identify which categories have the highest impact on engagement.
+4. **Segment** -- Break results by department, level, tenure band, and location. Identify where scores diverge most from company average.
+5. **Prioritize** -- Plot categories on a 2x2 matrix (Impact vs Score). &quot;High impact, low score&quot; quadrant = priority action areas.
+
+&gt; Checkpoint: Suppress results for any segment with fewer than 5 respondents to protect anonymity.
+
+## DEI Metrics Framework
+
+| Domain | Metrics | Data Source |
+|--------|---------|-------------|
+| Representation | Gender / ethnicity distribution by level | HRIS |
+| Pay equity | Raw gap, adjusted gap (controlled regression) | Payroll + HRIS |
+| Progression | Promotion rates by demographic group | HRIS |
+| Hiring | Offer and accept rates by demographic group | ATS |
+| Inclusion | Inclusion index, belonging score, psychological safety | Survey |
+
+## Data Governance Checklist
+
+Before starting any people analytics project:
+
+- [ ] Business question and purpose clearly documented
+- [ ] Data minimization applied (only collect what is needed)
+- [ ] Privacy impact assessment completed
+- [ ] Anonymization or aggregation applied where possible
+- [ ] Predictive models tested for bias across protected groups
+- [ ] Role-based access controls implemented
+- [ ] Data retention policy defined
+- [ ] Employee communication planned (transparency principle)
+
+## Reference Materials
+
+- `references/hr_metrics.md` - Complete HR metrics guide
+- `references/predictive_models.md` - Predictive modeling approaches
+- `references/survey_design.md` - Survey methodology
+- `references/data_ethics.md` - Ethical analytics practices
+
+## Scripts
+
+```bash
+# Analyze engagement survey results with driver analysis
+python scripts/survey_analyzer.py --file survey_results.csv
+python scripts/survey_analyzer.py --file survey_results.csv --prior prior_survey.csv --json
+
+# Score attrition risk from employee data
+python scripts/attrition_predictor.py --file employees.csv
+python scripts/attrition_predictor.py --file employees.csv --threshold 0.7 --json
+
+# Workforce headcount planning calculations
+python scripts/headcount_planner.py --file workforce.csv --growth 0.15 --attrition 0.12
+python scripts/headcount_planner.py --file workforce.csv --growth 0.15 --attrition 0.12 --json
+```
+
+## Troubleshooting
+
+| Problem | Root Cause | Resolution |
+|---------|-----------|------------|
+| Low survey response rate (&lt; 70%) | Survey fatigue, lack of trust in anonymity, or no visible action from prior surveys | Shorten survey to 15-20 questions max; communicate anonymity safeguards clearly; publish and act on top 3 findings from prior survey before launching next one |
+| Attrition model produces too many false positives | Overfitting on historical data, missing key features, or class imbalance | Add regularization; use SMOTE or class weights to handle imbalance; validate with cross-validation not just train/test split; include manager quality and comp-ratio as features |
+| Stakeholders distrust analytics findings | Results contradict lived experience, or methodology is opaque | Present methodology transparently; validate findings with HRBPs before publishing; use confidence intervals not point estimates; start with descriptive analytics to build trust before predictive |
+| Data quality issues across HRIS sources | Inconsistent coding, missing fields, stale records, or duplicate entries | Establish data governance council; define data owners per field; run quarterly data quality audits; build automated validation checks at ingestion |
+| Privacy concerns block analysis | Insufficient anonymization, no consent framework, or regulatory gaps | Apply k-anonymity (minimum group size of 5); conduct privacy impact assessment before each project; engage Legal early; use aggregated data when individual-level is not required |
+| Engagement scores are flat despite interventions | Measuring wrong drivers, action plans not executed, or survey is too generic | Run driver analysis to identify high-impact low-score areas; assign action owners with quarterly check-ins; customize survey questions by department or function |
+| Leadership does not act on insights | Insights are too academic, lack business framing, or arrive too late | Lead with business impact (revenue, cost, risk); limit recommendations to 2-3 with clear owners and timelines; deliver insights within 2 weeks of data collection |
+
+## Success Criteria
+
+| Dimension | Metric | Target | Measurement |
+|-----------|--------|--------|-------------|
+| Data Quality | HRIS data completeness | &gt; 95% of required fields populated | Quarterly data audit report |
+| Data Quality | Data freshness | All records updated within 30 days | HRIS last-modified timestamps |
+| Adoption | Stakeholder usage of dashboards | &gt; 70% of HRBPs and VPs access monthly | Dashboard analytics / login tracking |
+| Adoption | Insight-to-action rate | &gt; 60% of recommendations result in initiatives | Quarterly tracking of recommendation outcomes |
+| Accuracy | Attrition prediction precision | &gt; 70% precision at 50% recall | Model evaluation against actuals (6-month lag) |
+| Accuracy | Survey driver analysis validity | Top 3 drivers validated by qualitative data | Cross-reference with exit interviews and focus groups |
+| Impact | Regrettable attrition reduction | 10-20% reduction within 12 months of intervention | HRIS voluntary termination data, regrettable flag |
+| Impact | Time from question to insight | &lt; 2 weeks for standard analyses | Request-to-delivery tracking |
+| Compliance | Privacy incidents | Zero breaches of anonymity thresholds | Audit log of all queries; minimum group size enforcement |
+| Maturity | Analytics maturity level progression | Advance 1 level per 12-18 months | Self-assessment against the Analytics Maturity Model |
+
+## Scope &amp; Limitations
+
+**In Scope:**
+- Workforce descriptive analytics: headcount, turnover, retention, demographics, tenure distribution
+- Engagement survey design, analysis, driver identification, and benchmarking
+- Attrition risk scoring using rule-based and statistical methods (standard library only)
+- Pay equity analysis: raw gap, controlled gap, outlier flagging
+- DEI metrics: representation, progression rates, hiring funnel equity
+- Workforce planning: headcount forecasting, scenario modeling, gap analysis
+- Dashboard design and KPI framework recommendations
+
+**Out of Scope:**
+- Real-time predictive models requiring ML frameworks (scikit-learn, TensorFlow) -- scripts use rule-based scoring for portability
+- Sentiment analysis of free-text survey responses (requires NLP libraries)
+- Individual employee profiling or surveillance -- all analysis uses aggregated or anonymized data
+- HRIS system administration, data pipeline engineering, or ETL development
+- Legal interpretation of pay equity findings (requires Employment Law counsel)
+- Organizational network analysis requiring email/calendar metadata
+
+**Known Limitations:**
+- Attrition risk scoring in scripts uses weighted heuristics, not trained ML models; accuracy depends on feature quality and weight calibration
+- Pay equity analysis in the SKILL.md examples requires statsmodels (external dependency); scripts use standard-library approximations
+- Survey analysis assumes Likert scale (1-5) responses; other formats require preprocessing
+- Small population segments (&lt; 30) produce unreliable statistical results; flag these in reporting
+- Historical data biases (e.g., biased performance ratings) propagate into predictive models if not addressed
+
+## Integration Points
+
+| System / Skill | Integration | Data Flow |
+|----------------|-------------|-----------|
+| **HRIS** (Workday, BambooHR, HiBob) | Employee master data, tenure, compensation, performance ratings | HRIS -&gt; analytics data lake; analytics insights -&gt; HRBP workforce plans |
+| **ATS** (Greenhouse, Lever) | Hiring funnel data, source-of-hire, time-to-fill | ATS -&gt; hiring analytics; quality-of-hire scoring feeds back to TA strategy |
+| **Survey Platform** (Culture Amp, Qualtrics, Lattice) | Engagement survey responses, eNPS, pulse check data | Survey platform -&gt; survey_analyzer.py; driver analysis -&gt; action planning |
+| **Talent Acquisition** skill | Hiring funnel metrics, source effectiveness, quality of hire | TA pipeline data -&gt; analytics models; analytics insights -&gt; sourcing optimization |
+| **HR Business Partner** skill | Workforce planning inputs, org health scoring, retention strategy | Analytics insights -&gt; HRBP recommendations; HRBP questions -&gt; analytics projects |
+| **Operations Manager** skill | Headcount forecasting, capacity planning, productivity metrics | Ops demand forecast -&gt; headcount_planner.py; workforce metrics -&gt; ops capacity models |
+| **Finance** skill | Compensation budgets, cost modeling, headcount budget vs actual | Finance comp data -&gt; pay equity analysis; headcount plan -&gt; Finance budget model |
+| **Payroll** (ADP, Gusto) | Compensation actuals, bonus payouts, overtime data | Payroll -&gt; comp analysis; pay equity findings -&gt; comp adjustment recommendations |
+| **BI Platform** (Tableau, Looker, Power BI) | Dashboard hosting, self-service analytics, scheduled reporting | Analytics outputs -&gt; BI dashboards; BI usage metrics -&gt; adoption tracking |
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;People Analytics&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert People Analytics in the HR Operations domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;People Analytics&quot;**
+   - Description: &quot;People analytics across workforce metrics, predictive modeling, and employee insights. Use when building turnover models, analyzing engagement surveys, running pay equity regressions, or scoring flight risk.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/hr-operations/people-analytics/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install hr-operations/people-analytics ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/hr-operations/people-analytics your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/people-analytics/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/people-analytics your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/people-analytics/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/people-analytics your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: hr-operations/people-analytics/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/hr-operations/people-analytics your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/hr-operations/people-analytics your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/hr-operations/people-analytics</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python hr-operations/people-analytics/scripts/tool_name.py --help</code></pre>
+  
+  
+  <h2>Related Skills in HR Operations</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/hr-operations/hr-business-partner.html" class="skill-card" style="text-decoration:none"><h3>Hr Business Partner</h3><p>HR business partnership across talent strategy, org development, and employee relations. Use...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/hr-operations/operations-manager.html" class="skill-card" style="text-decoration:none"><h3>Operations Manager</h3><p>Operations management across process optimization, efficiency, and continuous improvement. Use...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/hr-operations/talent-acquisition.html" class="skill-card" style="text-decoration:none"><h3>Talent Acquisition</h3><p>Talent acquisition across recruiting strategy, sourcing, interviews, and hiring analytics. Use...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/hr-operations/people-analytics/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

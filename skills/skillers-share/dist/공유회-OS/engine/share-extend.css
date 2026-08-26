@@ -1,0 +1,393 @@
+#sd-timer {
+  position: fixed; left: 16px; bottom: 16px; z-index: 99998;
+  font: 500 13px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: rgba(0,0,0,.72); color: #fff;
+  padding: 8px 12px; border-radius: 8px;
+  display: none; pointer-events: none;
+}
+#sd-timer.on { display: block; }
+/* 발표자 노트가 열리면 타이머를 그 위로 올린다. 안 그러면 노트 패널에 완전히 가린다. */
+body.sd-notes-on #sd-timer { bottom: calc(42vh + 16px); }
+#sd-timer .seg { opacity: .7; }
+#sd-timer.over { background: rgba(180,20,20,.85); }
+
+#sd-notes {
+  position: fixed; inset: auto 0 0 0; z-index: 99999;
+  max-height: 42vh; overflow: auto;
+  background: rgba(12,12,12,.95); color: #eee;
+  font: 400 15px/1.7 system-ui, -apple-system, sans-serif;
+  padding: 18px 22px 22px; border-top: 1px solid rgba(255,255,255,.18);
+  display: none; word-break: keep-all;
+}
+#sd-notes.on { display: block; }
+#sd-notes h4 {
+  margin: 0 0 10px; font: 500 13px/1 ui-monospace, monospace;
+  color: #9a9a9a; letter-spacing: .04em;
+}
+#sd-notes pre {
+  margin: 0; white-space: pre-wrap; font: inherit;
+}
+
+/* ============================================================
+   테마별 폰트 · 타이포 스케일 (references/themes.md 기준)
+   웹폰트 로드 실패 시에도 시스템 폰트로 자연스럽게 폴백한다.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Paperlogy9Black';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  /* 기본값: Pretendard, 폰트 로드 실패 시 시스템 산세리프로 폴백 */
+  --sd-font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  --sd-font-head: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  --sd-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* 타이포 스케일 (1920×1080 기준, references/themes.md 표지/내지 규정과 일치) */
+  /* 1920×1080에서 각각 200 / 84 / 26 / 14px. 뷰포트 비례라 작은 화면에서도 안 터진다.
+     표지와 캡션이 10배 이상 벌어지는 대비는 어느 크기에서도 유지된다. */
+  --sd-h-cover: clamp(48px, 8vw, 132px);
+  --sd-cover-sub: clamp(11px, 0.98vw, 20px);
+  --sd-h-body: clamp(32px, 4.4vw, 96px);
+  --sd-sub: clamp(15px, 1.35vw, 28px);
+  --sd-cap: clamp(11px, 0.73vw, 15px);
+}
+
+[data-sd-theme] { word-break: keep-all; }
+
+/* 미니멀 B&W — Pretendard 단일, 굵기(900/300)로 위계 */
+html[data-sd-theme="minimal-bw"], body[data-sd-theme="minimal-bw"] {
+  --sd-font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  --sd-font-head: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+}
+
+/* 볼드 컬러 — Paperlogy 9 Black(헤드라인) + Pretendard(본문) */
+html[data-sd-theme="bold-color"], body[data-sd-theme="bold-color"] {
+  --sd-font-head: 'Paperlogy9Black', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sd-font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+}
+
+/* 친근·소프트 — Gowun Dodum(헤드라인) + Pretendard(본문) */
+html[data-sd-theme="soft"], body[data-sd-theme="soft"] {
+  --sd-font-head: 'Gowun Dodum', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sd-font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+}
+
+/* 에디토리얼 — Paperlogy 900(헤드라인) + Pretendard(캡션). 세리프 안 쓴다 */
+html[data-sd-theme="editorial"], body[data-sd-theme="editorial"] {
+  --sd-font-head: 'Paperlogy9Black', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sd-font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  --sd-echo: #C8452F;
+}
+
+/* 다크 테크 — JetBrains Mono(키커·라벨·코드) + Pretendard(헤드라인·본문) */
+html[data-sd-theme="dark-tech"], body[data-sd-theme="dark-tech"] {
+  --sd-font-head: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  --sd-font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  --sd-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* 표지 — 내지와 다른 규칙으로 만든다(references/themes.md "표지").
+   내지는 가운데 정렬이므로, 표지는 좌측 스택으로 가서 한눈에 구분되게 한다.
+   같은 구도로 두면 "내지 사이에 끼워두면 구분되는가" 점검에 걸린다. */
+[data-sd-theme] .slide:first-child {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  padding-left: 6vw;
+  padding-right: 6vw;
+}
+
+[data-sd-theme] h1.cover,
+[data-sd-theme] .cover h1,
+[data-sd-theme] .slide:first-child .core,
+[data-sd-theme] .slide:first-child h1 {
+  font-family: var(--sd-font-head);
+  font-size: var(--sd-h-cover);
+  font-weight: 800;
+  /* 한글 볼드는 받침이 베이스라인 아래로 내려온다. .88 로 조이면 두 줄이 겹친다 */
+  line-height: .96;
+  letter-spacing: -.045em;
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+
+/* 부제는 극단적으로 작게. 제목과 12배 이상 벌어져야 표지가 된다. */
+[data-sd-theme] .slide:first-child .sub {
+  font-size: var(--sd-cover-sub);
+  text-align: left;
+  max-width: 46ch;
+  margin-top: 2.2rem;
+  letter-spacing: .01em;
+}
+
+[data-sd-theme] .slide:first-child .kicker {
+  text-align: left;
+  margin-bottom: 1.4rem;
+}
+
+/* 내지 */
+[data-sd-theme] .slidetitle,
+[data-sd-theme] h1.core,
+[data-sd-theme] .core,
+[data-sd-theme] .sec-title { font-family: var(--sd-font-head); font-size: var(--sd-h-body); font-weight: 700; }
+
+/* 내지 소제목(.slidetitle)은 본문 헤드라인만큼 크면 안 된다 — 아래 내용과 균형 맞춰 중간 크기로. */
+[data-sd-theme] .slidetitle { font-size: clamp(24px, 3.1vw, 46px); }
+/* 이미지 셀 레터박스 배경이 청록으로 튀어 보이는 것 제거 — 덱 배경과 맞춘다. */
+[data-sd-theme] .gimg { background: #0e0e10 !important; }
+
+[data-sd-theme] .sub,
+[data-sd-theme] .sec-sub { font-family: var(--sd-font-body); font-size: var(--sd-sub); font-weight: 400; }
+
+[data-sd-theme] .kicker,
+[data-sd-theme] .caption,
+[data-sd-theme] .sd-cap { font-family: var(--sd-font-body); font-size: var(--sd-cap); font-weight: 500; letter-spacing: .08em; }
+
+[data-sd-theme="dark-tech"] .kicker,
+[data-sd-theme="dark-tech"] .caption,
+[data-sd-theme="dark-tech"] .sd-cap { font-family: var(--sd-font-mono); }
+
+/* ─────────────────────────────────────────────
+   고감도 레이어 — webdeck 기본 조판을 덮는다.
+   기본 조판은 전부 가운데 정렬이라 그대로 두면 일반 PPT처럼 보인다.
+   references/themes.md "절대 금지 — PPT 티" 를 CSS로 강제한다.
+   ───────────────────────────────────────────── */
+
+/* 1. 내지도 좌측 정렬. 가운데 정렬은 템플릿의 기본값이다. */
+[data-sd-theme] .slide:not(:first-child) {
+  align-items: flex-start;
+  text-align: left;
+  padding-left: 7vw;
+  padding-right: 7vw;
+}
+[data-sd-theme] .slide:not(:first-child) .core,
+[data-sd-theme] .slide:not(:first-child) .slidetitle,
+[data-sd-theme] .slide:not(:first-child) .sub,
+[data-sd-theme] .slide:not(:first-child) .kicker { text-align: left; }
+
+/* 2. 키커를 모노 라벨로. 대문자 자간을 벌려 지면 라벨처럼 만든다. */
+[data-sd-theme] .kicker {
+  font-family: var(--sd-font-mono);
+  letter-spacing: .18em;
+  opacity: .62;
+}
+/* 키커 앞 짧은 선 — 라벨에 축을 준다 */
+[data-sd-theme] .kicker::before {
+  content: "";
+  display: inline-block;
+  width: 2.2em; height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: .9em;
+  opacity: .5;
+}
+
+/* 3. 카드에서 박스를 없앤다. 테두리 사각형 나열이 PPT 티의 핵심이다.
+      좌측 헤어라인 + 큰 여백으로 대체한다. */
+[data-sd-theme] .card,
+[data-sd-theme] .cards .item,
+[data-sd-theme] .cards > div > div {
+  background: transparent !important;
+  border: 0 !important;
+  border-left: 1px solid currentColor !important;
+  border-radius: 0 !important;
+  padding-left: 1.4rem !important;
+  opacity: 1;
+}
+[data-sd-theme] .card .tag,
+[data-sd-theme] .cards .tag {
+  font-family: var(--sd-font-mono);
+  letter-spacing: .12em;
+  opacity: .55;
+}
+
+/* 4. 숫자는 초대형 모노. 여기가 시선을 먹어야 한다. */
+[data-sd-theme] .stat-trio .num,
+[data-sd-theme] .num {
+  font-family: var(--sd-font-mono);
+  font-size: clamp(40px, 6.2vw, 132px);
+  font-weight: 700;
+  letter-spacing: -.05em;
+  line-height: .9;
+}
+[data-sd-theme] .stat-trio .label,
+[data-sd-theme] .label {
+  font-family: var(--sd-font-body);
+  font-size: var(--sd-cap);
+  letter-spacing: .04em;
+  opacity: .6;
+}
+
+/* 5. 단락 구분 장 — 번호를 거대하게, 좌측으로. */
+[data-sd-theme] .sec-num {
+  font-family: var(--sd-font-mono);
+  font-size: clamp(72px, 13vw, 260px);
+  font-weight: 700;
+  line-height: .82;
+  letter-spacing: -.06em;
+  opacity: .22;
+}
+[data-sd-theme] .sec-wrap { align-items: flex-start; text-align: left; }
+[data-sd-theme] .sec-title { letter-spacing: -.03em; }
+
+/* 6. 다크 테크 — 배경에 미세한 격자. 단색 평면의 허전함을 메운다.
+      그라데이션이 아니라 1px 선이라 PPT 티가 나지 않는다. */
+[data-sd-theme="dark-tech"] .slide::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 7vw 7vw;
+  opacity: .035;
+  pointer-events: none;
+}
+
+/* 7. 본문 헤드라인 자간을 조인다. 한글 대형 타이포는 기본 자간이 넓어 흐리멍덩해진다. */
+[data-sd-theme] .slidetitle,
+[data-sd-theme] .slide:not(:first-child) .core {
+  letter-spacing: -.035em;
+  line-height: 1.02;
+}
+
+/* 8. 부연은 확실히 죽인다. 위계가 흐리면 전부 같은 말처럼 들린다. */
+[data-sd-theme] .sub { opacity: .55; max-width: 52ch; }
+
+/* 9. 흐름도·플로우가 화면 가운데 조막만하게 뜨는 것을 막는다.
+      "중앙에 놓인 작은 요소"는 PPT 티 목록의 첫 항목이다. */
+[data-sd-theme] .hflow,
+[data-sd-theme] .flow,
+[data-sd-theme] .harnessflow,
+[data-sd-theme] .steps {
+  width: 100%;
+  justify-content: space-between;
+  gap: clamp(8px, 1vw, 20px);
+}
+[data-sd-theme] .hflow > *,
+[data-sd-theme] .flow > *,
+[data-sd-theme] .steps > * { flex: 1 1 0; min-width: 0; }
+
+/* 흐름도 박스의 테두리 사각형을 벗긴다 — 상단 선 + 여백으로.
+   실제 클래스명은 hf-stage / hf-gate / hf-sname / hf-stool / hf-gname / hf-gnote 다. */
+[data-sd-theme] .hf-stage,
+[data-sd-theme] .hf-gate {
+  border-radius: 0 !important;
+  border: 0 !important;
+  border-top: 2px solid currentColor !important;
+  background: transparent !important;
+  padding: .9rem .2rem 0 !important;
+  text-align: left !important;
+  box-shadow: none !important;
+}
+[data-sd-theme] .hf-gate { border-top-style: dashed !important; }
+[data-sd-theme] .hf-sname,
+[data-sd-theme] .hf-gname {
+  font-size: clamp(14px, 1.45vw, 26px) !important;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+[data-sd-theme] .hf-stool,
+[data-sd-theme] .hf-gnote {
+  font-family: var(--sd-font-mono);
+  font-size: var(--sd-cap) !important;
+  opacity: .6;
+}
+/* 화살표는 지운다. 상단 선이 이미 연속을 보여준다 */
+[data-sd-theme] .hf-arw { display: none !important; }
+[data-sd-theme] .hflow { align-items: stretch; }
+
+/* 10. 슬라이드 본문 블록이 세로 가운데에 몰리지 않게 — 위에서부터 쌓는다 */
+[data-sd-theme] .slide:not(:first-child) > * { width: 100%; }
+
+/* 11. 격자는 더 옅게. 보이면 안 되고 느껴져야 한다 */
+[data-sd-theme="dark-tech"] .slide::before { opacity: .022; }
+
+/* ─────────────────────────────────────────────
+   레퍼런스 감도 — Behance 「©BEAR/SQUAD」(Egor Nazarov) 에서 추출.
+   순수 검정 + 단일 액센트 + 넘버링 접두사 + 헤어라인 + 마이크로 라벨.
+   ───────────────────────────────────────────── */
+
+/* R1. 넘버링 접두사 — 카드 태그를 /01 형태로. 인상을 가장 크게 바꾸는 한 요소. */
+[data-sd-theme="dark-tech"] .tag::before {
+  content: "/";
+  opacity: .55;
+  margin-right: .15em;
+}
+[data-sd-theme="dark-tech"] .tag {
+  font-family: var(--sd-font-mono);
+  letter-spacing: .1em;
+}
+
+/* R2. 헤어라인 프레임 — 화면 안쪽에 실 같은 사각형 하나. 두꺼우면 PPT가 된다. */
+[data-sd-theme="dark-tech"] .slide::after {
+  content: "";
+  position: absolute;
+  inset: 3.2vh 3.2vw;
+  border: 1px solid currentColor;
+  opacity: .13;
+  pointer-events: none;
+}
+
+/* R3. 마이크로 모노 라벨 — 우상단에 회차 정보. 정보 밀도가 감도를 만든다. */
+[data-sd-theme="dark-tech"] .slide > .kicker {
+  position: relative;
+  z-index: 1;
+}
+[data-sd-theme="dark-tech"] .slide:not(:first-child)::before {
+  /* 격자 위에 라벨을 얹는다 */
+  content: "";
+}
+
+/* R4. 단일 색 — 본문 글자도 액센트 색으로. 흰 글자를 섞으면 평범해진다.
+       webdeck 의 .ac(강조) 는 반대로 밝게 빼서 대비를 만든다. */
+[data-sd-theme="dark-tech"] .ac {
+  color: #fff !important;
+}
+
+/* R5. 격자를 액센트 색으로. 검정 위 붉은 격자가 이 레퍼런스의 바닥 질감이다. */
+[data-sd-theme="dark-tech"] .slide::before {
+  opacity: .05;
+}
+
+/* ─────────────────────────────────────────────
+   밝은 테마 보정 — webdeck 슬라이드는 자체 다크 배경을 갖고 있어
+   theme.bg 가 밝아도 어둡게 덮인다. 밝은 테마 2종을 살린다.
+   ───────────────────────────────────────────── */
+[data-sd-theme="editorial"] .slide,
+[data-sd-theme="soft"] .slide {
+  background: var(--sd-light-bg) !important;
+  background-image: none !important;
+  color: var(--sd-light-ink) !important;
+}
+[data-sd-theme="editorial"] { --sd-light-bg: #EFEDE8; --sd-light-ink: #1A1A18; }
+[data-sd-theme="soft"]      { --sd-light-bg: #F4F1EA; --sd-light-ink: #23201C; }
+
+/* 밝은 테마에선 격자·프레임을 더 옅게. 어두운 선은 밝은 지면에서 튄다 */
+[data-sd-theme="editorial"] .slide::before,
+[data-sd-theme="soft"] .slide::before { opacity: .045; }
+[data-sd-theme="editorial"] .slide::after,
+[data-sd-theme="soft"] .slide::after { opacity: .1; }
+
+/* ─────────────────────────────────────────────
+   표지 · 아웃라인 스택 (design-concepts D)
+   같은 글자를 아웃라인·솔리드·아웃라인으로 어긋나게 3겹.
+   반복을 글자 자체로 만든다. data-sd-cover="outline" 일 때만.
+   ───────────────────────────────────────────── */
+[data-sd-cover="outline"] .slide:first-child { align-items:center; justify-content:center; text-align:center }
+[data-sd-cover="outline"] .slide:first-child .core{
+  position:relative; color:transparent;
+  /* currentColor 를 쓰면 위의 transparent 를 물려받아 테두리까지 사라진다. 색을 직접 준다. */
+  -webkit-text-stroke:1.6px var(--ink,#1A1A18);
+  line-height:.92; text-align:center;
+}
+/* accent 줄은 채워진 색 그대로 둔다 — 테두리 줄과 대비를 만드는 게 이 표지의 핵심 */
+[data-sd-cover="outline"] .slide:first-child .core .ac{ -webkit-text-stroke:0 }
+/* 라벨이 글자 윗선에 달라붙는다. line-height .92 로 줄어든 만큼 되돌린다 */
+[data-sd-cover="outline"] .slide:first-child .kicker{ margin-bottom:3.5vh }

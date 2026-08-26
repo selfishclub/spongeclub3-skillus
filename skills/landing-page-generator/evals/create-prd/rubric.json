@@ -1,0 +1,109 @@
+{
+  "skill": "create-prd",
+  "version": "1.0.0",
+  "description": "Scores an 8-section PRD against SKILL.md Success Criteria and references/red-flags.md.",
+  "criteria": [
+    {
+      "id": "summary_present",
+      "name": "Section 1 (Summary) present",
+      "weight": 8,
+      "check": {"type": "section_present", "heading": "Summary"}
+    },
+    {
+      "id": "summary_concise",
+      "name": "Summary is 2-4 sentences (passes 10-second exec test)",
+      "weight": 5,
+      "check": {"type": "section_sentence_count", "heading": "Summary", "min": 2, "max": 5}
+    },
+    {
+      "id": "background_present",
+      "name": "Section 3 (Background) present with context + why-now",
+      "weight": 6,
+      "check": {"type": "section_present", "heading": "Background"}
+    },
+    {
+      "id": "objective_present",
+      "name": "Section 4 (Objective) present",
+      "weight": 6,
+      "check": {"type": "section_present", "heading": "Objective"}
+    },
+    {
+      "id": "key_results_format",
+      "name": "Has Key Results in OKR format (KR1/KR2/KR3)",
+      "weight": 8,
+      "check": {"type": "regex", "pattern": "KR\\d|Key Result", "flags": "im"}
+    },
+    {
+      "id": "key_results_measurable",
+      "name": "Key Results contain measurable language (from/to/by, %, baseline, target)",
+      "weight": 8,
+      "check": {"type": "keyword_any", "keywords": ["from", "to", "baseline", "target", "%", "by 20"]}
+    },
+    {
+      "id": "segments_present",
+      "name": "Section 5 (Market Segments) present",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "^##\\s+(?:Section\\s+5:?\\s+)?Market Segment", "flags": "im"}
+    },
+    {
+      "id": "segments_not_demographic",
+      "name": "Segments defined by jobs/problems, not raw demographics",
+      "weight": 6,
+      "check": {"type": "keyword_none", "keywords": ["millennials aged", "gen z aged", "demographics", "18-34", "25-35 in urban"]}
+    },
+    {
+      "id": "value_prop_present",
+      "name": "Section 6 (Value Proposition) present",
+      "weight": 5,
+      "check": {"type": "section_present", "heading": "Value Proposition"}
+    },
+    {
+      "id": "solution_present",
+      "name": "Section 7 (Solution) present",
+      "weight": 6,
+      "check": {"type": "section_present", "heading": "Solution"}
+    },
+    {
+      "id": "priorities_marked",
+      "name": "Features are tagged P0/P1/P2",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "P[012]\\b", "flags": ""}
+    },
+    {
+      "id": "assumptions_table",
+      "name": "Assumptions are listed (Section 7 sub-bullet or explicit table)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["Assumption", "We believe", "Hypothesis"]}
+    },
+    {
+      "id": "release_present",
+      "name": "Section 8 (Release) present",
+      "weight": 5,
+      "check": {"type": "section_present", "heading": "Release"}
+    },
+    {
+      "id": "v1_scope_defined",
+      "name": "v1 scope or Now/Next/Later breakdown present",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["v1 scope", "Now", "Next", "Later", "MVP"]}
+    },
+    {
+      "id": "deferred_explicit",
+      "name": "Explicitly deferred items called out (anti-scope-creep)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["deferred", "out of scope", "v2", "future version", "explicitly excluded"]}
+    },
+    {
+      "id": "no_consultant_speak",
+      "name": "No consultant-speak / buzzwords",
+      "weight": 4,
+      "check": {"type": "keyword_none", "keywords": ["synergy", "leverage best", "deep-dive", "circle back", "low-hanging fruit", "move the needle"]}
+    },
+    {
+      "id": "no_solution_before_problem",
+      "name": "Problem framing present before solution (negative check on 'solution' appearing before 'problem' in the doc)",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "(problem|background)[\\s\\S]+?(solution|key features)", "flags": "is"}
+    }
+  ]
+}

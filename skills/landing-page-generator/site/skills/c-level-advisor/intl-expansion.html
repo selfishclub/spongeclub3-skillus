@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intl Expansion - Claude Skills</title>
+  <meta name="description" content="International market expansion strategy for scaling companies. Use when expanding to new countries, evaluating international markets, planning localization, building regional teams, or assessing regul">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/intl-expansion.html">
+  <meta property="og:title" content="Intl Expansion - Claude Skills">
+  <meta property="og:description" content="International market expansion strategy for scaling companies. Use when expanding to new countries, evaluating international markets, planning localization, building regional teams, or assessing regul">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/intl-expansion.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Intl Expansion", "description": "International market expansion strategy for scaling companies. Use when expanding to new countries, evaluating international markets, planning localization, building regional teams, or assessing regulatory requirements by region.", "applicationCategory": "C-Level Advisory", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/c-level-advisor/intl-expansion.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/">C-Level Advisory</a><span class=sep>/</span><span>Intl Expansion</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">Intl Expansion</h1>
+    <p class="page-subtitle">International market expansion strategy for scaling companies. Use when expanding to new countries, evaluating international markets, planning localization, building regional teams, or assessing regulatory requirements by region.</p>
+    <div class="badge-bar"><span class="badge badge-domain">C-Level Advisory</span> <span class="badge badge-version">v2.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert Intl Expansion (C-Level Advisory domain).
+
+International market expansion strategy for scaling companies. Use when expanding to new countries, evaluating international markets, planning localization, building regional teams, or assessing regulatory requirements by region.
+
+Frameworks for expanding into new markets: selection, entry mode, localization, regulatory compliance, GTM adaptation, and execution. Every expansion is a bet -- this skill structures the bet to maximize signal before committing resources. international expansion, market entry, localization, go-to-m
+
+## Your Key Capabilities
+- Scoring Matrix
+- Market Selection Decision Tree
+- Regional Quick Reference
+- Entry Mode Comparison
+- Entry Mode Decision Tree
+- Default Graduation Path
+
+## Frameworks &amp; Templates You Know
+- Market Selection Framework
+- Localization Framework
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/intl-expansion
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert Intl Expansion (C-Level Advisory domain).
+
+International market expansion strategy for scaling companies. Use when expanding to new countries, evaluating international markets, planning localization, building regional teams, or assessing regulatory requirements by region.
+
+Frameworks for expanding into new markets: selection, entry mode, localization, regulatory compliance, GTM adaptation, and execution. Every expansion is a bet -- this skill structures the bet to maximize signal before committing resources. international expansion, market entry, localization, go-to-m
+
+## Your Key Capabilities
+- Scoring Matrix
+- Market Selection Decision Tree
+- Regional Quick Reference
+- Entry Mode Comparison
+- Entry Mode Decision Tree
+- Default Graduation Path
+
+## Frameworks &amp; Templates You Know
+- Market Selection Framework
+- Localization Framework
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/intl-expansion
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;Intl Expansion&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# International Expansion
+
+Frameworks for expanding into new markets: selection, entry mode, localization, regulatory compliance, GTM adaptation, and execution. Every expansion is a bet -- this skill structures the bet to maximize signal before committing resources.
+
+## Keywords
+
+international expansion, market entry, localization, go-to-market, GTM, regional strategy, international markets, market selection, cross-border, global expansion, EMEA, APAC, LATAM, data residency, local entity, regional hiring, currency, payment methods, regulatory compliance
+
+---
+
+## Clarify First
+
+Before generating, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Which deliverable is needed** (market scoring, entry-mode recommendation, localization plan, regulatory map, pricing, or launch plan) — each follows a different framework
+- [ ] **The target market(s) under consideration** — regional regulatory, cultural-distance, and pricing guidance is country-specific
+- [ ] **Existing traction in that market** (inbound demand, current ARR from it) — the entry-mode graduation path is gated on revenue thresholds; pull vs. push changes the go/no-go
+- [ ] **Product type and home-market model** (B2B SaaS vs. other; PLG vs. sales-led) — the frameworks are tuned for B2B SaaS and the GTM adaptation depends on the current model
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+---
+
+## Decision Sequence
+
+```
+Market Selection --&gt; Entry Mode --&gt; Regulatory Assessment --&gt; Localization Plan
+  --&gt; GTM Strategy --&gt; Team Structure --&gt; Launch --&gt; Scale or Exit
+```
+
+---
+
+## Market Selection Framework
+
+### Scoring Matrix
+
+| Factor | Weight | Assessment Method | Score 1-5 |
+|--------|--------|------------------|-----------|
+| Market size (addressable) | 25% | TAM in target segment, willingness to pay, growth rate |
+| Competitive intensity | 20% | Incumbent strength, number of alternatives, market gaps |
+| Regulatory complexity | 20% | Barriers to entry, compliance cost, timeline to launch |
+| Cultural distance | 15% | Language, business practices, buying behavior, sales cycle |
+| Existing traction | 10% | Inbound demand, existing customers, partnership signals |
+| Operational complexity | 10% | Time zones, infrastructure, payment systems, talent pool |
+
+### Market Selection Decision Tree
+
+```
+START: Considering a new market
+  |
+  v
+[Is there existing pull from this market?]
+  |
+  +-- YES (inbound demand, existing customers) --&gt; Strong signal. Score and proceed.
+  |
+  +-- NO  --&gt; [Is there a strategic reason to enter?]
+              |
+              +-- YES (competitor pressure, investor expectation) --&gt; Score carefully.
+              |    Be honest about push vs. pull.
+              |
+              +-- NO  --&gt; Do not enter. Focus on existing markets.
+```
+
+### Regional Quick Reference
+
+| Region | Market Size | Regulatory Complexity | Cultural Distance (from US) | Key Considerations |
+|--------|------------|----------------------|---------------------------|-------------------|
+| UK/Ireland | Large | Medium | Low | English-speaking, strong tech ecosystem, Brexit considerations |
+| DACH (DE/AT/CH) | Large | High | Medium | Data privacy strict, enterprise-heavy, German language needed |
+| Nordics | Medium | Medium | Low-Medium | Tech-savvy, English common, smaller market size |
+| France | Large | High | Medium | Language required, strong labor laws, cultural nuances |
+| Benelux | Medium | Medium | Low-Medium | Multilingual, hub for European operations |
+| Japan | Very Large | Very High | High | Requires local partner, long sales cycles, relationship-heavy |
+| Singapore/SEA | Medium-Large | Medium | Medium | Regional hub, English common, diverse sub-markets |
+| Australia/NZ | Medium | Low | Low | English-speaking, similar business culture, timezone challenge |
+| Brazil | Large | Very High | High | Portuguese required, complex tax, large opportunity |
+| India | Very Large | High | Medium | Price-sensitive, English common, massive scale potential |
+
+---
+
+## Entry Mode Evaluation
+
+### Entry Mode Comparison
+
+| Mode | Investment | Control | Risk | Speed | Best For |
+|------|-----------|---------|------|-------|----------|
+| Remote sales (export) | Low ($10-50K) | Low | Low | Fast | Testing demand before committing |
+| Partnership/reseller | Medium ($50-200K) | Medium | Medium | Medium | Markets with strong local requirements |
+| Local hire (no entity) | Medium ($100-300K) | Medium-High | Medium | Medium | First boots on the ground |
+| Full entity (subsidiary) | High ($200K-1M) | Full | High | Slow | Major markets with proven demand |
+| Acquisition | Highest ($500K+) | Full | Highest | Fast (if done well) | Immediate market presence + customer base |
+
+### Entry Mode Decision Tree
+
+```
+START: Market selected, entry mode needed
+  |
+  v
+[Do you have existing customers in this market?]
+  |
+  +-- NO  --&gt; Start with Remote Sales
+  |            Test demand for 3-6 months
+  |            If revenue &gt; $200K ARR from market --&gt; Upgrade
+  |
+  +-- YES --&gt; [Revenue from this market &gt; $500K ARR?]
+              |
+              +-- NO  --&gt; Remote Sales or Local Hire (EOR)
+              |
+              +-- YES --&gt; [Does the market require local entity?]
+                          |
+                          +-- YES (regulatory requirement) --&gt; Full Entity
+                          +-- NO  --&gt; [Revenue trajectory?]
+                                      |
+                                      +-- Growing fast --&gt; Local Hire, plan Entity
+                                      +-- Stable --&gt; Partnership or Local Hire
+```
+
+### Default Graduation Path
+
+```
+Stage 1: Remote Sales ($0-200K ARR from market)
+  - Sell remotely from HQ
+  - No local presence
+  - Test messaging, pricing, ICP fit
+
+Stage 2: Local Hire ($200K-500K ARR)
+  - 1-2 people via EOR (Employer of Record)
+  - Sales + CS representative
+  - No legal entity yet
+
+Stage 3: Local Entity ($500K-2M ARR)
+  - Establish legal entity
+  - Hire local team (3-8 people)
+  - Local banking, contracts, compliance
+
+Stage 4: Regional Hub ($2M+ ARR)
+  - Full local team (10+ people)
+  - Regional leadership
+  - Market-specific product features
+```
+
+---
+
+## Localization Framework
+
+### Product Localization
+
+| Layer | Must Have | Nice to Have | Cost Impact |
+|-------|----------|-------------|-------------|
+| Language (UI) | Full translation of core product | Marketing site in local language | $20-50K initial |
+| Currency | Display and charge in local currency | Multi-currency invoicing | $10-30K engineering |
+| Payment methods | Credit card + local preferred method | All local payment methods | $5-20K per method |
+| Data formats | Date, time, number, address | Local units (km, kg, etc.) | $5-15K engineering |
+| Data residency | If legally required | If customer-required | $50-200K infrastructure |
+| Cultural adaptation | Avoid cultural missteps | Full cultural optimization | Variable |
+
+### GTM Localization
+
+| Element | Approach | Common Mistake |
+|---------|----------|----------------|
+| Messaging | Adapt value proposition for local pain points | Copy-paste from home market |
+| Channel strategy | Research local channels (may differ significantly) | Assume same channels work everywhere |
+| Case studies | Local customer references essential | Only showing US/UK case studies |
+| Partnerships | Local integrations and ecosystem | Ignoring local tech ecosystem |
+| Events | Regional conferences and meetups | Only attending global events |
+| Content/SEO | Local language content, local domain | English-only content for non-English market |
+
+### Operations Localization
+
+| Area | Key Considerations |
+|------|-------------------|
+| Legal entity | Type, timeline, cost, ongoing compliance |
+| Tax compliance | VAT/GST registration, transfer pricing, withholding |
+| Employment law | At-will vs. strong protections, notice periods, benefits |
+| Customer support | Hours, language, channels |
+| Banking | Local bank account, payment processing |
+| Insurance | Local requirements for entity and employees |
+
+---
+
+## Regulatory Compliance by Region
+
+### Data Privacy Requirements
+
+| Regulation | Region | Key Requirements | Penalty |
+|-----------|--------|------------------|---------|
+| GDPR | EU/EEA | Consent, data minimization, DPO, breach notification | Up to 4% annual revenue |
+| UK GDPR | UK | Similar to GDPR, separate registration | Up to 4% annual revenue |
+| LGPD | Brazil | Similar to GDPR, DPO required | Up to 2% revenue (capped R$50M) |
+| PIPL | China | Data localization, consent, cross-border assessment | Up to 5% annual revenue |
+| PIPA | South Korea | Consent, purpose limitation, data localization for some | Up to 3% of related revenue |
+| APPI | Japan | Consent, purpose specification, cross-border transfer rules | Criminal penalties possible |
+| Privacy Act | Australia | APPs, breach notification, cross-border transfer rules | Increasing penalties |
+
+### Data Residency Decision Tree
+
+```
+START: Expanding to new region
+  |
+  v
+[Does local law require data residency?]
+  |
+  +-- YES (e.g., certain China, Russia, some industry regs)
+  |     --&gt; Local hosting mandatory. Budget for local infrastructure.
+  |
+  +-- NO  --&gt; [Do target customers require local data hosting?]
+              |
+              +-- YES (common in enterprise, government, healthcare)
+              |     --&gt; Offer regional hosting as option. Major sales enabler.
+              |
+              +-- NO  --&gt; Global hosting acceptable. Document your data practices.
+```
+
+---
+
+## International GTM Strategy
+
+### Pricing Strategy by Market
+
+| Approach | When | Example |
+|----------|------|---------|
+| Global uniform pricing | Simple product, global ICP | Same price everywhere |
+| PPP-adjusted | Consumer product, price-sensitive markets | Lower prices in developing markets |
+| Market-specific | Different value perception by market | Higher in markets with less competition |
+| Local currency, global rate | B2B SaaS, enterprise | Price in local currency, USD-equivalent |
+
+### Sales Model Adaptation
+
+| Market Characteristic | Sales Model Adjustment |
+|----------------------|----------------------|
+| High-trust culture (Nordics, Japan) | Longer relationship building, more proof points |
+| Price-sensitive market (India, LATAM) | Flexible pricing, usage-based options |
+| Channel-dominant (Japan, Middle East) | Partner-led sales, local reseller required |
+| Enterprise-heavy (DACH, France) | On-premises option, compliance documentation |
+| PLG-friendly (US, UK, Nordics) | Self-serve with local payment methods |
+
+---
+
+## Common Mistakes
+
+| Mistake | Why It Happens | Prevention |
+|---------|---------------|------------|
+| Entering too many markets at once | FOMO, board pressure | Maximum 1-2 new markets per year |
+| Copy-paste GTM from home market | Assuming buyers are the same | Research local buying behavior first |
+| Underestimating regulatory cost | &quot;We&#x27;ll figure it out&quot; | Regulatory assessment BEFORE committing |
+| Hiring local team too early | Optimism about demand | Prove $200K+ ARR from market first |
+| Wrong pricing (just converting) | Laziness or assumption | Research local willingness to pay |
+| Ignoring local competition | Focused on global competitors | Local players often dominate segments |
+| Underestimating cultural distance | &quot;Business is business everywhere&quot; | Invest in local market expertise |
+| No exit criteria | Sunk cost fallacy | Define revenue milestone to hit within 12 months |
+
+---
+
+## Launch Checklist
+
+### Pre-Launch (T-90 days to T-30 days)
+
+| Category | Item | Status |
+|----------|------|--------|
+| Legal | Entity established (if needed) | [ ] |
+| Legal | Local contracts reviewed by local counsel | [ ] |
+| Compliance | Data privacy requirements met | [ ] |
+| Compliance | Tax registration completed | [ ] |
+| Product | Core product localized (language, currency) | [ ] |
+| Product | Local payment methods integrated | [ ] |
+| Sales | ICP defined for local market | [ ] |
+| Sales | Pricing set for local market | [ ] |
+| Marketing | Local messaging and positioning | [ ] |
+| Marketing | Local case studies (or adjacent) | [ ] |
+| People | First local hire identified | [ ] |
+| Support | Support coverage plan for timezone | [ ] |
+
+### Launch (T-0 to T+90 days)
+
+| Week | Focus | Success Metric |
+|------|-------|----------------|
+| 1-4 | Activate local presence, first outreach | 20+ qualified conversations |
+| 5-8 | First pipeline built, first deals | 5+ opportunities in pipeline |
+| 9-12 | First customers closed, iterate | 2+ closed deals, product feedback |
+
+### Exit Criteria
+
+If these are not met within 12 months, evaluate exit:
+
+| Metric | Minimum Threshold |
+|--------|-------------------|
+| Pipeline generated | $500K+ |
+| Revenue closed | $200K+ ARR |
+| Customer satisfaction | NPS &gt; 20 in market |
+| Cost of entry | &lt; 3x first-year revenue |
+
+---
+
+## Red Flags
+
+- Entering a market because a board member suggested it (without data)
+- No local market research before committing resources
+- Pricing set by currency conversion, not local value research
+- Hiring a country manager before proving demand
+- Legal entity established before $200K ARR from market
+- Ignoring local data privacy requirements
+- Same marketing messaging as home market
+- No exit criteria defined before entry
+
+---
+
+## Integration with C-Suite
+
+| Role | Contribution to Expansion |
+|------|--------------------------|
+| CEO (`ceo-advisor`) | Market selection decision, strategic commitment |
+| CFO (`cfo-advisor`) | Investment sizing, ROI modeling, entity structure, tax |
+| CRO (`cro-advisor`) | Revenue targets, sales model adaptation, pricing |
+| CMO (`cmo-advisor`) | Positioning, channel strategy, local brand |
+| CPO (`cpo-advisor`) | Localization roadmap, feature priorities |
+| CTO (`cto-advisor`) | Infrastructure, data residency, scaling |
+| CHRO (`chro-advisor`) | Local hiring, employment law, compensation |
+| CISO (`ciso-advisor`) | Data privacy, regulatory compliance |
+| COO (`coo-advisor`) | Operations setup, process adaptation |
+
+---
+
+## Output Artifacts
+
+| Request | Deliverable |
+|---------|-------------|
+| &quot;Should we expand to [market]?&quot; | Market scoring analysis with recommendation |
+| &quot;How should we enter [market]?&quot; | Entry mode recommendation with graduation path |
+| &quot;Localization plan for [market]&quot; | Product + GTM + operations localization checklist |
+| &quot;Regulatory requirements for [region]&quot; | Compliance checklist with timeline and cost |
+| &quot;International pricing strategy&quot; | Market-specific pricing recommendation |
+| &quot;Launch plan for [market]&quot; | 90-day launch plan with milestones and exit criteria |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| Market scores high but pipeline generation is near zero | Market sizing based on TAM not SAM; ICP not validated locally | Re-score using serviceable addressable market; run 20 discovery calls before committing further resources |
+| Local hire producing no results after 3 months | Wrong profile (too senior or too junior), insufficient HQ support, or wrong ICP | Assess whether hire has local market expertise AND startup mindset; ensure HQ provides enablement materials and responsive support |
+| Regulatory compliance taking 2x longer than planned | Underestimated complexity; no local legal counsel engaged early | Engage local legal counsel in pre-launch phase (T-90); add 50% buffer to all regulatory timelines |
+| Localization costs spiraling beyond budget | Scope creep from &quot;nice to have&quot; to &quot;must have&quot;; no phased approach | Apply localization framework layers strictly: Must Have first, Nice to Have only after revenue proves market |
+| Pricing not competitive in new market | Direct currency conversion without local willingness-to-pay research | Conduct 10+ pricing conversations with local prospects; consider PPP adjustment or market-specific pricing tier |
+| Partnership/reseller underperforming | Partner not incentivized properly or wrong partner profile | Review partner selection criteria; ensure economic alignment (margins); set 90-day performance review with exit clause |
+| Cultural missteps damaging brand in new market | No local market expertise on team; copy-paste approach from home market | Hire local advisor or consultant for cultural review; adapt messaging, not just translate it |
+
+---
+
+## Success Criteria
+
+- Market selection scoring produces a clear rank-ordered list with at least 3 candidate markets scored across all 6 factors
+- Entry mode selected matches the graduation path: no legal entity before $200K ARR from market
+- Pre-launch checklist 100% complete by T-30 days before launch
+- First 90 days produce 20+ qualified conversations, 5+ pipeline opportunities, and 2+ closed deals
+- Exit criteria defined before market entry with specific revenue and cost thresholds
+- Localization phased: Must Have items complete at launch; Nice to Have items gated behind revenue milestone
+- Regulatory compliance achieved before first customer contract signed in new market
+
+---
+
+## Scope &amp; Limitations
+
+- **In scope:** Market selection scoring, entry mode evaluation, localization planning (product, GTM, operations), regulatory compliance mapping by region, pricing strategy adaptation, launch planning with exit criteria, team structure decisions
+- **Out of scope:** Detailed tax advisory (engage local tax counsel); immigration and visa processing (use specialized provider); transfer pricing implementation (use CFO Advisor with tax expertise); detailed legal entity formation (use local legal counsel)
+- **Limitation:** Regional quick reference data is indicative and changes with regulations; always validate with local experts before committing
+- **Limitation:** Framework optimized for B2B SaaS companies; B2C, hardware, and marketplace businesses have different expansion dynamics
+- **Limitation:** Market scoring is a structured estimate, not a guarantee; validate with real market signals (inbound demand, pilot customers) before major investment
+
+---
+
+## Integration Points
+
+| Skill | Integration | Data Flow |
+|-------|-------------|-----------|
+| `ceo-advisor` | Market entry is a strategic CEO decision | CEO strategy → Market selection priority |
+| `cfo-advisor` | Investment sizing, ROI modeling, entity structure | Expansion budget → CFO financial model |
+| `cro-advisor` | Revenue targets and sales model adaptation | Market ICP → CRO sales playbook adaptation |
+| `cmo-advisor` | Local positioning and channel strategy | Market research → CMO local GTM plan |
+| `cpo-advisor` | Localization roadmap and feature priorities | Localization requirements → CPO product roadmap |
+| `ciso-advisor` | Data privacy and regulatory compliance | Regulatory map → CISO compliance checklist |
+| `chro-advisor` | Local hiring, employment law, compensation | Market team plan → CHRO local hiring strategy |
+
+---
+
+## Python Tools
+
+| Tool | Purpose | Usage |
+|------|---------|-------|
+| `scripts/market_readiness_scorer.py` | Score and rank target markets using the 6-factor weighted framework | `python scripts/market_readiness_scorer.py --market &quot;Germany&quot; --market-size 4 --competition 3 --regulatory 2 --cultural-distance 3 --traction 4 --operational 3 --json` |
+| `scripts/localization_checklist.py` | Generate a phased localization checklist for a target market | `python scripts/localization_checklist.py --market &quot;Japan&quot; --product-type saas --current-languages en --json` |
+| `scripts/regulatory_mapper.py` | Map regulatory requirements by region including data privacy, tax, and employment law | `python scripts/regulatory_mapper.py --region eu --industry saas --data-processing yes --json` |
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Intl Expansion&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Intl Expansion in the C-Level Advisory domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Intl Expansion&quot;**
+   - Description: &quot;International market expansion strategy for scaling companies. Use when expanding to new countries, evaluating international markets, planning localization, building regional teams, or assessing regulatory requirements by region.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/intl-expansion/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;Intl Expansion&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# International Expansion
+
+Frameworks for expanding into new markets: selection, entry mode, localization, regulatory compliance, GTM adaptation, and execution. Every expansion is a bet -- this skill structures the bet to maximize signal before committing resources.
+
+## Keywords
+
+international expansion, market entry, localization, go-to-market, GTM, regional strategy, international markets, market selection, cross-border, global expansion, EMEA, APAC, LATAM, data residency, local entity, regional hiring, currency, payment methods, regulatory compliance
+
+---
+
+## Clarify First
+
+Before generating, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Which deliverable is needed** (market scoring, entry-mode recommendation, localization plan, regulatory map, pricing, or launch plan) — each follows a different framework
+- [ ] **The target market(s) under consideration** — regional regulatory, cultural-distance, and pricing guidance is country-specific
+- [ ] **Existing traction in that market** (inbound demand, current ARR from it) — the entry-mode graduation path is gated on revenue thresholds; pull vs. push changes the go/no-go
+- [ ] **Product type and home-market model** (B2B SaaS vs. other; PLG vs. sales-led) — the frameworks are tuned for B2B SaaS and the GTM adaptation depends on the current model
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+---
+
+## Decision Sequence
+
+```
+Market Selection --&gt; Entry Mode --&gt; Regulatory Assessment --&gt; Localization Plan
+  --&gt; GTM Strategy --&gt; Team Structure --&gt; Launch --&gt; Scale or Exit
+```
+
+---
+
+## Market Selection Framework
+
+### Scoring Matrix
+
+| Factor | Weight | Assessment Method | Score 1-5 |
+|--------|--------|------------------|-----------|
+| Market size (addressable) | 25% | TAM in target segment, willingness to pay, growth rate |
+| Competitive intensity | 20% | Incumbent strength, number of alternatives, market gaps |
+| Regulatory complexity | 20% | Barriers to entry, compliance cost, timeline to launch |
+| Cultural distance | 15% | Language, business practices, buying behavior, sales cycle |
+| Existing traction | 10% | Inbound demand, existing customers, partnership signals |
+| Operational complexity | 10% | Time zones, infrastructure, payment systems, talent pool |
+
+### Market Selection Decision Tree
+
+```
+START: Considering a new market
+  |
+  v
+[Is there existing pull from this market?]
+  |
+  +-- YES (inbound demand, existing customers) --&gt; Strong signal. Score and proceed.
+  |
+  +-- NO  --&gt; [Is there a strategic reason to enter?]
+              |
+              +-- YES (competitor pressure, investor expectation) --&gt; Score carefully.
+              |    Be honest about push vs. pull.
+              |
+              +-- NO  --&gt; Do not enter. Focus on existing markets.
+```
+
+### Regional Quick Reference
+
+| Region | Market Size | Regulatory Complexity | Cultural Distance (from US) | Key Considerations |
+|--------|------------|----------------------|---------------------------|-------------------|
+| UK/Ireland | Large | Medium | Low | English-speaking, strong tech ecosystem, Brexit considerations |
+| DACH (DE/AT/CH) | Large | High | Medium | Data privacy strict, enterprise-heavy, German language needed |
+| Nordics | Medium | Medium | Low-Medium | Tech-savvy, English common, smaller market size |
+| France | Large | High | Medium | Language required, strong labor laws, cultural nuances |
+| Benelux | Medium | Medium | Low-Medium | Multilingual, hub for European operations |
+| Japan | Very Large | Very High | High | Requires local partner, long sales cycles, relationship-heavy |
+| Singapore/SEA | Medium-Large | Medium | Medium | Regional hub, English common, diverse sub-markets |
+| Australia/NZ | Medium | Low | Low | English-speaking, similar business culture, timezone challenge |
+| Brazil | Large | Very High | High | Portuguese required, complex tax, large opportunity |
+| India | Very Large | High | Medium | Price-sensitive, English common, massive scale potential |
+
+---
+
+## Entry Mode Evaluation
+
+### Entry Mode Comparison
+
+| Mode | Investment | Control | Risk | Speed | Best For |
+|------|-----------|---------|------|-------|----------|
+| Remote sales (export) | Low ($10-50K) | Low | Low | Fast | Testing demand before committing |
+| Partnership/reseller | Medium ($50-200K) | Medium | Medium | Medium | Markets with strong local requirements |
+| Local hire (no entity) | Medium ($100-300K) | Medium-High | Medium | Medium | First boots on the ground |
+| Full entity (subsidiary) | High ($200K-1M) | Full | High | Slow | Major markets with proven demand |
+| Acquisition | Highest ($500K+) | Full | Highest | Fast (if done well) | Immediate market presence + customer base |
+
+### Entry Mode Decision Tree
+
+```
+START: Market selected, entry mode needed
+  |
+  v
+[Do you have existing customers in this market?]
+  |
+  +-- NO  --&gt; Start with Remote Sales
+  |            Test demand for 3-6 months
+  |            If revenue &gt; $200K ARR from market --&gt; Upgrade
+  |
+  +-- YES --&gt; [Revenue from this market &gt; $500K ARR?]
+              |
+              +-- NO  --&gt; Remote Sales or Local Hire (EOR)
+              |
+              +-- YES --&gt; [Does the market require local entity?]
+                          |
+                          +-- YES (regulatory requirement) --&gt; Full Entity
+                          +-- NO  --&gt; [Revenue trajectory?]
+                                      |
+                                      +-- Growing fast --&gt; Local Hire, plan Entity
+                                      +-- Stable --&gt; Partnership or Local Hire
+```
+
+### Default Graduation Path
+
+```
+Stage 1: Remote Sales ($0-200K ARR from market)
+  - Sell remotely from HQ
+  - No local presence
+  - Test messaging, pricing, ICP fit
+
+Stage 2: Local Hire ($200K-500K ARR)
+  - 1-2 people via EOR (Employer of Record)
+  - Sales + CS representative
+  - No legal entity yet
+
+Stage 3: Local Entity ($500K-2M ARR)
+  - Establish legal entity
+  - Hire local team (3-8 people)
+  - Local banking, contracts, compliance
+
+Stage 4: Regional Hub ($2M+ ARR)
+  - Full local team (10+ people)
+  - Regional leadership
+  - Market-specific product features
+```
+
+---
+
+## Localization Framework
+
+### Product Localization
+
+| Layer | Must Have | Nice to Have | Cost Impact |
+|-------|----------|-------------|-------------|
+| Language (UI) | Full translation of core product | Marketing site in local language | $20-50K initial |
+| Currency | Display and charge in local currency | Multi-currency invoicing | $10-30K engineering |
+| Payment methods | Credit card + local preferred method | All local payment methods | $5-20K per method |
+| Data formats | Date, time, number, address | Local units (km, kg, etc.) | $5-15K engineering |
+| Data residency | If legally required | If customer-required | $50-200K infrastructure |
+| Cultural adaptation | Avoid cultural missteps | Full cultural optimization | Variable |
+
+### GTM Localization
+
+| Element | Approach | Common Mistake |
+|---------|----------|----------------|
+| Messaging | Adapt value proposition for local pain points | Copy-paste from home market |
+| Channel strategy | Research local channels (may differ significantly) | Assume same channels work everywhere |
+| Case studies | Local customer references essential | Only showing US/UK case studies |
+| Partnerships | Local integrations and ecosystem | Ignoring local tech ecosystem |
+| Events | Regional conferences and meetups | Only attending global events |
+| Content/SEO | Local language content, local domain | English-only content for non-English market |
+
+### Operations Localization
+
+| Area | Key Considerations |
+|------|-------------------|
+| Legal entity | Type, timeline, cost, ongoing compliance |
+| Tax compliance | VAT/GST registration, transfer pricing, withholding |
+| Employment law | At-will vs. strong protections, notice periods, benefits |
+| Customer support | Hours, language, channels |
+| Banking | Local bank account, payment processing |
+| Insurance | Local requirements for entity and employees |
+
+---
+
+## Regulatory Compliance by Region
+
+### Data Privacy Requirements
+
+| Regulation | Region | Key Requirements | Penalty |
+|-----------|--------|------------------|---------|
+| GDPR | EU/EEA | Consent, data minimization, DPO, breach notification | Up to 4% annual revenue |
+| UK GDPR | UK | Similar to GDPR, separate registration | Up to 4% annual revenue |
+| LGPD | Brazil | Similar to GDPR, DPO required | Up to 2% revenue (capped R$50M) |
+| PIPL | China | Data localization, consent, cross-border assessment | Up to 5% annual revenue |
+| PIPA | South Korea | Consent, purpose limitation, data localization for some | Up to 3% of related revenue |
+| APPI | Japan | Consent, purpose specification, cross-border transfer rules | Criminal penalties possible |
+| Privacy Act | Australia | APPs, breach notification, cross-border transfer rules | Increasing penalties |
+
+### Data Residency Decision Tree
+
+```
+START: Expanding to new region
+  |
+  v
+[Does local law require data residency?]
+  |
+  +-- YES (e.g., certain China, Russia, some industry regs)
+  |     --&gt; Local hosting mandatory. Budget for local infrastructure.
+  |
+  +-- NO  --&gt; [Do target customers require local data hosting?]
+              |
+              +-- YES (common in enterprise, government, healthcare)
+              |     --&gt; Offer regional hosting as option. Major sales enabler.
+              |
+              +-- NO  --&gt; Global hosting acceptable. Document your data practices.
+```
+
+---
+
+## International GTM Strategy
+
+### Pricing Strategy by Market
+
+| Approach | When | Example |
+|----------|------|---------|
+| Global uniform pricing | Simple product, global ICP | Same price everywhere |
+| PPP-adjusted | Consumer product, price-sensitive markets | Lower prices in developing markets |
+| Market-specific | Different value perception by market | Higher in markets with less competition |
+| Local currency, global rate | B2B SaaS, enterprise | Price in local currency, USD-equivalent |
+
+### Sales Model Adaptation
+
+| Market Characteristic | Sales Model Adjustment |
+|----------------------|----------------------|
+| High-trust culture (Nordics, Japan) | Longer relationship building, more proof points |
+| Price-sensitive market (India, LATAM) | Flexible pricing, usage-based options |
+| Channel-dominant (Japan, Middle East) | Partner-led sales, local reseller required |
+| Enterprise-heavy (DACH, France) | On-premises option, compliance documentation |
+| PLG-friendly (US, UK, Nordics) | Self-serve with local payment methods |
+
+---
+
+## Common Mistakes
+
+| Mistake | Why It Happens | Prevention |
+|---------|---------------|------------|
+| Entering too many markets at once | FOMO, board pressure | Maximum 1-2 new markets per year |
+| Copy-paste GTM from home market | Assuming buyers are the same | Research local buying behavior first |
+| Underestimating regulatory cost | &quot;We&#x27;ll figure it out&quot; | Regulatory assessment BEFORE committing |
+| Hiring local team too early | Optimism about demand | Prove $200K+ ARR from market first |
+| Wrong pricing (just converting) | Laziness or assumption | Research local willingness to pay |
+| Ignoring local competition | Focused on global competitors | Local players often dominate segments |
+| Underestimating cultural distance | &quot;Business is business everywhere&quot; | Invest in local market expertise |
+| No exit criteria | Sunk cost fallacy | Define revenue milestone to hit within 12 months |
+
+---
+
+## Launch Checklist
+
+### Pre-Launch (T-90 days to T-30 days)
+
+| Category | Item | Status |
+|----------|------|--------|
+| Legal | Entity established (if needed) | [ ] |
+| Legal | Local contracts reviewed by local counsel | [ ] |
+| Compliance | Data privacy requirements met | [ ] |
+| Compliance | Tax registration completed | [ ] |
+| Product | Core product localized (language, currency) | [ ] |
+| Product | Local payment methods integrated | [ ] |
+| Sales | ICP defined for local market | [ ] |
+| Sales | Pricing set for local market | [ ] |
+| Marketing | Local messaging and positioning | [ ] |
+| Marketing | Local case studies (or adjacent) | [ ] |
+| People | First local hire identified | [ ] |
+| Support | Support coverage plan for timezone | [ ] |
+
+### Launch (T-0 to T+90 days)
+
+| Week | Focus | Success Metric |
+|------|-------|----------------|
+| 1-4 | Activate local presence, first outreach | 20+ qualified conversations |
+| 5-8 | First pipeline built, first deals | 5+ opportunities in pipeline |
+| 9-12 | First customers closed, iterate | 2+ closed deals, product feedback |
+
+### Exit Criteria
+
+If these are not met within 12 months, evaluate exit:
+
+| Metric | Minimum Threshold |
+|--------|-------------------|
+| Pipeline generated | $500K+ |
+| Revenue closed | $200K+ ARR |
+| Customer satisfaction | NPS &gt; 20 in market |
+| Cost of entry | &lt; 3x first-year revenue |
+
+---
+
+## Red Flags
+
+- Entering a market because a board member suggested it (without data)
+- No local market research before committing resources
+- Pricing set by currency conversion, not local value research
+- Hiring a country manager before proving demand
+- Legal entity established before $200K ARR from market
+- Ignoring local data privacy requirements
+- Same marketing messaging as home market
+- No exit criteria defined before entry
+
+---
+
+## Integration with C-Suite
+
+| Role | Contribution to Expansion |
+|------|--------------------------|
+| CEO (`ceo-advisor`) | Market selection decision, strategic commitment |
+| CFO (`cfo-advisor`) | Investment sizing, ROI modeling, entity structure, tax |
+| CRO (`cro-advisor`) | Revenue targets, sales model adaptation, pricing |
+| CMO (`cmo-advisor`) | Positioning, channel strategy, local brand |
+| CPO (`cpo-advisor`) | Localization roadmap, feature priorities |
+| CTO (`cto-advisor`) | Infrastructure, data residency, scaling |
+| CHRO (`chro-advisor`) | Local hiring, employment law, compensation |
+| CISO (`ciso-advisor`) | Data privacy, regulatory compliance |
+| COO (`coo-advisor`) | Operations setup, process adaptation |
+
+---
+
+## Output Artifacts
+
+| Request | Deliverable |
+|---------|-------------|
+| &quot;Should we expand to [market]?&quot; | Market scoring analysis with recommendation |
+| &quot;How should we enter [market]?&quot; | Entry mode recommendation with graduation path |
+| &quot;Localization plan for [market]&quot; | Product + GTM + operations localization checklist |
+| &quot;Regulatory requirements for [region]&quot; | Compliance checklist with timeline and cost |
+| &quot;International pricing strategy&quot; | Market-specific pricing recommendation |
+| &quot;Launch plan for [market]&quot; | 90-day launch plan with milestones and exit criteria |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| Market scores high but pipeline generation is near zero | Market sizing based on TAM not SAM; ICP not validated locally | Re-score using serviceable addressable market; run 20 discovery calls before committing further resources |
+| Local hire producing no results after 3 months | Wrong profile (too senior or too junior), insufficient HQ support, or wrong ICP | Assess whether hire has local market expertise AND startup mindset; ensure HQ provides enablement materials and responsive support |
+| Regulatory compliance taking 2x longer than planned | Underestimated complexity; no local legal counsel engaged early | Engage local legal counsel in pre-launch phase (T-90); add 50% buffer to all regulatory timelines |
+| Localization costs spiraling beyond budget | Scope creep from &quot;nice to have&quot; to &quot;must have&quot;; no phased approach | Apply localization framework layers strictly: Must Have first, Nice to Have only after revenue proves market |
+| Pricing not competitive in new market | Direct currency conversion without local willingness-to-pay research | Conduct 10+ pricing conversations with local prospects; consider PPP adjustment or market-specific pricing tier |
+| Partnership/reseller underperforming | Partner not incentivized properly or wrong partner profile | Review partner selection criteria; ensure economic alignment (margins); set 90-day performance review with exit clause |
+| Cultural missteps damaging brand in new market | No local market expertise on team; copy-paste approach from home market | Hire local advisor or consultant for cultural review; adapt messaging, not just translate it |
+
+---
+
+## Success Criteria
+
+- Market selection scoring produces a clear rank-ordered list with at least 3 candidate markets scored across all 6 factors
+- Entry mode selected matches the graduation path: no legal entity before $200K ARR from market
+- Pre-launch checklist 100% complete by T-30 days before launch
+- First 90 days produce 20+ qualified conversations, 5+ pipeline opportunities, and 2+ closed deals
+- Exit criteria defined before market entry with specific revenue and cost thresholds
+- Localization phased: Must Have items complete at launch; Nice to Have items gated behind revenue milestone
+- Regulatory compliance achieved before first customer contract signed in new market
+
+---
+
+## Scope &amp; Limitations
+
+- **In scope:** Market selection scoring, entry mode evaluation, localization planning (product, GTM, operations), regulatory compliance mapping by region, pricing strategy adaptation, launch planning with exit criteria, team structure decisions
+- **Out of scope:** Detailed tax advisory (engage local tax counsel); immigration and visa processing (use specialized provider); transfer pricing implementation (use CFO Advisor with tax expertise); detailed legal entity formation (use local legal counsel)
+- **Limitation:** Regional quick reference data is indicative and changes with regulations; always validate with local experts before committing
+- **Limitation:** Framework optimized for B2B SaaS companies; B2C, hardware, and marketplace businesses have different expansion dynamics
+- **Limitation:** Market scoring is a structured estimate, not a guarantee; validate with real market signals (inbound demand, pilot customers) before major investment
+
+---
+
+## Integration Points
+
+| Skill | Integration | Data Flow |
+|-------|-------------|-----------|
+| `ceo-advisor` | Market entry is a strategic CEO decision | CEO strategy → Market selection priority |
+| `cfo-advisor` | Investment sizing, ROI modeling, entity structure | Expansion budget → CFO financial model |
+| `cro-advisor` | Revenue targets and sales model adaptation | Market ICP → CRO sales playbook adaptation |
+| `cmo-advisor` | Local positioning and channel strategy | Market research → CMO local GTM plan |
+| `cpo-advisor` | Localization roadmap and feature priorities | Localization requirements → CPO product roadmap |
+| `ciso-advisor` | Data privacy and regulatory compliance | Regulatory map → CISO compliance checklist |
+| `chro-advisor` | Local hiring, employment law, compensation | Market team plan → CHRO local hiring strategy |
+
+---
+
+## Python Tools
+
+| Tool | Purpose | Usage |
+|------|---------|-------|
+| `scripts/market_readiness_scorer.py` | Score and rank target markets using the 6-factor weighted framework | `python scripts/market_readiness_scorer.py --market &quot;Germany&quot; --market-size 4 --competition 3 --regulatory 2 --cultural-distance 3 --traction 4 --operational 3 --json` |
+| `scripts/localization_checklist.py` | Generate a phased localization checklist for a target market | `python scripts/localization_checklist.py --market &quot;Japan&quot; --product-type saas --current-languages en --json` |
+| `scripts/regulatory_mapper.py` | Map regulatory requirements by region including data privacy, tax, and employment law | `python scripts/regulatory_mapper.py --region eu --industry saas --data-processing yes --json` |
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Intl Expansion&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Intl Expansion in the C-Level Advisory domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Intl Expansion&quot;**
+   - Description: &quot;International market expansion strategy for scaling companies. Use when expanding to new countries, evaluating international markets, planning localization, building regional teams, or assessing regulatory requirements by region.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/intl-expansion/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install c-level-advisor/intl-expansion ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/intl-expansion your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/intl-expansion/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/intl-expansion your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/intl-expansion/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/intl-expansion your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: c-level-advisor/intl-expansion/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/intl-expansion your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/intl-expansion your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/c-level-advisor/intl-expansion</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python c-level-advisor/intl-expansion/scripts/tool_name.py --help</code></pre>
+  
+  
+  <h2>Related Skills in C-Level Advisory</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/board-deck-builder.html" class="skill-card" style="text-decoration:none"><h3>Board Deck Builder</h3><p>Assembles board and investor update decks by pulling perspectives from all C-suite roles. Use...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/board-meeting.html" class="skill-card" style="text-decoration:none"><h3>Board Meeting</h3><p>Multi-agent board meeting protocol running a structured 6-phase deliberation with isolated...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/ceo-advisor.html" class="skill-card" style="text-decoration:none"><h3>Ceo Advisor</h3><p>Executive leadership guidance for strategic decisions, org development, and stakeholder...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/cfo-advisor.html" class="skill-card" style="text-decoration:none"><h3>Cfo Advisor</h3><p>Financial leadership advisor on financial planning, fundraising, investor reporting, and unit...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/change-management.html" class="skill-card" style="text-decoration:none"><h3>Change Management</h3><p>Framework for rolling out organizational changes without chaos, using ADKAR adapted for...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/chief-ai-officer-advisor.html" class="skill-card" style="text-decoration:none"><h3>Chief Ai Officer Advisor</h3><p>AI leadership advisor on AI strategy, governance, risk, investment, and org design. Use when...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/intl-expansion/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

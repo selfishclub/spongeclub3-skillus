@@ -1,0 +1,1449 @@
+{
+  "version": "1.0.0",
+  "name": "claude-code-skills",
+  "description": "Production-ready skill packages for AI agents - Marketing, Engineering, Product, C-Level, PM, and RA/QM",
+  "repository": "https://github.com/borghei/Claude-Skills",
+  "total_skills": 233,
+  "skills": [
+    {
+      "name": "channel-economics",
+      "source": "../../business-growth/channel-economics",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "churn-prevention",
+      "source": "../../business-growth/churn-prevention",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "commercial-policy",
+      "source": "../../business-growth/commercial-policy",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "competitive-teardown",
+      "source": "../../business-growth/competitive-teardown",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "competitor-alternatives",
+      "source": "../../business-growth/competitor-alternatives",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "contract-and-proposal-writer",
+      "source": "../../business-growth/contract-and-proposal-writer",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "customer-success-manager",
+      "source": "../../business-growth/customer-success-manager",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "deal-desk",
+      "source": "../../business-growth/deal-desk",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "form-cro",
+      "source": "../../business-growth/form-cro",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "free-tool-strategy",
+      "source": "../../business-growth/free-tool-strategy",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "onboarding-cro",
+      "source": "../../business-growth/onboarding-cro",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "page-cro",
+      "source": "../../business-growth/page-cro",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "partnerships-architect",
+      "source": "../../business-growth/partnerships-architect",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "paywall-upgrade-cro",
+      "source": "../../business-growth/paywall-upgrade-cro",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "popup-cro",
+      "source": "../../business-growth/popup-cro",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "pricing-strategy",
+      "source": "../../business-growth/pricing-strategy",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "referral-program",
+      "source": "../../business-growth/referral-program",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "revenue-operations",
+      "source": "../../business-growth/revenue-operations",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "sales-engineer",
+      "source": "../../business-growth/sales-engineer",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "signup-flow-cro",
+      "source": "../../business-growth/signup-flow-cro",
+      "category": "business-growth",
+      "description": ">"
+    },
+    {
+      "name": "board-deck-builder",
+      "source": "../../c-level-advisor/board-deck-builder",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "board-meeting",
+      "source": "../../c-level-advisor/board-meeting",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "ceo-advisor",
+      "source": "../../c-level-advisor/ceo-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "cfo-advisor",
+      "source": "../../c-level-advisor/cfo-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "change-management",
+      "source": "../../c-level-advisor/change-management",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "chief-ai-officer-advisor",
+      "source": "../../c-level-advisor/chief-ai-officer-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "chief-customer-officer-advisor",
+      "source": "../../c-level-advisor/chief-customer-officer-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "chief-data-officer-advisor",
+      "source": "../../c-level-advisor/chief-data-officer-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "chief-of-staff",
+      "source": "../../c-level-advisor/chief-of-staff",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "chro-advisor",
+      "source": "../../c-level-advisor/chro-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "ciso-advisor",
+      "source": "../../c-level-advisor/ciso-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "cmo-advisor",
+      "source": "../../c-level-advisor/cmo-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "company-os",
+      "source": "../../c-level-advisor/company-os",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "competitive-intel",
+      "source": "../../c-level-advisor/competitive-intel",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "coo-advisor",
+      "source": "../../c-level-advisor/coo-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "cpo-advisor",
+      "source": "../../c-level-advisor/cpo-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "cro-advisor",
+      "source": "../../c-level-advisor/cro-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "cs-onboard",
+      "source": "../../c-level-advisor/cs-onboard",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "cto-advisor",
+      "source": "../../c-level-advisor/cto-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "culture-architect",
+      "source": "../../c-level-advisor/culture-architect",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "decision-logger",
+      "source": "../../c-level-advisor/decision-logger",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "executive-mentor",
+      "source": "../../c-level-advisor/executive-mentor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "founder-coach",
+      "source": "../../c-level-advisor/founder-coach",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "general-counsel-advisor",
+      "source": "../../c-level-advisor/general-counsel-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "internal-narrative",
+      "source": "../../c-level-advisor/internal-narrative",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "intl-expansion",
+      "source": "../../c-level-advisor/intl-expansion",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "ma-playbook",
+      "source": "../../c-level-advisor/ma-playbook",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "org-health-diagnostic",
+      "source": "../../c-level-advisor/org-health-diagnostic",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "scenario-war-room",
+      "source": "../../c-level-advisor/scenario-war-room",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "strategic-alignment",
+      "source": "../../c-level-advisor/strategic-alignment",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "vpe-advisor",
+      "source": "../../c-level-advisor/vpe-advisor",
+      "category": "c-level",
+      "description": ">"
+    },
+    {
+      "name": "a11y-audit",
+      "source": "../../engineering/a11y-audit",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "agent-designer",
+      "source": "../../engineering/agent-designer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "agent-harness",
+      "source": "../../engineering/agent-harness",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "agent-protocol",
+      "source": "../../engineering/agent-protocol",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "agent-workflow-designer",
+      "source": "../../engineering/agent-workflow-designer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "agenthub",
+      "source": "../../engineering/agenthub",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "agentic-evaluation-framework",
+      "source": "../../engineering/agentic-evaluation-framework",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "ai-security",
+      "source": "../../engineering/ai-security",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "api-design-reviewer",
+      "source": "../../engineering/api-design-reviewer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "api-test-suite-builder",
+      "source": "../../engineering/api-test-suite-builder",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "aws-solution-architect",
+      "source": "../../engineering/aws-solution-architect",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "azure-cloud-architect",
+      "source": "../../engineering/azure-cloud-architect",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "batch-api-orchestrator",
+      "source": "../../engineering/batch-api-orchestrator",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "browser-automation",
+      "source": "../../engineering/browser-automation",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "changelog-generator",
+      "source": "../../engineering/changelog-generator",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "chaos-engineering",
+      "source": "../../engineering/chaos-engineering",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "ci-cd-pipeline-builder",
+      "source": "../../engineering/ci-cd-pipeline-builder",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "claude-code-mastery",
+      "source": "../../engineering/claude-code-mastery",
+      "category": "engineering",
+      "description": "Skill from engineering"
+    },
+    {
+      "name": "cloud-security",
+      "source": "../../engineering/cloud-security",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "code-reviewer",
+      "source": "../../engineering/code-reviewer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "code-tour",
+      "source": "../../engineering/code-tour",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "codebase-onboarding",
+      "source": "../../engineering/codebase-onboarding",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "codex-cli-specialist",
+      "source": "../../engineering/codex-cli-specialist",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "computer-use-automation",
+      "source": "../../engineering/computer-use-automation",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "context-engine",
+      "source": "../../engineering/context-engine",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "data-quality-auditor",
+      "source": "../../engineering/data-quality-auditor",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "database-designer",
+      "source": "../../engineering/database-designer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "database-schema-designer",
+      "source": "../../engineering/database-schema-designer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "dependency-auditor",
+      "source": "../../engineering/dependency-auditor",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "design-auditor",
+      "source": "../../engineering/design-auditor",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "devops-workflow-engineer",
+      "source": "../../engineering/devops-workflow-engineer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "doc-drift-detector",
+      "source": "../../engineering/doc-drift-detector",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "docker-development",
+      "source": "../../engineering/docker-development",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "env-secrets-manager",
+      "source": "../../engineering/env-secrets-manager",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "extended-thinking-architect",
+      "source": "../../engineering/extended-thinking-architect",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "feature-flags-architect",
+      "source": "../../engineering/feature-flags-architect",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "focused-fix",
+      "source": "../../engineering/focused-fix",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "gcp-cloud-architect",
+      "source": "../../engineering/gcp-cloud-architect",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "git-worktree-manager",
+      "source": "../../engineering/git-worktree-manager",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "google-workspace-cli",
+      "source": "../../engineering/google-workspace-cli",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "helm-chart-builder",
+      "source": "../../engineering/helm-chart-builder",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "incident-commander",
+      "source": "../../engineering/incident-commander",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "interview-system-designer",
+      "source": "../../engineering/interview-system-designer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "kubernetes-operator",
+      "source": "../../engineering/kubernetes-operator",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "llm-cost-optimizer",
+      "source": "../../engineering/llm-cost-optimizer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "mcp-server-builder",
+      "source": "../../engineering/mcp-server-builder",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "migration-architect",
+      "source": "../../engineering/migration-architect",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "monorepo-navigator",
+      "source": "../../engineering/monorepo-navigator",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "ms365-tenant-manager",
+      "source": "../../engineering/ms365-tenant-manager",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "observability-designer",
+      "source": "../../engineering/observability-designer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "performance-profiler",
+      "source": "../../engineering/performance-profiler",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "playwright-pro",
+      "source": "../../engineering/playwright-pro",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "pr-review-expert",
+      "source": "../../engineering/pr-review-expert",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "prompt-engineer-toolkit",
+      "source": "../../engineering/prompt-engineer-toolkit",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "prompt-governance",
+      "source": "../../engineering/prompt-governance",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "qa-browser-automation",
+      "source": "../../engineering/qa-browser-automation",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "rag-architect",
+      "source": "../../engineering/rag-architect",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "red-team",
+      "source": "../../engineering/red-team",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "release-manager",
+      "source": "../../engineering/release-manager",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "release-orchestrator",
+      "source": "../../engineering/release-orchestrator",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "runbook-generator",
+      "source": "../../engineering/runbook-generator",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "saas-scaffolder",
+      "source": "../../engineering/saas-scaffolder",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "secrets-vault-manager",
+      "source": "../../engineering/secrets-vault-manager",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "self-improving-agent",
+      "source": "../../engineering/self-improving-agent",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-architect",
+      "source": "../../engineering/senior-architect",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-backend",
+      "source": "../../engineering/senior-backend",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-cloud-architect",
+      "source": "../../engineering/senior-cloud-architect",
+      "category": "engineering",
+      "description": "Skill from engineering"
+    },
+    {
+      "name": "senior-computer-vision",
+      "source": "../../engineering/senior-computer-vision",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-data-engineer",
+      "source": "../../engineering/senior-data-engineer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-data-scientist",
+      "source": "../../engineering/senior-data-scientist",
+      "category": "engineering",
+      "description": "Skill from engineering"
+    },
+    {
+      "name": "senior-devops",
+      "source": "../../engineering/senior-devops",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-frontend",
+      "source": "../../engineering/senior-frontend",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-fullstack",
+      "source": "../../engineering/senior-fullstack",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-ml-engineer",
+      "source": "../../engineering/senior-ml-engineer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-mobile",
+      "source": "../../engineering/senior-mobile",
+      "category": "engineering",
+      "description": "Skill from engineering"
+    },
+    {
+      "name": "senior-prompt-engineer",
+      "source": "../../engineering/senior-prompt-engineer",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-qa",
+      "source": "../../engineering/senior-qa",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-secops",
+      "source": "../../engineering/senior-secops",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "senior-security",
+      "source": "../../engineering/senior-security",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "skill-security-auditor",
+      "source": "../../engineering/skill-security-auditor",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "skill-tester",
+      "source": "../../engineering/skill-tester",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "snowflake-development",
+      "source": "../../engineering/snowflake-development",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "spec-driven-workflow",
+      "source": "../../engineering/spec-driven-workflow",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "sql-database-assistant",
+      "source": "../../engineering/sql-database-assistant",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "stripe-integration-expert",
+      "source": "../../engineering/stripe-integration-expert",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "tdd-guide",
+      "source": "../../engineering/tdd-guide",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "tech-debt-tracker",
+      "source": "../../engineering/tech-debt-tracker",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "tech-stack-evaluator",
+      "source": "../../engineering/tech-stack-evaluator",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "terraform-patterns",
+      "source": "../../engineering/terraform-patterns",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "threat-detection",
+      "source": "../../engineering/threat-detection",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "write-a-skill",
+      "source": "../../engineering/write-a-skill",
+      "category": "engineering",
+      "description": ">"
+    },
+    {
+      "name": "business-investment-advisor",
+      "source": "../../finance/business-investment-advisor",
+      "category": "finance",
+      "description": ">"
+    },
+    {
+      "name": "financial-analyst",
+      "source": "../../finance/financial-analyst",
+      "category": "finance",
+      "description": ">"
+    },
+    {
+      "name": "saas-metrics-coach",
+      "source": "../../finance/saas-metrics-coach",
+      "category": "finance",
+      "description": ">"
+    },
+    {
+      "name": "ab-test-setup",
+      "source": "../../marketing/ab-test-setup",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "ad-creative",
+      "source": "../../marketing/ad-creative",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "aeo",
+      "source": "../../marketing/aeo",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "ai-seo",
+      "source": "../../marketing/ai-seo",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "analytics-tracking",
+      "source": "../../marketing/analytics-tracking",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "app-store-optimization",
+      "source": "../../marketing/app-store-optimization",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "brand-guidelines",
+      "source": "../../marketing/brand-guidelines",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "brand-strategist",
+      "source": "../../marketing/brand-strategist",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "campaign-analytics",
+      "source": "../../marketing/campaign-analytics",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "cold-email",
+      "source": "../../marketing/cold-email",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "content-creator",
+      "source": "../../marketing/content-creator",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "content-humanizer",
+      "source": "../../marketing/content-humanizer",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "content-production",
+      "source": "../../marketing/content-production",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "content-strategy",
+      "source": "../../marketing/content-strategy",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "copy-editing",
+      "source": "../../marketing/copy-editing",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "copywriting",
+      "source": "../../marketing/copywriting",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "email-sequence",
+      "source": "../../marketing/email-sequence",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "email-template-builder",
+      "source": "../../marketing/email-template-builder",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "growth-marketer",
+      "source": "../../marketing/growth-marketer",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "landing-page-generator",
+      "source": "../../marketing/landing-page-generator",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "launch-strategy",
+      "source": "../../marketing/launch-strategy",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "marketing-analyst",
+      "source": "../../marketing/marketing-analyst",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "marketing-context",
+      "source": "../../marketing/marketing-context",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "marketing-demand-acquisition",
+      "source": "../../marketing/marketing-demand-acquisition",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "marketing-ideas",
+      "source": "../../marketing/marketing-ideas",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "marketing-ops",
+      "source": "../../marketing/marketing-ops",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "marketing-psychology",
+      "source": "../../marketing/marketing-psychology",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "marketing-strategy-pmm",
+      "source": "../../marketing/marketing-strategy-pmm",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "paid-ads",
+      "source": "../../marketing/paid-ads",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "programmatic-seo",
+      "source": "../../marketing/programmatic-seo",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "schema-markup",
+      "source": "../../marketing/schema-markup",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "seo-audit",
+      "source": "../../marketing/seo-audit",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "seo-specialist",
+      "source": "../../marketing/seo-specialist",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "site-architecture",
+      "source": "../../marketing/site-architecture",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "social-content",
+      "source": "../../marketing/social-content",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "social-media-analyzer",
+      "source": "../../marketing/social-media-analyzer",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "social-media-manager",
+      "source": "../../marketing/social-media-manager",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "video-content-strategist",
+      "source": "../../marketing/video-content-strategist",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "x-twitter-growth",
+      "source": "../../marketing/x-twitter-growth",
+      "category": "marketing",
+      "description": ">"
+    },
+    {
+      "name": "ab-test-setup",
+      "source": "../../product-team/ab-test-setup",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "agile-product-owner",
+      "source": "../../product-team/agile-product-owner",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "apple-hig-expert",
+      "source": "../../product-team/apple-hig-expert",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "design-system-lead",
+      "source": "../../product-team/design-system-lead",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "product-analytics",
+      "source": "../../product-team/product-analytics",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "product-designer",
+      "source": "../../product-team/product-designer",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "product-manager-toolkit",
+      "source": "../../product-team/product-manager-toolkit",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "product-strategist",
+      "source": "../../product-team/product-strategist",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "research-summarizer",
+      "source": "../../product-team/research-summarizer",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "roadmap-communicator",
+      "source": "../../product-team/roadmap-communicator",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "spec-to-repo",
+      "source": "../../product-team/spec-to-repo",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "ui-design-system",
+      "source": "../../product-team/ui-design-system",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "ux-researcher-designer",
+      "source": "../../product-team/ux-researcher-designer",
+      "category": "product",
+      "description": ">"
+    },
+    {
+      "name": "agile-coach",
+      "source": "../../project-management/agile-coach",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "atlassian-admin",
+      "source": "../../project-management/atlassian-admin",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "atlassian-templates",
+      "source": "../../project-management/atlassian-templates",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "confluence-expert",
+      "source": "../../project-management/confluence-expert",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "delivery-manager",
+      "source": "../../project-management/delivery-manager",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "jira-expert",
+      "source": "../../project-management/jira-expert",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "linear-expert",
+      "source": "../../project-management/linear-expert",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "meeting-analyzer",
+      "source": "../../project-management/meeting-analyzer",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "notion-pm",
+      "source": "../../project-management/notion-pm",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "productboard-expert",
+      "source": "../../project-management/productboard-expert",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "program-manager",
+      "source": "../../project-management/program-manager",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "scrum-master",
+      "source": "../../project-management/scrum-master",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "senior-pm",
+      "source": "../../project-management/senior-pm",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "sprint-retrospective",
+      "source": "../../project-management/sprint-retrospective",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "team-communications",
+      "source": "../../project-management/team-communications",
+      "category": "project-management",
+      "description": ">"
+    },
+    {
+      "name": "capa-officer",
+      "source": "../../ra-qm-team/capa-officer",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "ccpa-cpra-privacy-expert",
+      "source": "../../ra-qm-team/ccpa-cpra-privacy-expert",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "dora-compliance-expert",
+      "source": "../../ra-qm-team/dora-compliance-expert",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "eu-ai-act-specialist",
+      "source": "../../ra-qm-team/eu-ai-act-specialist",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "fda-consultant-specialist",
+      "source": "../../ra-qm-team/fda-consultant-specialist",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "gdpr-dsgvo-expert",
+      "source": "../../ra-qm-team/gdpr-dsgvo-expert",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "information-security-manager-iso27001",
+      "source": "../../ra-qm-team/information-security-manager-iso27001",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "infrastructure-compliance-auditor",
+      "source": "../../ra-qm-team/infrastructure-compliance-auditor",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "isms-audit-expert",
+      "source": "../../ra-qm-team/isms-audit-expert",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "iso42001-ai-management",
+      "source": "../../ra-qm-team/iso42001-ai-management",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "mdr-745-specialist",
+      "source": "../../ra-qm-team/mdr-745-specialist",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "nis2-directive-specialist",
+      "source": "../../ra-qm-team/nis2-directive-specialist",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "nist-csf-specialist",
+      "source": "../../ra-qm-team/nist-csf-specialist",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "pci-dss-specialist",
+      "source": "../../ra-qm-team/pci-dss-specialist",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "qms-audit-expert",
+      "source": "../../ra-qm-team/qms-audit-expert",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "quality-documentation-manager",
+      "source": "../../ra-qm-team/quality-documentation-manager",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "quality-manager-qmr",
+      "source": "../../ra-qm-team/quality-manager-qmr",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "quality-manager-qms-iso13485",
+      "source": "../../ra-qm-team/quality-manager-qms-iso13485",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "regulatory-affairs-head",
+      "source": "../../ra-qm-team/regulatory-affairs-head",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "risk-management-specialist",
+      "source": "../../ra-qm-team/risk-management-specialist",
+      "category": "ra-qm",
+      "description": ">"
+    },
+    {
+      "name": "soc2-compliance-expert",
+      "source": "../../ra-qm-team/soc2-compliance-expert",
+      "category": "ra-qm",
+      "description": ">"
+    }
+  ],
+  "categories": {
+    "business-growth": {
+      "count": 20,
+      "source": "../../business-growth",
+      "description": "Customer success, sales engineering, and revenue operations skills"
+    },
+    "c-level": {
+      "count": 31,
+      "source": "../../c-level-advisor",
+      "description": "Executive leadership and advisory skills"
+    },
+    "engineering": {
+      "count": 91,
+      "source": "../../engineering",
+      "description": "Software engineering and technical skills"
+    },
+    "finance": {
+      "count": 3,
+      "source": "../../finance",
+      "description": "Financial analysis, valuation, and forecasting skills"
+    },
+    "marketing": {
+      "count": 39,
+      "source": "../../marketing",
+      "description": "Marketing, content, and demand generation skills"
+    },
+    "product": {
+      "count": 13,
+      "source": "../../product-team",
+      "description": "Product management and design skills"
+    },
+    "project-management": {
+      "count": 15,
+      "source": "../../project-management",
+      "description": "Project management and Atlassian skills"
+    },
+    "ra-qm": {
+      "count": 21,
+      "source": "../../ra-qm-team",
+      "description": "Regulatory affairs and quality management skills"
+    }
+  }
+}

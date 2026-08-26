@@ -1,0 +1,121 @@
+{
+  "skill": "customer-feedback-triage",
+  "version": "1.0.0",
+  "description": "Scores a customer-feedback triage artifact against Cagan Request/Opportunity/Solution separation, Kano categorization, deduplicated clusters w/ scoring, acknowledgment templates for 3 outcomes, and routing to discovery/prioritization.",
+  "criteria": [
+    {
+      "id": "clusters_not_raw_list",
+      "name": "Items clustered (not raw enumerated list)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["cluster", "Cluster", "clustered", "C-001", "C-002", "opportunity_label", "Opportunity label", "deduplicated"]}
+    },
+    {
+      "id": "channel_field",
+      "name": "Channel field present (support / sales / NPS / in-app / exec_ask)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["channel:", "Channel:", "support", "sales", "NPS", "in_app", "in-app", "exec_ask", "customer_interview"]}
+    },
+    {
+      "id": "customer_or_segment",
+      "name": "Customer / segment field present (enterprise / mid-market / SMB)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["segment", "enterprise", "mid-market", "mid_market", "SMB", "Segment:", "customer_id"]}
+    },
+    {
+      "id": "raw_text_captured",
+      "name": "Raw verbatim text captured (not paraphrased only)",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["raw_text", "verbatim", "Raw text", "submitted text", "asked for", "\""]}
+    },
+    {
+      "id": "opportunity_normalized",
+      "name": "Normalized opportunity / job statement (not raw request)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["opportunity", "Opportunity:", "job statement", "underlying job", "underlying problem", "Cagan", "Request vs Opportunity"]}
+    },
+    {
+      "id": "kano_category",
+      "name": "Kano category present (basic / performance / delight / indifferent / reverse)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["Kano", "kano_category", "basic", "performance", "delight", "must-be", "Attractive"]}
+    },
+    {
+      "id": "scoring_rubric",
+      "name": "Scoring rubric applied (priority / RICE-like / weighted)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["priority_score", "priority score", "Score:", "RICE", "weighted", "scored against"]}
+    },
+    {
+      "id": "distinct_customers_volume",
+      "name": "Volume counted via dedup / source-request count (anti-squeaky-wheel)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["distinct_customers", "distinct customers", "Volume:", "customer count", "deduplication", "after dedup", "dedup", "distinct count", "Source requests"]}
+    },
+    {
+      "id": "ack_template_will_build",
+      "name": "Will-build response template referenced",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["will-build", "Will-build", "will build", "committed", "Will build:"]}
+    },
+    {
+      "id": "ack_template_wont_build",
+      "name": "Won't-build / Decline response template referenced",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["won't-build", "won't build", "Won't-build", "wont-build", "Will not build", "decided not to build", "Decline", "decline politely", "politely decline"]}
+    },
+    {
+      "id": "ack_template_exploring",
+      "name": "Exploring / Discovery response template referenced",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["exploring", "Exploring", "evaluating", "Discovery", "discovery (investigate)", "investigate", "under exploration"]}
+    },
+    {
+      "id": "routing_destinations",
+      "name": "Routing destinations named (prioritization / discovery / bug tracker / strategy)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["Routing", "routing", "to_prioritization", "to_bug_tracker", "to_strategy", "route to", "routed to"]}
+    },
+    {
+      "id": "bug_vs_feature_categorization",
+      "name": "Bug vs Feature vs Question vs Strategy categorization",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Bug", "Feature request", "feature_request", "Strategy", "Question", "categoriz"]}
+    },
+    {
+      "id": "no_sales_weighting_only",
+      "name": "Sales-driven roadmap not the only weighting (anti-pattern)",
+      "weight": 5,
+      "check": {"type": "regex_not", "pattern": "(sole|only)\\s+(scoring|weighting)\\s+(criteri[ao]n|factor)[:\\s]*(deal size|ARR|enterprise)", "flags": "im"}
+    },
+    {
+      "id": "not_request_literally",
+      "name": "Does not treat raw request as the build target only (Red Flag 4)",
+      "weight": 4,
+      "check": {"type": "regex_not", "pattern": "Solution[:\\s]+(Build|Implement)\\s+(PDF|Excel|CSV)\\s+export\\s+button(?:\\s|\\.|,|$)", "flags": "im"}
+    },
+    {
+      "id": "exec_ask_through_triage",
+      "name": "Exec asks routed through same triage (no HiPPO bypass)",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["exec_ask", "exec ask", "HiPPO", "same triage", "exec-channel", "exec channel", "CEO request", "CEO's", "Sponsorship is not prioritization", "exec one-liner"]}
+    },
+    {
+      "id": "acknowledgment_sla",
+      "name": "Acknowledgment SLA / rate referenced",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["acknowledgment", "Acknowledge", "14 days", "acknowledgment rate", "respond within", "auto-acknowledge"]}
+    },
+    {
+      "id": "downstream_handoff",
+      "name": "Handoff to downstream discovery / prioritization (prevents triage = roadmap)",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["prioritization-frameworks", "interview-synthesis", "identify-assumptions", "RICE", "discovery", "downstream"]}
+    },
+    {
+      "id": "no_pure_volume",
+      "name": "Volume mentioned alongside dedup (not raw submission count only)",
+      "weight": 3,
+      "check": {"type": "keyword_any", "keywords": ["after deduplication", "deduplication", "distinct customers", "after dedup", "dedup", "collapsed into", "Source requests"]}
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initialscale=1.0" />
+    <title>Manually Defined Elements</title>
+  </head>
+  <body>
+    <div>
+      <h1>Manually Defined Elements</h1>
+
+      <div class="controls">
+        <label
+          >Color
+          <input type="color" class="color" />
+        </label>
+        <label
+          >Size
+          <input type="range" class="size" min="0" max="100" />
+        </label>
+        <label
+          >Speed
+          <input type="range" class="speed" min="0" max="5" step="0.1" />
+        </label>
+        <label
+          >Stroke
+          <input type="range" class="stroke" min="0" max="10" step="1" />
+        </label>
+        <label
+          >Stroke Length
+          <input
+            type="range"
+            class="stroke-length"
+            min="0"
+            max="1"
+            step=".01"
+          />
+        </label>
+        <label
+          >Background Opacity
+          <input type="range" class="bg-opacity" min="0" max="1" step="0.1" />
+        </label>
+      </div>
+
+      <div class="container"></div>
+    </div>
+
+    <script type="module">
+      import {
+        bouncy,
+        bouncyArc,
+        cardio,
+        chaoticOrbit,
+        grid,
+        dotPulse,
+        dotSpinner,
+        dotStream,
+        dotWave,
+        treadmill,
+        hatch,
+        helix,
+        hourglass,
+        infinity,
+        jelly,
+        tailChase,
+        mirage,
+        jellyTriangle,
+        leapfrog,
+        lineWobble,
+        metronome,
+        miyagi,
+        momentum,
+        newtonsCradle,
+        orbit,
+        ping,
+        pinwheel,
+        pulsar,
+        quantum,
+        reuleaux,
+        ring,
+        ring2,
+        ripples,
+        spiral,
+        square,
+        squircle,
+        superballs,
+        tailspin,
+        trefoil,
+        trio,
+        waveform,
+        wobble,
+        zoomies,
+      } from '../index.js'
+
+      bouncy.register('my-bouncy')
+      bouncyArc.register('my-bouncy-arc')
+      cardio.register('my-cardio')
+      chaoticOrbit.register('my-chaotic-orbit')
+      grid.register('my-grid')
+      dotPulse.register('my-dot-pulse')
+      dotSpinner.register('my-dot-spinner')
+      dotStream.register('my-dot-stream')
+      dotWave.register('my-dot-wave')
+      treadmill.register('my-treadmill')
+      hatch.register('my-hatch')
+      helix.register('my-helix')
+      hourglass.register('my-hourglass')
+      infinity.register('my-infinity')
+      jelly.register('my-jelly')
+      mirage.register('my-mirage')
+      jellyTriangle.register('my-jelly-triangle')
+      leapfrog.register('my-leapfrog')
+      lineWobble.register('my-line-wobble')
+      metronome.register('my-metronome')
+      miyagi.register('my-miyagi')
+      momentum.register('my-momentum')
+      newtonsCradle.register('my-newtons-cradle')
+      orbit.register('my-orbit')
+      ping.register('my-ping')
+      pinwheel.register('my-pinwheel')
+      pulsar.register('my-pulsar')
+      quantum.register('my-quantum')
+      reuleaux.register('my-reuleaux')
+      ring.register('my-ring')
+      ring2.register('my-ring-2')
+      ripples.register('my-ripples')
+      spiral.register('my-spiral')
+      square.register('my-square')
+      squircle.register('my-squircle')
+      superballs.register('my-superballs')
+      tailChase.register('my-tail-chase')
+      tailspin.register('my-tailspin')
+      trefoil.register('my-trefoil')
+      trio.register('my-trio')
+      waveform.register('my-waveform')
+      wobble.register('my-wobble')
+      zoomies.register('my-zoomies')
+
+      const tags = [
+        'bouncy',
+        'bouncy-arc',
+        'cardio',
+        'chaotic-orbit',
+        'dot-pulse',
+        'dot-spinner',
+        'dot-stream',
+        'dot-wave',
+        'grid',
+        'hatch',
+        'helix',
+        'hourglass',
+        'infinity',
+        'jelly',
+        'mirage',
+        'jelly-triangle',
+        'leapfrog',
+        'line-wobble',
+        'metronome',
+        'miyagi',
+        'momentum',
+        'newtons-cradle',
+        'orbit',
+        'ping',
+        'pinwheel',
+        'pulsar',
+        'quantum',
+        'reuleaux',
+        'ring',
+        'ring-2',
+        'ripples',
+        'spiral',
+        'square',
+        'squircle',
+        'superballs',
+        'tail-chase',
+        'tail-chase',
+        'tailspin',
+        'treadmill',
+        'trefoil',
+        'trio',
+        'waveform',
+        'wobble',
+        'zoomies',
+      ]
+
+      const containerEl = document.querySelector('.container')
+
+      tags.forEach((tag) => {
+        const loaderCard = document.createElement('div')
+        loaderCard.classList.add('cell')
+        loaderCard.innerHTML = `<my-${tag} class="loader"></my-${tag}>${tag}`
+        containerEl.append(loaderCard)
+      })
+
+      function updateLoaderAttribute(attribute, value) {
+        const loaderEls = document.querySelectorAll('.loader')
+
+        loaderEls.forEach((loaderEl) => {
+          loaderEl.setAttribute(attribute, value)
+        })
+      }
+
+      const colorControl = document.querySelector('.color')
+      const sizeControl = document.querySelector('.size')
+      const speedControl = document.querySelector('.speed')
+      const strokeControl = document.querySelector('.stroke')
+      const strokeLengthControl = document.querySelector('.stroke-length')
+      const bgOpacityControl = document.querySelector('.bg-opacity')
+
+      colorControl.addEventListener('input', (evt) => {
+        updateLoaderAttribute('color', evt.target.value)
+      })
+      sizeControl.addEventListener('input', (evt) => {
+        updateLoaderAttribute('size', evt.target.value)
+      })
+      speedControl.addEventListener('input', (evt) => {
+        updateLoaderAttribute('speed', 5.1 - evt.target.value)
+      })
+      strokeControl.addEventListener('input', (evt) => {
+        updateLoaderAttribute('stroke', evt.target.value)
+      })
+      strokeLengthControl.addEventListener('input', (evt) => {
+        updateLoaderAttribute('stroke-length', evt.target.value)
+      })
+      bgOpacityControl.addEventListener('input', (evt) => {
+        updateLoaderAttribute('bg-opacity', evt.target.value)
+      })
+    </script>
+
+    <style>
+      h1 {
+        text-align: center;
+        margin: 60px 0 20px;
+        font-family: monospace;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 300px;
+        gap: 5px;
+        padding: 40px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding: 30px;
+        position: sticky;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+      }
+
+      label {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-family: monospace;
+      }
+
+      .cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background-color: #f9f9f9;
+        font-family: monospace;
+      }
+    </style>
+  </body>
+</html>

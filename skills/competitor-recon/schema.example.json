@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "headline": { "type": "string" },
+    "subheadline": { "type": "string" },
+    "primary_cta": { "type": "string" },
+    "value_props": { "type": "array", "items": { "type": "string" } },
+    "pricing_tiers": { "type": "array", "items": { "type": "string" } }
+  }
+}

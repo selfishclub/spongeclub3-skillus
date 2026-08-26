@@ -1,0 +1,121 @@
+{
+  "skill": "release-notes",
+  "version": "1.0.0",
+  "description": "Scores release notes against the 5-category structure (Features / Improvements / Fixes / Breaking / Deprecations) with value framing per item, plain language (no raw PR/ticket IDs in user-facing copy), and date + version present.",
+  "criteria": [
+    {
+      "id": "version_number",
+      "name": "Version number present (vX.Y or similar)",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "(v\\d+\\.\\d+(\\.\\d+)?|Version\\s+\\d+\\.\\d+|Release\\s+\\d+\\.\\d+)", "flags": "im"}
+    },
+    {
+      "id": "release_date",
+      "name": "Release date present",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "(Release\\s+Date|Released|released\\s+on|20\\d{2}-\\d{2}-\\d{2}|[A-Z][a-z]+\\s+\\d{1,2},\\s+20\\d{2})", "flags": "im"}
+    },
+    {
+      "id": "new_features_section",
+      "name": "New Features section present",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "^##\\s+(New\\s+)?Features?", "flags": "im"}
+    },
+    {
+      "id": "improvements_section",
+      "name": "Improvements section present",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "^##\\s+Improvements", "flags": "im"}
+    },
+    {
+      "id": "bug_fixes_section",
+      "name": "Bug Fixes section present",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "^##\\s+(Bug\\s+)?Fixes", "flags": "im"}
+    },
+    {
+      "id": "breaking_changes_section",
+      "name": "Breaking Changes section present or no breaking changes",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Breaking Changes", "Breaking change", "Action Required", "ACTION REQUIRED", "breaking changes", "no breaking changes"]}
+    },
+    {
+      "id": "deprecations_section_or_none",
+      "name": "Deprecations section present (or no deprecations)",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["Deprecation", "Planned Removal", "deprecated", "will be removed", "no deprecations"]}
+    },
+    {
+      "id": "value_framing_per_item",
+      "name": "Items lead with user value (now / can / faster / lets you / reduces)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["now ", "can now", "lets you", "you can", "faster", "reduces", "no more", "available", "supported"]}
+    },
+    {
+      "id": "no_raw_ticket_titles",
+      "name": "No raw 'SEG-NNNN Refactor of X' titles as bullets in user-facing copy",
+      "weight": 6,
+      "check": {"type": "regex_not", "pattern": "^\\s*[-*]\\s*[A-Z]{2,5}-\\d+\\s+(Refactor|Migrate|Migrated|Refactored)", "flags": "m"}
+    },
+    {
+      "id": "no_internal_jargon",
+      "name": "Limited internal jargon (no 'null pointer exception', 'context manager', etc.)",
+      "weight": 5,
+      "check": {"type": "keyword_none", "keywords": ["null pointer exception", "stack trace", "context manager", "race condition fix", "WebSocket reconnection logic"]}
+    },
+    {
+      "id": "no_marketing_hype",
+      "name": "No empty marketing copy ('revolutionary', 'game-changing')",
+      "weight": 5,
+      "check": {"type": "keyword_none", "keywords": ["revolutionary", "game-changing", "next-generation", "powered by AI", "groundbreaking"]}
+    },
+    {
+      "id": "breaking_action_required",
+      "name": "Breaking changes have explicit Action Required + deadline/migration",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["Action Required", "ACTION REQUIRED", "Migrate", "migration guide", "before ", "will be removed", "by April", "by June", "by May"]}
+    },
+    {
+      "id": "specific_features_described",
+      "name": "Features described concretely (not abstract 'AI-powered insights')",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["dashboard", "export", "settings", "search", "filter", "report", "shortcut", "view", "page", "API", "endpoint"]}
+    },
+    {
+      "id": "no_internal_oncall_in_copy",
+      "name": "No 'on-call', 'rollback', 'known issue: internal' in customer-facing copy",
+      "weight": 4,
+      "check": {"type": "keyword_none", "keywords": ["on-call: @", "rollback in progress", "known issue: internal", "Sev1", "incident channel"]}
+    },
+    {
+      "id": "categorized_items",
+      "name": "Items categorized (not a flat list)",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "^##\\s+\\w", "flags": "m"}
+    },
+    {
+      "id": "structured_with_bullets",
+      "name": "Items presented as a structured list",
+      "weight": 4,
+      "check": {"type": "has_list", "min_items": 3}
+    },
+    {
+      "id": "product_name_present",
+      "name": "Product / release name present in header",
+      "weight": 3,
+      "check": {"type": "regex", "pattern": "^#\\s+\\S+", "flags": "m"}
+    },
+    {
+      "id": "no_pure_pr_numbers",
+      "name": "No 'PR-1234' raw references as the only bullet content",
+      "weight": 5,
+      "check": {"type": "regex_not", "pattern": "^\\s*[-*]\\s*PR-?\\d+\\s*$", "flags": "m"}
+    },
+    {
+      "id": "user_facing_language",
+      "name": "User-facing language used (you / your / customer / users)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["you ", "your ", "users", "customers", "team", "our customers"]}
+    }
+  ]
+}

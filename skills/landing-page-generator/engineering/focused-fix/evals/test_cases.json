@@ -1,0 +1,91 @@
+{
+  "skill": "focused-fix",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "minimal-scope-basic",
+      "prompt": "Login fails when an email address contains a plus sign. Fix it.",
+      "expected": {
+        "format": "markdown",
+        "must_contain": [
+          "minimal",
+          "regression test"
+        ],
+        "must_not_contain": [
+          "refactor",
+          "while I'm here",
+          "cleanup"
+        ]
+      },
+      "rubric": {
+        "structure": "Output identifies a minimal change set, references the change_scope_analyzer tool or its workflow, and requires a regression test",
+        "accuracy": "Diagnosis focuses on the email-parsing layer; does not propose broader auth refactors",
+        "scope": "Stays inside the focused-fix workflow — does not pivot to feature work"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "reject-scope-creep",
+      "prompt": "I'm fixing a CSS overflow bug on mobile and noticed our color tokens are inconsistent across the file. Should I clean those up in the same PR?",
+      "expected": {
+        "format": "markdown",
+        "must_contain": [
+          "separate PR",
+          "/refactor:?/"
+        ],
+        "must_not_contain": [
+          "yes, go ahead and clean",
+          "while you're in there"
+        ]
+      },
+      "rubric": {
+        "structure": "Output recommends a separate PR for the token cleanup and explains why",
+        "accuracy": "Cites the 'while I'm here' anti-pattern or the diff-readability/blast-radius reasoning",
+        "scope": "Holds the line on minimal change discipline"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "structural-fix-escalation",
+      "prompt": "The analyzer says the fix is 'structural' — it spans 8 files across 3 modules. What do I do?",
+      "expected": {
+        "format": "markdown",
+        "must_contain": [
+          "stop",
+          "/scope|design/"
+        ],
+        "must_not_contain": [
+          "proceed with the bugfix",
+          "ship it"
+        ]
+      },
+      "rubric": {
+        "structure": "Output stops the focused-fix workflow and recommends scoping a refactor or design discussion first",
+        "accuracy": "Treats 'structural' as a halt condition per the documented workflow, not advice",
+        "scope": "Does not attempt to fix the bug inside the focused-fix workflow"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "missing-regression-test",
+      "prompt": "I made a one-line fix that's obviously correct. Can I skip the regression test this time?",
+      "expected": {
+        "format": "markdown",
+        "must_contain": [
+          "/regression test/",
+          "no"
+        ],
+        "must_not_contain": [
+          "you can skip",
+          "fine to skip"
+        ]
+      },
+      "rubric": {
+        "structure": "Output declines and explains the silent-regression risk on future refactors",
+        "accuracy": "References the every-fix-commit-adds-a-test rule from the skill's anti-patterns",
+        "scope": "Stays on focused-fix discipline, not test strategy in general"
+      },
+      "weight": 0.5
+    }
+  ]
+}

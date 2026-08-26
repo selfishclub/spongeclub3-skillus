@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Content - Claude Skills</title>
+  <meta name="description" content="Create social media content across LinkedIn, Twitter/X, Instagram, TikTok, and Facebook with platform formats, hook formulas, and content pillars. Use when creating social posts, planning calendars, o">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/marketing/social-content.html">
+  <meta property="og:title" content="Social Content - Claude Skills">
+  <meta property="og:description" content="Create social media content across LinkedIn, Twitter/X, Instagram, TikTok, and Facebook with platform formats, hook formulas, and content pillars. Use when creating social posts, planning calendars, o">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/marketing/social-content.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Social Content", "description": "Create social media content across LinkedIn, Twitter/X, Instagram, TikTok, and Facebook with platform formats, hook formulas, and content pillars. Use when creating social posts, planning calendars, or writing LinkedIn posts and threads.", "applicationCategory": "Marketing", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/marketing/social-content.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/marketing/">Marketing</a><span class=sep>/</span><span>Social Content</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">Social Content</h1>
+    <p class="page-subtitle">Create social media content across LinkedIn, Twitter/X, Instagram, TikTok, and Facebook with platform formats, hook formulas, and content pillars. Use when creating social posts, planning calendars, or writing LinkedIn posts and threads.</p>
+    <div class="badge-bar"><span class="badge badge-domain">Marketing</span> <span class="badge badge-version">v1.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert Social Content (Marketing domain).
+
+Create social media content across LinkedIn, Twitter/X, Instagram, TikTok, and Facebook with platform formats, hook formulas, and content pillars. Use when creating social posts, planning calendars, or writing LinkedIn posts and threads.
+
+Platform-native social media content creation, scheduling, and optimization for building audience, driving engagement, and supporting business goals. - [Keywords](#keywords) - [Quick Start](#quick-start)
+
+## Your Key Capabilities
+- Create a Social Post
+- Build a Content Calendar
+- Platform Quick Comparison
+- Platform-Specific Rules
+- Defining Your Pillars
+- Pillar Allocation Template
+
+## Frameworks &amp; Templates You Know
+- - [Content Calendar Framework](#content-calendar-framework)
+- 4. Build a weekly template with assigned slots
+- Pillar Allocation Template
+- | Educational | 25% | Provide value | How-tos, frameworks, tips, tutorials |
+- - Consistent visual template (brand colors, fonts)
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/social-content
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert Social Content (Marketing domain).
+
+Create social media content across LinkedIn, Twitter/X, Instagram, TikTok, and Facebook with platform formats, hook formulas, and content pillars. Use when creating social posts, planning calendars, or writing LinkedIn posts and threads.
+
+Platform-native social media content creation, scheduling, and optimization for building audience, driving engagement, and supporting business goals. - [Keywords](#keywords) - [Quick Start](#quick-start)
+
+## Your Key Capabilities
+- Create a Social Post
+- Build a Content Calendar
+- Platform Quick Comparison
+- Platform-Specific Rules
+- Defining Your Pillars
+- Pillar Allocation Template
+
+## Frameworks &amp; Templates You Know
+- - [Content Calendar Framework](#content-calendar-framework)
+- 4. Build a weekly template with assigned slots
+- Pillar Allocation Template
+- | Educational | 25% | Provide value | How-tos, frameworks, tips, tutorials |
+- - Consistent visual template (brand colors, fonts)
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/social-content
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;Social Content&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Social Content
+
+Platform-native social media content creation, scheduling, and optimization for building audience, driving engagement, and supporting business goals.
+
+---
+
+## Table of Contents
+
+- [Keywords](#keywords)
+- [Quick Start](#quick-start)
+- [Platform Reference Guide](#platform-reference-guide)
+- [Content Pillar System](#content-pillar-system)
+- [Hook Formula Library](#hook-formula-library)
+- [Platform-Specific Formats](#platform-specific-formats)
+- [Content Calendar Framework](#content-calendar-framework)
+- [Repurposing System](#repurposing-system)
+- [Engagement Strategy](#engagement-strategy)
+- [Analytics and Optimization](#analytics-and-optimization)
+- [Best Practices](#best-practices)
+- [Integration Points](#integration-points)
+
+---
+
+## Keywords
+
+social content, social media, LinkedIn post, Twitter thread, Instagram carousel, TikTok content, social calendar, engagement strategy, content pillar, hook formulas, viral content, social scheduling, platform-specific content, social media strategy, content repurposing, social analytics, audience building, personal brand, company brand, social media optimization
+
+---
+
+## Clarify First
+
+Before creating the post, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Platform** — LinkedIn, X, Instagram, TikTok, or Facebook — sets format, length limits, and posting rules
+- [ ] **Goal &amp; CTA** — engagement, traffic, or conversion — determines the hook formula and call-to-action
+- [ ] **Audience &amp; content pillar** — who it&#x27;s for and which pillar (educational, BTS, promo…) — shapes topic and tone
+- [ ] **Format** — single post, thread, carousel, or short video — drives the platform-specific structure
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Quick Start
+
+### Create a Social Post
+
+1. Choose the platform and format
+2. Select a hook from the formula library
+3. Write the body following platform-specific guidelines
+4. Add a CTA aligned with your goal (engagement, traffic, conversion)
+5. Include relevant hashtags per platform best practices
+6. Schedule or post at optimal time for your audience
+
+### Build a Content Calendar
+
+1. Define 3-5 content pillars aligned with expertise and audience needs
+2. Assign percentage allocation to each pillar
+3. Map pillar topics to platform-specific formats
+4. Build a weekly template with assigned slots
+5. Batch create content (2-3 hours per week)
+6. Schedule with room for real-time/reactive posts
+
+---
+
+## Platform Reference Guide
+
+### Platform Quick Comparison
+
+| Platform | Best For | Posting Frequency | Top Format | Audience |
+|----------|----------|------------------|-----------|----------|
+| LinkedIn | B2B, thought leadership | 3-5x/week | Carousels, text posts | Professionals, decision-makers |
+| Twitter/X | Tech, real-time, community | 3-10x/day | Threads, hot takes | Tech, media, creators |
+| Instagram | Visual brands, lifestyle, B2C | 1-2 posts + Stories daily | Reels, carousels | 18-44, visual-first audiences |
+| TikTok | Brand awareness, younger demos | 1-4x/day | Short-form video | 18-34, entertainment-first |
+| Facebook | Communities, local, older demos | 1-2x/day | Groups, native video | 30-65, community-oriented |
+| YouTube | Long-form education, tutorials | 1-4x/month | Videos, Shorts | All ages, search-driven |
+
+### Platform-Specific Rules
+
+**LinkedIn:**
+- Maximum post length: 3,000 characters (but 1,200-1,800 performs best)
+- First 2-3 lines must hook (everything after &quot;see more&quot; is hidden)
+- External links in comments, not post body (algorithm deprioritizes link posts)
+- Carousels (PDF uploads) get highest organic reach
+- Best posting times: Tuesday-Thursday, 7-9 AM in target timezone
+
+**Twitter/X:**
+- 280 characters per tweet, threads for longer content
+- First tweet of thread is the hook — it determines everything
+- Quote tweets with added insight outperform plain retweets
+- No more than 2-3 hashtags (fewer is better)
+- Best posting times: Monday-Friday, 8-10 AM and 12-1 PM
+
+**Instagram:**
+- Feed posts: square (1:1) or vertical (4:5)
+- Reels: vertical (9:16), 15-90 seconds
+- Carousels: up to 10 slides, first slide is the hook
+- Stories: 24-hour content, polls/questions drive engagement
+- Hashtags: 3-5 relevant ones (algorithm change in 2025 reduced hashtag importance)
+
+**TikTok:**
+- Video length: 15-60 seconds optimal (up to 10 minutes)
+- Hook in first 2 seconds (viewers decide instantly)
+- Captions: 80-100 characters
+- Native feel outperforms polished production
+- Trending sounds increase reach significantly
+
+---
+
+## Content Pillar System
+
+### Defining Your Pillars
+
+Choose 3-5 pillars that sit at the intersection of:
+- Your expertise (what you know deeply)
+- Audience interest (what they want to learn)
+- Business connection (what supports your goals)
+
+### Pillar Allocation Template
+
+| Pillar | % of Content | Purpose | Content Types |
+|--------|-------------|---------|---------------|
+| Industry insights | 30% | Build authority | Data, trends, predictions, analysis |
+| Educational | 25% | Provide value | How-tos, frameworks, tips, tutorials |
+| Behind-the-scenes | 20% | Build trust | Building stories, team, process, failures |
+| Personal/opinion | 15% | Build connection | Stories, values, contrarian takes, lessons |
+| Promotional | 10% | Drive business | Product updates, launches, offers, case studies |
+
+### Pillar-to-Platform Mapping
+
+| Pillar | LinkedIn | Twitter/X | Instagram | TikTok |
+|--------|----------|-----------|-----------|--------|
+| Industry insights | Data post, article share | Thread, commentary | Carousel infographic | Trend reaction video |
+| Educational | Carousel, text post | Thread, tip tweet | Carousel, Reel | Tutorial video |
+| Behind-the-scenes | Story post, company update | Tweet, photo | Stories, Reel | BTS video |
+| Personal/opinion | Text post, story | Hot take, quote | Quote graphic | Story time video |
+| Promotional | Case study, announcement | Launch tweet, thread | Product showcase | Demo video |
+
+---
+
+## Hook Formula Library
+
+### Curiosity Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;I was wrong about [belief].&quot; | &quot;I was wrong about cold email.&quot; |
+| &quot;The real reason [X] happens isn&#x27;t what you think.&quot; | &quot;The real reason your posts don&#x27;t get engagement isn&#x27;t the algorithm.&quot; |
+| &quot;[Result] — and it only took [timeframe].&quot; | &quot;10,000 followers — and it only took 90 days.&quot; |
+| &quot;Here&#x27;s what nobody tells you about [topic]:&quot; | &quot;Here&#x27;s what nobody tells you about startup marketing:&quot; |
+| &quot;I spent [time] studying [X]. Here&#x27;s what I found:&quot; | &quot;I spent 6 months studying viral LinkedIn posts. Here&#x27;s what I found:&quot; |
+
+### Story Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;Last week, [unexpected thing] happened.&quot; | &quot;Last week, our biggest deal fell through.&quot; |
+| &quot;3 years ago, I [past state]. Today, [current state].&quot; | &quot;3 years ago, I had 200 followers. Today, I have 50,000.&quot; |
+| &quot;I almost [big mistake].&quot; | &quot;I almost turned down the best job of my career.&quot; |
+| &quot;Someone asked me [question]. My answer surprised them.&quot; | &quot;Someone asked me what the best marketing channel is. My answer surprised them.&quot; |
+
+### Value Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;How to [outcome] (without [pain]):&quot; | &quot;How to grow on LinkedIn (without posting every day):&quot; |
+| &quot;[Number] [things] that [outcome]:&quot; | &quot;7 headline formulas that actually convert:&quot; |
+| &quot;Stop [mistake]. Do this instead:&quot; | &quot;Stop writing &#x27;I&#x27;m excited to announce.&#x27; Do this instead:&quot; |
+| &quot;The [X] framework I use for [Y]:&quot; | &quot;The content framework I use for every LinkedIn post:&quot; |
+
+### Contrarian Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;Unpopular opinion: [bold statement]&quot; | &quot;Unpopular opinion: SEO is dead for most startups.&quot; |
+| &quot;[Common advice] is wrong. Here&#x27;s why:&quot; | &quot;&#x27;Post every day on LinkedIn&#x27; is wrong. Here&#x27;s why:&quot; |
+| &quot;Everyone is doing [X]. Almost everyone is wrong.&quot; | &quot;Everyone is doing content marketing. Almost everyone is wrong.&quot; |
+
+### Data Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;I analyzed [X] [things]. Here&#x27;s the data:&quot; | &quot;I analyzed 500 LinkedIn posts. Here&#x27;s the data:&quot; |
+| &quot;[Surprising statistic].&quot; | &quot;93% of B2B buyers research online before talking to sales.&quot; |
+| &quot;[X] vs [Y]: the numbers don&#x27;t lie.&quot; | &quot;Short posts vs. long posts: the numbers don&#x27;t lie.&quot; |
+
+---
+
+## Platform-Specific Formats
+
+### LinkedIn Post Formats
+
+**Text Post (highest frequency):**
+```
+[Hook — first 2 lines must compel &quot;see more&quot; click]
+
+[Body — 5-10 lines of content, short paragraphs]
+
+[One-line insight or lesson]
+
+[CTA — question to drive comments]
+```
+
+**Carousel (highest reach):**
+- Slide 1: Bold hook statement (title slide)
+- Slides 2-8: One point per slide, clear and visual
+- Final slide: Summary + CTA (&quot;Follow for more,&quot; &quot;Save this&quot;)
+- Upload as PDF for native carousel format
+
+**Poll (highest engagement):**
+- Use for genuine questions relevant to your audience
+- 3-4 options maximum
+- Add context in the post body explaining why the question matters
+- Follow up with a post sharing the results
+
+### Twitter/X Thread Format
+
+```
+Tweet 1: [HOOK — the tweet that determines if anyone reads further]
+
+Tweet 2: [Context or setup — why this matters]
+
+Tweet 3-7: [Main content — one point per tweet]
+
+Tweet 8: [Summary or key takeaway]
+
+Tweet 9: [CTA — &quot;Follow me for more on [topic]&quot; or &quot;RT tweet 1 if helpful&quot;]
+```
+
+**Thread rules:**
+- First tweet must stand alone as a complete thought
+- Each tweet should make sense independently
+- Use numbers (&quot;1/9&quot;) for clarity
+- End with a CTA that drives engagement or follows
+- Quote-tweet your own first tweet to resurface the thread
+
+### Instagram Carousel Format
+
+- Slide 1: Bold statement or question (the hook)
+- Slides 2-8: One clear point per slide
+- Each slide has minimal text (30-50 words maximum)
+- Consistent visual template (brand colors, fonts)
+- Final slide: CTA (&quot;Save this post,&quot; &quot;Share with someone who needs this&quot;)
+
+### TikTok Video Structure
+
+```
+0-2 seconds: HOOK (text on screen + verbal hook)
+2-15 seconds: Core content (get to the point fast)
+15-45 seconds: Details and examples
+Final 5 seconds: CTA (&quot;Follow for more&quot; or &quot;Comment your [X]&quot;)
+```
+
+---
+
+## Content Calendar Framework
+
+### Weekly Calendar Template
+
+| Day | LinkedIn | Twitter/X | Instagram |
+|-----|----------|-----------|-----------|
+| Mon | Industry insight | Thread | Carousel |
+| Tue | Educational post | Tips tweet | Stories |
+| Wed | Behind-scenes | Engagement tweets | Reel |
+| Thu | Personal/opinion | Thread | Educational |
+| Fri | Promotional or story | Hot take | Stories |
+
+### Batching Strategy (2-3 Hours Per Week)
+
+| Step | Time | Output |
+|------|------|--------|
+| Review pillar topics | 15 min | 5-7 topic ideas for the week |
+| Write LinkedIn posts | 45 min | 3-5 posts drafted |
+| Write Twitter content | 30 min | 2-3 threads + 5 standalone tweets |
+| Create Instagram content | 30 min | 2 carousels + 1 Reel concept |
+| Schedule everything | 15 min | All content scheduled |
+| Buffer for reactive content | 15 min | Slots left open for real-time posts |
+
+### Content Queue Management
+
+- Maintain 1-2 weeks of scheduled content at all times
+- Review queue weekly for relevance (cancel anything no longer timely)
+- Leave 2-3 open slots per week for reactive/trending content
+- Evergreen content can be reshared monthly with fresh framing
+- Adjust timing based on analytics data
+
+---
+
+## Repurposing System
+
+### One Piece, Many Formats
+
+| Source Content | LinkedIn | Twitter/X | Instagram | TikTok |
+|---------------|----------|-----------|-----------|--------|
+| Blog post | Key insight post + link in comments | Thread of takeaways | Carousel of main points | Summary video |
+| Podcast episode | Quote post from guest | Quote tweet thread | Audiogram clip | Short clip |
+| Webinar | Carousel of key slides | Thread of lessons | Highlights Reel | Short tips video |
+| Customer case study | Story-format post | Results thread | Before/after carousel | Transformation video |
+| Original data | Data analysis post | Stats thread | Infographic carousel | Data reaction video |
+
+### Repurposing Workflow
+
+1. **Publish pillar content** (blog, video, podcast)
+2. **Extract 3-5 key insights** within 24 hours
+3. **Create platform-native derivatives** (not copy-paste — reformat)
+4. **Schedule across 1-2 weeks** after pillar publication
+5. **Cross-reference** — derivatives link back to pillar content
+6. **Track** which derivative formats drive the most engagement and traffic
+
+---
+
+## Engagement Strategy
+
+### Daily Engagement Routine (30 Minutes)
+
+| Task | Time | Purpose |
+|------|------|---------|
+| Respond to all comments on your posts | 5 min | Reward engagement, boost algorithmic reach |
+| Comment on 5-10 posts from target accounts | 15 min | Build relationships, increase visibility |
+| Share/repost with added insight | 5 min | Provide value, support network |
+| Send 2-3 DMs to new connections | 5 min | Build 1:1 relationships |
+
+### Quality Commenting Rules
+
+What works:
+- Add a new insight the original post missed
+- Share a related experience or data point
+- Ask a thoughtful follow-up question
+- Respectfully disagree with nuance and reasoning
+
+What fails:
+- &quot;Great post!&quot; (adds no value)
+- Emoji-only responses
+- Self-promotional comments unrelated to the post
+- Generic agreement without adding perspective
+
+### Relationship Building Strategy
+
+1. **Identify 20-50 accounts** in your space that your audience follows
+2. **Engage consistently** (comment on their content 3-5x/week)
+3. **Share their content** with added insight (not just retweet)
+4. **DM thoughtfully** (reference specific content, not generic pitches)
+5. **Collaborate** when relationship is established (co-create, guest post, podcast)
+6. **Reciprocate** — when they engage with your content, acknowledge it
+
+---
+
+## Analytics and Optimization
+
+### Metrics That Matter
+
+| Metric | What It Tells You | Target |
+|--------|-------------------|--------|
+| Engagement rate | Content resonance | 2-5% (LinkedIn), 1-3% (Twitter) |
+| Follower growth rate | Audience building momentum | 2-5% monthly |
+| Comments per post | Conversation quality | Higher value than likes |
+| Saves/bookmarks | Content utility | High saves = high value content |
+| Shares/reposts | Content amplification | Indicates strong resonance |
+| Profile visits | Curiosity driving | Growing = good brand building |
+| Link clicks | Traffic driving | Track with UTMs |
+| DMs received | Relationship building | Quality over quantity |
+
+### Weekly Review Process
+
+| Step | What to Analyze | Action |
+|------|----------------|--------|
+| Top 3 posts | Why did they perform? (Hook? Topic? Format?) | Do more of what worked |
+| Bottom 3 posts | What went wrong? (Timing? Hook? Relevance?) | Adjust or avoid pattern |
+| Engagement patterns | Which days/times got most engagement? | Optimize posting schedule |
+| Follower quality | Are followers matching your ICP? | Adjust content if attracting wrong audience |
+| Content pillar performance | Which pillars drive most engagement? | Rebalance allocation |
+
+### Optimization Levers
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Low engagement | Weak hooks | Test new hook formulas |
+| Declining reach | Algorithm change or fatigue | Try new formats, increase engagement activity |
+| High reach, low engagement | Content attracts but does not resonate | More specific, opinionated, or actionable content |
+| Followers not converting | Wrong audience | Adjust pillar mix toward more business-relevant content |
+| Engagement but no traffic | No CTAs or links | Add intentional CTAs and link in comments/bio |
+
+---
+
+## Best Practices
+
+1. **Platform-native always** — Never post the same content on every platform. Adapt format, length, and tone for each.
+
+2. **Hook is everything** — If the first line does not stop the scroll, nothing else matters. Write the hook first.
+
+3. **Consistency beats virality** — Posting 3x/week for 12 months beats going viral once and disappearing. Show up regularly.
+
+4. **Engage more than you post** — Commenting on others&#x27; content builds relationships faster than your own posts. Aim for 3:1 engagement-to-posting ratio when starting.
+
+5. **80/20 value-to-promotion** — No more than 10-20% of content should be promotional. The rest should educate, entertain, or inspire.
+
+6. **Batch create, schedule ahead** — Context-switching between creating and distributing reduces quality. Batch write in 2-3 hour sessions.
+
+7. **Reshare evergreen content** — Your best posts can be reshared monthly with fresh framing. Most of your audience did not see it the first time.
+
+8. **Respond to every comment** — Responding within the first hour signals the algorithm that your content is generating conversation.
+
+9. **Focus on 1-2 platforms first** — Master one platform before expanding. Spreading across five platforms with a small team dilutes impact.
+
+10. **Track leading indicators** — Engagement rate and follower growth rate matter more than absolute follower count. A small, engaged audience beats a large, passive one.
+
+---
+
+## Integration Points
+
+- **Content Strategy** — Use for deciding what topics to cover before creating social posts.
+- **Content Production** — Use when pillar content needs to be created before repurposing to social.
+- **Copywriting** — Use for long-form page copy. Social Content handles short-form platform-native posts.
+- **Copy Editing** — Use to polish high-stakes social content (campaign launches, announcements).
+- **Content Humanizer** — Use when AI-drafted social posts sound generic or robotic.
+- **Brand Guidelines** — Reference brand voice and visual standards for social content consistency.
+- **Marketing Context** — Use as foundation for audience, voice, and positioning alignment.
+- **Ad Creative** — Use for paid social ad copy. Social Content handles organic posts.
+
+---
+
+## Troubleshooting
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Low engagement despite posting | Weak hooks or wrong format | Test new hook formulas from the library. Try carousels or polls (highest engagement formats). |
+| Declining reach week-over-week | Algorithm fatigue or format monotony | Mix formats weekly. Instagram/LinkedIn deprioritize repetitive content patterns. |
+| High reach, low engagement | Content attracts but does not resonate | Make content more specific, opinionated, or actionable. Generic posts get impressions but no interaction. |
+| Followers growing but not converting | Wrong audience or no CTAs | Adjust pillar mix toward more business-relevant content. Add intentional CTAs. |
+| Hashtags not driving discovery (2026) | Instagram/LinkedIn reduced hashtag weight | Use 3-5 niche hashtags max. Shares and saves now outweigh hashtag reach on most platforms. |
+| Content feels stale | Not repurposing or only one content source | Use the repurposing system: one pillar piece becomes 5-10 social derivatives. |
+| Low comment-to-like ratio | Posts don&#x27;t invite conversation | End posts with specific questions. Polls and hot takes drive 3-5x more comments. |
+
+---
+
+## Success Criteria
+
+- Engagement rate above platform average: 2-5% LinkedIn, 1-3% Twitter/X, 2-5% Instagram
+- Follower growth rate of 2-5% monthly (quality followers matching ICP)
+- Comments per post consistently higher than likes-only engagement
+- Content pillar mix: no more than 10-15% promotional content
+- 1-2 weeks of scheduled content maintained at all times
+- Daily engagement routine: 30 min/day responding and commenting on others&#x27; posts
+- Saves/bookmarks increasing month-over-month (indicates high-value content)
+
+---
+
+## Scope &amp; Limitations
+
+**In Scope:** Organic social media content creation, platform-specific formatting, hook writing, content calendars, pillar systems, repurposing workflows, engagement tactics, analytics.
+
+**Out of Scope:** Paid social ad copy (use ad-creative), social media account management tools, influencer outreach, community platform management (Discord, Slack), video production.
+
+---
+
+## Python Automation Tools
+
+### 1. Engagement Calculator (`scripts/engagement_calculator.py`)
+Calculates engagement rates by post and format, benchmarks against platform standards, identifies top performers.
+
+```bash
+python scripts/engagement_calculator.py posts.json
+python scripts/engagement_calculator.py --sample --json
+```
+
+### 2. Post Scheduler (`scripts/post_scheduler.py`)
+Generates optimal posting schedules with pillar allocation, format suggestions, and platform-specific timing.
+
+```bash
+python scripts/post_scheduler.py --platform linkedin --posts-per-week 5
+python scripts/post_scheduler.py --platform instagram --posts-per-week 5 --json
+```
+
+### 3. Hashtag Analyzer (`scripts/hashtag_analyzer.py`)
+Analyzes hashtag strategy for relevance, platform limits, and discovery potential. Flags overly broad tags.
+
+```bash
+python scripts/hashtag_analyzer.py &quot;#saas #b2bmarketing #growth&quot;
+python scripts/hashtag_analyzer.py --file post.txt --platform instagram --json
+```
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Social Content&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Social Content in the Marketing domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Social Content&quot;**
+   - Description: &quot;Create social media content across LinkedIn, Twitter/X, Instagram, TikTok, and Facebook with platform formats, hook formulas, and content pillars. Use when creating social posts, planning calendars, or writing LinkedIn posts and threads.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/marketing/social-content/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;Social Content&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Social Content
+
+Platform-native social media content creation, scheduling, and optimization for building audience, driving engagement, and supporting business goals.
+
+---
+
+## Table of Contents
+
+- [Keywords](#keywords)
+- [Quick Start](#quick-start)
+- [Platform Reference Guide](#platform-reference-guide)
+- [Content Pillar System](#content-pillar-system)
+- [Hook Formula Library](#hook-formula-library)
+- [Platform-Specific Formats](#platform-specific-formats)
+- [Content Calendar Framework](#content-calendar-framework)
+- [Repurposing System](#repurposing-system)
+- [Engagement Strategy](#engagement-strategy)
+- [Analytics and Optimization](#analytics-and-optimization)
+- [Best Practices](#best-practices)
+- [Integration Points](#integration-points)
+
+---
+
+## Keywords
+
+social content, social media, LinkedIn post, Twitter thread, Instagram carousel, TikTok content, social calendar, engagement strategy, content pillar, hook formulas, viral content, social scheduling, platform-specific content, social media strategy, content repurposing, social analytics, audience building, personal brand, company brand, social media optimization
+
+---
+
+## Clarify First
+
+Before creating the post, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Platform** — LinkedIn, X, Instagram, TikTok, or Facebook — sets format, length limits, and posting rules
+- [ ] **Goal &amp; CTA** — engagement, traffic, or conversion — determines the hook formula and call-to-action
+- [ ] **Audience &amp; content pillar** — who it&#x27;s for and which pillar (educational, BTS, promo…) — shapes topic and tone
+- [ ] **Format** — single post, thread, carousel, or short video — drives the platform-specific structure
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Quick Start
+
+### Create a Social Post
+
+1. Choose the platform and format
+2. Select a hook from the formula library
+3. Write the body following platform-specific guidelines
+4. Add a CTA aligned with your goal (engagement, traffic, conversion)
+5. Include relevant hashtags per platform best practices
+6. Schedule or post at optimal time for your audience
+
+### Build a Content Calendar
+
+1. Define 3-5 content pillars aligned with expertise and audience needs
+2. Assign percentage allocation to each pillar
+3. Map pillar topics to platform-specific formats
+4. Build a weekly template with assigned slots
+5. Batch create content (2-3 hours per week)
+6. Schedule with room for real-time/reactive posts
+
+---
+
+## Platform Reference Guide
+
+### Platform Quick Comparison
+
+| Platform | Best For | Posting Frequency | Top Format | Audience |
+|----------|----------|------------------|-----------|----------|
+| LinkedIn | B2B, thought leadership | 3-5x/week | Carousels, text posts | Professionals, decision-makers |
+| Twitter/X | Tech, real-time, community | 3-10x/day | Threads, hot takes | Tech, media, creators |
+| Instagram | Visual brands, lifestyle, B2C | 1-2 posts + Stories daily | Reels, carousels | 18-44, visual-first audiences |
+| TikTok | Brand awareness, younger demos | 1-4x/day | Short-form video | 18-34, entertainment-first |
+| Facebook | Communities, local, older demos | 1-2x/day | Groups, native video | 30-65, community-oriented |
+| YouTube | Long-form education, tutorials | 1-4x/month | Videos, Shorts | All ages, search-driven |
+
+### Platform-Specific Rules
+
+**LinkedIn:**
+- Maximum post length: 3,000 characters (but 1,200-1,800 performs best)
+- First 2-3 lines must hook (everything after &quot;see more&quot; is hidden)
+- External links in comments, not post body (algorithm deprioritizes link posts)
+- Carousels (PDF uploads) get highest organic reach
+- Best posting times: Tuesday-Thursday, 7-9 AM in target timezone
+
+**Twitter/X:**
+- 280 characters per tweet, threads for longer content
+- First tweet of thread is the hook — it determines everything
+- Quote tweets with added insight outperform plain retweets
+- No more than 2-3 hashtags (fewer is better)
+- Best posting times: Monday-Friday, 8-10 AM and 12-1 PM
+
+**Instagram:**
+- Feed posts: square (1:1) or vertical (4:5)
+- Reels: vertical (9:16), 15-90 seconds
+- Carousels: up to 10 slides, first slide is the hook
+- Stories: 24-hour content, polls/questions drive engagement
+- Hashtags: 3-5 relevant ones (algorithm change in 2025 reduced hashtag importance)
+
+**TikTok:**
+- Video length: 15-60 seconds optimal (up to 10 minutes)
+- Hook in first 2 seconds (viewers decide instantly)
+- Captions: 80-100 characters
+- Native feel outperforms polished production
+- Trending sounds increase reach significantly
+
+---
+
+## Content Pillar System
+
+### Defining Your Pillars
+
+Choose 3-5 pillars that sit at the intersection of:
+- Your expertise (what you know deeply)
+- Audience interest (what they want to learn)
+- Business connection (what supports your goals)
+
+### Pillar Allocation Template
+
+| Pillar | % of Content | Purpose | Content Types |
+|--------|-------------|---------|---------------|
+| Industry insights | 30% | Build authority | Data, trends, predictions, analysis |
+| Educational | 25% | Provide value | How-tos, frameworks, tips, tutorials |
+| Behind-the-scenes | 20% | Build trust | Building stories, team, process, failures |
+| Personal/opinion | 15% | Build connection | Stories, values, contrarian takes, lessons |
+| Promotional | 10% | Drive business | Product updates, launches, offers, case studies |
+
+### Pillar-to-Platform Mapping
+
+| Pillar | LinkedIn | Twitter/X | Instagram | TikTok |
+|--------|----------|-----------|-----------|--------|
+| Industry insights | Data post, article share | Thread, commentary | Carousel infographic | Trend reaction video |
+| Educational | Carousel, text post | Thread, tip tweet | Carousel, Reel | Tutorial video |
+| Behind-the-scenes | Story post, company update | Tweet, photo | Stories, Reel | BTS video |
+| Personal/opinion | Text post, story | Hot take, quote | Quote graphic | Story time video |
+| Promotional | Case study, announcement | Launch tweet, thread | Product showcase | Demo video |
+
+---
+
+## Hook Formula Library
+
+### Curiosity Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;I was wrong about [belief].&quot; | &quot;I was wrong about cold email.&quot; |
+| &quot;The real reason [X] happens isn&#x27;t what you think.&quot; | &quot;The real reason your posts don&#x27;t get engagement isn&#x27;t the algorithm.&quot; |
+| &quot;[Result] — and it only took [timeframe].&quot; | &quot;10,000 followers — and it only took 90 days.&quot; |
+| &quot;Here&#x27;s what nobody tells you about [topic]:&quot; | &quot;Here&#x27;s what nobody tells you about startup marketing:&quot; |
+| &quot;I spent [time] studying [X]. Here&#x27;s what I found:&quot; | &quot;I spent 6 months studying viral LinkedIn posts. Here&#x27;s what I found:&quot; |
+
+### Story Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;Last week, [unexpected thing] happened.&quot; | &quot;Last week, our biggest deal fell through.&quot; |
+| &quot;3 years ago, I [past state]. Today, [current state].&quot; | &quot;3 years ago, I had 200 followers. Today, I have 50,000.&quot; |
+| &quot;I almost [big mistake].&quot; | &quot;I almost turned down the best job of my career.&quot; |
+| &quot;Someone asked me [question]. My answer surprised them.&quot; | &quot;Someone asked me what the best marketing channel is. My answer surprised them.&quot; |
+
+### Value Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;How to [outcome] (without [pain]):&quot; | &quot;How to grow on LinkedIn (without posting every day):&quot; |
+| &quot;[Number] [things] that [outcome]:&quot; | &quot;7 headline formulas that actually convert:&quot; |
+| &quot;Stop [mistake]. Do this instead:&quot; | &quot;Stop writing &#x27;I&#x27;m excited to announce.&#x27; Do this instead:&quot; |
+| &quot;The [X] framework I use for [Y]:&quot; | &quot;The content framework I use for every LinkedIn post:&quot; |
+
+### Contrarian Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;Unpopular opinion: [bold statement]&quot; | &quot;Unpopular opinion: SEO is dead for most startups.&quot; |
+| &quot;[Common advice] is wrong. Here&#x27;s why:&quot; | &quot;&#x27;Post every day on LinkedIn&#x27; is wrong. Here&#x27;s why:&quot; |
+| &quot;Everyone is doing [X]. Almost everyone is wrong.&quot; | &quot;Everyone is doing content marketing. Almost everyone is wrong.&quot; |
+
+### Data Hooks
+
+| Formula | Example |
+|---------|---------|
+| &quot;I analyzed [X] [things]. Here&#x27;s the data:&quot; | &quot;I analyzed 500 LinkedIn posts. Here&#x27;s the data:&quot; |
+| &quot;[Surprising statistic].&quot; | &quot;93% of B2B buyers research online before talking to sales.&quot; |
+| &quot;[X] vs [Y]: the numbers don&#x27;t lie.&quot; | &quot;Short posts vs. long posts: the numbers don&#x27;t lie.&quot; |
+
+---
+
+## Platform-Specific Formats
+
+### LinkedIn Post Formats
+
+**Text Post (highest frequency):**
+```
+[Hook — first 2 lines must compel &quot;see more&quot; click]
+
+[Body — 5-10 lines of content, short paragraphs]
+
+[One-line insight or lesson]
+
+[CTA — question to drive comments]
+```
+
+**Carousel (highest reach):**
+- Slide 1: Bold hook statement (title slide)
+- Slides 2-8: One point per slide, clear and visual
+- Final slide: Summary + CTA (&quot;Follow for more,&quot; &quot;Save this&quot;)
+- Upload as PDF for native carousel format
+
+**Poll (highest engagement):**
+- Use for genuine questions relevant to your audience
+- 3-4 options maximum
+- Add context in the post body explaining why the question matters
+- Follow up with a post sharing the results
+
+### Twitter/X Thread Format
+
+```
+Tweet 1: [HOOK — the tweet that determines if anyone reads further]
+
+Tweet 2: [Context or setup — why this matters]
+
+Tweet 3-7: [Main content — one point per tweet]
+
+Tweet 8: [Summary or key takeaway]
+
+Tweet 9: [CTA — &quot;Follow me for more on [topic]&quot; or &quot;RT tweet 1 if helpful&quot;]
+```
+
+**Thread rules:**
+- First tweet must stand alone as a complete thought
+- Each tweet should make sense independently
+- Use numbers (&quot;1/9&quot;) for clarity
+- End with a CTA that drives engagement or follows
+- Quote-tweet your own first tweet to resurface the thread
+
+### Instagram Carousel Format
+
+- Slide 1: Bold statement or question (the hook)
+- Slides 2-8: One clear point per slide
+- Each slide has minimal text (30-50 words maximum)
+- Consistent visual template (brand colors, fonts)
+- Final slide: CTA (&quot;Save this post,&quot; &quot;Share with someone who needs this&quot;)
+
+### TikTok Video Structure
+
+```
+0-2 seconds: HOOK (text on screen + verbal hook)
+2-15 seconds: Core content (get to the point fast)
+15-45 seconds: Details and examples
+Final 5 seconds: CTA (&quot;Follow for more&quot; or &quot;Comment your [X]&quot;)
+```
+
+---
+
+## Content Calendar Framework
+
+### Weekly Calendar Template
+
+| Day | LinkedIn | Twitter/X | Instagram |
+|-----|----------|-----------|-----------|
+| Mon | Industry insight | Thread | Carousel |
+| Tue | Educational post | Tips tweet | Stories |
+| Wed | Behind-scenes | Engagement tweets | Reel |
+| Thu | Personal/opinion | Thread | Educational |
+| Fri | Promotional or story | Hot take | Stories |
+
+### Batching Strategy (2-3 Hours Per Week)
+
+| Step | Time | Output |
+|------|------|--------|
+| Review pillar topics | 15 min | 5-7 topic ideas for the week |
+| Write LinkedIn posts | 45 min | 3-5 posts drafted |
+| Write Twitter content | 30 min | 2-3 threads + 5 standalone tweets |
+| Create Instagram content | 30 min | 2 carousels + 1 Reel concept |
+| Schedule everything | 15 min | All content scheduled |
+| Buffer for reactive content | 15 min | Slots left open for real-time posts |
+
+### Content Queue Management
+
+- Maintain 1-2 weeks of scheduled content at all times
+- Review queue weekly for relevance (cancel anything no longer timely)
+- Leave 2-3 open slots per week for reactive/trending content
+- Evergreen content can be reshared monthly with fresh framing
+- Adjust timing based on analytics data
+
+---
+
+## Repurposing System
+
+### One Piece, Many Formats
+
+| Source Content | LinkedIn | Twitter/X | Instagram | TikTok |
+|---------------|----------|-----------|-----------|--------|
+| Blog post | Key insight post + link in comments | Thread of takeaways | Carousel of main points | Summary video |
+| Podcast episode | Quote post from guest | Quote tweet thread | Audiogram clip | Short clip |
+| Webinar | Carousel of key slides | Thread of lessons | Highlights Reel | Short tips video |
+| Customer case study | Story-format post | Results thread | Before/after carousel | Transformation video |
+| Original data | Data analysis post | Stats thread | Infographic carousel | Data reaction video |
+
+### Repurposing Workflow
+
+1. **Publish pillar content** (blog, video, podcast)
+2. **Extract 3-5 key insights** within 24 hours
+3. **Create platform-native derivatives** (not copy-paste — reformat)
+4. **Schedule across 1-2 weeks** after pillar publication
+5. **Cross-reference** — derivatives link back to pillar content
+6. **Track** which derivative formats drive the most engagement and traffic
+
+---
+
+## Engagement Strategy
+
+### Daily Engagement Routine (30 Minutes)
+
+| Task | Time | Purpose |
+|------|------|---------|
+| Respond to all comments on your posts | 5 min | Reward engagement, boost algorithmic reach |
+| Comment on 5-10 posts from target accounts | 15 min | Build relationships, increase visibility |
+| Share/repost with added insight | 5 min | Provide value, support network |
+| Send 2-3 DMs to new connections | 5 min | Build 1:1 relationships |
+
+### Quality Commenting Rules
+
+What works:
+- Add a new insight the original post missed
+- Share a related experience or data point
+- Ask a thoughtful follow-up question
+- Respectfully disagree with nuance and reasoning
+
+What fails:
+- &quot;Great post!&quot; (adds no value)
+- Emoji-only responses
+- Self-promotional comments unrelated to the post
+- Generic agreement without adding perspective
+
+### Relationship Building Strategy
+
+1. **Identify 20-50 accounts** in your space that your audience follows
+2. **Engage consistently** (comment on their content 3-5x/week)
+3. **Share their content** with added insight (not just retweet)
+4. **DM thoughtfully** (reference specific content, not generic pitches)
+5. **Collaborate** when relationship is established (co-create, guest post, podcast)
+6. **Reciprocate** — when they engage with your content, acknowledge it
+
+---
+
+## Analytics and Optimization
+
+### Metrics That Matter
+
+| Metric | What It Tells You | Target |
+|--------|-------------------|--------|
+| Engagement rate | Content resonance | 2-5% (LinkedIn), 1-3% (Twitter) |
+| Follower growth rate | Audience building momentum | 2-5% monthly |
+| Comments per post | Conversation quality | Higher value than likes |
+| Saves/bookmarks | Content utility | High saves = high value content |
+| Shares/reposts | Content amplification | Indicates strong resonance |
+| Profile visits | Curiosity driving | Growing = good brand building |
+| Link clicks | Traffic driving | Track with UTMs |
+| DMs received | Relationship building | Quality over quantity |
+
+### Weekly Review Process
+
+| Step | What to Analyze | Action |
+|------|----------------|--------|
+| Top 3 posts | Why did they perform? (Hook? Topic? Format?) | Do more of what worked |
+| Bottom 3 posts | What went wrong? (Timing? Hook? Relevance?) | Adjust or avoid pattern |
+| Engagement patterns | Which days/times got most engagement? | Optimize posting schedule |
+| Follower quality | Are followers matching your ICP? | Adjust content if attracting wrong audience |
+| Content pillar performance | Which pillars drive most engagement? | Rebalance allocation |
+
+### Optimization Levers
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Low engagement | Weak hooks | Test new hook formulas |
+| Declining reach | Algorithm change or fatigue | Try new formats, increase engagement activity |
+| High reach, low engagement | Content attracts but does not resonate | More specific, opinionated, or actionable content |
+| Followers not converting | Wrong audience | Adjust pillar mix toward more business-relevant content |
+| Engagement but no traffic | No CTAs or links | Add intentional CTAs and link in comments/bio |
+
+---
+
+## Best Practices
+
+1. **Platform-native always** — Never post the same content on every platform. Adapt format, length, and tone for each.
+
+2. **Hook is everything** — If the first line does not stop the scroll, nothing else matters. Write the hook first.
+
+3. **Consistency beats virality** — Posting 3x/week for 12 months beats going viral once and disappearing. Show up regularly.
+
+4. **Engage more than you post** — Commenting on others&#x27; content builds relationships faster than your own posts. Aim for 3:1 engagement-to-posting ratio when starting.
+
+5. **80/20 value-to-promotion** — No more than 10-20% of content should be promotional. The rest should educate, entertain, or inspire.
+
+6. **Batch create, schedule ahead** — Context-switching between creating and distributing reduces quality. Batch write in 2-3 hour sessions.
+
+7. **Reshare evergreen content** — Your best posts can be reshared monthly with fresh framing. Most of your audience did not see it the first time.
+
+8. **Respond to every comment** — Responding within the first hour signals the algorithm that your content is generating conversation.
+
+9. **Focus on 1-2 platforms first** — Master one platform before expanding. Spreading across five platforms with a small team dilutes impact.
+
+10. **Track leading indicators** — Engagement rate and follower growth rate matter more than absolute follower count. A small, engaged audience beats a large, passive one.
+
+---
+
+## Integration Points
+
+- **Content Strategy** — Use for deciding what topics to cover before creating social posts.
+- **Content Production** — Use when pillar content needs to be created before repurposing to social.
+- **Copywriting** — Use for long-form page copy. Social Content handles short-form platform-native posts.
+- **Copy Editing** — Use to polish high-stakes social content (campaign launches, announcements).
+- **Content Humanizer** — Use when AI-drafted social posts sound generic or robotic.
+- **Brand Guidelines** — Reference brand voice and visual standards for social content consistency.
+- **Marketing Context** — Use as foundation for audience, voice, and positioning alignment.
+- **Ad Creative** — Use for paid social ad copy. Social Content handles organic posts.
+
+---
+
+## Troubleshooting
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Low engagement despite posting | Weak hooks or wrong format | Test new hook formulas from the library. Try carousels or polls (highest engagement formats). |
+| Declining reach week-over-week | Algorithm fatigue or format monotony | Mix formats weekly. Instagram/LinkedIn deprioritize repetitive content patterns. |
+| High reach, low engagement | Content attracts but does not resonate | Make content more specific, opinionated, or actionable. Generic posts get impressions but no interaction. |
+| Followers growing but not converting | Wrong audience or no CTAs | Adjust pillar mix toward more business-relevant content. Add intentional CTAs. |
+| Hashtags not driving discovery (2026) | Instagram/LinkedIn reduced hashtag weight | Use 3-5 niche hashtags max. Shares and saves now outweigh hashtag reach on most platforms. |
+| Content feels stale | Not repurposing or only one content source | Use the repurposing system: one pillar piece becomes 5-10 social derivatives. |
+| Low comment-to-like ratio | Posts don&#x27;t invite conversation | End posts with specific questions. Polls and hot takes drive 3-5x more comments. |
+
+---
+
+## Success Criteria
+
+- Engagement rate above platform average: 2-5% LinkedIn, 1-3% Twitter/X, 2-5% Instagram
+- Follower growth rate of 2-5% monthly (quality followers matching ICP)
+- Comments per post consistently higher than likes-only engagement
+- Content pillar mix: no more than 10-15% promotional content
+- 1-2 weeks of scheduled content maintained at all times
+- Daily engagement routine: 30 min/day responding and commenting on others&#x27; posts
+- Saves/bookmarks increasing month-over-month (indicates high-value content)
+
+---
+
+## Scope &amp; Limitations
+
+**In Scope:** Organic social media content creation, platform-specific formatting, hook writing, content calendars, pillar systems, repurposing workflows, engagement tactics, analytics.
+
+**Out of Scope:** Paid social ad copy (use ad-creative), social media account management tools, influencer outreach, community platform management (Discord, Slack), video production.
+
+---
+
+## Python Automation Tools
+
+### 1. Engagement Calculator (`scripts/engagement_calculator.py`)
+Calculates engagement rates by post and format, benchmarks against platform standards, identifies top performers.
+
+```bash
+python scripts/engagement_calculator.py posts.json
+python scripts/engagement_calculator.py --sample --json
+```
+
+### 2. Post Scheduler (`scripts/post_scheduler.py`)
+Generates optimal posting schedules with pillar allocation, format suggestions, and platform-specific timing.
+
+```bash
+python scripts/post_scheduler.py --platform linkedin --posts-per-week 5
+python scripts/post_scheduler.py --platform instagram --posts-per-week 5 --json
+```
+
+### 3. Hashtag Analyzer (`scripts/hashtag_analyzer.py`)
+Analyzes hashtag strategy for relevance, platform limits, and discovery potential. Flags overly broad tags.
+
+```bash
+python scripts/hashtag_analyzer.py &quot;#saas #b2bmarketing #growth&quot;
+python scripts/hashtag_analyzer.py --file post.txt --platform instagram --json
+```
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Social Content&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Social Content in the Marketing domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Social Content&quot;**
+   - Description: &quot;Create social media content across LinkedIn, Twitter/X, Instagram, TikTok, and Facebook with platform formats, hook formulas, and content pillars. Use when creating social posts, planning calendars, or writing LinkedIn posts and threads.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/marketing/social-content/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install marketing/social-content ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/marketing/social-content your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/social-content/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/social-content your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/social-content/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/social-content your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: marketing/social-content/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/marketing/social-content your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/marketing/social-content your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/marketing/social-content</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python marketing/social-content/scripts/tool_name.py --help</code></pre>
+  
+  <h2>Quick Start</h2>### Create a Social Post
+
+1. Choose the platform and format
+2. Select a hook from the formula library
+3. Write the body following platform-specific guidelines
+4. Add a CTA aligned with your goal (engagement, traffic, conversion)
+5. Include relevant hashtags per platform best practices
+6. Schedule or post at optimal time for your audience
+
+### Build a Content Calendar
+
+1. Define 3-5 content pillars aligned with expertise and audience needs
+2. Assign percentage allocation to each pillar
+3. Map pillar topics to platform-specific formats
+4. Build a weekly template with assigned slots
+5. Batch create content (2-3 hours per week)
+6. Schedule with room for real-time/reactive posts
+
+---
+  <h2>Related Skills in Marketing</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/marketing/ab-test-setup.html" class="skill-card" style="text-decoration:none"><h3>Ab Test Setup</h3><p>Design and analyze A/B tests: sample size, test duration, and statistical significance for...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/ad-creative.html" class="skill-card" style="text-decoration:none"><h3>Ad Creative</h3><p>Design ad creative across Google, Meta, LinkedIn, Twitter/X, and TikTok with platform format...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/aeo.html" class="skill-card" style="text-decoration:none"><h3>Aeo</h3><p>Answer Engine Optimization (AEO): optimize content to be cited by LLMs (ChatGPT, Claude,...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/ai-seo.html" class="skill-card" style="text-decoration:none"><h3>Ai Seo</h3><p>Optimize content to rank in AI search engines (AI Overviews, Perplexity, ChatGPT) via generative...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/analytics-tracking.html" class="skill-card" style="text-decoration:none"><h3>Analytics Tracking</h3><p>End-to-end analytics implementation for web and SaaS: GA4, Google Tag Manager, event taxonomy,...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/app-store-optimization.html" class="skill-card" style="text-decoration:none"><h3>App Store Optimization</h3><p>App Store Optimization toolkit for researching keywords, optimizing metadata, and tracking...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/marketing/social-content/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

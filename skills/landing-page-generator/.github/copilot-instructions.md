@@ -1,0 +1,63 @@
+# AI Skills Library — Copilot Instructions
+
+## What This Repository Is
+
+This is the **universal AI skills library** — 204 production-ready skill packages across 13 professional domains with 559 Python automation tools and 12 sample CI/CD workflows. It works with every major AI coding assistant.
+
+**This is NOT a traditional application.** It's a library of self-contained skill packages meant to be extracted and deployed into user workflows.
+
+## Repository Structure
+
+- `engineering/` — 61 engineering skills + 177 Python tools
+- `marketing/` — 35 marketing skills + 106 Python tools
+- `product-team/` — 8 product skills + 15 Python tools
+- `project-management/` — 23 PM skills + 51 Python tools
+- `c-level-advisor/` — 26 C-level advisory skills + 75 Python tools
+- `ra-qm-team/` — 21 regulatory/quality/compliance skills + 38 Python tools
+- `business-growth/` — 16 business & growth skills + 48 Python tools
+- `data-analytics/` — 5 data analytics skills + 16 Python tools
+- `hr-operations/` — 4 HR operations skills + 12 Python tools
+- `sales-success/` — 5 sales success skills + 15 Python tools
+- `finance/` — 1 finance skill + 4 Python tools
+- `scripts/` — Skill installer + utility scripts
+
+## Skill Package Pattern
+
+Every skill follows this structure:
+
+```
+skill-name/
+├── SKILL.md       # Master documentation with workflows
+├── scripts/       # Python CLI tools (standard library only, no ML/LLM calls)
+├── references/    # Expert knowledge bases
+└── assets/        # User-facing templates
+```
+
+## Code Style
+
+- **Python scripts:** Standard library only, CLI-first with argparse, JSON + human-readable output
+- **Markdown:** YAML frontmatter on all SKILL.md files
+- **Commits:** Conventional commits — `feat(domain):`, `fix(tool):`, `docs(skill):`
+
+## Key Principles
+
+1. Skills are products — each skill is deployable as a standalone package
+2. Documentation-driven — clear, actionable docs over generic advice
+3. Algorithm over AI — deterministic analysis (Python scripts) over LLM calls
+4. Template-heavy — ready-to-use templates users customize
+5. Self-contained — no dependencies between skills
+
+## Anti-Patterns
+
+- Creating dependencies between skills
+- Adding complex build systems or test frameworks
+- Generic advice instead of specific, actionable frameworks
+- LLM/ML calls in scripts (defeats portability)
+
+## Quick Install
+
+```bash
+python scripts/skill-installer.py list
+python scripts/skill-installer.py install <skill-name> --agent copilot
+python scripts/skill-installer.py update
+```

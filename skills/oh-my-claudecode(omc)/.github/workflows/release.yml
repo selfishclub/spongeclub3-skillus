@@ -1,0 +1,378 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Exact annotated release tag to recover
+        required: true
+        type: string
+      sha:
+        description: Exact 40-character hexadecimal commit SHA to recover
+        required: true
+        type: string
+
+concurrency:
+  group: release-${{ github.event.inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Create GitHub Release
+    if: github.event_name == 'push'
+    permissions:
+      contents: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          registry-url: "https://registry.npmjs.org"
+      - name: Pin npm for attestation verification
+        run: |
+          npm install --global npm@11.17.0
+          test "$(npm --version)" = "11.17.0"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Assert release trigger and npm availability
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          git fetch --no-tags --force origin "refs/tags/$GITHUB_REF_NAME:refs/tags/$GITHUB_REF_NAME"
+          TAG_OBJECT=$(git rev-parse --verify "refs/tags/$GITHUB_REF_NAME")
+          test "$(git cat-file -t "$TAG_OBJECT")" = "tag"
+          RELEASE_SHA=$(git rev-parse --verify "refs/tags/$GITHUB_REF_NAME^{}")
+          test "$RELEASE_SHA" = "$GITHUB_SHA"
+          node scripts/release-boundary.mjs assert-trigger --tag "$GITHUB_REF_NAME" --sha "$RELEASE_SHA"
+          node scripts/release-boundary.mjs assert-npm-absent --package oh-my-claude-sisyphus --version "$VERSION"
+
+      - name: Validate release notes
+        run: |
+          git cat-file -e HEAD:.github/release-body.md
+          test -s .github/release-body.md
+          cp .github/release-body.md release-notes.md
+
+      - name: Verify plugin shipping surface
+        run: npm run plugin:shipping:verify
+
+      - name: Build
+        run: npm run build
+
+      - name: Run functional tests
+        run: npm test -- --run
+
+      - name: Run subagent-lock performance test
+        run: npm exec vitest -- run tests/perf/subagent-lock.bench.ts --fileParallelism=false --maxWorkers=1
+
+      # Some tests execute scripts/plugin-setup.mjs against the real
+      # hooks/hooks.json and rewrite bare `node` to the absolute node binary
+      # path of the runner (e.g. /opt/hostedtoolcache/node/.../bin/node). If we
+      # let that mutated file ship, every end user inherits a node path that
+      # does not exist on their machine. Restore the file to its committed
+      # state before publishing. See issue #2348.
+      - name: Restore hooks.json before publish
+        run: git checkout -- hooks/hooks.json
+
+      - name: Create staged release archive
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          SEED_DIR="$RUNNER_TEMP/seed"
+          STAGE="$RUNNER_TEMP/release-stage"
+          FINAL_DIR="$RUNNER_TEMP/final"
+          EVIDENCE_JSON="$RUNNER_TEMP/release-evidence.json"
+          mkdir -p "$SEED_DIR" "$FINAL_DIR"
+          SEED_NAME=$(npm pack --ignore-scripts --pack-destination "$SEED_DIR" --silent)
+          SEED_TARBALL="$SEED_DIR/$SEED_NAME"
+          node scripts/release-boundary.mjs prepare-stage --seed-tarball "$SEED_TARBALL" --stage "$STAGE" --git-head "$GITHUB_SHA"
+          FINAL_NAME=$(npm pack "$STAGE/package" --ignore-scripts --pack-destination "$FINAL_DIR" --silent)
+          FINAL_TARBALL="$FINAL_DIR/$FINAL_NAME"
+          FINAL_TARBALL_SHA256=$(sha256sum "$FINAL_TARBALL" | cut -d ' ' -f 1)
+          node scripts/release-boundary.mjs assert-archive --tarball "$FINAL_TARBALL" --version "$VERSION" --git-head "$GITHUB_SHA"
+          node scripts/release-boundary.mjs write-evidence --tarball "$FINAL_TARBALL" --output "$EVIDENCE_JSON"
+          printf 'FINAL_TARBALL=%s\n' "$FINAL_TARBALL" >> "$GITHUB_ENV"
+          printf 'EVIDENCE_JSON=%s\n' "$EVIDENCE_JSON" >> "$GITHUB_ENV"
+          printf 'FINAL_TARBALL_SHA256=%s\n' "$FINAL_TARBALL_SHA256" >> "$GITHUB_ENV"
+
+      - name: Smoke test staged archive
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          SMOKE_ROOT="$RUNNER_TEMP/release-smoke"
+          SMOKE_PREFIX="$SMOKE_ROOT/package"
+          SMOKE_HOME="$SMOKE_ROOT/home"
+          SMOKE_CLAUDE_CONFIG_DIR="$SMOKE_HOME/.claude"
+          SMOKE_GJC_CONFIG_DIR="$SMOKE_HOME/.gjc"
+          SMOKE_PROJECT="$SMOKE_ROOT/project"
+          rm -rf "$SMOKE_ROOT"
+          mkdir -p "$SMOKE_HOME" "$SMOKE_PROJECT" "$SMOKE_CLAUDE_CONFIG_DIR" "$SMOKE_GJC_CONFIG_DIR"
+          npm install --ignore-scripts --prefix "$SMOKE_PREFIX" "$FINAL_TARBALL"
+          SMOKE_PACKAGE_ROOT="$SMOKE_PREFIX/node_modules/oh-my-claude-sisyphus"
+          test -f "$SMOKE_PACKAGE_ROOT/bridge/claude-md-coordinator.cjs"
+          test -f "$SMOKE_PACKAGE_ROOT/scripts/setup-claude-md.sh"
+          test -f "$SMOKE_PACKAGE_ROOT/scripts/lib/config-dir.sh"
+          test -s "$SMOKE_PACKAGE_ROOT/skills/omc-reference/SKILL.md"
+          test -f "$SMOKE_PACKAGE_ROOT/skills/setup/SKILL.md"
+          test -f "$SMOKE_PACKAGE_ROOT/skills/omc-setup/SKILL.md"
+          test -f "$SMOKE_PACKAGE_ROOT/skills/omc-setup/phases/01-install-claude-md.md"
+          test "$(env -i PATH="$PATH" HOME="$SMOKE_HOME" CLAUDE_CONFIG_DIR="$SMOKE_CLAUDE_CONFIG_DIR" GJC_CONFIG_DIR="$SMOKE_GJC_CONFIG_DIR" OMC_SETUP_PLUGIN_ROOT="$SMOKE_PACKAGE_ROOT" CLAUDE_PLUGIN_ROOT="$SMOKE_PACKAGE_ROOT" "$SMOKE_PREFIX/node_modules/.bin/omc" --version)" = "$VERSION"
+          env -i PATH="$PATH" HOME="$SMOKE_HOME" CLAUDE_CONFIG_DIR="$SMOKE_CLAUDE_CONFIG_DIR" GJC_CONFIG_DIR="$SMOKE_GJC_CONFIG_DIR" OMC_SETUP_PLUGIN_ROOT="$SMOKE_PACKAGE_ROOT" CLAUDE_PLUGIN_ROOT="$SMOKE_PACKAGE_ROOT" "$SMOKE_PREFIX/node_modules/.bin/omc" --help
+          API_HELP=$(env -i PATH="$PATH" HOME="$SMOKE_HOME" CLAUDE_CONFIG_DIR="$SMOKE_CLAUDE_CONFIG_DIR" GJC_CONFIG_DIR="$SMOKE_GJC_CONFIG_DIR" OMC_SETUP_PLUGIN_ROOT="$SMOKE_PACKAGE_ROOT" CLAUDE_PLUGIN_ROOT="$SMOKE_PACKAGE_ROOT" "$SMOKE_PREFIX/node_modules/.bin/omc-cli" team api --help)
+          case "$API_HELP" in
+            *recover-worker*write-task-checkpoint*read-recovery-result*) ;;
+            *)
+              echo "omc-cli team api help is missing required recovery commands" >&2
+              exit 1
+              ;;
+          esac
+          cd "$SMOKE_PROJECT"
+          env -i PATH="$PATH" HOME="$SMOKE_HOME" CLAUDE_CONFIG_DIR="$SMOKE_CLAUDE_CONFIG_DIR" GJC_CONFIG_DIR="$SMOKE_GJC_CONFIG_DIR" OMC_SETUP_PLUGIN_ROOT="$SMOKE_PACKAGE_ROOT" CLAUDE_PLUGIN_ROOT="$SMOKE_PACKAGE_ROOT" bash -c 'bash "${OMC_SETUP_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT}}/scripts/setup-claude-md.sh" local'
+          cmp "$SMOKE_PACKAGE_ROOT/docs/CLAUDE.md" "$SMOKE_PROJECT/.claude/CLAUDE.md"
+          cmp "$SMOKE_PACKAGE_ROOT/skills/omc-reference/SKILL.md" "$SMOKE_PROJECT/.claude/skills/omc-reference/SKILL.md"
+          COORDINATOR_SHA256=$(sha256sum "$SMOKE_PACKAGE_ROOT/bridge/claude-md-coordinator.cjs" | cut -d ' ' -f 1)
+          test "$FINAL_TARBALL_SHA256" = "$(sha256sum "$FINAL_TARBALL" | cut -d ' ' -f 1)"
+          test "$COORDINATOR_SHA256" = "$(node -e 'const fs = require("node:fs"); const crypto = require("node:crypto"); process.stdout.write(crypto.createHash("sha256").update(fs.readFileSync(process.argv[1])).digest("hex"));' "$SMOKE_PACKAGE_ROOT/bridge/claude-md-coordinator.cjs")"
+          test "$COORDINATOR_SHA256" = "$(node -e 'const evidence = require(process.argv[1]); const file = evidence.archiveManifest.files.find(({ path }) => path === "package/bridge/claude-md-coordinator.cjs"); process.stdout.write(file?.sha256 ?? "");' "$EVIDENCE_JSON")"
+          test "$(node -p 'require(process.argv[1]).gitHead' "$SMOKE_PACKAGE_ROOT/package.json")" = "$GITHUB_SHA"
+          test "$(node -p 'require(process.argv[1]).sourceSha' "$EVIDENCE_JSON")" = "$GITHUB_SHA"
+          test "$(node -p 'require(process.argv[1]).sha256' "$EVIDENCE_JSON")" = "$FINAL_TARBALL_SHA256"
+
+      - name: Upload release archive evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-release-boundary-${{ github.ref_name }}
+          path: |
+            ${{ runner.temp }}/final/*.tgz
+            ${{ runner.temp }}/release-evidence.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish exact archive and verify registry
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          set -o pipefail
+          if npm publish "$FINAL_TARBALL" --ignore-scripts --access public --provenance 2>&1 | tee npm-publish.log; then
+            VERIFICATION_PREFIX="$RUNNER_TEMP/npm-provenance-verification"
+            AUDIT_JSON="$VERIFICATION_PREFIX/audit-signatures.json"
+            MAX_PROPAGATION_ATTEMPTS=6
+            ATTEMPT=1
+            while [ "$ATTEMPT" -le "$MAX_PROPAGATION_ATTEMPTS" ]; do
+              rm -rf "$VERIFICATION_PREFIX"
+              if npm install --ignore-scripts --no-audit --no-fund --prefix "$VERIFICATION_PREFIX" "oh-my-claude-sisyphus@$VERSION" && npm audit signatures --json --include-attestations --prefix "$VERIFICATION_PREFIX" > "$AUDIT_JSON" && test -s "$AUDIT_JSON"; then
+                break
+              fi
+              if [ "$ATTEMPT" -eq "$MAX_PROPAGATION_ATTEMPTS" ]; then
+                echo "npm registry propagation did not complete after $MAX_PROPAGATION_ATTEMPTS attempts" >&2
+                exit 1
+              fi
+              ATTEMPT=$((ATTEMPT + 1))
+              sleep 10
+            done
+            node scripts/release-boundary.mjs verify-registry --package oh-my-claude-sisyphus --version "$VERSION" --tag "$GITHUB_REF_NAME" --sha "$GITHUB_SHA" --evidence "$EVIDENCE_JSON" --tarball "$FINAL_TARBALL" --provenance required --audit "$AUDIT_JSON"
+          else
+            node scripts/release-boundary.mjs assert-sigstore-fallback --publish-log npm-publish.log
+            node scripts/release-boundary.mjs assert-evidence --tarball "$FINAL_TARBALL" --evidence "$EVIDENCE_JSON"
+            npm publish "$FINAL_TARBALL" --ignore-scripts --access public
+            MAX_FALLBACK_PROPAGATION_ATTEMPTS=6
+            FALLBACK_ATTEMPT=1
+            while [ "$FALLBACK_ATTEMPT" -le "$MAX_FALLBACK_PROPAGATION_ATTEMPTS" ]; do
+              if node scripts/release-boundary.mjs verify-registry --package oh-my-claude-sisyphus --version "$VERSION" --tag "$GITHUB_REF_NAME" --sha "$GITHUB_SHA" --evidence "$EVIDENCE_JSON" --tarball "$FINAL_TARBALL" --provenance sigstore-fallback --publish-log npm-publish.log; then
+                break
+              fi
+              if [ "$FALLBACK_ATTEMPT" -eq "$MAX_FALLBACK_PROPAGATION_ATTEMPTS" ]; then
+                echo "npm registry propagation did not complete after $MAX_FALLBACK_PROPAGATION_ATTEMPTS fallback attempts" >&2
+                exit 1
+              fi
+              FALLBACK_ATTEMPT=$((FALLBACK_ATTEMPT + 1))
+              sleep 10
+            done
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Upload finalized release evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-release-boundary-final-${{ github.ref_name }}
+          path: ${{ runner.temp }}/release-evidence.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: release-notes.md
+          draft: false
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  recover:
+    name: Recover GitHub Release
+    if: github.event_name == 'workflow_dispatch'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    env:
+      RECOVERY_TAG: v4.15.4
+      RECOVERY_SHA: cb6932311ac956687e3c66bb6a48d52a8df14d56
+      RECOVERY_INPUT_TAG: ${{ inputs.tag }}
+      RECOVERY_INPUT_SHA: ${{ inputs.sha }}
+    steps:
+      - name: Validate recovery inputs
+        run: |
+          test "$RECOVERY_INPUT_TAG" = "v4.15.4"
+          test "$RECOVERY_INPUT_SHA" = "cb6932311ac956687e3c66bb6a48d52a8df14d56"
+
+      - name: Checkout recovery source
+        uses: actions/checkout@v4
+        with:
+          ref: cb6932311ac956687e3c66bb6a48d52a8df14d56
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Assert recovered tag identity
+        run: |
+          git fetch --no-tags --force origin "refs/tags/$RECOVERY_TAG:refs/tags/$RECOVERY_TAG"
+          TAG_OBJECT=$(git rev-parse --verify "refs/tags/$RECOVERY_TAG")
+          test "$(git cat-file -t "$TAG_OBJECT")" = "tag"
+          TAG_SHA=$(git rev-parse --verify "refs/tags/$RECOVERY_TAG^{}")
+          test "$TAG_SHA" = "$RECOVERY_SHA"
+          test "$(git rev-parse HEAD)" = "$RECOVERY_SHA"
+
+      - name: Setup recovery Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Pin npm for recovery attestation verification
+        run: |
+          npm install --global npm@11.17.0
+          test "$(npm --version)" = "11.17.0"
+
+      - name: Assert recovery trigger
+        run: node scripts/release-boundary.mjs assert-trigger --tag "$RECOVERY_TAG" --sha "$RECOVERY_SHA"
+
+      - name: Download published archive and generate recovery evidence
+        run: |
+          VERSION="${RECOVERY_TAG#v}"
+          RECOVERY_ARCHIVE_DIR="$RUNNER_TEMP/recovery-archive"
+          RECOVERY_EVIDENCE_JSON="$RUNNER_TEMP/recovery-evidence.json"
+          mkdir -p "$RECOVERY_ARCHIVE_DIR"
+          RECOVERY_TARBALL_NAME=$(npm pack --ignore-scripts --pack-destination "$RECOVERY_ARCHIVE_DIR" --silent "oh-my-claude-sisyphus@$VERSION")
+          RECOVERY_TARBALL="$RECOVERY_ARCHIVE_DIR/$RECOVERY_TARBALL_NAME"
+          node scripts/release-boundary.mjs assert-archive --tarball "$RECOVERY_TARBALL" --version "$VERSION" --git-head "$RECOVERY_SHA"
+          node scripts/release-boundary.mjs write-evidence --tarball "$RECOVERY_TARBALL" --output "$RECOVERY_EVIDENCE_JSON"
+          printf 'RECOVERY_TARBALL=%s\n' "$RECOVERY_TARBALL" >> "$GITHUB_ENV"
+          printf 'RECOVERY_EVIDENCE_JSON=%s\n' "$RECOVERY_EVIDENCE_JSON" >> "$GITHUB_ENV"
+
+      - name: Verify recovered package provenance
+        run: |
+          VERSION="${RECOVERY_TAG#v}"
+          RECOVERY_PREFIX="$RUNNER_TEMP/recovery-provenance-verification"
+          RECOVERY_AUDIT_JSON="$RECOVERY_PREFIX/audit-signatures.json"
+          rm -rf "$RECOVERY_PREFIX"
+          npm install --ignore-scripts --no-audit --no-fund --prefix "$RECOVERY_PREFIX" "oh-my-claude-sisyphus@$VERSION"
+          npm audit signatures --json --include-attestations --prefix "$RECOVERY_PREFIX" > "$RECOVERY_AUDIT_JSON"
+          test -s "$RECOVERY_AUDIT_JSON"
+          node scripts/release-boundary.mjs verify-registry --package oh-my-claude-sisyphus --version "$VERSION" --tag "$RECOVERY_TAG" --sha "$RECOVERY_SHA" --evidence "$RECOVERY_EVIDENCE_JSON" --tarball "$RECOVERY_TARBALL" --provenance required --audit "$RECOVERY_AUDIT_JSON"
+
+      - name: Validate recovery release notes
+        run: |
+          git cat-file -e HEAD:.github/release-body.md
+          test -s .github/release-body.md
+          cp .github/release-body.md release-notes.md
+
+      - name: Upload recovered release evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-release-boundary-recovery-v4.15.4
+          path: |
+            ${{ runner.temp }}/recovery-archive/*.tgz
+            ${{ runner.temp }}/recovery-evidence.json
+            ${{ runner.temp }}/recovery-provenance-verification/audit-signatures.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Assert GitHub Release is absent
+        run: |
+          RECOVERY_RELEASE_HTTP="$RUNNER_TEMP/recovery-release-before.http"
+          if gh api --include "repos/$GITHUB_REPOSITORY/releases/tags/$RECOVERY_TAG" > "$RECOVERY_RELEASE_HTTP"; then
+            GH_STATUS=0
+          else
+            GH_STATUS=$?
+          fi
+          IFS=' ' read -r _ HTTP_STATUS _ < "$RECOVERY_RELEASE_HTTP"
+          case "$GH_STATUS:$HTTP_STATUS" in
+            1:404) ;;
+            *)
+              echo "expected GitHub Release-by-tag API to return exactly 404, got gh exit $GH_STATUS and HTTP $HTTP_STATUS" >&2
+              exit 1
+              ;;
+          esac
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create recovered GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v4.15.4
+          body_path: release-notes.md
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify recovered GitHub Release
+        run: |
+          git fetch --no-tags --force origin "refs/tags/$RECOVERY_TAG:refs/tags/$RECOVERY_TAG"
+          POST_CREATE_TAG_OBJECT=$(git rev-parse --verify "refs/tags/$RECOVERY_TAG")
+          test "$(git cat-file -t "$POST_CREATE_TAG_OBJECT")" = "tag"
+          POST_CREATE_TAG_SHA=$(git rev-parse --verify "refs/tags/$RECOVERY_TAG^{}")
+          test "$POST_CREATE_TAG_SHA" = "$RECOVERY_SHA"
+          export RECOVERY_RELEASE_HTTP="$RUNNER_TEMP/recovery-release-after.http"
+          if gh api --include "repos/$GITHUB_REPOSITORY/releases/tags/$RECOVERY_TAG" > "$RECOVERY_RELEASE_HTTP"; then
+            GH_STATUS=0
+          else
+            GH_STATUS=$?
+          fi
+          IFS=' ' read -r _ HTTP_STATUS _ < "$RECOVERY_RELEASE_HTTP"
+          case "$GH_STATUS:$HTTP_STATUS" in
+            0:200) ;;
+            *)
+              echo "expected GitHub Release-by-tag API to return successful JSON, got gh exit $GH_STATUS and HTTP $HTTP_STATUS" >&2
+              exit 1
+              ;;
+          esac
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+
+          const response = readFileSync(process.env.RECOVERY_RELEASE_HTTP, 'utf8');
+          const responseBody = /\r?\n\r?\n([\s\S]*)$/.exec(response)?.[1];
+          if (responseBody === undefined) {
+            throw new Error('GitHub Release API response did not include a JSON body');
+          }
+          const release = JSON.parse(responseBody);
+          const expectedBody = readFileSync('.github/release-body.md', 'utf8');
+          if (release.tag_name !== process.env.RECOVERY_TAG) {
+            throw new Error(`release tag mismatch: ${release.tag_name}`);
+          }
+          if (release.draft !== false || release.prerelease !== false) {
+            throw new Error('recovered release is not a published stable release');
+          }
+          if (release.body !== expectedBody) {
+            throw new Error('recovered release body does not match .github/release-body.md');
+          }
+          NODE
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

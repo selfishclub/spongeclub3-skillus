@@ -1,0 +1,191 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#171717;font-family:'Pretendard',-apple-system,sans-serif;padding:26px 20px 60px;color:#ddd}
+h1{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:6px;color:#fff}
+.lead{font-size:13px;color:#8a8a8a;margin-bottom:14px;line-height:1.7;max-width:1080px}
+.rule{max-width:1080px;background:#1f1f1f;border-left:2px solid #E8452F;padding:12px 16px;margin-bottom:30px;font-size:12px;line-height:1.9;color:#a5a5a5}
+.rule b{color:#fff;font-weight:600}
+.sec{font-size:13px;color:#E8452F;font-family:'JetBrains Mono',monospace;letter-spacing:.14em;margin:34px 0 14px}
+.set{margin-bottom:30px}
+.hd{display:flex;align-items:baseline;gap:10px;margin-bottom:3px;flex-wrap:wrap}
+.no{font-family:'JetBrains Mono',monospace;font-size:11px;color:#666;letter-spacing:.1em}
+.nm{font-size:15px;font-weight:600;color:#fff}
+.tg{font-size:11px;color:#7ad6a0;font-family:'JetBrains Mono',monospace}
+.why{font-size:12px;color:#8a8a8a;margin-bottom:10px;line-height:1.65;max-width:1080px}
+.f{aspect-ratio:16/9;position:relative;overflow:hidden;container-type:inline-size;max-width:1080px}
+.cap{font-size:10px;color:#5f5f5f;margin-top:5px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+/* 질감 레이어 — 이게 "디자이너가 만졌다"의 8할이다 */
+.gr::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.9%27%20numOctaves%3D%274%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20type%3D%27saturate%27%20values%3D%270%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27140%27%20height%3D%27140%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E");background-size:140px 140px;opacity:.30;pointer-events:none;mix-blend-mode:overlay;z-index:5}
+.grc::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.55%27%20numOctaves%3D%273%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20type%3D%27saturate%27%20values%3D%270%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27140%27%20height%3D%27140%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E");background-size:180px 180px;opacity:.20;pointer-events:none;mix-blend-mode:multiply;z-index:5}
+
+/* ─────────── 표지 ─────────── */
+
+/* A · 타이포 마스킹 — 글자 안에 질감이 비친다 */
+.A{background:#0B0B0C;display:flex;align-items:center;justify-content:center}
+.A .huge{font-family:'Archivo Black',sans-serif;font-size:26cqw;line-height:.78;letter-spacing:-.05em;
+  background:linear-gradient(105deg,#FF4B1F 0%,#FF9068 42%,#2B2B30 43%,#2B2B30 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.A .ko{position:absolute;left:5%;bottom:11%;font-size:5.4cqw;font-weight:800;color:#F4F1EC;letter-spacing:-.04em;line-height:1.0;z-index:3}
+.A .mt{position:absolute;right:5%;top:8%;font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#FF4B1F;letter-spacing:.2em;text-align:right;line-height:2;z-index:3}
+
+/* B · 테이프 콜라주 — 종이에 붙인 것처럼 */
+.B{background:#DFDAD0}
+.B .paper{position:absolute;inset:6% 7%;background:#F6F3EC;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.B .tape{position:absolute;width:16%;height:5.5%;background:rgba(226,214,150,.72);border-left:1px dashed rgba(0,0,0,.12);border-right:1px dashed rgba(0,0,0,.12)}
+.B .t1{left:8%;top:3.4%;transform:rotate(-4deg)}
+.B .t2{right:9%;top:3.4%;transform:rotate(3deg)}
+.B .t3{left:44%;bottom:3.2%;transform:rotate(-2deg)}
+.B h2{position:absolute;left:11%;top:26%;font-size:8.6cqw;font-weight:800;color:#15140F;letter-spacing:-.045em;line-height:.96;z-index:2}
+.B .stamp{position:absolute;right:11%;top:22%;width:15%;aspect-ratio:1;border:2px solid #C6392A;border-radius:50%;transform:rotate(-14deg);display:flex;align-items:center;justify-content:center;text-align:center;font-family:'JetBrains Mono',monospace;font-size:1cqw;color:#C6392A;font-weight:700;line-height:1.4;letter-spacing:.06em;z-index:2}
+.B .sb{position:absolute;left:11%;bottom:16%;font-size:1.2cqw;color:#5C574C;z-index:2}
+
+/* C · 하프톤 스캔 — VHS·인쇄물 느낌 */
+.C{background:#101010;overflow:hidden}
+.C .scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.055) 0 1px,transparent 1px 4px);z-index:2}
+.C .dots{position:absolute;left:-6%;top:-10%;width:62%;height:120%;background:radial-gradient(#22D07A 1.1px,transparent 1.2px);background-size:9px 9px;opacity:.55;transform:rotate(-9deg)}
+.C h2{position:absolute;right:5%;top:16%;text-align:right;font-size:7.4cqw;font-weight:800;color:#F2F2EE;letter-spacing:-.045em;line-height:.98;z-index:3}
+.C h2 em{font-style:normal;color:#22D07A}
+.C .rec{position:absolute;left:5%;bottom:8%;font-family:'JetBrains Mono',monospace;font-size:1cqw;color:#22D07A;letter-spacing:.18em;z-index:3;display:flex;align-items:center;gap:.7em}
+.C .rec i{width:.75em;height:.75em;border-radius:50%;background:#E8452F;display:block}
+.C .tc{position:absolute;right:5%;bottom:8%;font-family:'JetBrains Mono',monospace;font-size:1cqw;color:#7A7A74;letter-spacing:.16em;z-index:3}
+
+/* D · 아웃라인 — 속이 빈 글자가 채워진 글자를 덮는다 */
+.D{background:#F0EDE6;display:flex;align-items:center;justify-content:center}
+.D .st{position:relative;text-align:center}
+.D .o{font-size:11cqw;font-weight:800;letter-spacing:-.05em;line-height:.9;color:transparent;-webkit-text-stroke:1.5px #15140F}
+.D .s{position:absolute;left:0;right:0;top:11%;font-size:11cqw;font-weight:800;letter-spacing:-.05em;line-height:.9;color:#E8452F}
+.D .s2{position:absolute;left:0;right:0;top:22%;font-size:11cqw;font-weight:800;letter-spacing:-.05em;line-height:.9;color:transparent;-webkit-text-stroke:1.5px #15140F;opacity:.45}
+.D .sb{position:absolute;left:6%;bottom:7%;font-size:1.15cqw;color:#5A554C;z-index:4}
+.D .rt{position:absolute;right:6%;bottom:7%;font-family:'JetBrains Mono',monospace;font-size:1cqw;color:#8C8578;letter-spacing:.14em;z-index:4}
+
+/* E · 세로 조판 — 한국어 세로쓰기 */
+.E{background:#0E1512;display:flex;align-items:center;padding-left:8%}
+.E .vt{writing-mode:vertical-rl;font-family:'Pretendard',sans-serif;font-size:6.2cqw;font-weight:800;color:#EDE8DD;letter-spacing:.02em;line-height:1.42;z-index:3}
+.E .vt em{font-style:normal;color:#C9A227}
+.E .line{position:absolute;left:0;right:0;top:50%;height:1px;background:#2A3630}
+.E .rd{position:absolute;right:9%;top:50%;transform:translateY(-50%);width:26%;aspect-ratio:1;border-radius:50%;background:#C9A227;opacity:.93}
+.E .sb{position:absolute;left:8%;bottom:7%;font-size:1.1cqw;color:#6E7C74;z-index:3}
+.E .mt{position:absolute;right:9%;bottom:7%;font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#5D6B63;letter-spacing:.18em;z-index:3}
+
+/* F · 그리드 이탈 — 정렬을 일부러 깨뜨린다 */
+.F{background:#1B1BE8}
+.F .g{position:absolute;inset:0;background-image:linear-gradient(#ffffff14 1px,transparent 1px),linear-gradient(90deg,#ffffff14 1px,transparent 1px);background-size:7.14% 12.5%}
+.F .w1{position:absolute;left:6%;top:17%;font-size:9.4cqw;font-weight:800;color:#fff;letter-spacing:-.05em;line-height:.9;z-index:3}
+.F .w2{position:absolute;left:26%;top:41%;font-size:9.4cqw;font-weight:800;color:#FFE34D;letter-spacing:-.05em;line-height:.9;z-index:3}
+.F .w3{position:absolute;left:13%;top:64%;font-size:9.4cqw;font-weight:800;color:#fff;letter-spacing:-.05em;line-height:.9;z-index:3;-webkit-text-stroke:0}
+.F .mt{position:absolute;right:5%;top:7%;font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#C9CBFF;letter-spacing:.2em;text-align:right;line-height:2;z-index:3}
+.F .sb{position:absolute;right:5%;bottom:7%;font-size:1.1cqw;color:#C9CBFF;text-align:right;z-index:3}
+
+/* G · 잉크트랩 세리프 — 에디토리얼 극단 */
+.G{background:#F4F1EA;display:flex;flex-direction:column;justify-content:center;padding:0 7%}
+.G .rule2{position:absolute;left:7%;right:7%;top:14%;height:2px;background:#12110E}
+.G .rule3{position:absolute;left:7%;right:7%;bottom:14%;height:2px;background:#12110E}
+.G .kk{position:absolute;left:7%;top:16.5%;font-family:'JetBrains Mono',monospace;font-size:.95cqw;letter-spacing:.2em;color:#7C766A}
+.G .no2{position:absolute;right:7%;top:16.5%;font-family:'JetBrains Mono',monospace;font-size:1.1cqw;letter-spacing:.14em;color:#7C766A}
+.G h2{font-family:'Pretendard',sans-serif;font-size:9.2cqw;font-weight:800;color:#12110E;letter-spacing:-.045em;line-height:1.0}
+.G h2 em{font-style:normal;font-weight:800;color:#A02C1E}
+.G .sb{position:absolute;left:7%;bottom:16.5%;font-size:1.1cqw;color:#5F5A50}
+
+/* H · 스택 슬라이스 — 화면이 층으로 갈라진다 */
+.H{background:#08090B;overflow:hidden}
+.H .sl{position:absolute;left:0;right:0;height:20%;background:#08090B;display:flex;align-items:center;padding-left:6%;
+  font-size:9cqw;font-weight:800;letter-spacing:-.05em;color:#F2F0EC;white-space:nowrap}
+.H .sl:nth-child(1){top:14%}
+.H .sl:nth-child(2){top:34%;color:#FF5A3C;padding-left:12%}
+.H .sl:nth-child(3){top:54%;padding-left:8%}
+.H .cut{position:absolute;left:0;right:0;height:1px;background:#FF5A3C;opacity:.6}
+.H .c1{top:34%}.H .c2{top:54%}.H .c3{top:74%}
+.H .mt{position:absolute;left:6%;bottom:8%;font-family:'JetBrains Mono',monospace;font-size:1cqw;color:#6E7076;letter-spacing:.18em;z-index:4}
+
+/* ─────────── 내지 (종류별) ─────────── */
+.I{background:#0B0B0C;padding:6% 7%;display:flex;flex-direction:column;justify-content:center}
+.I .kk{font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#FF4B1F;letter-spacing:.2em;margin-bottom:3%}
+/* i1 · 한 장 한 메시지 */
+.i1 h3{font-size:7.4cqw;font-weight:800;color:#F4F1EC;letter-spacing:-.045em;line-height:1.0}
+.i1 .u{font-size:1.2cqw;color:#7E7A74;margin-top:3%;max-width:46ch;line-height:1.75}
+/* i2 · 숫자 한 장 */
+.i2{align-items:flex-start}
+.i2 .big{font-family:'Archivo Black',sans-serif;font-size:24cqw;line-height:.8;color:#FF4B1F;letter-spacing:-.05em}
+.i2 .lb{font-size:1.6cqw;color:#F4F1EC;font-weight:700;margin-top:2%}
+.i2 .u{font-size:1.05cqw;color:#7E7A74;margin-top:1.2%}
+/* i3 · 인용 */
+.i3 .q{font-family:'Pretendard',sans-serif;font-weight:800;font-size:5.6cqw;color:#F4F1EC;line-height:1.16;letter-spacing:-.04em}
+.i3 .by{font-family:'JetBrains Mono',monospace;font-size:1cqw;color:#FF4B1F;letter-spacing:.16em;margin-top:3.5%}
+/* i4 · 전후 비교 */
+.i4{padding:0;flex-direction:row}
+.i4 .h{flex:1;padding:6% 5%;display:flex;flex-direction:column;justify-content:center}
+.i4 .bf{background:#141416}
+.i4 .af{background:#FF4B1F}
+.i4 .tag{font-family:'JetBrains Mono',monospace;font-size:.95cqw;letter-spacing:.2em;margin-bottom:5%}
+.i4 .bf .tag{color:#6E6A64}.i4 .af .tag{color:#3A0F04}
+.i4 .v{font-size:5.6cqw;font-weight:800;letter-spacing:-.04em;line-height:1.06}
+.i4 .bf .v{color:#8A857E}.i4 .af .v{color:#120602}
+.i4 .n2{font-size:1.05cqw;margin-top:4%;line-height:1.7}
+.i4 .bf .n2{color:#615D57}.i4 .af .n2{color:#4A170A}
+/* i5 · 데모 전환 */
+.i5{align-items:center;justify-content:center;text-align:center;background:#FF4B1F}
+.i5 .lb{font-family:'JetBrains Mono',monospace;font-size:1.1cqw;color:#3A0F04;letter-spacing:.26em;margin-bottom:2.5%}
+.i5 h3{font-size:9cqw;font-weight:800;color:#0B0503;letter-spacing:-.05em;line-height:.98}
+.i5 .u{font-size:1.15cqw;color:#4A170A;margin-top:2.6%}
+/* i6 · 흐름 */
+.i6 h3{font-size:3.4cqw;font-weight:800;color:#F4F1EC;letter-spacing:-.03em;margin-bottom:5%}
+.i6 .fl{display:flex;align-items:stretch;gap:0}
+.i6 .st{flex:1;border-top:2px solid #FF4B1F;padding:2.4% 1.6% 0 0}
+.i6 .st:nth-child(even){border-top-style:dashed;opacity:.72}
+.i6 .st b{display:block;font-size:1.5cqw;color:#F4F1EC;letter-spacing:-.02em;margin-bottom:.9%}
+.i6 .st span{font-family:'JetBrains Mono',monospace;font-size:.92cqw;color:#7E7A74}
+/* i7 · 목록 (쪼갠 버전) */
+.i7 .row{display:flex;align-items:baseline;gap:3%;padding:2.6% 0;border-bottom:1px solid #232326}
+.i7 .row:first-of-type{border-top:1px solid #232326}
+.i7 .row b{font-family:'JetBrains Mono',monospace;font-size:1.05cqw;color:#FF4B1F;letter-spacing:.14em;width:5%}
+.i7 .row .t{font-size:2.6cqw;font-weight:700;color:#F4F1EC;letter-spacing:-.03em;flex:1}
+.i7 .row .d{font-size:1.05cqw;color:#7E7A74;width:34%;line-height:1.65}
+/* i8 · 클로징 */
+.i8{align-items:center;justify-content:center;text-align:center}
+.i8 h3{font-size:8cqw;font-weight:800;color:#F4F1EC;letter-spacing:-.05em;line-height:1.0}
+.i8 h3 em{font-style:normal;color:#FF4B1F}
+.i8 .u{font-family:'JetBrains Mono',monospace;font-size:1.05cqw;color:#7E7A74;letter-spacing:.14em;margin-top:3.4%}
+</style>
+
+<h1>표지 시안 8종 — 실제 카피 적용</h1>
+<p class="lead">제목 <b>"이건 아니야"를 2,000번 말하고 알게 된 것</b> 을 8종에 얹었습니다. 골라주시면 그 감도로 26장 전체를 만듭니다.</p>
+
+<div class="sec">─ 표지 8종</div>
+
+<div class="set"><div class="hd"><span class="no">A</span><span class="nm">타이포 마스킹</span><span class="tg">글자 안에 그라디언트가 잘려 비침</span></div>
+<p class="why">영문 초대형 글자를 마스크로 써서 안쪽에 색이 흐른다. 글자가 글자가 아니라 <b>창(window)</b>이 된다. 한글은 좌하단에 작게 앉혀 역할을 분리했다.</p>
+<div class="f A gr"><div class="huge">NOT<br>THIS</div><div class="ko">이건 아니야<br>× 2,000</div><div class="mt">SPONGE CLUB<br>2026 · 08</div></div><div class="cap">COVER A</div></div>
+
+<div class="set"><div class="hd"><span class="no">B</span><span class="nm">테이프 콜라주</span><span class="tg">종이에 붙인 물성</span></div>
+<p class="why">무드보드의 <b>마스킹테이프 텍스처</b>에서 왔다. 종이 위에 테이프로 붙인 인쇄물처럼. 도장 하나가 손맛을 만든다. 화면이 아니라 물건처럼 보이는 게 목적.</p>
+<div class="f B grc"><div class="paper"></div><div class="tape t1"></div><div class="tape t2"></div><div class="tape t3"></div><h2>이건 아니야<br>× 2,000</h2><div class="stamp">기준<br>×1</div><div class="sb">AI는 시간을 아껴주지 않습니다. 남는 건 기준이었어요</div></div><div class="cap">COVER B</div></div>
+
+<div class="set"><div class="hd"><span class="no">C</span><span class="nm">하프톤 스캔</span><span class="tg">VHS·인쇄 질감</span></div>
+<p class="why">주사선과 하프톤 점망이 겹친다. 무드보드의 <b>VHS 레트로</b> 계열. REC 표시와 타임코드가 "지금 돌아가는 중"이라는 긴장을 만든다.</p>
+<div class="f C gr"><div class="dots"></div><div class="scan"></div><h2>이건 아니야<br><em>× 2,000</em></h2><div class="rec"><i></i>REC · LIVE DEMO</div><div class="tc">00:00:00:00</div></div><div class="cap">COVER C</div></div>
+
+<div class="set"><div class="hd"><span class="no">D</span><span class="nm">아웃라인 스택</span><span class="tg">속 빈 글자가 겹쳐 쌓임</span></div>
+<p class="why">같은 단어를 아웃라인·솔리드·아웃라인으로 세 번 겹쳐 어긋나게 쌓았다. <b>복사·붙여넣기의 잔상</b>을 글자 자체로 만든 것. 밝은 지면이라 줌에서 편하다.</p>
+<div class="f D grc"><div class="st"><div class="o">아니야</div><div class="s">아니야</div><div class="s2">아니야</div></div><div class="sb">AI는 시간을 아껴주지 않습니다 · 남는 건 기준</div><div class="rt">SPONGE CLUB 2026</div></div><div class="cap">COVER D</div></div>
+
+<div class="set"><div class="hd"><span class="no">E</span><span class="nm">세로 조판</span><span class="tg">한국어 세로쓰기 + 명조</span></div>
+<p class="why">한글을 세로로 흘리고 오른쪽에 금색 원을 놓았다. 가로쓰기만 있는 덱 사이에서 <b>이 한 장이 튄다.</b> 본업·브랜딩 주제에 맞는다.</p>
+<div class="f E gr"><div class="line"></div><div class="rd"></div><div class="vt">이건 아니야<br><em>× 2,000</em></div><div class="sb">남는 건 시간이 아니라 기준</div><div class="mt">SPONGE CLUB · 2026</div></div><div class="cap">COVER E</div></div>
+
+<div class="set"><div class="hd"><span class="no">F</span><span class="nm">그리드 이탈</span><span class="tg">세 줄이 일부러 어긋남</span></div>
+<p class="why">배경에 그리드를 깔고 <b>그 위에서 일부러 어긋나게</b> 세 줄을 배치했다. 정렬이 깨진 게 아니라 깨뜨린 것. 원색 배경이 화면을 지배한다.</p>
+<div class="f F gr"><div class="g"></div><div class="w1">이건</div><div class="w2">아니야</div><div class="w3">× 2,000</div><div class="mt">SPONGE CLUB<br>이기적 공유회</div><div class="sb">스킬 하나씩은 쓰는데<br>이어 붙이진 못하는 분들께</div></div><div class="cap">COVER F</div></div>
+
+<div class="set"><div class="hd"><span class="no">G</span><span class="nm">에디토리얼 룰</span><span class="tg">위아래 굵은 선 + 보도니</span></div>
+<p class="why">위아래를 굵은 선으로 가두고 그 사이를 세리프가 채운다. 이탤릭 한 덩어리로 강조를 만든다. 잡지 표제면의 문법 그대로.</p>
+<div class="f G grc"><div class="rule2"></div><div class="rule3"></div><div class="kk">SPONGE CLUB · 이기적 공유회</div><div class="no2">No. 08</div><h2>이건 아니야<br><em>× 2,000</em></h2><div class="sb">AI는 시간을 아껴주지 않습니다. 남는 건 기준이었어요</div></div><div class="cap">COVER G</div></div>
+
+<div class="set"><div class="hd"><span class="no">H</span><span class="nm">슬라이스</span><span class="tg">화면이 층으로 잘림</span></div>
+<p class="why">가로선이 화면을 층층이 자르고 각 층의 글자가 다른 들여쓰기로 어긋난다. <b>끊겼던 작업이 이어지는</b> 구조. 글자가 층에 걸쳐 잘린다.</p>
+<div class="f H gr"><div class="sl">이건 아니야</div><div class="sl">× 2,000</div><div class="sl">남은 건 기준</div><div class="cut c1"></div><div class="cut c2"></div><div class="cut c3"></div><div class="mt">SPONGE CLUB · 2026 · 08</div></div><div class="cap">COVER H</div></div>
+
+

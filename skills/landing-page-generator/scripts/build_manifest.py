@@ -1,0 +1,377 @@
+#!/usr/bin/env python3
+"""Generate cli/skills.json from all SKILL.md files in the repo.
+
+Walks domain directories, parses YAML frontmatter from each SKILL.md, measures
+the skill folder size and file list, and writes a single JSON manifest that the
+`npx claude-skills` CLI uses for list/search/info/add commands.
+
+Standard library only. No external deps.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import re
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+MANIFEST_PATH = REPO_ROOT / "cli" / "skills.json"
+REGISTRY_PATH = REPO_ROOT / "registry.json"
+GEMINI_INDEX_PATH = REPO_ROOT / ".gemini" / "skills-index.json"
+# Root catalog consumed by scripts/generate_site.py to build the public website.
+SITE_CATALOG_PATH = REPO_ROOT / "skills.json"
+
+DOMAINS = [
+    "engineering",
+    "marketing",
+    "c-level-advisor",
+    "ra-qm-team",
+    "business-growth",
+    "legal",
+    "project-management",
+    "product-team",
+    "data-analytics",
+    "sales-success",
+    "hr-operations",
+    "finance",
+    "personal-productivity",
+    "documents",
+    "vertical-advisors",
+    "research",
+    "research-ops",
+    "business-operations",
+    "markdown-html",
+    "workflow",
+]
+
+
+def parse_frontmatter(text: str) -> dict:
+    """Minimal YAML-frontmatter parser covering the observed SKILL.md shapes.
+
+    Handles: scalar key:value, multi-line `>` folded scalars, nested metadata:
+    block with indented key:value pairs, and inline JSON-style arrays.
+    """
+    if not text.startswith("---"):
+        return {}
+    end = text.find("\n---", 3)
+    if end == -1:
+        return {}
+    block = text[3:end].strip("\n")
+    lines = block.split("\n")
+
+    result: dict = {}
+    nested_key: str | None = None
+    folded_key: str | None = None
+    folded_parts: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.rstrip()
+
+        if folded_key is not None:
+            if line.startswith("  ") and not re.match(r"^\s*\w+:", line):
+                folded_parts.append(line.strip())
+                i += 1
+                continue
+            target = result if nested_key is None else result.setdefault(nested_key, {})
+            target[folded_key] = " ".join(folded_parts).strip()
+            folded_key = None
+            folded_parts = []
+
+        if not stripped:
+            i += 1
+            continue
+
+        m_nested_start = re.match(r"^(\w[\w-]*):\s*$", stripped)
+        if m_nested_start and not line.startswith("  "):
+            nested_key = m_nested_start.group(1)
+            result.setdefault(nested_key, {})
+            i += 1
+            continue
+
+        m_kv = re.match(r"^(\s*)(\w[\w-]*):\s*(.*)$", line)
+        if m_kv:
+            indent, key, value = m_kv.groups()
+            if indent == "":
+                nested_key = None
+            target = result if nested_key is None else result.setdefault(nested_key, {})
+
+            if value in ("", ">", "|"):
+                if value in (">", "|"):
+                    folded_key = key
+                    folded_parts = []
+                elif nested_key is None:
+                    nested_key = key
+                    result.setdefault(nested_key, {})
+                i += 1
+                continue
+
+            target[key] = _parse_scalar(value.strip())
+        i += 1
+
+    if folded_key is not None:
+        target = result if nested_key is None else result.setdefault(nested_key, {})
+        target[folded_key] = " ".join(folded_parts).strip()
+
+    return result
+
+
+def _parse_scalar(value: str):
+    if value.startswith("[") and value.endswith("]"):
+        inner = value[1:-1].strip()
+        if not inner:
+            return []
+        return [item.strip().strip("'\"") for item in inner.split(",")]
+    if value.startswith('"') and value.endswith('"'):
+        return value[1:-1]
+    if value.startswith("'") and value.endswith("'"):
+        return value[1:-1]
+    return value
+
+
+SKIP_DIRS = {"__pycache__", ".pytest_cache", "node_modules", ".venv", "venv", ".git"}
+SKIP_FILE_SUFFIXES = (".pyc", ".pyo", ".DS_Store")
+
+
+def walk_skill_dir(skill_dir: Path) -> tuple[list[str], int]:
+    """Return relative file paths and total size in bytes for a skill folder.
+
+    Skips build artifacts and hidden directories that aren't in git.
+    """
+    files: list[str] = []
+    total = 0
+    for root, dirs, filenames in os.walk(skill_dir):
+        dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.startswith(".")]
+        for fname in filenames:
+            if fname.startswith(".") or fname.endswith(SKIP_FILE_SUFFIXES):
+                continue
+            p = Path(root) / fname
+            rel = p.relative_to(skill_dir).as_posix()
+            files.append(rel)
+            try:
+                total += p.stat().st_size
+            except OSError:
+                pass
+    return sorted(files), total
+
+
+def build_skill_entry(domain: str, skill_dir: Path, rel_path: str | None = None) -> dict | None:
+    skill_md = skill_dir / "SKILL.md"
+    if not skill_md.is_file():
+        return None
+    try:
+        text = skill_md.read_text(encoding="utf-8")
+    except OSError:
+        return None
+
+    fm = parse_frontmatter(text)
+    metadata = fm.get("metadata", {}) if isinstance(fm.get("metadata"), dict) else {}
+
+    name = fm.get("name") or skill_dir.name
+    description = fm.get("description", "")
+    if isinstance(description, str):
+        description = re.sub(r"\s+", " ", description).strip()
+    else:
+        description = ""
+
+    tags = metadata.get("tags") or fm.get("tags") or []
+    if isinstance(tags, str):
+        tags = [t.strip() for t in tags.split(",") if t.strip()]
+
+    files, size_bytes = walk_skill_dir(skill_dir)
+    path_suffix = rel_path if rel_path is not None else skill_dir.name
+    tools_count = sum(
+        1 for f in files if f.startswith("scripts/") and f.endswith(".py")
+    )
+
+    return {
+        "name": name,
+        "domain": domain,
+        "description": description,
+        "tags": tags,
+        "version": metadata.get("version", "1.0.0"),
+        "updated": metadata.get("updated", ""),
+        "author": metadata.get("author", ""),
+        "license": fm.get("license", ""),
+        "category": metadata.get("category", domain),
+        "subdomain": metadata.get("subdomain", ""),
+        "path": f"{domain}/{path_suffix}",
+        "files": files,
+        "size_bytes": size_bytes,
+        "tools_count": tools_count,
+        "has_scripts": "scripts" in {f.split("/", 1)[0] for f in files},
+        "has_references": "references" in {f.split("/", 1)[0] for f in files},
+        "has_assets": "assets" in {f.split("/", 1)[0] for f in files},
+    }
+
+
+def main(argv: list[str]) -> int:
+    skills: list[dict] = []
+    for domain in DOMAINS:
+        domain_dir = REPO_ROOT / domain
+        if not domain_dir.is_dir():
+            continue
+        for skill_dir in sorted(domain_dir.iterdir()):
+            if not skill_dir.is_dir() or skill_dir.name.startswith("."):
+                continue
+            entry = build_skill_entry(domain, skill_dir)
+            if entry is not None:
+                skills.append(entry)
+                continue
+            # Container folder without its own SKILL.md (e.g. PM's
+            # discovery/, execution/, career/). Recurse one level for
+            # nested skills.
+            for nested_dir in sorted(skill_dir.iterdir()):
+                if not nested_dir.is_dir() or nested_dir.name.startswith("."):
+                    continue
+                nested_entry = build_skill_entry(
+                    domain, nested_dir, rel_path=f"{skill_dir.name}/{nested_dir.name}"
+                )
+                if nested_entry is not None:
+                    skills.append(nested_entry)
+
+    generated_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+    manifest = {
+        "schema_version": "1.0.0",
+        "generated_at": generated_at,
+        "skill_count": len(skills),
+        "domain_count": len({s["domain"] for s in skills}),
+        "skills": skills,
+    }
+
+    MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
+    MANIFEST_PATH.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+    registry = {
+        "schema_version": "1.0.0",
+        "generated_at": generated_at,
+        "repository": "claude-skills",
+        "skill_count": len(skills),
+        "domain_count": len({s["domain"] for s in skills}),
+        "domains": sorted({s["domain"] for s in skills}),
+        "skills": [_registry_entry(s) for s in skills],
+    }
+    REGISTRY_PATH.write_text(
+        json.dumps(registry, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+    if GEMINI_INDEX_PATH.parent.is_dir():
+        gemini_index = {
+            "version": "1.0.0",
+            "updated": generated_at,
+            "total_skills": len(skills),
+            "skills": [_gemini_entry(s) for s in skills],
+        }
+        GEMINI_INDEX_PATH.write_text(
+            json.dumps(gemini_index, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+
+    # Root catalog for the website generator (richer per-skill shape + per-domain rollup)
+    domain_rollup: dict = {}
+    for s in skills:
+        d = domain_rollup.setdefault(s["domain"], {"count": 0, "tools": 0})
+        d["count"] += 1
+        d["tools"] += s.get("tools_count", 0)
+    pm_count = domain_rollup.get("project-management", {}).get("count", 0)
+    existing = {}
+    if SITE_CATALOG_PATH.exists():
+        try:
+            existing = json.loads(SITE_CATALOG_PATH.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            existing = {}
+    site_catalog = {
+        "name": existing.get("name", "claude-skills"),
+        "description": (
+            f"The Universal AI Skills Library — {len(skills)} production-ready skills "
+            f"across {len(domain_rollup)} domains. Project Management is the "
+            f"most-used domain ({pm_count} skills)."
+        ),
+        "version": existing.get("version", "1.0.0"),
+        "repository": existing.get("repository", "https://github.com/borghei/Claude-Skills"),
+        "website": existing.get("website", "https://borghei.github.io/Claude-Skills"),
+        "author": existing.get("author", "borghei"),
+        "license": existing.get("license", "MIT + Commons Clause"),
+        "total_skills": len(skills),
+        "updated": generated_at[:10],
+        "domains": {k: domain_rollup[k] for k in sorted(domain_rollup)},
+        "skills": [_site_entry(s) for s in skills],
+    }
+    SITE_CATALOG_PATH.write_text(
+        json.dumps(site_catalog, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+    print(f"Wrote {MANIFEST_PATH.relative_to(REPO_ROOT)}")
+    print(f"  skills: {manifest['skill_count']}")
+    print(f"  domains: {manifest['domain_count']}")
+    print(f"Wrote {REGISTRY_PATH.relative_to(REPO_ROOT)} (public registry)")
+    if GEMINI_INDEX_PATH.parent.is_dir():
+        print(f"Wrote {GEMINI_INDEX_PATH.relative_to(REPO_ROOT)} (Gemini CLI index)")
+    print(f"Wrote {SITE_CATALOG_PATH.relative_to(REPO_ROOT)} (website catalog)")
+    return 0
+
+
+def _site_entry(skill: dict) -> dict:
+    """Root skills.json shape consumed by generate_site.py — per-skill tool
+    counts (not file lists) plus category/subdomain/license."""
+    return {
+        "name": skill["name"],
+        "description": skill.get("description", ""),
+        "path": f"{skill['path']}/SKILL.md",
+        "domain": skill["domain"],
+        "category": skill.get("category") or skill["domain"],
+        "subdomain": skill.get("subdomain", ""),
+        "version": skill.get("version", "1.0.0"),
+        "license": skill.get("license") or "MIT + Commons Clause",
+        "tags": skill.get("tags", []),
+        "tools": skill.get("tools_count", 0),
+        "has_references": skill.get("has_references", False),
+        "has_assets": skill.get("has_assets", False),
+    }
+
+
+def _gemini_entry(skill: dict) -> dict:
+    """Gemini CLI skills-index.json shape — name, description, domain, path,
+    tools (script filenames), tags."""
+    tools = sorted(
+        f.split("/", 1)[1]
+        for f in skill.get("files", [])
+        if f.startswith("scripts/") and f.endswith(".py") and "/" in f
+    )
+    return {
+        "name": skill["name"],
+        "description": skill.get("description", ""),
+        "domain": skill["domain"],
+        "path": f"{skill['path']}/SKILL.md",
+        "tools": tools,
+        "tags": skill.get("tags", []),
+    }
+
+
+REGISTRY_FIELDS = ("name", "domain", "description", "tags", "version", "updated", "path")
+
+
+def _registry_entry(skill: dict) -> dict:
+    """Public-facing slice of a skill entry — no file lists, no sizes.
+
+    This is the shape third-party indexers and registries consume. Internal
+    CLI metadata stays in cli/skills.json.
+    """
+    entry = {k: skill.get(k, "" if k != "tags" else []) for k in REGISTRY_FIELDS}
+    entry["has_scripts"] = skill.get("has_scripts", False)
+    entry["has_references"] = skill.get("has_references", False)
+    return entry
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

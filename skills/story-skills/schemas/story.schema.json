@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/danjdewhurst/story-skills/schemas/story.schema.json",
+  "title": "Story Skills Schema v2",
+  "type": "object",
+  "required": ["story", "characters", "worldbuilding", "plot", "chapters", "scenes", "continuity", "glossary"],
+  "properties": {
+    "story": {
+      "type": "object",
+      "required": ["title", "schema-version", "genre", "status", "themes", "pov", "tense"],
+      "properties": {
+        "title": { "type": "string" },
+        "schema-version": { "const": 2 },
+        "genre": { "type": "string" },
+        "status": { "enum": ["planning", "drafting", "in-progress", "revising", "complete", "abandoned"] },
+        "themes": { "type": "array", "items": { "type": "string" } },
+        "pov": { "type": "string" },
+        "tense": { "enum": ["past", "present", "future", "mixed"] }
+      }
+    },
+    "characters": { "type": "array", "items": { "$ref": "#/$defs/character" } },
+    "worldbuilding": {
+      "type": "object",
+      "properties": {
+        "locations": { "type": "array", "items": { "$ref": "#/$defs/location" } },
+        "systems": { "type": "array", "items": { "$ref": "#/$defs/system" } },
+        "factions": { "type": "array", "items": { "$ref": "#/$defs/faction" } },
+        "artifacts": { "type": "array", "items": { "$ref": "#/$defs/artifact" } }
+      }
+    },
+    "plot": {
+      "type": "object",
+      "properties": {
+        "arcs": { "type": "array", "items": { "$ref": "#/$defs/arc" } }
+      }
+    },
+    "chapters": { "type": "array", "items": { "$ref": "#/$defs/chapter" } },
+    "scenes": { "type": "array", "items": { "$ref": "#/$defs/scene" } },
+    "continuity": {
+      "type": "object",
+      "properties": {
+        "questions": { "type": "array", "items": { "$ref": "#/$defs/question" } },
+        "promises": { "type": "array", "items": { "$ref": "#/$defs/promise" } }
+      }
+    },
+    "glossary": { "type": "array", "items": { "$ref": "#/$defs/term" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "stringList": { "type": "array", "items": { "type": "string" } },
+    "character": {
+      "type": "object",
+      "required": ["id", "name", "role", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string" },
+        "role": { "enum": ["protagonist", "antagonist", "supporting", "minor", "narrator", "deuteragonist"] },
+        "status": { "enum": ["alive", "deceased", "unknown", "missing"] },
+        "died-in": { "type": "string" },
+        "locations": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": ["id", "name", "type"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "notable-characters": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "system": {
+      "type": "object",
+      "required": ["id", "name", "type"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string" },
+        "type": { "type": "string" }
+      }
+    },
+    "faction": {
+      "type": "object",
+      "required": ["id", "name", "type", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string" },
+        "type": { "enum": ["family", "guild", "government", "military", "religion", "company", "community", "criminal", "other"] },
+        "status": { "enum": ["active", "hidden", "declining", "defeated", "disbanded", "unknown"] },
+        "members": { "$ref": "#/$defs/stringList" },
+        "locations": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["id", "name", "type", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string" },
+        "type": { "enum": ["object", "weapon", "document", "technology", "relic", "symbol", "resource", "other"] },
+        "status": { "enum": ["active", "lost", "destroyed", "hidden", "transferred", "unknown"] }
+      }
+    },
+    "arc": {
+      "type": "object",
+      "required": ["id", "name", "type", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string" },
+        "type": { "enum": ["main", "subplot", "character", "thematic"] },
+        "status": { "enum": ["planned", "in-progress", "resolved"] }
+      }
+    },
+    "chapter": {
+      "type": "object",
+      "required": ["id", "title", "number", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string" },
+        "number": { "type": "integer", "minimum": 1 },
+        "status": { "enum": ["outline", "draft", "revised", "final", "complete"] },
+        "characters": { "$ref": "#/$defs/stringList" },
+        "mentions": { "$ref": "#/$defs/stringList" },
+        "locations": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "scene": {
+      "type": "object",
+      "required": ["id", "title", "chapter", "scene", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string" },
+        "chapter": { "$ref": "#/$defs/id" },
+        "scene": { "type": "integer", "minimum": 1 },
+        "status": { "enum": ["outline", "draft", "revised", "final", "complete"] },
+        "characters": { "$ref": "#/$defs/stringList" },
+        "mentions": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "question": {
+      "type": "object",
+      "required": ["id", "title", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string" },
+        "status": { "enum": ["open", "answered", "resolved", "dropped"] }
+      }
+    },
+    "promise": {
+      "type": "object",
+      "required": ["id", "title", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string" },
+        "status": { "enum": ["planned", "planted", "paid-off", "dropped"] }
+      }
+    },
+    "term": {
+      "type": "object",
+      "required": ["id", "term", "category"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "term": { "type": "string" },
+        "category": { "enum": ["person", "place", "faction", "artifact", "concept", "term", "other"] }
+      }
+    }
+  }
+}

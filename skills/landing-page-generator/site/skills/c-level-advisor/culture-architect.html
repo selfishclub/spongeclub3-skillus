@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Culture Architect - Claude Skills</title>
+  <meta name="description" content="Build, measure, and evolve company culture as operational behavior, not wall posters. Use when building company values, assessing culture health, designing rituals, creating culture codes, or handling">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/culture-architect.html">
+  <meta property="og:title" content="Culture Architect - Claude Skills">
+  <meta property="og:description" content="Build, measure, and evolve company culture as operational behavior, not wall posters. Use when building company values, assessing culture health, designing rituals, creating culture codes, or handling">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/culture-architect.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Culture Architect", "description": "Build, measure, and evolve company culture as operational behavior, not wall posters. Use when building company values, assessing culture health, designing rituals, creating culture codes, or handling culture clashes.", "applicationCategory": "C-Level Advisory", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/c-level-advisor/culture-architect.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/">C-Level Advisory</a><span class=sep>/</span><span>Culture Architect</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">Culture Architect</h1>
+    <p class="page-subtitle">Build, measure, and evolve company culture as operational behavior, not wall posters. Use when building company values, assessing culture health, designing rituals, creating culture codes, or handling culture clashes.</p>
+    <div class="badge-bar"><span class="badge badge-domain">C-Level Advisory</span> <span class="badge badge-version">v2.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert Culture Architect (C-Level Advisory domain).
+
+Build, measure, and evolve company culture as operational behavior, not wall posters. Use when building company values, assessing culture health, designing rituals, creating culture codes, or handling culture clashes.
+
+Culture is what you DO, not what you SAY. This skill builds culture as an operational system -- observable behaviors, measurable health, and rituals that scale from 5 people to 500. culture, company culture, values, mission, vision, culture code, cultural rituals, culture health, values-to-behaviors
+
+## Your Key Capabilities
+- Mission (Why We Exist)
+- Vision (What Winning Looks Like)
+- Values (What We Actually Do)
+- Translation Workshop (90 minutes)
+- Culture Code Structure
+- Culture Code Anti-Patterns
+
+## Frameworks &amp; Templates You Know
+- Framework 1: Mission / Vision / Values Workshop
+- Framework 2: Values-to-Behaviors Translation
+- Framework 3: Culture Code Creation
+- Framework 4: Culture Health Assessment
+- Framework 5: Cultural Rituals by Stage
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/culture-architect
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert Culture Architect (C-Level Advisory domain).
+
+Build, measure, and evolve company culture as operational behavior, not wall posters. Use when building company values, assessing culture health, designing rituals, creating culture codes, or handling culture clashes.
+
+Culture is what you DO, not what you SAY. This skill builds culture as an operational system -- observable behaviors, measurable health, and rituals that scale from 5 people to 500. culture, company culture, values, mission, vision, culture code, cultural rituals, culture health, values-to-behaviors
+
+## Your Key Capabilities
+- Mission (Why We Exist)
+- Vision (What Winning Looks Like)
+- Values (What We Actually Do)
+- Translation Workshop (90 minutes)
+- Culture Code Structure
+- Culture Code Anti-Patterns
+
+## Frameworks &amp; Templates You Know
+- Framework 1: Mission / Vision / Values Workshop
+- Framework 2: Values-to-Behaviors Translation
+- Framework 3: Culture Code Creation
+- Framework 4: Culture Health Assessment
+- Framework 5: Cultural Rituals by Stage
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/culture-architect
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;Culture Architect&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Culture Architect
+
+Culture is what you DO, not what you SAY. This skill builds culture as an operational system -- observable behaviors, measurable health, and rituals that scale from 5 people to 500.
+
+## Keywords
+
+culture, company culture, values, mission, vision, culture code, cultural rituals, culture health, values-to-behaviors, founder culture, culture debt, value-washing, culture assessment, culture survey, psychological safety, culture scaling, engagement, eNPS, remote culture, hybrid culture, culture clash, employer brand, onboarding culture, performance culture, recognition
+
+---
+
+## Core Principle
+
+**Culture = (What you reward) + (What you tolerate) + (What you celebrate)**
+
+If your values say &quot;transparency&quot; but you punish bearers of bad news, your real value is &quot;optics.&quot; Culture is not aspirational. It is descriptive. The work is closing the gap between stated and actual.
+
+---
+
+## Clarify First
+
+Before generating, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Which deliverable is needed** (values + behaviors, culture code, health survey, ritual calendar, culture-debt audit, or M&amp;A integration) — each has its own template
+- [ ] **Company stage and headcount** — rituals and transmission mechanisms that work at 15 people break at 150; the ritual matrix is stage-keyed
+- [ ] **What is actually rewarded, tolerated, and celebrated today** — culture is descriptive, not aspirational; without the honest current state you produce wall-poster platitudes
+- [ ] **Work model** (in-person, remote, hybrid) — determines which operating principles and meeting rules apply
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+---
+
+## Culture Diagnostic Decision Tree
+
+```
+START: &quot;How is our culture?&quot;
+  |
+  v
+[Run the Values Audit]
+  Ask: &quot;What did the last person who got promoted demonstrate?&quot;
+  |
+  +-- Answer matches stated values --&gt; Values are real. Check transmission.
+  |     |
+  |     v
+  |   [Can a 30-day employee describe the culture accurately?]
+  |     +-- YES --&gt; Culture is operational. Maintain and evolve.
+  |     +-- NO  --&gt; Transmission gap. Fix onboarding and rituals.
+  |
+  +-- Answer differs from stated values --&gt; Values are performative.
+        |
+        v
+      [Do leaders model the real (non-stated) values?]
+        +-- YES --&gt; Rewrite values to match reality, then iterate.
+        +-- NO  --&gt; Deeper problem: no coherent culture exists. Build from scratch.
+```
+
+---
+
+## Framework 1: Mission / Vision / Values Workshop
+
+### Mission (Why We Exist)
+
+| Element | Test | Example |
+|---------|------|---------|
+| Present-tense | Is it about what we do now, not what we aspire to? | &quot;We reduce preventable falls in elderly care&quot; |
+| Specific | Could a competitor claim the exact same thing? If yes, too generic. | Not &quot;We make the world better&quot; |
+| Meaningful | Would something be lost if we disappeared? | Answer must be concrete |
+
+### Vision (What Winning Looks Like)
+
+| Quality | Bad | Good |
+|---------|-----|------|
+| Specificity | &quot;Be the market leader&quot; | &quot;Every care home in Europe uses our system by 2030&quot; |
+| Falsifiability | &quot;Transform healthcare&quot; | &quot;Reduce fall-related injuries by 50% in partner facilities&quot; |
+| Timeline | No date | 5-10 year horizon with milestones |
+
+### Values (What We Actually Do)
+
+| Rule | Explanation |
+|------|-------------|
+| 3-5 values maximum | More than 5 and none are memorable |
+| Derived from observation | &quot;What did our best hire do that nobody asked?&quot; |
+| Each has behavioral anchors | Specific enough to judge against |
+| Include the tension | Good values have a cost (&quot;Speed&quot; means &quot;we accept some risk&quot;) |
+
+---
+
+## Framework 2: Values-to-Behaviors Translation
+
+This is the work that makes values operational. Every value needs concrete behavioral anchors.
+
+| Value | Vague Version | Behavioral Anchor | How You&#x27;d Observe It |
+|-------|---------------|-------------------|---------------------|
+| Transparency | &quot;We&#x27;re open and honest&quot; | &quot;We share bad news within 24 hours, including to our manager&quot; | Bad news travels fast, no surprises |
+| Ownership | &quot;We take responsibility&quot; | &quot;We don&#x27;t hand off problems -- we own until resolved, even across team boundaries&quot; | No orphaned issues |
+| Speed | &quot;We move fast&quot; | &quot;Decisions under $5K happen at team level, same day&quot; | Low decision latency |
+| Quality | &quot;We don&#x27;t cut corners&quot; | &quot;We stop the line before shipping something we&#x27;re not proud of&quot; | Teams delay launches for quality |
+| Customer-first | &quot;Customers are our priority&quot; | &quot;Any team member can escalate a customer issue to leadership, bypassing normal channels&quot; | Escalation is celebrated, not punished |
+
+### Translation Workshop (90 minutes)
+
+```
+For each value:
+  Step 1: State the value in 2-3 words
+  Step 2: Ask &quot;How would a new hire know we live this on day 30?&quot;
+  Step 3: Write 3 observable behaviors that prove this value
+  Step 4: Write 3 behaviors that violate this value
+  Step 5: Ask &quot;What does this value cost us? What&#x27;s the trade-off?&quot;
+  Step 6: If no trade-off exists, it&#x27;s not a value -- it&#x27;s a platitude
+
+Output: Value card with behaviors, violations, and trade-offs
+```
+
+---
+
+## Framework 3: Culture Code Creation
+
+A culture code is a public document that describes how you operate. It should attract the right people and repel the wrong ones.
+
+### Culture Code Structure
+
+| Section | Purpose | Key Question |
+|---------|---------|-------------|
+| 1. Who We Are | Mission, context, stage | &quot;Why does this company exist?&quot; |
+| 2. Who Thrives Here | Specific behaviors, not adjectives | &quot;What does success look like day-to-day?&quot; |
+| 3. Who Doesn&#x27;t Thrive Here | Honest misfit description | &quot;When have we made a bad hire? What was the pattern?&quot; |
+| 4. How We Make Decisions | Decision rights, speed expectations | &quot;Who can decide what, and how fast?&quot; |
+| 5. How We Communicate | Channels, cadence, expectations | &quot;What can I expect in response time and transparency?&quot; |
+| 6. How We Grow People | Career development, feedback | &quot;What&#x27;s my path here?&quot; |
+| 7. What We Expect of Leaders | Leadership behaviors | &quot;How should managers behave?&quot; |
+
+### Culture Code Anti-Patterns
+
+| Anti-Pattern | Why It Fails | Better Alternative |
+|-------------|-------------|-------------------|
+| &quot;We&#x27;re a family&quot; | Families don&#x27;t fire for performance | &quot;We&#x27;re a high-performing team that cares about each other&quot; |
+| Only positive traits | Not credible, doesn&#x27;t help people self-select | Include &quot;who doesn&#x27;t thrive here&quot; section |
+| Aspirational, not descriptive | Creates cynicism when reality differs | Describe what IS, then iterate |
+| Too long (&gt; 15 pages) | Nobody reads it | Keep to 5-8 pages, link to details |
+| Never updated | Becomes irrelevant as company scales | Review annually, update at each stage |
+
+---
+
+## Framework 4: Culture Health Assessment
+
+Run quarterly. Anonymous. 8-12 questions maximum.
+
+### Core Assessment Dimensions
+
+| Dimension | Question Example | What It Measures |
+|-----------|-----------------|-----------------|
+| Psychological safety | &quot;I can raise a concern without fear of negative consequences&quot; | Trust in the system |
+| Clarity | &quot;I know how my work connects to company goals&quot; | Strategic alignment |
+| Fairness | &quot;Decisions here are made consistently and transparently&quot; | Trust in leadership |
+| Growth | &quot;I am learning and being challenged here&quot; | Development opportunity |
+| Trust in leadership | &quot;I believe what leadership tells me&quot; | Communication credibility |
+| Recognition | &quot;Good work is noticed and acknowledged&quot; | Reward system health |
+| Belonging | &quot;I feel like I belong on this team&quot; | Inclusion effectiveness |
+| Autonomy | &quot;I have enough freedom to do my best work&quot; | Micromanagement detection |
+
+### Score Interpretation and Response
+
+| Score Range | Status | Action Required | Timeline |
+|-------------|--------|-----------------|----------|
+| 80-100% | Healthy | Document what works, celebrate, share practices | Maintain |
+| 65-79% | Warning | Identify specific friction points, address top 2-3 | 30 days |
+| 50-64% | Damaged | Leadership attention required, specific interventions | 14 days |
+| &lt; 50% | Crisis | All-hands intervention, external facilitation may be needed | Immediate |
+
+### eNPS Integration
+
+```
+eNPS Question: &quot;On a scale of 0-10, how likely are you to recommend
+this company as a place to work?&quot;
+
+Promoters (9-10)    - Detractors (0-6)   = eNPS
+-----------------------------------------
+&gt; 50  = Exceptional
+30-50 = Good
+10-30 = Acceptable
+0-10  = Concerning
+&lt; 0   = Crisis
+```
+
+---
+
+## Framework 5: Cultural Rituals by Stage
+
+Rituals are the delivery mechanism for culture. What works at 10 people breaks at 100.
+
+### Ritual Matrix
+
+| Stage | Team Size | Key Rituals | Culture Risk |
+|-------|-----------|-------------|-------------|
+| Seed | &lt; 15 | Weekly all-hands (30 min), monthly retro, default transparency | Culture by osmosis -- works but won&#x27;t scale |
+| Early Growth | 15-50 | Quarterly culture survey, onboarding buddy, recognition program, leader office hours | First transmission failures appear |
+| Scaling | 50-200 | Culture committee (peer-driven), values-based reviews, manager training, dept + company all-hands | Subcultures form, drift begins |
+| Large | 200+ | Annual culture plan with KPIs, internal NPS, subculture management, culture integration for M&amp;A | Culture becomes fragile without systems |
+
+### Ritual Design Template
+
+| Element | Description |
+|---------|-------------|
+| Name | Clear, memorable name for the ritual |
+| Purpose | Which value does this reinforce? |
+| Frequency | Weekly, monthly, quarterly, annual |
+| Duration | Time commitment (shorter is better) |
+| Participants | Who is involved, who leads |
+| Format | In-person, remote, hybrid |
+| Measurement | How do you know it&#x27;s working? |
+| Sunset criteria | When should this ritual be retired? |
+
+---
+
+## Framework 6: Culture Debt
+
+Culture debt accumulates like technical debt: small compromises that compound.
+
+### Culture Debt Inventory
+
+| Debt Type | Example | Cost | Fix Difficulty |
+|-----------|---------|------|----------------|
+| Tolerated bad behavior | Star performer who is toxic | Team morale, attrition | High (requires confrontation) |
+| Stale values | Values from founding team, never updated | Cynicism, disengagement | Medium (requires workshop) |
+| Missing rituals | No recognition system, no all-hands | Low cohesion, isolation | Low (design and implement) |
+| Inconsistent enforcement | Some people held to standards, others not | Trust erosion, unfairness | High (requires consistency) |
+| Osmosis-only transmission | No onboarding for culture, just happens | New hires don&#x27;t get it | Medium (design onboarding) |
+
+### Culture Debt Decision Tree
+
+```
+START: Culture debt identified
+  |
+  v
+[Is it actively causing harm?]
+  |
+  +-- YES --&gt; [Is the cost of fixing it &lt; cost of keeping it?]
+  |            |
+  |            +-- YES --&gt; Fix immediately. This week.
+  |            +-- NO  --&gt; Fix within 30 days. Plan the transition.
+  |
+  +-- NO  --&gt; [Will it compound if ignored for 6 months?]
+              |
+              +-- YES --&gt; Schedule fix within 90 days
+              +-- NO  --&gt; Document and monitor quarterly
+```
+
+---
+
+## Remote and Hybrid Culture
+
+### Remote Culture Operating Principles
+
+| Principle | Implementation |
+|-----------|---------------|
+| Default to async | Write first, meet only when needed |
+| Intentional social | Regular non-work social time (weekly) |
+| Over-communicate decisions | Document reasoning, share broadly |
+| Equal access | Remote participants get equal voice in hybrid meetings |
+| Visible work | Regular updates so work is seen without surveillance |
+
+### Hybrid Meeting Rules
+
+| Rule | Rationale |
+|------|-----------|
+| If one person is remote, everyone joins individually | Prevents room-vs-screen dynamic |
+| Camera-optional for working sessions | Reduces fatigue |
+| Shared document for all meetings | Creates equal participation |
+| Record meetings with decisions | Timezone inclusion |
+| No hallway decisions on hybrid days | Excludes remote team members |
+
+---
+
+## Red Flags
+
+- Values posted on wall, never referenced in reviews or decisions
+- Star performers protected from cultural standards -- destroys credibility
+- Leaders who &quot;don&#x27;t have time&quot; for culture rituals -- signals culture isn&#x27;t a priority
+- New hires feel culture is &quot;different than advertised&quot; -- culture code is fiction
+- No mechanism to raise cultural concerns safely -- problems go underground
+- Culture survey results not shared with team -- breeds distrust
+- Same values for 5+ years despite major scaling -- values are stale
+- Founders exempt from cultural norms -- &quot;do as I say, not as I do&quot;
+- No consequences for value violations -- values are suggestions, not standards
+- Culture committee is all HR, no peers -- becomes compliance, not culture
+
+---
+
+## Integration with C-Suite
+
+| When... | Culture Architect Works With... | To... |
+|---------|---------------------------------|-------|
+| Hiring surge | CHRO (`chro-advisor`) | Ensure culture fit is measured, not guessed |
+| Org restructure | COO + CEO | Manage culture disruption from structure change |
+| M&amp;A or partnership | CEO + COO | Detect and resolve culture clashes early |
+| Performance issues | CHRO | Separate culture misfit from skill deficit |
+| Strategy pivot | CEO (`ceo-advisor`) | Update values that the pivot makes obsolete |
+| Rapid growth | All C-suite | Scale rituals before culture dilutes |
+| Change rollout | Change Management (`change-management`) | Cultural dimension of change |
+| Operating system design | Company OS (`company-os`) | Culture rituals in the meeting pulse |
+| Founder evolution | Founder Coach (`founder-coach`) | Leadership style impact on culture |
+
+---
+
+## Proactive Triggers
+
+- eNPS declining 2+ quarters -- investigate root cause before it becomes attrition
+- Rapid hiring (&gt; 30% headcount growth in a quarter) -- culture transmission at risk
+- M&amp;A announced -- culture integration plan needed immediately
+- Star performer exhibiting toxic behavior -- address within 1 week or culture debt compounds
+- Values haven&#x27;t been reviewed in 2+ years -- schedule values refresh workshop
+- Remote team growing without intentional culture design -- isolation and drift risk
+- Exit interviews mention &quot;culture&quot; as departure reason -- pattern analysis needed
+
+---
+
+## Output Artifacts
+
+| Request | Deliverable |
+|---------|-------------|
+| &quot;Build our values&quot; | Values workshop facilitation guide + values cards with behaviors |
+| &quot;Create a culture code&quot; | Culture code document (5-8 pages) with all 7 sections |
+| &quot;Assess our culture health&quot; | Survey design, score interpretation, action plan |
+| &quot;Design cultural rituals&quot; | Ritual calendar by stage with design templates |
+| &quot;Audit culture debt&quot; | Debt inventory with priority, cost, and fix plan |
+| &quot;Remote culture strategy&quot; | Operating principles, tools, rituals for distributed teams |
+| &quot;M&amp;A culture integration&quot; | Culture comparison matrix, clash risk map, integration timeline |
+
+---
+
+## Tool Reference
+
+### 1. culture_survey_analyzer.py
+
+Analyzes culture health survey results across 8 dimensions (psychological safety, clarity, fairness, growth, trust, recognition, belonging, autonomy). Calculates dimension scores, overall health rating, identifies strengths and risks, and generates action recommendations.
+
+```bash
+python scripts/culture_survey_analyzer.py --input survey_data.json --json
+python scripts/culture_survey_analyzer.py --input survey_data.json
+```
+
+| Flag | Type | Description |
+|------|------|-------------|
+| `--input` | required | Path to JSON file with survey responses (dimension scores per respondent, optional department/tenure metadata) |
+| `--json` | optional | Output in JSON format instead of human-readable text |
+
+### 2. values_alignment_scorer.py
+
+Scores alignment between stated values and observed behaviors using the Competing Values Framework quadrants (Clan, Adhocracy, Market, Hierarchy). Detects gaps between current and desired culture, identifies value-washing risks, and recommends alignment actions.
+
+```bash
+python scripts/values_alignment_scorer.py --input values_data.json --json
+python scripts/values_alignment_scorer.py --input values_data.json
+```
+
+| Flag | Type | Description |
+|------|------|-------------|
+| `--input` | required | Path to JSON file with stated values, behavioral evidence scores, and optional CVF quadrant assessments |
+| `--json` | optional | Output in JSON format instead of human-readable text |
+
+### 3. engagement_tracker.py
+
+Tracks employee engagement metrics over time including eNPS, survey scores, participation rates, and retention correlation. Detects trends, flags declining dimensions, and generates quarterly engagement reports.
+
+```bash
+python scripts/engagement_tracker.py --input engagement_data.json --json
+python scripts/engagement_tracker.py --input engagement_data.json
+```
+
+| Flag | Type | Description |
+|------|------|-------------|
+| `--input` | required | Path to JSON file with periodic engagement data (eNPS scores, survey results, participation rates, optional attrition data) |
+| `--json` | optional | Output in JSON format instead of human-readable text |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| Values posted on wall but never referenced in decisions | Values created as aspirational exercise, not operational tool | Run values-to-behaviors workshop; tie values to performance reviews, hiring rubrics, and recognition |
+| Culture survey scores declining quarter-over-quarter | Underlying issue not addressed after previous survey | Analyze by dimension to isolate the declining area; share results transparently; commit to specific actions with deadlines |
+| Star performer protected from cultural standards | Leadership avoidance or fear of losing output | Address within 1 week; culture debt compounds daily; document impact on team morale and attrition |
+| New hires say culture is &quot;different than advertised&quot; | Culture code describes aspiration, not reality | Rewrite culture code to describe what IS; include &quot;who doesn&#x27;t thrive here&quot; section honestly |
+| eNPS declining but leadership claims culture is strong | Leadership disconnected from frontline experience; survey results not shared | Share survey results with full team; conduct skip-level conversations; address top 2 detractor themes |
+| Remote team members feel excluded from culture | Rituals designed for in-person only; hallway decisions on hybrid days | Apply Remote Culture Operating Principles; redesign rituals for hybrid; enforce &quot;if one remote, all remote&quot; meeting rule |
+| Culture committee produces no measurable impact | Committee is all HR, no peers; no decision authority or budget | Reconstitute with peer representatives; grant budget and decision authority; set quarterly culture OKRs |
+
+---
+
+## Success Criteria
+
+- Culture health score above 70% across all 8 assessment dimensions
+- eNPS above 30 (Good) sustained across 4 consecutive quarters
+- Values-to-behaviors translation completed for all stated values with observable anchors
+- 30-day employees can accurately describe the culture without prompting
+- Culture debt inventory reviewed quarterly with no &quot;Critical&quot; items unaddressed for more than 30 days
+- Survey participation rate above 80% indicating trust in the feedback process
+- Zero cultural standard exceptions for high performers (no &quot;brilliant jerk&quot; tolerance)
+
+---
+
+## Scope &amp; Limitations
+
+**In scope:** Mission/vision/values workshop facilitation, values-to-behaviors translation, culture code creation, culture health assessment (8-dimension survey, eNPS), cultural rituals design by company stage, culture debt identification and management, remote/hybrid culture operating principles, M&amp;A culture integration planning, and Competing Values Framework assessment.
+
+**Out of scope:** HR policy creation (use hr-operations/), compensation and benefits design (use chro-advisor), DEI program management, employee relations and conflict resolution, performance management system design, and organizational restructuring (use coo-advisor). Tools analyze survey and engagement data; continuous culture monitoring requires integration with HR platforms.
+
+**Limitations:** Culture assessment depends on honest survey responses; low participation rates (&lt;50%) or fear of retaliation invalidate results. The Competing Values Framework provides a useful map but oversimplifies the complexity of real organizational culture. Culture change is slow (12-24 months for meaningful shifts); tools measure progress but cannot accelerate the human change process. M&amp;A culture integration assessments are predictive, not deterministic.
+
+---
+
+## Integration Points
+
+- **chro-advisor** -- Hiring for culture fit, performance reviews tied to values, attrition analysis linked to culture health
+- **ceo-advisor** -- Culture strategy aligns with company vision; values refresh tied to strategic pivots
+- **coo-advisor** -- Culture rituals embedded in operating rhythm; org restructures assessed for culture impact
+- **change-management** -- Cultural dimension of any major change initiative; resistance patterns mapped to culture type
+- **founder-coach** -- Leadership style impact on culture; founder behavior modeling assessed against stated values
+- **company-os** -- Culture rituals integrated into the organizational operating system meeting cadence
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Culture Architect&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Culture Architect in the C-Level Advisory domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Culture Architect&quot;**
+   - Description: &quot;Build, measure, and evolve company culture as operational behavior, not wall posters. Use when building company values, assessing culture health, designing rituals, creating culture codes, or handling culture clashes.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/culture-architect/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;Culture Architect&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Culture Architect
+
+Culture is what you DO, not what you SAY. This skill builds culture as an operational system -- observable behaviors, measurable health, and rituals that scale from 5 people to 500.
+
+## Keywords
+
+culture, company culture, values, mission, vision, culture code, cultural rituals, culture health, values-to-behaviors, founder culture, culture debt, value-washing, culture assessment, culture survey, psychological safety, culture scaling, engagement, eNPS, remote culture, hybrid culture, culture clash, employer brand, onboarding culture, performance culture, recognition
+
+---
+
+## Core Principle
+
+**Culture = (What you reward) + (What you tolerate) + (What you celebrate)**
+
+If your values say &quot;transparency&quot; but you punish bearers of bad news, your real value is &quot;optics.&quot; Culture is not aspirational. It is descriptive. The work is closing the gap between stated and actual.
+
+---
+
+## Clarify First
+
+Before generating, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Which deliverable is needed** (values + behaviors, culture code, health survey, ritual calendar, culture-debt audit, or M&amp;A integration) — each has its own template
+- [ ] **Company stage and headcount** — rituals and transmission mechanisms that work at 15 people break at 150; the ritual matrix is stage-keyed
+- [ ] **What is actually rewarded, tolerated, and celebrated today** — culture is descriptive, not aspirational; without the honest current state you produce wall-poster platitudes
+- [ ] **Work model** (in-person, remote, hybrid) — determines which operating principles and meeting rules apply
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+---
+
+## Culture Diagnostic Decision Tree
+
+```
+START: &quot;How is our culture?&quot;
+  |
+  v
+[Run the Values Audit]
+  Ask: &quot;What did the last person who got promoted demonstrate?&quot;
+  |
+  +-- Answer matches stated values --&gt; Values are real. Check transmission.
+  |     |
+  |     v
+  |   [Can a 30-day employee describe the culture accurately?]
+  |     +-- YES --&gt; Culture is operational. Maintain and evolve.
+  |     +-- NO  --&gt; Transmission gap. Fix onboarding and rituals.
+  |
+  +-- Answer differs from stated values --&gt; Values are performative.
+        |
+        v
+      [Do leaders model the real (non-stated) values?]
+        +-- YES --&gt; Rewrite values to match reality, then iterate.
+        +-- NO  --&gt; Deeper problem: no coherent culture exists. Build from scratch.
+```
+
+---
+
+## Framework 1: Mission / Vision / Values Workshop
+
+### Mission (Why We Exist)
+
+| Element | Test | Example |
+|---------|------|---------|
+| Present-tense | Is it about what we do now, not what we aspire to? | &quot;We reduce preventable falls in elderly care&quot; |
+| Specific | Could a competitor claim the exact same thing? If yes, too generic. | Not &quot;We make the world better&quot; |
+| Meaningful | Would something be lost if we disappeared? | Answer must be concrete |
+
+### Vision (What Winning Looks Like)
+
+| Quality | Bad | Good |
+|---------|-----|------|
+| Specificity | &quot;Be the market leader&quot; | &quot;Every care home in Europe uses our system by 2030&quot; |
+| Falsifiability | &quot;Transform healthcare&quot; | &quot;Reduce fall-related injuries by 50% in partner facilities&quot; |
+| Timeline | No date | 5-10 year horizon with milestones |
+
+### Values (What We Actually Do)
+
+| Rule | Explanation |
+|------|-------------|
+| 3-5 values maximum | More than 5 and none are memorable |
+| Derived from observation | &quot;What did our best hire do that nobody asked?&quot; |
+| Each has behavioral anchors | Specific enough to judge against |
+| Include the tension | Good values have a cost (&quot;Speed&quot; means &quot;we accept some risk&quot;) |
+
+---
+
+## Framework 2: Values-to-Behaviors Translation
+
+This is the work that makes values operational. Every value needs concrete behavioral anchors.
+
+| Value | Vague Version | Behavioral Anchor | How You&#x27;d Observe It |
+|-------|---------------|-------------------|---------------------|
+| Transparency | &quot;We&#x27;re open and honest&quot; | &quot;We share bad news within 24 hours, including to our manager&quot; | Bad news travels fast, no surprises |
+| Ownership | &quot;We take responsibility&quot; | &quot;We don&#x27;t hand off problems -- we own until resolved, even across team boundaries&quot; | No orphaned issues |
+| Speed | &quot;We move fast&quot; | &quot;Decisions under $5K happen at team level, same day&quot; | Low decision latency |
+| Quality | &quot;We don&#x27;t cut corners&quot; | &quot;We stop the line before shipping something we&#x27;re not proud of&quot; | Teams delay launches for quality |
+| Customer-first | &quot;Customers are our priority&quot; | &quot;Any team member can escalate a customer issue to leadership, bypassing normal channels&quot; | Escalation is celebrated, not punished |
+
+### Translation Workshop (90 minutes)
+
+```
+For each value:
+  Step 1: State the value in 2-3 words
+  Step 2: Ask &quot;How would a new hire know we live this on day 30?&quot;
+  Step 3: Write 3 observable behaviors that prove this value
+  Step 4: Write 3 behaviors that violate this value
+  Step 5: Ask &quot;What does this value cost us? What&#x27;s the trade-off?&quot;
+  Step 6: If no trade-off exists, it&#x27;s not a value -- it&#x27;s a platitude
+
+Output: Value card with behaviors, violations, and trade-offs
+```
+
+---
+
+## Framework 3: Culture Code Creation
+
+A culture code is a public document that describes how you operate. It should attract the right people and repel the wrong ones.
+
+### Culture Code Structure
+
+| Section | Purpose | Key Question |
+|---------|---------|-------------|
+| 1. Who We Are | Mission, context, stage | &quot;Why does this company exist?&quot; |
+| 2. Who Thrives Here | Specific behaviors, not adjectives | &quot;What does success look like day-to-day?&quot; |
+| 3. Who Doesn&#x27;t Thrive Here | Honest misfit description | &quot;When have we made a bad hire? What was the pattern?&quot; |
+| 4. How We Make Decisions | Decision rights, speed expectations | &quot;Who can decide what, and how fast?&quot; |
+| 5. How We Communicate | Channels, cadence, expectations | &quot;What can I expect in response time and transparency?&quot; |
+| 6. How We Grow People | Career development, feedback | &quot;What&#x27;s my path here?&quot; |
+| 7. What We Expect of Leaders | Leadership behaviors | &quot;How should managers behave?&quot; |
+
+### Culture Code Anti-Patterns
+
+| Anti-Pattern | Why It Fails | Better Alternative |
+|-------------|-------------|-------------------|
+| &quot;We&#x27;re a family&quot; | Families don&#x27;t fire for performance | &quot;We&#x27;re a high-performing team that cares about each other&quot; |
+| Only positive traits | Not credible, doesn&#x27;t help people self-select | Include &quot;who doesn&#x27;t thrive here&quot; section |
+| Aspirational, not descriptive | Creates cynicism when reality differs | Describe what IS, then iterate |
+| Too long (&gt; 15 pages) | Nobody reads it | Keep to 5-8 pages, link to details |
+| Never updated | Becomes irrelevant as company scales | Review annually, update at each stage |
+
+---
+
+## Framework 4: Culture Health Assessment
+
+Run quarterly. Anonymous. 8-12 questions maximum.
+
+### Core Assessment Dimensions
+
+| Dimension | Question Example | What It Measures |
+|-----------|-----------------|-----------------|
+| Psychological safety | &quot;I can raise a concern without fear of negative consequences&quot; | Trust in the system |
+| Clarity | &quot;I know how my work connects to company goals&quot; | Strategic alignment |
+| Fairness | &quot;Decisions here are made consistently and transparently&quot; | Trust in leadership |
+| Growth | &quot;I am learning and being challenged here&quot; | Development opportunity |
+| Trust in leadership | &quot;I believe what leadership tells me&quot; | Communication credibility |
+| Recognition | &quot;Good work is noticed and acknowledged&quot; | Reward system health |
+| Belonging | &quot;I feel like I belong on this team&quot; | Inclusion effectiveness |
+| Autonomy | &quot;I have enough freedom to do my best work&quot; | Micromanagement detection |
+
+### Score Interpretation and Response
+
+| Score Range | Status | Action Required | Timeline |
+|-------------|--------|-----------------|----------|
+| 80-100% | Healthy | Document what works, celebrate, share practices | Maintain |
+| 65-79% | Warning | Identify specific friction points, address top 2-3 | 30 days |
+| 50-64% | Damaged | Leadership attention required, specific interventions | 14 days |
+| &lt; 50% | Crisis | All-hands intervention, external facilitation may be needed | Immediate |
+
+### eNPS Integration
+
+```
+eNPS Question: &quot;On a scale of 0-10, how likely are you to recommend
+this company as a place to work?&quot;
+
+Promoters (9-10)    - Detractors (0-6)   = eNPS
+-----------------------------------------
+&gt; 50  = Exceptional
+30-50 = Good
+10-30 = Acceptable
+0-10  = Concerning
+&lt; 0   = Crisis
+```
+
+---
+
+## Framework 5: Cultural Rituals by Stage
+
+Rituals are the delivery mechanism for culture. What works at 10 people breaks at 100.
+
+### Ritual Matrix
+
+| Stage | Team Size | Key Rituals | Culture Risk |
+|-------|-----------|-------------|-------------|
+| Seed | &lt; 15 | Weekly all-hands (30 min), monthly retro, default transparency | Culture by osmosis -- works but won&#x27;t scale |
+| Early Growth | 15-50 | Quarterly culture survey, onboarding buddy, recognition program, leader office hours | First transmission failures appear |
+| Scaling | 50-200 | Culture committee (peer-driven), values-based reviews, manager training, dept + company all-hands | Subcultures form, drift begins |
+| Large | 200+ | Annual culture plan with KPIs, internal NPS, subculture management, culture integration for M&amp;A | Culture becomes fragile without systems |
+
+### Ritual Design Template
+
+| Element | Description |
+|---------|-------------|
+| Name | Clear, memorable name for the ritual |
+| Purpose | Which value does this reinforce? |
+| Frequency | Weekly, monthly, quarterly, annual |
+| Duration | Time commitment (shorter is better) |
+| Participants | Who is involved, who leads |
+| Format | In-person, remote, hybrid |
+| Measurement | How do you know it&#x27;s working? |
+| Sunset criteria | When should this ritual be retired? |
+
+---
+
+## Framework 6: Culture Debt
+
+Culture debt accumulates like technical debt: small compromises that compound.
+
+### Culture Debt Inventory
+
+| Debt Type | Example | Cost | Fix Difficulty |
+|-----------|---------|------|----------------|
+| Tolerated bad behavior | Star performer who is toxic | Team morale, attrition | High (requires confrontation) |
+| Stale values | Values from founding team, never updated | Cynicism, disengagement | Medium (requires workshop) |
+| Missing rituals | No recognition system, no all-hands | Low cohesion, isolation | Low (design and implement) |
+| Inconsistent enforcement | Some people held to standards, others not | Trust erosion, unfairness | High (requires consistency) |
+| Osmosis-only transmission | No onboarding for culture, just happens | New hires don&#x27;t get it | Medium (design onboarding) |
+
+### Culture Debt Decision Tree
+
+```
+START: Culture debt identified
+  |
+  v
+[Is it actively causing harm?]
+  |
+  +-- YES --&gt; [Is the cost of fixing it &lt; cost of keeping it?]
+  |            |
+  |            +-- YES --&gt; Fix immediately. This week.
+  |            +-- NO  --&gt; Fix within 30 days. Plan the transition.
+  |
+  +-- NO  --&gt; [Will it compound if ignored for 6 months?]
+              |
+              +-- YES --&gt; Schedule fix within 90 days
+              +-- NO  --&gt; Document and monitor quarterly
+```
+
+---
+
+## Remote and Hybrid Culture
+
+### Remote Culture Operating Principles
+
+| Principle | Implementation |
+|-----------|---------------|
+| Default to async | Write first, meet only when needed |
+| Intentional social | Regular non-work social time (weekly) |
+| Over-communicate decisions | Document reasoning, share broadly |
+| Equal access | Remote participants get equal voice in hybrid meetings |
+| Visible work | Regular updates so work is seen without surveillance |
+
+### Hybrid Meeting Rules
+
+| Rule | Rationale |
+|------|-----------|
+| If one person is remote, everyone joins individually | Prevents room-vs-screen dynamic |
+| Camera-optional for working sessions | Reduces fatigue |
+| Shared document for all meetings | Creates equal participation |
+| Record meetings with decisions | Timezone inclusion |
+| No hallway decisions on hybrid days | Excludes remote team members |
+
+---
+
+## Red Flags
+
+- Values posted on wall, never referenced in reviews or decisions
+- Star performers protected from cultural standards -- destroys credibility
+- Leaders who &quot;don&#x27;t have time&quot; for culture rituals -- signals culture isn&#x27;t a priority
+- New hires feel culture is &quot;different than advertised&quot; -- culture code is fiction
+- No mechanism to raise cultural concerns safely -- problems go underground
+- Culture survey results not shared with team -- breeds distrust
+- Same values for 5+ years despite major scaling -- values are stale
+- Founders exempt from cultural norms -- &quot;do as I say, not as I do&quot;
+- No consequences for value violations -- values are suggestions, not standards
+- Culture committee is all HR, no peers -- becomes compliance, not culture
+
+---
+
+## Integration with C-Suite
+
+| When... | Culture Architect Works With... | To... |
+|---------|---------------------------------|-------|
+| Hiring surge | CHRO (`chro-advisor`) | Ensure culture fit is measured, not guessed |
+| Org restructure | COO + CEO | Manage culture disruption from structure change |
+| M&amp;A or partnership | CEO + COO | Detect and resolve culture clashes early |
+| Performance issues | CHRO | Separate culture misfit from skill deficit |
+| Strategy pivot | CEO (`ceo-advisor`) | Update values that the pivot makes obsolete |
+| Rapid growth | All C-suite | Scale rituals before culture dilutes |
+| Change rollout | Change Management (`change-management`) | Cultural dimension of change |
+| Operating system design | Company OS (`company-os`) | Culture rituals in the meeting pulse |
+| Founder evolution | Founder Coach (`founder-coach`) | Leadership style impact on culture |
+
+---
+
+## Proactive Triggers
+
+- eNPS declining 2+ quarters -- investigate root cause before it becomes attrition
+- Rapid hiring (&gt; 30% headcount growth in a quarter) -- culture transmission at risk
+- M&amp;A announced -- culture integration plan needed immediately
+- Star performer exhibiting toxic behavior -- address within 1 week or culture debt compounds
+- Values haven&#x27;t been reviewed in 2+ years -- schedule values refresh workshop
+- Remote team growing without intentional culture design -- isolation and drift risk
+- Exit interviews mention &quot;culture&quot; as departure reason -- pattern analysis needed
+
+---
+
+## Output Artifacts
+
+| Request | Deliverable |
+|---------|-------------|
+| &quot;Build our values&quot; | Values workshop facilitation guide + values cards with behaviors |
+| &quot;Create a culture code&quot; | Culture code document (5-8 pages) with all 7 sections |
+| &quot;Assess our culture health&quot; | Survey design, score interpretation, action plan |
+| &quot;Design cultural rituals&quot; | Ritual calendar by stage with design templates |
+| &quot;Audit culture debt&quot; | Debt inventory with priority, cost, and fix plan |
+| &quot;Remote culture strategy&quot; | Operating principles, tools, rituals for distributed teams |
+| &quot;M&amp;A culture integration&quot; | Culture comparison matrix, clash risk map, integration timeline |
+
+---
+
+## Tool Reference
+
+### 1. culture_survey_analyzer.py
+
+Analyzes culture health survey results across 8 dimensions (psychological safety, clarity, fairness, growth, trust, recognition, belonging, autonomy). Calculates dimension scores, overall health rating, identifies strengths and risks, and generates action recommendations.
+
+```bash
+python scripts/culture_survey_analyzer.py --input survey_data.json --json
+python scripts/culture_survey_analyzer.py --input survey_data.json
+```
+
+| Flag | Type | Description |
+|------|------|-------------|
+| `--input` | required | Path to JSON file with survey responses (dimension scores per respondent, optional department/tenure metadata) |
+| `--json` | optional | Output in JSON format instead of human-readable text |
+
+### 2. values_alignment_scorer.py
+
+Scores alignment between stated values and observed behaviors using the Competing Values Framework quadrants (Clan, Adhocracy, Market, Hierarchy). Detects gaps between current and desired culture, identifies value-washing risks, and recommends alignment actions.
+
+```bash
+python scripts/values_alignment_scorer.py --input values_data.json --json
+python scripts/values_alignment_scorer.py --input values_data.json
+```
+
+| Flag | Type | Description |
+|------|------|-------------|
+| `--input` | required | Path to JSON file with stated values, behavioral evidence scores, and optional CVF quadrant assessments |
+| `--json` | optional | Output in JSON format instead of human-readable text |
+
+### 3. engagement_tracker.py
+
+Tracks employee engagement metrics over time including eNPS, survey scores, participation rates, and retention correlation. Detects trends, flags declining dimensions, and generates quarterly engagement reports.
+
+```bash
+python scripts/engagement_tracker.py --input engagement_data.json --json
+python scripts/engagement_tracker.py --input engagement_data.json
+```
+
+| Flag | Type | Description |
+|------|------|-------------|
+| `--input` | required | Path to JSON file with periodic engagement data (eNPS scores, survey results, participation rates, optional attrition data) |
+| `--json` | optional | Output in JSON format instead of human-readable text |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| Values posted on wall but never referenced in decisions | Values created as aspirational exercise, not operational tool | Run values-to-behaviors workshop; tie values to performance reviews, hiring rubrics, and recognition |
+| Culture survey scores declining quarter-over-quarter | Underlying issue not addressed after previous survey | Analyze by dimension to isolate the declining area; share results transparently; commit to specific actions with deadlines |
+| Star performer protected from cultural standards | Leadership avoidance or fear of losing output | Address within 1 week; culture debt compounds daily; document impact on team morale and attrition |
+| New hires say culture is &quot;different than advertised&quot; | Culture code describes aspiration, not reality | Rewrite culture code to describe what IS; include &quot;who doesn&#x27;t thrive here&quot; section honestly |
+| eNPS declining but leadership claims culture is strong | Leadership disconnected from frontline experience; survey results not shared | Share survey results with full team; conduct skip-level conversations; address top 2 detractor themes |
+| Remote team members feel excluded from culture | Rituals designed for in-person only; hallway decisions on hybrid days | Apply Remote Culture Operating Principles; redesign rituals for hybrid; enforce &quot;if one remote, all remote&quot; meeting rule |
+| Culture committee produces no measurable impact | Committee is all HR, no peers; no decision authority or budget | Reconstitute with peer representatives; grant budget and decision authority; set quarterly culture OKRs |
+
+---
+
+## Success Criteria
+
+- Culture health score above 70% across all 8 assessment dimensions
+- eNPS above 30 (Good) sustained across 4 consecutive quarters
+- Values-to-behaviors translation completed for all stated values with observable anchors
+- 30-day employees can accurately describe the culture without prompting
+- Culture debt inventory reviewed quarterly with no &quot;Critical&quot; items unaddressed for more than 30 days
+- Survey participation rate above 80% indicating trust in the feedback process
+- Zero cultural standard exceptions for high performers (no &quot;brilliant jerk&quot; tolerance)
+
+---
+
+## Scope &amp; Limitations
+
+**In scope:** Mission/vision/values workshop facilitation, values-to-behaviors translation, culture code creation, culture health assessment (8-dimension survey, eNPS), cultural rituals design by company stage, culture debt identification and management, remote/hybrid culture operating principles, M&amp;A culture integration planning, and Competing Values Framework assessment.
+
+**Out of scope:** HR policy creation (use hr-operations/), compensation and benefits design (use chro-advisor), DEI program management, employee relations and conflict resolution, performance management system design, and organizational restructuring (use coo-advisor). Tools analyze survey and engagement data; continuous culture monitoring requires integration with HR platforms.
+
+**Limitations:** Culture assessment depends on honest survey responses; low participation rates (&lt;50%) or fear of retaliation invalidate results. The Competing Values Framework provides a useful map but oversimplifies the complexity of real organizational culture. Culture change is slow (12-24 months for meaningful shifts); tools measure progress but cannot accelerate the human change process. M&amp;A culture integration assessments are predictive, not deterministic.
+
+---
+
+## Integration Points
+
+- **chro-advisor** -- Hiring for culture fit, performance reviews tied to values, attrition analysis linked to culture health
+- **ceo-advisor** -- Culture strategy aligns with company vision; values refresh tied to strategic pivots
+- **coo-advisor** -- Culture rituals embedded in operating rhythm; org restructures assessed for culture impact
+- **change-management** -- Cultural dimension of any major change initiative; resistance patterns mapped to culture type
+- **founder-coach** -- Leadership style impact on culture; founder behavior modeling assessed against stated values
+- **company-os** -- Culture rituals integrated into the organizational operating system meeting cadence
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Culture Architect&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Culture Architect in the C-Level Advisory domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Culture Architect&quot;**
+   - Description: &quot;Build, measure, and evolve company culture as operational behavior, not wall posters. Use when building company values, assessing culture health, designing rituals, creating culture codes, or handling culture clashes.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/culture-architect/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install c-level-advisor/culture-architect ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/culture-architect your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/culture-architect/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/culture-architect your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/culture-architect/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/culture-architect your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: c-level-advisor/culture-architect/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/culture-architect your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/culture-architect your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/c-level-advisor/culture-architect</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python c-level-advisor/culture-architect/scripts/tool_name.py --help</code></pre>
+  
+  
+  <h2>Related Skills in C-Level Advisory</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/board-deck-builder.html" class="skill-card" style="text-decoration:none"><h3>Board Deck Builder</h3><p>Assembles board and investor update decks by pulling perspectives from all C-suite roles. Use...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/board-meeting.html" class="skill-card" style="text-decoration:none"><h3>Board Meeting</h3><p>Multi-agent board meeting protocol running a structured 6-phase deliberation with isolated...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/ceo-advisor.html" class="skill-card" style="text-decoration:none"><h3>Ceo Advisor</h3><p>Executive leadership guidance for strategic decisions, org development, and stakeholder...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/cfo-advisor.html" class="skill-card" style="text-decoration:none"><h3>Cfo Advisor</h3><p>Financial leadership advisor on financial planning, fundraising, investor reporting, and unit...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/change-management.html" class="skill-card" style="text-decoration:none"><h3>Change Management</h3><p>Framework for rolling out organizational changes without chaos, using ADKAR adapted for...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/chief-ai-officer-advisor.html" class="skill-card" style="text-decoration:none"><h3>Chief Ai Officer Advisor</h3><p>AI leadership advisor on AI strategy, governance, risk, investment, and org design. Use when...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/culture-architect/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

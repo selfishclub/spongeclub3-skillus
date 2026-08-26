@@ -1,0 +1,8 @@
+{
+  "name": "shopify",
+  "description": "Manage Shopify stores: product creation, bulk imports, content pages, blog posts, and SEO metadata.",
+  "author": {
+    "name": "Jeremy Dawes / Jezweb",
+    "email": "jeremy@jezweb.net"
+  }
+}

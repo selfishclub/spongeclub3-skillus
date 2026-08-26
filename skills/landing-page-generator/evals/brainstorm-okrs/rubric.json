@@ -1,0 +1,121 @@
+{
+  "skill": "brainstorm-okrs",
+  "version": "1.0.0",
+  "description": "Scores an OKR set against Wodtke's Radical Focus: qualitative Objective, measurable outcome-focused KRs with baseline/target/deadline + confidence ratings (60-70%), counter-metrics, no output-disguised KRs.",
+  "criteria": [
+    {
+      "id": "objective_present",
+      "name": "Objective section present",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "(^###?\\s+Objective|^\\*\\*Objective\\*\\*|^Objective:)", "flags": "im"}
+    },
+    {
+      "id": "key_results_present",
+      "name": "Key Results section present (KR1/KR2/KR3 markers)",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "KR\\d|Key Result", "flags": "im"}
+    },
+    {
+      "id": "objective_qualitative",
+      "name": "Objective contains no naked numeric metric (qualitative, not numeric)",
+      "weight": 6,
+      "check": {"type": "regex_not", "pattern": "^[#*]*\\s*(Objective[:\\)]).{0,80}(\\d+%|\\d+k|\\$\\d|\\d+ users|reach \\d|>= ?\\d)", "flags": "im"}
+    },
+    {
+      "id": "baseline_target_format",
+      "name": "KRs use from/to/baseline/target language (measurable)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["from ", "to ", "baseline", "target", ">= ", "increase", "reduce"]}
+    },
+    {
+      "id": "confidence_present",
+      "name": "Confidence rating per KR (Wodtke 60-70% bar)",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "(confidence[:\\s]*[0-9]{2}%|[0-9]{2}%\\s+confidence|confidence\\s+(rating|level)|10/7/5/3)", "flags": "im"}
+    },
+    {
+      "id": "confidence_in_wodtke_range",
+      "name": "At least one KR confidence in Wodtke 50-75% range",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "\\b(5[0-9]|6[0-9]|7[0-5])%\\b", "flags": ""}
+    },
+    {
+      "id": "counter_metric_present",
+      "name": "Counter-metric explicitly named",
+      "weight": 8,
+      "check": {"type": "keyword_any", "keywords": ["counter-metric", "counter metric", "(counter)", "Counter:"]}
+    },
+    {
+      "id": "deadline_window",
+      "name": "KR window / deadline (quarterly bounds)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Q1", "Q2", "Q3", "Q4", "by end of", "by 20", "2026-", "deadline"]}
+    },
+    {
+      "id": "no_output_ship_verbs",
+      "name": "KRs are not output-disguised ('Ship X', 'Launch X', 'Build X' as the only verb)",
+      "weight": 7,
+      "check": {"type": "regex_not", "pattern": "KR\\d?:?\\s*(Ship|Launch|Build|Publish|Implement)\\s+[A-Z]", "flags": "m"}
+    },
+    {
+      "id": "outcome_verbs",
+      "name": "KRs use outcome verbs (increase / reduce / improve / lift)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["increase", "reduce", "improve", "lift", "grow", "maintain", "boost", "decrease"]}
+    },
+    {
+      "id": "max_two_objectives",
+      "name": "Single objective (Radical Focus) — not a list of 5",
+      "weight": 5,
+      "check": {"type": "regex_not", "pattern": "Obj(ective)?\\s*5|^###?\\s+(Objective 4|Objective 5)", "flags": "im"}
+    },
+    {
+      "id": "rationale_present",
+      "name": "Rationale tying OKR to theme/strategy present",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["Rationale", "Why", "Theme:", "connects to", "tied to", "aligned"]}
+    },
+    {
+      "id": "weekly_cadence",
+      "name": "Weekly check-in cadence referenced (no set-and-forget)",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["weekly check-in", "weekly cadence", "Monday cadence", "weekly health", "weekly OKR", "check-in"]}
+    },
+    {
+      "id": "kill_or_review_criteria",
+      "name": "Kill criteria / mid-quarter review mentioned",
+      "weight": 3,
+      "check": {"type": "keyword_any", "keywords": ["kill criteria", "mid-Q", "mid-quarter", "learning quarter", "pivot"]}
+    },
+    {
+      "id": "no_activity_count_kr",
+      "name": "No 'Publish 12 blog posts' / 'Run X interviews' activity KRs",
+      "weight": 5,
+      "check": {"type": "regex_not", "pattern": "KR\\d?:?\\s+(Publish|Run|Conduct|Hold|Organize)\\s+\\d+\\s+(blog|posts|interview|meeting|webinar|standup)", "flags": "im"}
+    },
+    {
+      "id": "metric_with_source",
+      "name": "KR cites measurement source (analytics tool, survey, etc.)",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["HubSpot", "Amplitude", "survey", "NPS", "Mixpanel", "GA4", "via ", "source:", "telemetry"]}
+    },
+    {
+      "id": "three_or_fewer_krs_per_obj",
+      "name": "No more than 4 KRs per objective (anti-roadmap-disguised-as-OKR)",
+      "weight": 4,
+      "check": {"type": "regex_not", "pattern": "KR5|KR6|KR7", "flags": ""}
+    },
+    {
+      "id": "alignment_company",
+      "name": "Alignment to company / org-level objective referenced",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["company OKR", "org OKR", "company-level", "org-level", "alignment", "cascade", "company priorities"]}
+    },
+    {
+      "id": "no_objective_with_percent",
+      "name": "Objective is not just a number/percent (Red Flag 6)",
+      "weight": 4,
+      "check": {"type": "regex_not", "pattern": "^[#*]*\\s*Objective:?\\s+(Reach|Achieve|Hit)\\s+\\d+", "flags": "im"}
+    }
+  ]
+}

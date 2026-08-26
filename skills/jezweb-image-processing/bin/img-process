@@ -1,0 +1,316 @@
+#!/usr/bin/env python3
+"""img-process — Image processing for web development.
+
+Resize, crop, trim, convert, optimise, and generate OG cards.
+Uses Pillow (Python). No ImageMagick needed.
+
+Usage:
+  img-process resize <input> [--width W] [--height H] [-o output]
+  img-process convert <input> --format <fmt> [-o output] [--quality Q]
+  img-process trim <input> [-o output] [--padding P]
+  img-process thumbnail <input> --size <S> [-o output]
+  img-process optimise <input> [-o output] [--quality Q] [--max-width W]
+  img-process og-card -o <output> [--title T] [--subtitle S] [--bg-color C] [--bg-image I]
+  img-process batch <dir> --action <action> [--format fmt] [--width W] [--quality Q] [-o outdir]
+
+Options:
+  -o, --output <path>   Output file or directory
+  --width <px>          Target width (maintains aspect ratio)
+  --height <px>         Target height (maintains aspect ratio)
+  --size <px>           Max dimension for thumbnails
+  --format <fmt>        Output format: webp, png, jpg
+  --quality <Q>         Compression quality 1-100 (default: 85 webp, 90 jpg)
+  --max-width <px>      Resize if wider than this (default: 1920)
+  --padding <px>        Padding after trim (default: 0)
+  --title <text>        OG card title text
+  --subtitle <text>     OG card subtitle text
+  --bg-color <hex>      OG card background colour (default: #1a1a2e)
+  --bg-image <path>     OG card background image
+  --action <name>       Batch action: resize, convert, optimise, thumbnail
+
+Examples:
+  img-process resize hero.png --width 1920
+  img-process convert logo.png --format webp
+  img-process trim logo-raw.jpg -o logo-clean.png --padding 10
+  img-process thumbnail photo.jpg --size 200
+  img-process optimise hero.jpg --quality 85 --max-width 1920
+  img-process og-card -o og.png --title "My App" --subtitle "The best app ever"
+  img-process batch ./images --action convert --format webp -o ./optimised
+"""
+
+import sys
+import os
+import glob
+import argparse
+
+try:
+    from PIL import Image, ImageDraw, ImageFont
+except ImportError:
+    print("Error: Pillow is required. Install with: pip install Pillow")
+    sys.exit(1)
+
+
+def get_font(size):
+    """Find a system font, falling back to Pillow default."""
+    font_paths = [
+        "/System/Library/Fonts/Helvetica.ttc",
+        "/System/Library/Fonts/SFNSText.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+        "C:/Windows/Fonts/arial.ttf",
+    ]
+    for p in font_paths:
+        if os.path.exists(p):
+            try:
+                return ImageFont.truetype(p, size)
+            except Exception:
+                continue
+    return ImageFont.load_default()
+
+
+def save_image(img, output_path, quality=None):
+    """Save with format-specific settings, handling RGBA→JPG conversion."""
+    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+    kwargs = {}
+    ext = output_path.lower().rsplit(".", 1)[-1]
+
+    if ext == "webp":
+        kwargs = {"quality": quality or 85, "method": 6}
+    elif ext in ("jpg", "jpeg"):
+        kwargs = {"quality": quality or 90, "optimize": True}
+        if img.mode == "RGBA":
+            bg = Image.new("RGB", img.size, (255, 255, 255))
+            bg.paste(img, mask=img.split()[3])
+            img = bg
+    elif ext == "png":
+        kwargs = {"optimize": True}
+
+    img.save(output_path, **kwargs)
+    size_kb = os.path.getsize(output_path) / 1024
+    print(f"  ✓ {output_path} ({img.width}x{img.height}, {size_kb:.0f}KB)")
+    return output_path
+
+
+def auto_output(input_path, output, new_ext=None):
+    """Generate output path if not specified."""
+    if output:
+        return output
+    base, ext = os.path.splitext(input_path)
+    if new_ext:
+        ext = f".{new_ext}"
+    return f"{base}-processed{ext}"
+
+
+def cmd_resize(args):
+    img = Image.open(args.input)
+    if args.width and args.height:
+        img = img.resize((args.width, args.height), Image.LANCZOS)
+    elif args.width:
+        ratio = args.width / img.width
+        img = img.resize((args.width, int(img.height * ratio)), Image.LANCZOS)
+    elif args.height:
+        ratio = args.height / img.height
+        img = img.resize((int(img.width * ratio), args.height), Image.LANCZOS)
+    else:
+        print("Error: specify --width and/or --height")
+        sys.exit(1)
+    save_image(img, auto_output(args.input, args.output), args.quality)
+
+
+def cmd_convert(args):
+    if not args.format:
+        print("Error: --format is required (webp, png, jpg)")
+        sys.exit(1)
+    img = Image.open(args.input)
+    out = auto_output(args.input, args.output, args.format)
+    save_image(img, out, args.quality)
+
+
+def cmd_trim(args):
+    img = Image.open(args.input)
+    if img.mode != "RGBA":
+        img = img.convert("RGBA")
+    bbox = img.getbbox()
+    if bbox:
+        padding = args.padding or 0
+        bbox = (
+            max(0, bbox[0] - padding),
+            max(0, bbox[1] - padding),
+            min(img.width, bbox[2] + padding),
+            min(img.height, bbox[3] + padding),
+        )
+        img = img.crop(bbox)
+    save_image(img, auto_output(args.input, args.output))
+
+
+def cmd_thumbnail(args):
+    if not args.size:
+        print("Error: --size is required")
+        sys.exit(1)
+    img = Image.open(args.input)
+    img.thumbnail((args.size, args.size), Image.LANCZOS)
+    save_image(img, auto_output(args.input, args.output))
+
+
+def cmd_optimise(args):
+    img = Image.open(args.input)
+    max_w = args.max_width or 1920
+    if img.width > max_w:
+        ratio = max_w / img.width
+        img = img.resize((max_w, int(img.height * ratio)), Image.LANCZOS)
+
+    out = auto_output(args.input, args.output, "webp")
+    save_image(img, out, args.quality or 85)
+
+
+def cmd_og_card(args):
+    if not args.output:
+        print("Error: -o output path is required for og-card")
+        sys.exit(1)
+
+    width, height = 1200, 630
+
+    if args.bg_image:
+        img = Image.open(args.bg_image).resize((width, height), Image.LANCZOS)
+        img = img.convert("RGBA")
+        overlay = Image.new("RGBA", (width, height), (0, 0, 0, 128))
+        img = Image.alpha_composite(img, overlay)
+    else:
+        color = args.bg_color or "#1a1a2e"
+        img = Image.new("RGB", (width, height), color)
+        img = img.convert("RGBA")
+
+    draw = ImageDraw.Draw(img)
+
+    if args.title:
+        font_title = get_font(52)
+        bbox = draw.textbbox((0, 0), args.title, font=font_title)
+        tw = bbox[2] - bbox[0]
+        y = height // 2 - 50
+        if args.subtitle:
+            y = height // 2 - 70
+        draw.text(((width - tw) // 2, y), args.title, fill="white", font=font_title)
+
+    if args.subtitle:
+        font_sub = get_font(28)
+        bbox = draw.textbbox((0, 0), args.subtitle, font=font_sub)
+        tw = bbox[2] - bbox[0]
+        draw.text(((width - tw) // 2, height // 2 + 10), args.subtitle, fill="#a0aec0", font=font_sub)
+
+    img = img.convert("RGB")
+    save_image(img, args.output)
+
+
+def cmd_batch(args):
+    if not args.action:
+        print("Error: --action is required (resize, convert, optimise, thumbnail)")
+        sys.exit(1)
+
+    input_dir = args.input
+    output_dir = args.output or f"{input_dir}-processed"
+    os.makedirs(output_dir, exist_ok=True)
+
+    extensions = ("*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.bmp")
+    files = []
+    for ext in extensions:
+        files.extend(glob.glob(os.path.join(input_dir, ext)))
+    files.sort()
+
+    if not files:
+        print(f"No image files found in {input_dir}/")
+        sys.exit(1)
+
+    print(f"Batch {args.action}: {len(files)} files from {input_dir}/ → {output_dir}/")
+
+    for f in files:
+        basename = os.path.basename(f)
+        img = Image.open(f)
+
+        if args.action == "resize" and args.width:
+            ratio = args.width / img.width
+            img = img.resize((args.width, int(img.height * ratio)), Image.LANCZOS)
+            out = os.path.join(output_dir, basename)
+            save_image(img, out, args.quality)
+
+        elif args.action == "convert" and args.format:
+            name = os.path.splitext(basename)[0]
+            out = os.path.join(output_dir, f"{name}.{args.format}")
+            save_image(img, out, args.quality)
+
+        elif args.action == "optimise":
+            max_w = args.max_width or 1920
+            if img.width > max_w:
+                ratio = max_w / img.width
+                img = img.resize((max_w, int(img.height * ratio)), Image.LANCZOS)
+            name = os.path.splitext(basename)[0]
+            out = os.path.join(output_dir, f"{name}.webp")
+            save_image(img, out, args.quality or 85)
+
+        elif args.action == "thumbnail" and args.size:
+            img.thumbnail((args.size, args.size), Image.LANCZOS)
+            out = os.path.join(output_dir, basename)
+            save_image(img, out, args.quality)
+
+        else:
+            print(f"  ? Skipped {basename} — missing required option for {args.action}")
+
+    print(f"\nDone: {len(files)} images processed → {output_dir}/")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="img-process — Image processing for web development",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub = parser.add_subparsers(dest="command")
+
+    # Shared args
+    for name, help_text in [
+        ("resize", "Resize an image"),
+        ("convert", "Convert image format"),
+        ("trim", "Trim whitespace from image"),
+        ("thumbnail", "Generate a thumbnail"),
+        ("optimise", "Optimise for web (resize + compress to WebP)"),
+        ("og-card", "Generate an OG card image (1200x630)"),
+        ("batch", "Process multiple images"),
+    ]:
+        p = sub.add_parser(name, help=help_text)
+        if name != "og-card":
+            p.add_argument("input", help="Input file or directory")
+        p.add_argument("-o", "--output", help="Output file or directory")
+        p.add_argument("--quality", type=int, help="Compression quality (1-100)")
+        p.add_argument("--width", type=int, help="Target width")
+        p.add_argument("--height", type=int, help="Target height")
+        p.add_argument("--size", type=int, help="Max dimension (thumbnail)")
+        p.add_argument("--format", help="Output format: webp, png, jpg")
+        p.add_argument("--max-width", type=int, help="Max width before resize")
+        p.add_argument("--padding", type=int, help="Padding after trim")
+        p.add_argument("--title", help="OG card title")
+        p.add_argument("--subtitle", help="OG card subtitle")
+        p.add_argument("--bg-color", help="OG card background colour")
+        p.add_argument("--bg-image", help="OG card background image")
+        p.add_argument("--action", help="Batch action: resize, convert, optimise, thumbnail")
+
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        sys.exit(0)
+
+    commands = {
+        "resize": cmd_resize,
+        "convert": cmd_convert,
+        "trim": cmd_trim,
+        "thumbnail": cmd_thumbnail,
+        "optimise": cmd_optimise,
+        "og-card": cmd_og_card,
+        "batch": cmd_batch,
+    }
+
+    print(f"img-process {args.command}")
+    print("=" * 40)
+    commands[args.command](args)
+
+
+if __name__ == "__main__":
+    main()

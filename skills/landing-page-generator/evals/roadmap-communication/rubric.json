@@ -1,0 +1,121 @@
+{
+  "skill": "roadmap-communication",
+  "version": "1.0.0",
+  "description": "Scores a 3-variant roadmap (executive / customer / internal) against Now/Next/Later structure, outcome framing, confidence ratings, audience-appropriate detail, and absence of date-promised commitments.",
+  "criteria": [
+    {
+      "id": "three_variants_named",
+      "name": "Three audience variants present (executive / customer / internal)",
+      "weight": 8,
+      "check": {"type": "keyword_all", "keywords": ["executive", "customer", "internal"]}
+    },
+    {
+      "id": "executive_variant_section",
+      "name": "Executive variant section present",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "^#{2,4}\\s+(?:Variant\\s+\\d:?\\s+)?(Executive|Exec|Board)", "flags": "im"}
+    },
+    {
+      "id": "customer_variant_section",
+      "name": "Customer variant section present",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "^#{2,4}\\s+(?:Variant\\s+\\d:?\\s+)?Customer\\s+(roadmap|view|variant|blog|post|view)", "flags": "im"}
+    },
+    {
+      "id": "internal_variant_section",
+      "name": "Internal variant section present",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "^#{2,4}\\s+(?:Variant\\s+\\d:?\\s+)?(Internal|Engineering)\\s+(roadmap|view|variant)", "flags": "im"}
+    },
+    {
+      "id": "now_next_later",
+      "name": "Now / Next / Later structure used",
+      "weight": 7,
+      "check": {"type": "keyword_all", "keywords": ["Now", "Next", "Later"]}
+    },
+    {
+      "id": "confidence_levels",
+      "name": "Confidence levels (H/M/L or risk register) per item",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "(Confidence[:\\s]+(High|Med|Low|HIGH|MED|LOW|H/M/L)|HIGH|MEDIUM|LOW|L/M/H|risk register|H | M | L)", "flags": ""}
+    },
+    {
+      "id": "themes_present",
+      "name": "Items bucketed under themes",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Theme:", "*Theme*", "Themes", "*Activation*", "Enterprise readiness", "themed cards", "theme-led"]}
+    },
+    {
+      "id": "outcome_oriented_exec",
+      "name": "Outcome framing in executive variant (outcomes, not just features)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["Outcome:", "Outcomes", "outcome-based", "outcome-led", "outcome metric", "named outcome", "outcome per"]}
+    },
+    {
+      "id": "no_dates_in_customer",
+      "name": "Customer variant avoids specific date promises beyond current quarter",
+      "weight": 6,
+      "check": {"type": "regex_not", "pattern": "(Customer roadmap|Customer view|Customer variant)[\\s\\S]{0,500}(SCIM|SAML|SOC ?2)[:\\s]+(January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{1,2},\\s+20\\d{2}", "flags": "im"}
+    },
+    {
+      "id": "directional_language_customer",
+      "name": "Customer variant uses directional language ('later this year', 'mid-half', 'early next year')",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["exploring", "in development", "shipping soon", "later this year", "early 2027", "mid-half", "early next year", "directional", "may change", "approximations"]}
+    },
+    {
+      "id": "internal_has_owners",
+      "name": "Internal variant has explicit owners (PM/EM/Lead)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["PM:", "EM:", "Owner:", "Lead:", "Design lead", "Eng lead"]}
+    },
+    {
+      "id": "internal_has_dependencies",
+      "name": "Internal variant has explicit dependencies / risks",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["dependencies", "Dependencies", "depends on", "Risk:", "risks", "mitigation", "Blocked by"]}
+    },
+    {
+      "id": "not_doing_section",
+      "name": "Variants name what is NOT being done",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["NOT doing", "Not doing", "not working on", "explicitly not", "out of scope", "trade-offs", "tradeoffs", "deferred", "not building", "we are *not*"]}
+    },
+    {
+      "id": "no_dates_as_commitments",
+      "name": "Customer variant deliberately avoids fixed customer-facing dates",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["planning approximations", "may shift", "directional", "no committed dates", "without committing", "later this year", "early next year", "no committed dates outside", "no committed dates"]}
+    },
+    {
+      "id": "triangulation_or_consistency",
+      "name": "Triangulation / consistency mechanism between variants",
+      "weight": 3,
+      "check": {"type": "keyword_any", "keywords": ["triangulation", "consistent identity", "same ID", "trace", "source of truth"]}
+    },
+    {
+      "id": "visualization_or_format",
+      "name": "Visualization / format (mermaid, swimlanes, table)",
+      "weight": 4,
+      "check": {"type": "regex", "pattern": "(```mermaid|graph\\s+(TD|LR)|swimlane|themed card|\\|---)", "flags": "im"}
+    },
+    {
+      "id": "executive_outcome_metric",
+      "name": "Executive variant has outcome metric + target",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Expected outcome", "outcome metric", "metric target", "target ARR", "target:", "expected outcome", "Composite goal"]}
+    },
+    {
+      "id": "internal_kr_or_dep_graph",
+      "name": "Internal variant has KR/OKR mapping OR explicit dependency graph",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["KR mapped", "KR:", "OKR", "Key Result", "Dependencies", "dependency graph", "Critical-path", "critical path"]}
+    },
+    {
+      "id": "no_marketing_buzzwords",
+      "name": "No internal marketing buzzwords across variants",
+      "weight": 2,
+      "check": {"type": "keyword_none", "keywords": ["revolutionary", "next-generation", "world-class", "leveraging", "synergizing"]}
+    }
+  ]
+}

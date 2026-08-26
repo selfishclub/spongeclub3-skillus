@@ -1,0 +1,98 @@
+{
+  "title": "우리 브랜드 제안",
+  "theme": {
+    "bg": "#0e0b0d",
+    "accent": "#e0007a",
+    "red": "#c1121f",
+    "ink": "#f0eef0",
+    "dim": "#a99ca0"
+  },
+  "slides": [
+    {
+      "type": "core",
+      "kicker": "BRAND · 표지",
+      "lines": [
+        [
+          "우리,",
+          false
+        ],
+        [
+          "이렇게 제안해요.",
+          true
+        ]
+      ],
+      "sub": "표지 이미지가 있으면 {\"type\":\"cover\",\"img\":\"/절대경로.png\"}로 교체"
+    },
+    {
+      "type": "core",
+      "kicker": "SECTION 01 · 문제",
+      "lines": [
+        [
+          "지금,",
+          false
+        ],
+        [
+          "이게 문제예요.",
+          true
+        ]
+      ],
+      "sub": "한 줄 부연 설명"
+    },
+    {
+      "type": "cards",
+      "kicker": "우리 제안",
+      "title": "이렇게 풀어요",
+      "items": [
+        {
+          "tag": "01",
+          "title": "카드 제목",
+          "desc": "카드 설명 한두 줄"
+        },
+        {
+          "tag": "02",
+          "title": "카드 제목",
+          "desc": "카드 설명"
+        },
+        {
+          "tag": "03",
+          "title": "카드 제목",
+          "desc": "카드 설명"
+        }
+      ]
+    },
+    {
+      "type": "stat-trio",
+      "kicker": "기대효과",
+      "title": "숫자로 보면",
+      "items": [
+        {
+          "num": "+40%",
+          "label": "지표 설명"
+        },
+        {
+          "num": "2배",
+          "label": "지표 설명"
+        },
+        {
+          "num": "-25%",
+          "label": "지표 설명"
+        }
+      ]
+    },
+    {
+      "type": "ending",
+      "kicker": "THE END",
+      "lines": [
+        [
+          "함께,",
+          false
+        ],
+        [
+          "시작해요.",
+          true
+        ]
+      ],
+      "foot": "연락처 · 마무리 한 줄"
+    }
+  ]
+}

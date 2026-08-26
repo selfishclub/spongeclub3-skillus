@@ -1,0 +1,7 @@
+{
+  "name": "critic-director",
+  "description": "크리틱디렉터 — 아이디어·컨셉부터 완성된 광고 제안서·KV·발표 덱·카피까지, 지정 페르소나(CD/기획자/타겟소비자/전문가/클라이언트)와 크리틱 강도 1~4단계로 '얼마나 후킹한가'를 진단·크리틱하고 수정안까지 주는 최종 검수관 스킬.",
+  "version": "1.0.0",
+  "author": { "name": "Koo-bon" },
+  "keywords": ["크리틱", "critique", "리뷰", "검수", "제안서", "KV", "키비주얼", "후킹", "creative-director", "feedback"]
+}

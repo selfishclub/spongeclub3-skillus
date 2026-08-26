@@ -1,0 +1,121 @@
+{
+  "skill": "status-update-generator",
+  "version": "1.0.0",
+  "description": "Scores a weekly executive status update against the 6-section template (Header + Highlights / Blockers / Risks / Asks / What's Next) with R/Y/G traffic light and structured risk/ask formats.",
+  "criteria": [
+    {
+      "id": "header_period",
+      "name": "Header has period / date range",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Period:", "Week of", "Week of 20"]}
+    },
+    {
+      "id": "header_author",
+      "name": "Header has author / team",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["Author:", "Team:", "Owner:", "PM:"]}
+    },
+    {
+      "id": "traffic_light_present",
+      "name": "Traffic-light status (R/Y/G) declared",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "\\b(Status[:\\s]+)?(RED|YELLOW|GREEN|Red|Yellow|Green)\\b", "flags": ""}
+    },
+    {
+      "id": "status_rationale",
+      "name": "Status rationale sentence explicit",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["rationale:", "Status rationale", "reason:", "why this color"]}
+    },
+    {
+      "id": "highlights_section",
+      "name": "Highlights section present",
+      "weight": 6,
+      "check": {"type": "section_present", "heading": "Highlights"}
+    },
+    {
+      "id": "blockers_section",
+      "name": "Blockers section present",
+      "weight": 6,
+      "check": {"type": "section_present", "heading": "Blockers"}
+    },
+    {
+      "id": "risks_section",
+      "name": "Risks section present",
+      "weight": 6,
+      "check": {"type": "section_present", "heading": "Risks"}
+    },
+    {
+      "id": "asks_section",
+      "name": "Asks section present (mandatory, even if 'none this week')",
+      "weight": 8,
+      "check": {"type": "section_present", "heading": "Asks"}
+    },
+    {
+      "id": "whats_next_section",
+      "name": "What's Next section present",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "^##\\s+(What['s]+|What is)\\s+next", "flags": "im"}
+    },
+    {
+      "id": "highlights_outcome_led",
+      "name": "Highlights are outcome-led (not raw 'Shipped PR-NNNN' tickets only)",
+      "weight": 6,
+      "check": {"type": "regex_not", "pattern": "^\\s*[-*]\\s*Shipped\\s+PR-\\d+\\s*$", "flags": "m"}
+    },
+    {
+      "id": "highlights_quantified",
+      "name": "Highlights contain numerical anchors (%, ms, $, counts)",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "(\\d+%|\\d+\\s?ms|\\$\\d+|\\d+ of \\d+|\\d+x )", "flags": ""}
+    },
+    {
+      "id": "blocker_has_what_who_need",
+      "name": "Blockers structured (what / blocked by / need)",
+      "weight": 6,
+      "check": {"type": "keyword_all", "keywords": ["block", "need"]}
+    },
+    {
+      "id": "risk_owner_due",
+      "name": "Risks have Owner + Due date",
+      "weight": 6,
+      "check": {"type": "keyword_all", "keywords": ["Owner", "Due"]}
+    },
+    {
+      "id": "risk_likelihood_impact",
+      "name": "Risks include Likelihood x Impact rating",
+      "weight": 4,
+      "check": {"type": "regex", "pattern": "(L[:\\s]*[HML]|Likelihood[:\\s]*[HML]|[HML][:\\s]*x\\s*[HML]|Likelihood.*Impact)", "flags": "im"}
+    },
+    {
+      "id": "ask_decision_maker",
+      "name": "Asks name decision-maker / from-whom",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["VP", "Director", "Head of", "from whom", "from:", "decision needed", "Decision needed"]}
+    },
+    {
+      "id": "ask_by_when",
+      "name": "Asks have by-when date",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "(by\\s+(Monday|Tuesday|Wednesday|Thursday|Friday)|by\\s+EOD|by\\s+20\\d{2}-\\d{2}-\\d{2}|by\\s+[A-Z][a-z]+\\s+\\d|Decision needed by)", "flags": "i"}
+    },
+    {
+      "id": "no_emotional_drama",
+      "name": "No internal drama / emotional language",
+      "weight": 3,
+      "check": {"type": "keyword_none", "keywords": ["frustrated with", "annoying", "pissed", "fed up", "lack of engagement"]}
+    },
+    {
+      "id": "no_pure_activity_highlight",
+      "name": "Highlights not pure activity (held kickoff / had meeting / discussed)",
+      "weight": 3,
+      "check": {"type": "regex_not", "pattern": "^\\s*[-*]\\s*(Held|Had|Discussed|Started\\s+working|Began\\s+)", "flags": "m"}
+    },
+    {
+      "id": "one_page_density",
+      "name": "Update fits a reasonable length (under 4000 words)",
+      "weight": 3,
+      "check": {"type": "length_in_range", "min": 200, "max": 15000}
+    }
+  ]
+}

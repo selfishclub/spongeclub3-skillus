@@ -1,0 +1,9 @@
+# Never commit secrets
+.env
+*.env
+
+# Recon output / scratch
+recon/
+*.png
+__pycache__/
+*.pyc

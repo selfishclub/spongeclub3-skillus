@@ -1,0 +1,63 @@
+<!doctype html><meta charset="utf-8">
+<style>
+:root{--bg:#EFEDE8;--ink:#1A1A18;--dim:#6E6A62;--ac:#C8452F;--line:#DCD7CD}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:14.5px/1.6 'Pretendard','Apple SD Gothic Neo',sans-serif;padding:66px 52px 56px}
+.hd{display:flex;align-items:baseline;gap:14px;margin-bottom:4px}
+.hd b{font-size:25px;letter-spacing:-.02em}
+.hd span{color:var(--ac);font-size:12px;letter-spacing:.14em}
+.meta{color:var(--dim);font-size:13px;margin-bottom:22px}
+.cols{display:grid;grid-template-columns:1.15fr 1fr;gap:30px}
+h3{font-size:12px;letter-spacing:.14em;color:var(--ac);border-top:1.5px solid var(--ink);padding-top:9px;margin-bottom:12px}
+blockquote{border-left:3px solid var(--ac);padding:2px 0 2px 15px;margin:0 0 12px;font-size:15.5px;line-height:1.75}
+.warn{background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 13px;font-size:13px}
+.warn b{color:var(--ac)}
+.seg{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.seg .n{flex:0 0 62px;font-weight:800;font-variant-numeric:tabular-nums}
+.seg .t b{display:block}
+.seg .t i{font-style:normal;color:var(--dim);font-size:12.5px}
+.hook{color:var(--ac);font-weight:700}
+ul{list-style:none;padding:0;font-size:13.5px}
+li{padding:5px 0 5px 22px;position:relative;border-bottom:1px solid var(--line)}
+li:before{content:"☐";position:absolute;left:0;color:var(--dim)}
+.qa li:before{content:"Q";color:var(--ac);font-weight:800;font-size:11.5px;top:7px}
+.qa li i{font-style:normal;color:var(--dim);display:block}
+</style>
+<div class="hd"><b>⑧ 발표 스크립트</b><span>덱과 같이 나온다</span></div>
+<div class="meta">1시간 · 26장 · 데모 있음 · 관통 관점 <b>기준</b> &nbsp;|&nbsp; 0–2 도입 / 2–20 문제 / 20–35 해결 / 35–50 데모 / 50–60 Q&amp;A</div>
+
+<div class="cols">
+<div>
+  <h3>오프닝 — 축어로 준다 (0:00–0:40)</h3>
+  <blockquote>이건 아니야. 이 말, 오늘 몇 번 하셨어요?<br><br>
+  저는 세어봤더니 2,000번이 넘더라고요. 그런데 이상한 게, 그렇게 많이 말했는데 다음 날이면 또 처음부터 설명하고 있었습니다.</blockquote>
+  <div class="warn">자기소개 안 한다 — 같은 유닛이라 이미 안다.<br><b>"별거 아닌데요" 금지.</b> 남은 59분이 통째로 깎인다.</div>
+
+  <h3 style="margin-top:22px">구간별 — 장당 시간과 할 말</h3>
+  <div class="seg"><div class="n">4 · 2분</div><div class="t"><b>AI를 늘렸는데 손은 그대로</b><i>도구를 몇 개 쓰는지 손 들게 한다</i></div></div>
+  <div class="seg"><div class="n">5 · 3분</div><div class="t"><b>반복 루프 애니</b><i>애니가 도는 동안 할 말까지 적혀 있다</i></div></div>
+  <div class="seg"><div class="n">6 · 2분</div><div class="t"><b>★ 오늘의 한 문장</b><i>여기서 한 박자 쉰다</i></div></div>
+  <div class="seg"><div class="n">9 · 3분</div><div class="t"><b>그때 뭐가 답답했나</b><i>전환 <span class="hook">"그래서 말을 파일로 바꿨습니다"</span></i></div></div>
+  <div class="seg"><div class="n">16 · 2분</div><div class="t"><b>다음부터 처음부터 잘 나왔다</b><i>전환 <span class="hook">"말로는 여기까지. 지금 해보겠습니다"</span></i></div></div>
+</div>
+
+<div>
+  <h3>데모 15분 — 전날 체크리스트</h3>
+  <ul>
+    <li>터미널 폰트 크게</li>
+    <li>알림 전부 끄기</li>
+    <li>반려할 예제 미리 준비 (일부러 어긋난 결과가 나오는 것)</li>
+    <li>네트워크 끊겼을 때 보여줄 녹화본</li>
+  </ul>
+  <div class="warn" style="margin-top:12px">망했을 때 대사까지 적어둔다 —<br><b>"이게 실제입니다. 이럴 때 제가 뭘 하냐면요."</b></div>
+
+  <h3 style="margin-top:22px">예상 질문 5개 — 답까지</h3>
+  <ul class="qa">
+    <li><b>저는 그거 안 되던데요</b><i>※ 반드시 나온다. 되는 조건을 먼저 말한다</i></li>
+    <li><b>이거 하는 데 얼마나 걸렸어요?</b><i>숫자로. 과장하지 않는다</i></li>
+    <li><b>우리 팀에도 적용할 수 있나요?</b><i>되는 범위와 안 되는 범위를 나눠서</i></li>
+    <li><b>유료 도구 있어야 하나요?</b><i>없이 되는 선을 먼저</i></li>
+    <li><b>기준이 틀리면요?</b><i>고치는 비용이 싸다는 게 요점</i></li>
+  </ul>
+</div>
+</div>

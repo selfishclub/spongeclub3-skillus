@@ -1,0 +1,8 @@
+{
+  "name": "web-design",
+  "description": "Local business SEO setup with JSON-LD schema, meta tags, robots.txt, and sitemap.",
+  "author": {
+    "name": "Jeremy Dawes / Jezweb",
+    "email": "jeremy@jezweb.net"
+  }
+}

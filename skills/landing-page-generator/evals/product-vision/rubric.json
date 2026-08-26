@@ -1,0 +1,121 @@
+{
+  "skill": "product-vision",
+  "version": "1.0.0",
+  "description": "Scores a Product Vision document against Pichler / Moore / Raskin / Cagan frameworks: 5-10 year horizon, customer-named, differentiated, narrative not statement, with non-goals and bottom-up grounded numbers.",
+  "criteria": [
+    {
+      "id": "vision_section_present",
+      "name": "Vision section / heading present",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "(^##\\s+(?:The\\s+)?(Product\\s+)?Vision|^###\\s+Vision\\b|^#\\s+.*Vision)", "flags": "im"}
+    },
+    {
+      "id": "horizon_5_to_10_years",
+      "name": "Time horizon 3+ years (5-10 preferred) — not 12-month",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "(By\\s+20(2[8-9]|3[0-9])|2029|2030|2031|2032|2034|2036|10[-\\s]year|5[-\\s]year|3[-\\s]year)", "flags": ""}
+    },
+    {
+      "id": "not_one_year_only",
+      "name": "No 12-month-only horizon (Red Flag 2)",
+      "weight": 4,
+      "check": {"type": "regex_not", "pattern": "(?:^|\\s)Vision\\s+for\\s+(next\\s+year|the\\s+next\\s+12\\s+months|2026\\s*$)", "flags": "im"}
+    },
+    {
+      "id": "customer_named",
+      "name": "Specific customer / persona named (not 'everyone')",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["engineer", "finance lead", "EM ", "designer", "Head of", "PM ", "teams of", "applied-AI", "developer", "manager", "Series A"]}
+    },
+    {
+      "id": "not_vague_audience",
+      "name": "No 'for businesses / for everyone' vague audience",
+      "weight": 4,
+      "check": {"type": "keyword_none", "keywords": ["for everyone", "for businesses everywhere", "modern teams of every size", "every team and every company"]}
+    },
+    {
+      "id": "differentiation_named",
+      "name": "Differentiation from competition stated",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["Unlike", "differentiation", "competitor", "vs", "differs from", "competitive", "what makes us different", "our edge"]}
+    },
+    {
+      "id": "outcome_for_customer",
+      "name": "Outcome for the customer named (verb + result)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["so that", "spend < ", "from ", "to ", "close the books", "save", "recover", "reduce"]}
+    },
+    {
+      "id": "non_goals_present",
+      "name": "Non-goals / what we will NOT do explicitly named (Red Flag 5)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["Non-goals", "non goals", "what we will not", "out of scope", "we will not chase", "we are not", "Excluded:"]}
+    },
+    {
+      "id": "narrative_not_one_line",
+      "name": "Document is a narrative (not just a tagline)",
+      "weight": 5,
+      "check": {"type": "length_in_range", "min": 1000, "max": 30000}
+    },
+    {
+      "id": "framework_used",
+      "name": "At least one named framework used (Pichler / Moore / Raskin / Cagan / Working Backwards)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["Pichler", "Vision Board", "Moore", "Elevator pitch", "Crossing the Chasm", "Raskin", "Strategic narrative", "Cagan", "10-year", "Working Backwards"]}
+    },
+    {
+      "id": "not_mission_statement",
+      "name": "Not a generic mission ('empower every person')",
+      "weight": 5,
+      "check": {"type": "regex_not", "pattern": "(empower\\s+(every|all)|enable\\s+everyone|build\\s+the\\s+future\\s+of\\s+everything)", "flags": "im"}
+    },
+    {
+      "id": "business_goals",
+      "name": "Business goals / metrics stated",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["ARR", "Business goals", "market position", "category leadership", "% market"]}
+    },
+    {
+      "id": "needs_or_pains",
+      "name": "Customer needs / pains / jobs named",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Needs", "pain", "job", "JTBD", "jobs", "outcomes the customer", "what customers need"]}
+    },
+    {
+      "id": "numeric_grounding",
+      "name": "Numerical grounding present (TAM, current baseline, customer count)",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "(\\$\\d|\\d+%|\\d+[kM]\\s*(ARR|users|customers|teams|engineers)|\\d+\\s+paying|\\d+\\s+teams)", "flags": ""}
+    },
+    {
+      "id": "no_feature_lock",
+      "name": "Does not lock vision to specific product features (Red Flag 9)",
+      "weight": 4,
+      "check": {"type": "regex_not", "pattern": "Vision[:\\s]+.{0,80}(dropdown|button|widget|integration\\s+with\\s+[A-Z][a-z]+)", "flags": "im"}
+    },
+    {
+      "id": "no_buzzwords",
+      "name": "No buzzword vision ('next-generation', 'revolutionary')",
+      "weight": 4,
+      "check": {"type": "keyword_none", "keywords": ["next-generation", "revolutionary", "cutting-edge", "world-class", "best-in-class"]}
+    },
+    {
+      "id": "strategic_narrative_arc",
+      "name": "Strategic narrative arc present (change / stakes / promised land / obstacles)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["promised land", "the change", "obstacles", "the stakes", "what changed", "why now"]}
+    },
+    {
+      "id": "review_or_validation",
+      "name": "Review / validation / stress-test referenced",
+      "weight": 3,
+      "check": {"type": "keyword_any", "keywords": ["review checklist", "stress-test", "board-reviewed", "tested with", "red-team", "validated"]}
+    },
+    {
+      "id": "no_arbitrary_big_numbers",
+      "name": "Does not present arbitrary big numbers without derivation",
+      "weight": 3,
+      "check": {"type": "regex_not", "pattern": "^\\s*(By 20\\d{2}\\s+we will be\\s+a\\s+\\$\\d+B\\s+(company|ARR))\\s*\\.?\\s*$", "flags": "im"}
+    }
+  ]
+}

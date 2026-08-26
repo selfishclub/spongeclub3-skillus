@@ -1,0 +1,33 @@
+name: Lint skills
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/**/skills/**/SKILL.md'
+      - 'bin/skill-lint'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect changed skills
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep 'SKILL.md' || true)
+          if [ -z "$CHANGED" ]; then
+            echo "No SKILL.md files changed"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Changed skills:"
+            echo "$CHANGED"
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            # Convert to space-separated directory list
+            DIRS=$(echo "$CHANGED" | xargs -I{} dirname {} | sort -u | tr '\n' ' ')
+            echo "dirs=$DIRS" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run skill-lint
+        if: steps.changed.outputs.skip != 'true'
+        run: ./bin/skill-lint ${{ steps.changed.outputs.dirs }}

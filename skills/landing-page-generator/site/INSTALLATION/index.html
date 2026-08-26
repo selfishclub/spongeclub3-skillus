@@ -1,0 +1,3675 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="368 production-ready AI skills across 20 domains. Project Management is the most-used domain (68 skills: discovery → delivery → career, strategy frameworks, GTM, with Jira / Linear / Notion / Confluence integration). Plus engineering, marketing, C-level (incl. CAIO / CDO / CCO / GC / VPE), compliance with audit-prep, research and research-ops, business operations, markdown→HTML publishing, and 7 vertical advisors. 76 cs-* agents, 859 Python tools. Works with Claude Code, Cursor, Codex, Copilot, Windsurf, Cline, Gemini CLI, Aider, and Goose.">
+      
+      
+        <meta name="author" content="Amin Borghei">
+      
+      
+        <link rel="canonical" href="https://borghei.github.io/Claude-Skills/INSTALLATION/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Installation Guide - AI Skills Library - Claude Skills — Universal AI Skills Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Installation Guide - AI Skills Library - Claude Skills — Universal AI Skills Library" />
+<meta property="og:description" content="368 production-ready AI skills across 20 domains. Project Management is the most-used domain (68 skills: discovery → delivery → career, strategy frameworks, GTM, with Jira / Linear / Notion / Confluence integration). Plus engineering, marketing, C-level (incl. CAIO / CDO / CCO / GC / VPE), compliance with audit-prep, research and research-ops, business operations, markdown→HTML publishing, and 7 vertical advisors. 76 cs-* agents, 859 Python tools. Works with Claude Code, Cursor, Codex, Copilot, Windsurf, Cline, Gemini CLI, Aider, and Goose." />
+<meta property="og:image" content="https://borghei.github.io/Claude-Skills/assets/images/social/INSTALLATION.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://borghei.github.io/Claude-Skills/INSTALLATION/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Installation Guide - AI Skills Library - Claude Skills — Universal AI Skills Library" />
+<meta property="twitter:description" content="368 production-ready AI skills across 20 domains. Project Management is the most-used domain (68 skills: discovery → delivery → career, strategy frameworks, GTM, with Jira / Linear / Notion / Confluence integration). Plus engineering, marketing, C-level (incl. CAIO / CDO / CCO / GC / VPE), compliance with audit-prep, research and research-ops, business operations, markdown→HTML publishing, and 7 vertical advisors. 76 cs-* agents, 859 Python tools. Works with Claude Code, Cursor, Codex, Copilot, Windsurf, Cline, Gemini CLI, Aider, and Goose." />
+<meta property="twitter:image" content="https://borghei.github.io/Claude-Skills/assets/images/social/INSTALLATION.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation-guide-ai-skills-library" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Claude Skills — Universal AI Skills Library" class="md-header__button md-logo" aria-label="Claude Skills — Universal AI Skills Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.33 12.91c.09 1.55-.62 3.04-1.89 3.95l.77 1.49c.23.45.26.98.06 1.45-.19.47-.58.84-1.06 1l-.79.25a1.687 1.687 0 0 1-1.86-.55L14.44 18c-.89-.15-1.73-.53-2.44-1.1-.5.15-1 .23-1.5.23-.88 0-1.76-.27-2.5-.79-.53.16-1.07.23-1.62.22-.79.01-1.57-.15-2.3-.45a4.1 4.1 0 0 1-2.43-3.61c-.08-.72.04-1.45.35-2.11-.29-.75-.32-1.57-.07-2.33C2.3 7.11 3 6.32 3.87 5.82c.58-1.69 2.21-2.82 4-2.7 1.6-1.5 4.05-1.66 5.83-.37.42-.11.86-.17 1.3-.17 1.36-.03 2.65.57 3.5 1.64 2.04.53 3.5 2.35 3.58 4.47.05 1.11-.25 2.2-.86 3.13.07.36.11.72.11 1.09m-5-1.41c.57.07 1.02.5 1.02 1.07a1 1 0 0 1-1 1h-.63c-.32.9-.88 1.69-1.62 2.29.25.09.51.14.77.21 5.13-.07 4.53-3.2 4.53-3.25a2.59 2.59 0 0 0-2.69-2.49 1 1 0 0 1-1-1 1 1 0 0 1 1-1c1.23.03 2.41.49 3.33 1.3.05-.29.08-.59.08-.89-.06-1.24-.62-2.32-2.87-2.53-1.25-2.96-4.4-1.32-4.4-.4-.03.23.21.72.25.75a1 1 0 0 1 1 1c0 .55-.45 1-1 1-.53-.02-1.03-.22-1.43-.56-.48.31-1.03.5-1.6.56-.57.05-1.04-.35-1.07-.9a.97.97 0 0 1 .88-1.1c.16-.02.94-.14.94-.77 0-.66.25-1.29.68-1.79-.92-.25-1.91.08-2.91 1.29C6.75 5 6 5.25 5.45 7.2 4.5 7.67 4 8 3.78 9c1.08-.22 2.19-.13 3.22.25.5.19.78.75.59 1.29-.19.52-.77.78-1.29.59-.73-.32-1.55-.34-2.3-.06-.32.27-.32.83-.32 1.27 0 .74.37 1.43 1 1.83.53.27 1.12.41 1.71.4q-.225-.39-.39-.81a1.038 1.038 0 0 1 1.96-.68c.4 1.14 1.42 1.92 2.62 2.05 1.37-.07 2.59-.88 3.19-2.13.23-1.38 1.34-1.5 2.56-1.5m2 7.47-.62-1.3-.71.16 1 1.25zm-4.65-8.61a1 1 0 0 0-.91-1.03c-.71-.04-1.4.2-1.93.67-.57.58-.87 1.38-.84 2.19a1 1 0 0 0 1 1c.57 0 1-.45 1-1 0-.27.07-.54.23-.76.12-.1.27-.15.43-.15.55.03 1.02-.38 1.02-.92"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Claude Skills — Universal AI Skills Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installation Guide - AI Skills Library
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/borghei/Claude-Skills" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    borghei/Claude-Skills
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../skills/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Skills
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../agents/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../commands/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Commands
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guides/authoring/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/cli/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../changelog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Claude Skills — Universal AI Skills Library" class="md-nav__button md-logo" aria-label="Claude Skills — Universal AI Skills Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.33 12.91c.09 1.55-.62 3.04-1.89 3.95l.77 1.49c.23.45.26.98.06 1.45-.19.47-.58.84-1.06 1l-.79.25a1.687 1.687 0 0 1-1.86-.55L14.44 18c-.89-.15-1.73-.53-2.44-1.1-.5.15-1 .23-1.5.23-.88 0-1.76-.27-2.5-.79-.53.16-1.07.23-1.62.22-.79.01-1.57-.15-2.3-.45a4.1 4.1 0 0 1-2.43-3.61c-.08-.72.04-1.45.35-2.11-.29-.75-.32-1.57-.07-2.33C2.3 7.11 3 6.32 3.87 5.82c.58-1.69 2.21-2.82 4-2.7 1.6-1.5 4.05-1.66 5.83-.37.42-.11.86-.17 1.3-.17 1.36-.03 2.65.57 3.5 1.64 2.04.53 3.5 2.35 3.58 4.47.05 1.11-.25 2.2-.86 3.13.07.36.11.72.11 1.09m-5-1.41c.57.07 1.02.5 1.02 1.07a1 1 0 0 1-1 1h-.63c-.32.9-.88 1.69-1.62 2.29.25.09.51.14.77.21 5.13-.07 4.53-3.2 4.53-3.25a2.59 2.59 0 0 0-2.69-2.49 1 1 0 0 1-1-1 1 1 0 0 1 1-1c1.23.03 2.41.49 3.33 1.3.05-.29.08-.59.08-.89-.06-1.24-.62-2.32-2.87-2.53-1.25-2.96-4.4-1.32-4.4-.4-.03.23.21.72.25.75a1 1 0 0 1 1 1c0 .55-.45 1-1 1-.53-.02-1.03-.22-1.43-.56-.48.31-1.03.5-1.6.56-.57.05-1.04-.35-1.07-.9a.97.97 0 0 1 .88-1.1c.16-.02.94-.14.94-.77 0-.66.25-1.29.68-1.79-.92-.25-1.91.08-2.91 1.29C6.75 5 6 5.25 5.45 7.2 4.5 7.67 4 8 3.78 9c1.08-.22 2.19-.13 3.22.25.5.19.78.75.59 1.29-.19.52-.77.78-1.29.59-.73-.32-1.55-.34-2.3-.06-.32.27-.32.83-.32 1.27 0 .74.37 1.43 1 1.83.53.27 1.12.41 1.71.4q-.225-.39-.39-.81a1.038 1.038 0 0 1 1.96-.68c.4 1.14 1.42 1.92 2.62 2.05 1.37-.07 2.59-.88 3.19-2.13.23-1.38 1.34-1.5 2.56-1.5m2 7.47-.62-1.3-.71.16 1 1.25zm-4.65-8.61a1 1 0 0 0-.91-1.03c-.71-.04-1.4.2-1.93.67-.57.58-.87 1.38-.84 2.19a1 1 0 0 0 1 1c.57 0 1-.45 1-1 0-.27.07-.54.23-.76.12-.1.27-.15.43-.15.55.03 1.02-.38 1.02-.92"/></svg>
+
+    </a>
+    Claude Skills — Universal AI Skills Library
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/borghei/Claude-Skills" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    borghei/Claude-Skills
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../skills/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Skills
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/project-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ★ Project Management (68)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/marketing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/c-level/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Level Advisory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/compliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compliance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Team
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/business/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business & Sales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/research-ops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Ops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/business-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/markdown-html/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown & HTML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data, HR & Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../agents/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/task-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../commands/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/authoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authoring Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orchestration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/bundles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starter Bundles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-claudeai-chatgpt-gemini-users-no-setup-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Claude.ai, ChatGPT, Gemini users (no setup, free)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-claudeai-promaxteamenterprise-custom-skills-upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Claude.ai Pro/Max/Team/Enterprise (Custom Skills upload)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-claude-code-users-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Claude Code Users (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-openai-codex-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For OpenAI Codex Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-windsurf-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Windsurf Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-cline-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Cline Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-aider-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Aider Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-all-other-agents-goose-jules-roocode-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For All Other Agents (Goose, Jules, RooCode, etc.)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skill-installer-cli-new" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skill Installer CLI (New!)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Skill Installer CLI (New!)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-available-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Available Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-a-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install a Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-installed-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Installed Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-a-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove a Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-domain-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Domain Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claude-code-native-marketplace-new" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code Native Marketplace (New!)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Claude Code Native Marketplace (New!)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-the-marketplace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add the Marketplace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-skill-bundles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Skill Bundles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-individual-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install Individual Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#universal-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universal Installer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Universal Installer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-all-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install All Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-to-specific-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install to Specific Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preview-before-installing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preview Before Installing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#per-skill-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Skill Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Per-Skill Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#marketing-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marketing Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-level-advisory-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C-Level Advisory Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#product-team-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Team Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-management-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Management Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engineering-team-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engineering Team Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regulatory-affairs-quality-management-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regulatory Affairs &amp; Quality Management Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Update
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Auto-Update">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-skill-installer-cli-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Skill Installer CLI (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-github-action-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: GitHub Action (CI/CD)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-git-submodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 3: Git Submodule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Manifest
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-agent-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Agent Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Agent Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-marketing-team-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Marketing Team Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-engineering-team-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Engineering Team Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-clone-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Clone Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-install-dependencies-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Install Dependencies (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-manual-copy-to-agent-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Manual Copy to Agent Directory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Manual Copy to Agent Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Cursor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-vs-codecopilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For VS Code/Copilot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-verify-python-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Verify Python Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification &amp; Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification &amp; Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-universal-installer-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Universal Installer Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-skill-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Skill Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Skill Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Cursor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-python-tools-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Python Tools Locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#universal-installer-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universal Installer Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Universal Installer Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-command-not-found-npx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "Command not found: npx"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-failed-to-install-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "Failed to install skills"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-skills-not-showing-in-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "Skills not showing in agent"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Installation Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-python-scripts-not-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Python scripts not executable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-module-not-found-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: "Module not found" errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-skills-not-recognized-by-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue: Skills not recognized by agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-specific-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent-Specific Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent-Specific Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cursor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-codecopilot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code/Copilot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstallation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstallation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uninstallation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#universal-installer-all-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universal Installer (All Agents)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-individual-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove Individual Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openai-codex-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI Codex Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenAI Codex Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-universal-installer-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Universal Installer (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-direct-installation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: Direct Installation Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-manual-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 3: Manual Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Categories
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-installation-locations-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced: Installation Locations Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="installation-guide-ai-skills-library">Installation Guide - AI Skills Library<a class="headerlink" href="#installation-guide-ai-skills-library" title="Permanent link">&para;</a></h1>
+<p>Complete installation guide for all 368 production-ready skills across 20 domains, 859 Python tools, 76 agents, 26 slash commands, 21 compound sub-skills, 18 compliance frameworks and 8 CI/CD workflows. Works with Claude Code, Claude.ai, Cursor, Copilot, Codex, Gemini CLI, Windsurf, Cline, Aider, Goose, ChatGPT and more.</p>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#skill-installer-cli-new">Skill Installer CLI (New!)</a></li>
+<li><a href="#claude-code-native-marketplace-new">Claude Code Native Marketplace</a></li>
+<li><a href="#universal-installer">Universal Installer</a></li>
+<li><a href="#openai-codex-installation">OpenAI Codex Installation</a></li>
+<li><a href="#per-skill-installation">Per-Skill Installation</a></li>
+<li><a href="#auto-update">Auto-Update</a></li>
+<li><a href="#multi-agent-setup">Multi-Agent Setup</a></li>
+<li><a href="#manual-installation">Manual Installation</a></li>
+<li><a href="#verification--testing">Verification &amp; Testing</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#uninstallation">Uninstallation</a></li>
+</ul>
+<hr />
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p><strong>Choose your agent:</strong></p>
+<h3 id="for-claudeai-chatgpt-gemini-users-no-setup-free">For Claude.ai, ChatGPT, Gemini users (no setup, free)<a class="headerlink" href="#for-claudeai-chatgpt-gemini-users-no-setup-free" title="Permanent link">&para;</a></h3>
+<p>Every skill has two one-click copy buttons on the <a href="https://borghei.github.io/Claude-Skills">website</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Try in Chat</strong></td>
+<td>Copies a condensed prompt. Paste into Claude.ai, ChatGPT or Gemini and the skill works for that conversation.</td>
+</tr>
+<tr>
+<td><strong>Add to My AI</strong></td>
+<td>Copies the full skill plus setup instructions. Paste into any AI chat and it walks you through creating a permanent Claude Project or Custom GPT with the skill built in. Use it across all future conversations.</td>
+</tr>
+</tbody>
+</table>
+<p>No terminal, no git, no CLI. Browse a skill page, click the button, paste.</p>
+<h3 id="for-claudeai-promaxteamenterprise-custom-skills-upload">For Claude.ai Pro/Max/Team/Enterprise (Custom Skills upload)<a class="headerlink" href="#for-claudeai-promaxteamenterprise-custom-skills-upload" title="Permanent link">&para;</a></h3>
+<p>Claude.ai paid accounts support native Custom Skills.</p>
+<ol>
+<li>On GitHub, navigate to the skill folder you want (e.g. <code>engineering/senior-fullstack/</code>)</li>
+<li>Download it as a zip. Paste the folder URL into <a href="https://download-directory.github.io/">download-directory.github.io</a> to get a zip of just that folder.</li>
+<li>In Claude.ai, go to <strong>Settings → Features → Custom Skills → Upload</strong></li>
+<li>Upload the zip. The skill becomes available in every conversation on that account.</li>
+</ol>
+<p>This does not sync to Claude Desktop or the API.</p>
+<h3 id="for-claude-code-users-recommended">For Claude Code Users (Recommended)<a class="headerlink" href="#for-claude-code-users-recommended" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># In Claude Code, run:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>/plugin<span class="w"> </span>marketplace<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>/plugin<span class="w"> </span>install<span class="w"> </span>marketings@claude-code-skills
+</span></code></pre></div>
+<p>Native integration with automatic updates and version management.</p>
+<h3 id="for-openai-codex-users">For OpenAI Codex Users<a class="headerlink" href="#for-openai-codex-users" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Option 1: Universal installer</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--agent<span class="w"> </span>codex
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Option 2: Direct installation script</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/borghei/Claude-Skills.git
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nb">cd</span><span class="w"> </span>claude-skills
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>./scripts/codex-install.sh
+</span></code></pre></div>
+<p>Skills install to <code>~/.codex/skills/</code>. See <a href="#openai-codex-installation">OpenAI Codex Installation</a> for detailed instructions.</p>
+<h3 id="for-windsurf-users">For Windsurf Users<a class="headerlink" href="#for-windsurf-users" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/borghei/Claude-Skills.git
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>Claude-Skills
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>install<span class="w"> </span>senior-fullstack<span class="w"> </span>--agent<span class="w"> </span>windsurf
+</span></code></pre></div>
+<p>Windsurf auto-detects the <code>.windsurfrules</code> config file from the project root.</p>
+<h3 id="for-cline-users">For Cline Users<a class="headerlink" href="#for-cline-users" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/borghei/Claude-Skills.git
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>Claude-Skills
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>install<span class="w"> </span>senior-fullstack<span class="w"> </span>--agent<span class="w"> </span>cline
+</span></code></pre></div>
+<p>Cline auto-detects the <code>.clinerules</code> config file from the project root.</p>
+<h3 id="for-aider-users">For Aider Users<a class="headerlink" href="#for-aider-users" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/borghei/Claude-Skills.git
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span><span class="w"> </span>Claude-Skills
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Aider reads AGENTS.md automatically</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>list
+</span></code></pre></div>
+<h3 id="for-all-other-agents-goose-jules-roocode-etc">For All Other Agents (Goose, Jules, RooCode, etc.)<a class="headerlink" href="#for-all-other-agents-goose-jules-roocode-etc" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills
+</span></code></pre></div>
+<p>This single command installs all skills to all supported agents automatically.</p>
+<p><strong>What this does:</strong>
+- ✅ Detects all 53 skills automatically
+- ✅ Installs to Claude, Cursor, Copilot, Windsurf, Cline, and 37+ other AI agents
+- ✅ Works across all skill formats</p>
+<p>Learn more: https://www.agentskills.in</p>
+<hr />
+<h2 id="skill-installer-cli-new">Skill Installer CLI (New!)<a class="headerlink" href="#skill-installer-cli-new" title="Permanent link">&para;</a></h2>
+<p>Install <strong>one skill per domain group</strong> into your project with built-in auto-update support. This is the recommended way to pick individual skills.</p>
+<h3 id="list-available-skills">List Available Skills<a class="headerlink" href="#list-available-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># List all 368 skills across 20 domains</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>list
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># List skills in a specific group</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>list<span class="w"> </span>--group<span class="w"> </span>engineering
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>list<span class="w"> </span>--group<span class="w"> </span>marketing
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>list<span class="w"> </span>--group<span class="w"> </span>ra-qm-team
+</span></code></pre></div>
+<h3 id="install-a-skill">Install a Skill<a class="headerlink" href="#install-a-skill" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Install to generic .skills/ directory (default)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>install<span class="w"> </span>content-creator
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Install to a specific agent</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>install<span class="w"> </span>senior-fullstack<span class="w"> </span>--agent<span class="w"> </span>claude
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>install<span class="w"> </span>ceo-advisor<span class="w"> </span>--agent<span class="w"> </span>cursor
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>install<span class="w"> </span>product-manager-toolkit<span class="w"> </span>--agent<span class="w"> </span>vscode
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># Install with auto-update enabled</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>install<span class="w"> </span>senior-devops<span class="w"> </span>--agent<span class="w"> </span>claude<span class="w"> </span>--auto-update
+</span></code></pre></div>
+<p><strong>One-per-group policy:</strong> By default, you can install one skill per domain group (e.g., one from <code>engineering</code>, one from <code>marketing</code>). Use <code>--force</code> to override.</p>
+<h3 id="update-installed-skills">Update Installed Skills<a class="headerlink" href="#update-installed-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Update all skills with auto-update enabled</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>update
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Update a specific skill (even without auto-update)</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>update<span class="w"> </span>content-creator
+</span></code></pre></div>
+<h3 id="check-status">Check Status<a class="headerlink" href="#check-status" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Show all installed skills</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>status
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>status<span class="w"> </span>--agent<span class="w"> </span>claude
+</span></code></pre></div>
+<h3 id="remove-a-skill">Remove a Skill<a class="headerlink" href="#remove-a-skill" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>uninstall<span class="w"> </span>content-creator
+</span></code></pre></div>
+<h3 id="available-domain-groups">Available Domain Groups<a class="headerlink" href="#available-domain-groups" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Skills</th>
+<th>Highlights</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>engineering</strong></td>
+<td>24</td>
+<td>fullstack, devops, security, AI/ML, mobile, cloud</td>
+</tr>
+<tr>
+<td><strong>engineering</strong></td>
+<td>12</td>
+<td>agent-designer, rag-architect, database-designer</td>
+</tr>
+<tr>
+<td><strong>ra-qm-team</strong></td>
+<td>12</td>
+<td>ISO 13485, MDR, FDA, GDPR, audit</td>
+</tr>
+<tr>
+<td><strong>marketing</strong></td>
+<td>10</td>
+<td>content, SEO, ASO, analytics, growth</td>
+</tr>
+<tr>
+<td><strong>project-management</strong></td>
+<td>9</td>
+<td>PM, scrum, Jira, Confluence, delivery</td>
+</tr>
+<tr>
+<td><strong>product-team</strong></td>
+<td>7</td>
+<td>product manager, UX, design systems</td>
+</tr>
+<tr>
+<td><strong>c-level-advisor</strong></td>
+<td>5</td>
+<td>CEO, CTO, CFO, CMO, COO</td>
+</tr>
+<tr>
+<td><strong>data-analytics</strong></td>
+<td>5</td>
+<td>data analyst, BI, analytics engineer</td>
+</tr>
+<tr>
+<td><strong>sales-success</strong></td>
+<td>5</td>
+<td>account exec, sales engineer, CS</td>
+</tr>
+<tr>
+<td><strong>hr-operations</strong></td>
+<td>4</td>
+<td>talent, people analytics, HR partner</td>
+</tr>
+<tr>
+<td><strong>business-growth</strong></td>
+<td>3</td>
+<td>customer success, revenue ops</td>
+</tr>
+<tr>
+<td><strong>finance</strong></td>
+<td>1</td>
+<td>financial analyst</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="claude-code-native-marketplace-new">Claude Code Native Marketplace (New!)<a class="headerlink" href="#claude-code-native-marketplace-new" title="Permanent link">&para;</a></h2>
+<p><strong>Best for Claude Code users</strong> - Native integration with Claude Code's plugin system.</p>
+<h3 id="add-the-marketplace">Add the Marketplace<a class="headerlink" href="#add-the-marketplace" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># In Claude Code, run:</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>/plugin<span class="w"> </span>marketplace<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills
+</span></code></pre></div>
+<p>This adds the skills library to your available marketplaces.</p>
+<h3 id="install-skill-bundles">Install Skill Bundles<a class="headerlink" href="#install-skill-bundles" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Install by domain (bundles of skills)</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>/plugin<span class="w"> </span>install<span class="w"> </span>marketings@claude-code-skills<span class="w">     </span><span class="c1"># 6 marketing skills</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>/plugin<span class="w"> </span>install<span class="w"> </span>engineering-skills@claude-code-skills<span class="w">   </span><span class="c1"># 18 engineering skills</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>/plugin<span class="w"> </span>install<span class="w"> </span>product-skills@claude-code-skills<span class="w">       </span><span class="c1"># 5 product skills</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>/plugin<span class="w"> </span>install<span class="w"> </span>c-level-skills@claude-code-skills<span class="w">       </span><span class="c1"># 2 C-level advisory skills</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>/plugin<span class="w"> </span>install<span class="w"> </span>pm-skills@claude-code-skills<span class="w">            </span><span class="c1"># 6 project management skills</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>/plugin<span class="w"> </span>install<span class="w"> </span>ra-qm-skills@claude-code-skills<span class="w">         </span><span class="c1"># 12 regulatory/quality skills</span>
+</span></code></pre></div>
+<h3 id="install-individual-skills">Install Individual Skills<a class="headerlink" href="#install-individual-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Marketing</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>/plugin<span class="w"> </span>install<span class="w"> </span>content-creator@claude-code-skills
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>/plugin<span class="w"> </span>install<span class="w"> </span>demand-gen@claude-code-skills
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># Engineering</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>/plugin<span class="w"> </span>install<span class="w"> </span>fullstack-engineer@claude-code-skills
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>/plugin<span class="w"> </span>install<span class="w"> </span>aws-architect@claude-code-skills
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1"># Product</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>/plugin<span class="w"> </span>install<span class="w"> </span>product-manager@claude-code-skills
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="c1"># Project Management</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>/plugin<span class="w"> </span>install<span class="w"> </span>scrum-master@claude-code-skills
+</span></code></pre></div>
+<h3 id="update-skills">Update Skills<a class="headerlink" href="#update-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Update all installed plugins</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>/plugin<span class="w"> </span>update
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Update specific plugin</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>/plugin<span class="w"> </span>update<span class="w"> </span>marketings
+</span></code></pre></div>
+<h3 id="remove-skills">Remove Skills<a class="headerlink" href="#remove-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Remove specific plugin</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>/plugin<span class="w"> </span>remove<span class="w"> </span>marketings
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Remove marketplace</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>/plugin<span class="w"> </span>marketplace<span class="w"> </span>remove<span class="w"> </span>claude-code-skills
+</span></code></pre></div>
+<p><strong>Benefits:</strong>
+- ✅ Native Claude Code integration
+- ✅ Automatic updates with <code>/plugin update</code>
+- ✅ Version management with git tags
+- ✅ Skills installed to <code>~/.claude/skills/</code>
+- ✅ Managed through Claude Code UI</p>
+<hr />
+<h2 id="universal-installer">Universal Installer<a class="headerlink" href="#universal-installer" title="Permanent link">&para;</a></h2>
+<p>The universal installer uses the <a href="https://github.com/Karanjot786/agent-skills-cli">Agent Skills CLI</a> package to install skills across multiple agents simultaneously.</p>
+<h3 id="install-all-skills">Install All Skills<a class="headerlink" href="#install-all-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Install to all supported agents</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills
+</span></code></pre></div>
+<p><strong>This installs to:</strong>
+- Claude Code → <code>~/.claude/skills/</code>
+- Cursor → <code>.cursor/skills/</code>
+- VS Code/Copilot → <code>.github/skills/</code>
+- Goose → <code>~/.config/goose/skills/</code>
+- Amp → Platform-specific location
+- Codex → Platform-specific location
+- Letta → Platform-specific location
+- OpenCode → Platform-specific location</p>
+<h3 id="install-to-specific-agent">Install to Specific Agent<a class="headerlink" href="#install-to-specific-agent" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Claude Code only</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--agent<span class="w"> </span>claude
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># Cursor only</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--agent<span class="w"> </span>cursor
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1"># VS Code/Copilot only</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--agent<span class="w"> </span>vscode
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="c1"># Goose only</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--agent<span class="w"> </span>goose
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="c1"># Project-specific installation (portable)</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--agent<span class="w"> </span>project
+</span></code></pre></div>
+<h3 id="preview-before-installing">Preview Before Installing<a class="headerlink" href="#preview-before-installing" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Dry run to see what will be installed</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--dry-run
+</span></code></pre></div>
+<hr />
+<h2 id="per-skill-installation">Per-Skill Installation<a class="headerlink" href="#per-skill-installation" title="Permanent link">&para;</a></h2>
+<p>Install individual skills instead of the entire library:</p>
+<h3 id="marketing-skills">Marketing Skills<a class="headerlink" href="#marketing-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Content Creator</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/marketing/content-creator
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Demand Generation &amp; Acquisition</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/marketing/marketing-demand-acquisition
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c1"># Product Marketing Strategy</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/marketing/marketing-strategy-pmm
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="c1"># App Store Optimization</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/marketing/app-store-optimization
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="c1"># Social Media Analyzer</span>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/marketing/social-media-analyzer
+</span></code></pre></div>
+<h3 id="c-level-advisory-skills">C-Level Advisory Skills<a class="headerlink" href="#c-level-advisory-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># CEO Advisor</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/c-level-advisor/ceo-advisor
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># CTO Advisor</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/c-level-advisor/cto-advisor
+</span></code></pre></div>
+<h3 id="product-team-skills">Product Team Skills<a class="headerlink" href="#product-team-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Product Manager Toolkit</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/product-team/product-manager-toolkit
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Agile Product Owner</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/product-team/agile-product-owner
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1"># Product Strategist</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/product-team/product-strategist
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="c1"># UX Researcher Designer</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/product-team/ux-researcher-designer
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="c1"># UI Design System</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/product-team/ui-design-system
+</span></code></pre></div>
+<h3 id="project-management-skills">Project Management Skills<a class="headerlink" href="#project-management-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Senior PM Expert</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/project-management/senior-pm-expert
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Scrum Master Expert</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/project-management/scrum-master-expert
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># Atlassian Jira Expert</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/project-management/atlassian-jira-expert
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="c1"># Atlassian Confluence Expert</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/project-management/atlassian-confluence-expert
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c1"># Atlassian Administrator</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/project-management/atlassian-administrator
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="c1"># Atlassian Template Creator</span>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/project-management/atlassian-template-creator
+</span></code></pre></div>
+<h3 id="engineering-team-skills">Engineering Team Skills<a class="headerlink" href="#engineering-team-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Core Engineering</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-architect
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-frontend
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-backend
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-fullstack
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-qa
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-devops
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-secops
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/code-reviewer
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-security
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="c1"># Cloud &amp; Enterprise</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/aws-solution-architect
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/ms365-tenant-manager
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="c1"># Development Tools</span>
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/tdd-guide
+</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/tech-stack-evaluator
+</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a>
+</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="c1"># AI/ML/Data</span>
+</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-data-scientist
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-data-engineer
+</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-ml-engineer
+</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-prompt-engineer
+</span><span id="__span-23-25"><a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering/senior-computer-vision
+</span></code></pre></div>
+<h3 id="regulatory-affairs-quality-management-skills">Regulatory Affairs &amp; Quality Management Skills<a class="headerlink" href="#regulatory-affairs-quality-management-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Regulatory &amp; Quality Leadership</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/regulatory-affairs-head
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/quality-manager-qmr
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/quality-manager-qms-iso13485
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="c1"># Quality Processes</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/capa-officer
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/quality-documentation-manager
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/risk-management-specialist
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="c1"># Security &amp; Privacy</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/information-security-manager-iso27001
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/gdpr-dsgvo-expert
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="c1"># Regional Compliance</span>
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/mdr-745-specialist
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/fda-consultant-specialist
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="c1"># Audit &amp; Assessment</span>
+</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/qms-audit-expert
+</span><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/ra-qm-team/isms-audit-expert
+</span></code></pre></div>
+<hr />
+<h2 id="auto-update">Auto-Update<a class="headerlink" href="#auto-update" title="Permanent link">&para;</a></h2>
+<p>Keep your installed skills up to date automatically.</p>
+<h3 id="method-1-skill-installer-cli-recommended">Method 1: Skill Installer CLI (Recommended)<a class="headerlink" href="#method-1-skill-installer-cli-recommended" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Pull latest repository changes</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Update all skills with auto-update enabled</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>update
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="c1"># Update a specific skill</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>python<span class="w"> </span>scripts/skill-installer.py<span class="w"> </span>update<span class="w"> </span>senior-fullstack<span class="w"> </span>--agent<span class="w"> </span>claude
+</span></code></pre></div>
+<h3 id="method-2-github-action-cicd">Method 2: GitHub Action (CI/CD)<a class="headerlink" href="#method-2-github-action-cicd" title="Permanent link">&para;</a></h3>
+<p>The repository includes a sample <code>skill-auto-update.yml</code> workflow in <code>templates/workflows/</code> that detects skill changes and generates update manifests. You can copy it to your project or create your own:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># .github/workflows/update-skills.yml</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Update Claude Skills</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nt">on</span><span class="p">:</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="nt">schedule</span><span class="p">:</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0</span><span class="nv"> </span><span class="s">6</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1&#39;</span><span class="w">  </span><span class="c1"># Weekly on Monday</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">  </span><span class="nt">workflow_dispatch</span><span class="p">:</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="nt">jobs</span><span class="p">:</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">  </span><span class="nt">update</span><span class="p">:</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">          </span><span class="no">git clone https://github.com/borghei/Claude-Skills.git /tmp/claude-skills</span>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="w">          </span><span class="no">cd /tmp/claude-skills</span>
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="w">          </span><span class="no">python scripts/skill-installer.py update --agent project</span>
+</span></code></pre></div>
+<h3 id="method-3-git-submodule">Method 3: Git Submodule<a class="headerlink" href="#method-3-git-submodule" title="Permanent link">&para;</a></h3>
+<p>For tighter integration, add the skills repo as a submodule:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Add as submodule</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/borghei/Claude-Skills.git<span class="w"> </span>.claude-skills
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1"># Update to latest</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--remote<span class="w"> </span>.claude-skills
+</span></code></pre></div>
+<h3 id="update-manifest">Update Manifest<a class="headerlink" href="#update-manifest" title="Permanent link">&para;</a></h3>
+<p>When you install skills with <code>--auto-update</code>, a <code>.claude-skills.json</code> manifest is created in your target directory. This tracks:
+- Which skills are installed
+- Which group each skill belongs to
+- When each skill was last updated
+- Whether auto-update is enabled per skill</p>
+<hr />
+<h2 id="multi-agent-setup">Multi-Agent Setup<a class="headerlink" href="#multi-agent-setup" title="Permanent link">&para;</a></h2>
+<p>Install the same skills across different agents for team consistency:</p>
+<h3 id="example-marketing-team-setup">Example: Marketing Team Setup<a class="headerlink" href="#example-marketing-team-setup" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># Install marketing skills to Claude Code (for content strategist)</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/marketing/content-creator<span class="w"> </span>--agent<span class="w"> </span>claude
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1"># Install same skills to Cursor (for developer working on content)</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/marketing/content-creator<span class="w"> </span>--agent<span class="w"> </span>cursor
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="c1"># Install to VS Code (for SEO specialist)</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/marketing/content-creator<span class="w"> </span>--agent<span class="w"> </span>vscode
+</span></code></pre></div>
+<h3 id="example-engineering-team-setup">Example: Engineering Team Setup<a class="headerlink" href="#example-engineering-team-setup" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Full engineering suite to Claude Code</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering<span class="w"> </span>--agent<span class="w"> </span>claude
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="c1"># Same suite to Cursor</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills/engineering<span class="w"> </span>--agent<span class="w"> </span>cursor
+</span></code></pre></div>
+<hr />
+<h2 id="manual-installation">Manual Installation<a class="headerlink" href="#manual-installation" title="Permanent link">&para;</a></h2>
+<p>For development, customization, or offline use:</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Python 3.7+</strong> (for running analysis scripts)</li>
+<li><strong>Git</strong> (for cloning repository)</li>
+<li><strong>Claude AI account</strong> or <strong>Claude Code</strong> (for using skills)</li>
+</ul>
+<h3 id="step-1-clone-repository">Step 1: Clone Repository<a class="headerlink" href="#step-1-clone-repository" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/borghei/Claude-Skills.git
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nb">cd</span><span class="w"> </span>claude-skills
+</span></code></pre></div>
+<h3 id="step-2-install-dependencies-optional">Step 2: Install Dependencies (Optional)<a class="headerlink" href="#step-2-install-dependencies-optional" title="Permanent link">&para;</a></h3>
+<p>Most scripts use Python standard library only:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># Optional dependencies for future features</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>pip<span class="w"> </span>install<span class="w"> </span>pyyaml
+</span></code></pre></div>
+<h3 id="step-3-manual-copy-to-agent-directory">Step 3: Manual Copy to Agent Directory<a class="headerlink" href="#step-3-manual-copy-to-agent-directory" title="Permanent link">&para;</a></h3>
+<h4 id="for-claude-code">For Claude Code<a class="headerlink" href="#for-claude-code" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># Copy all skills</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>cp<span class="w"> </span>-r<span class="w"> </span>marketing<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>cp<span class="w"> </span>-r<span class="w"> </span>c-level-advisor<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>cp<span class="w"> </span>-r<span class="w"> </span>product-team<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>cp<span class="w"> </span>-r<span class="w"> </span>project-management<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>cp<span class="w"> </span>-r<span class="w"> </span>engineering<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>cp<span class="w"> </span>-r<span class="w"> </span>ra-qm-team<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="c1"># Or copy single skill</span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>cp<span class="w"> </span>-r<span class="w"> </span>marketing/content-creator<span class="w"> </span>~/.claude/skills/content-creator
+</span></code></pre></div>
+<h4 id="for-cursor">For Cursor<a class="headerlink" href="#for-cursor" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Copy to project directory</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>.cursor/skills
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>cp<span class="w"> </span>-r<span class="w"> </span>marketing<span class="w"> </span>.cursor/skills/
+</span></code></pre></div>
+<h4 id="for-vs-codecopilot">For VS Code/Copilot<a class="headerlink" href="#for-vs-codecopilot" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># Copy to project directory</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>.github/skills
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>cp<span class="w"> </span>-r<span class="w"> </span>engineering<span class="w"> </span>.github/skills/
+</span></code></pre></div>
+<h3 id="step-4-verify-python-tools">Step 4: Verify Python Tools<a class="headerlink" href="#step-4-verify-python-tools" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c1"># Test marketing tools</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>python<span class="w"> </span>marketing/content-creator/scripts/brand_voice_analyzer.py<span class="w"> </span>--help
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>python<span class="w"> </span>marketing/content-creator/scripts/seo_optimizer.py<span class="w"> </span>--help
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="c1"># Test C-level tools</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>python<span class="w"> </span>c-level-advisor/cto-advisor/scripts/tech_debt_analyzer.py<span class="w"> </span>--help
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>python<span class="w"> </span>c-level-advisor/ceo-advisor/scripts/strategy_analyzer.py<span class="w"> </span>--help
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="c1"># Test product tools</span>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>python<span class="w"> </span>product-team/product-manager-toolkit/scripts/rice_prioritizer.py<span class="w"> </span>--help
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a>python<span class="w"> </span>product-team/ui-design-system/scripts/design_token_generator.py<span class="w"> </span>--help
+</span></code></pre></div>
+<hr />
+<h2 id="verification-testing">Verification &amp; Testing<a class="headerlink" href="#verification-testing" title="Permanent link">&para;</a></h2>
+<h3 id="verify-universal-installer-installation">Verify Universal Installer Installation<a class="headerlink" href="#verify-universal-installer-installation" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="c1"># Check Claude Code installation</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>ls<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="c1"># Check Cursor installation</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>ls<span class="w"> </span>.cursor/skills/
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="c1"># Check VS Code installation</span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>ls<span class="w"> </span>.github/skills/
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="c1"># Check Goose installation</span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a>ls<span class="w"> </span>~/.config/goose/skills/
+</span></code></pre></div>
+<h3 id="test-skill-usage">Test Skill Usage<a class="headerlink" href="#test-skill-usage" title="Permanent link">&para;</a></h3>
+<h4 id="in-claude-code">In Claude Code<a class="headerlink" href="#in-claude-code" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Open Claude Code</li>
+<li>Start a new conversation</li>
+<li>Test a skill:
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>Using the content-creator skill, analyze this text for brand voice:
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>&quot;Our platform revolutionizes data analytics...&quot;
+</span></code></pre></div></li>
+</ol>
+<h4 id="in-cursor">In Cursor<a class="headerlink" href="#in-cursor" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Open Cursor</li>
+<li>Use Cmd+K or Ctrl+K</li>
+<li>Reference skill:
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>@content-creator analyze brand voice for this file
+</span></code></pre></div></li>
+</ol>
+<h3 id="test-python-tools-locally">Test Python Tools Locally<a class="headerlink" href="#test-python-tools-locally" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># Create test file</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Sample content for analysis&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test-article.txt
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="c1"># Run brand voice analysis</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>python<span class="w"> </span>~/.claude/skills/content-creator/scripts/brand_voice_analyzer.py<span class="w"> </span>test-article.txt
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="c1"># Run SEO optimization</span>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>python<span class="w"> </span>~/.claude/skills/content-creator/scripts/seo_optimizer.py<span class="w"> </span>test-article.txt<span class="w"> </span><span class="s2">&quot;sample keyword&quot;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="universal-installer-issues">Universal Installer Issues<a class="headerlink" href="#universal-installer-issues" title="Permanent link">&para;</a></h3>
+<h4 id="issue-command-not-found-npx">Issue: "Command not found: npx"<a class="headerlink" href="#issue-command-not-found-npx" title="Permanent link">&para;</a></h4>
+<p><strong>Solution:</strong> Install Node.js and npm</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># macOS</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>brew<span class="w"> </span>install<span class="w"> </span>node
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="c1"># Ubuntu/Debian</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>nodejs<span class="w"> </span>npm
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="c1"># Windows</span>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="c1"># Download from https://nodejs.org/</span>
+</span></code></pre></div>
+<h4 id="issue-failed-to-install-skills">Issue: "Failed to install skills"<a class="headerlink" href="#issue-failed-to-install-skills" title="Permanent link">&para;</a></h4>
+<p><strong>Solution:</strong> Check network connection and permissions</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1"># Check network</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>curl<span class="w"> </span>https://github.com/borghei/Claude-Skills
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="c1"># Check write permissions</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>ls<span class="w"> </span>-la<span class="w"> </span>~/.claude/
+</span></code></pre></div>
+<h4 id="issue-skills-not-showing-in-agent">Issue: "Skills not showing in agent"<a class="headerlink" href="#issue-skills-not-showing-in-agent" title="Permanent link">&para;</a></h4>
+<p><strong>Solution:</strong> Restart agent and verify installation location</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="c1"># Verify installation</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>ls<span class="w"> </span>-R<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="c1"># Restart Claude Code</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="c1"># Close and reopen application</span>
+</span></code></pre></div>
+<h3 id="manual-installation-issues">Manual Installation Issues<a class="headerlink" href="#manual-installation-issues" title="Permanent link">&para;</a></h3>
+<h4 id="issue-python-scripts-not-executable">Issue: Python scripts not executable<a class="headerlink" href="#issue-python-scripts-not-executable" title="Permanent link">&para;</a></h4>
+<p><strong>Solution:</strong> Add execute permissions</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>marketing/content-creator/scripts/*.py
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>c-level-advisor/*/scripts/*.py
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>product-team/*/scripts/*.py
+</span></code></pre></div>
+<h4 id="issue-module-not-found-errors">Issue: "Module not found" errors<a class="headerlink" href="#issue-module-not-found-errors" title="Permanent link">&para;</a></h4>
+<p><strong>Solution:</strong> Install required dependencies</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># Install Python dependencies</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>pip<span class="w"> </span>install<span class="w"> </span>pyyaml
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="c1"># Or use Python 3 specifically</span>
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>pip3<span class="w"> </span>install<span class="w"> </span>pyyaml
+</span></code></pre></div>
+<h4 id="issue-skills-not-recognized-by-agent">Issue: Skills not recognized by agent<a class="headerlink" href="#issue-skills-not-recognized-by-agent" title="Permanent link">&para;</a></h4>
+<p><strong>Solution:</strong> Verify SKILL.md format and location</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># Check SKILL.md exists</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>ls<span class="w"> </span>~/.claude/skills/content-creator/SKILL.md
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="c1"># Verify YAML frontmatter</span>
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>head<span class="w"> </span>-20<span class="w"> </span>~/.claude/skills/content-creator/SKILL.md
+</span></code></pre></div>
+<h3 id="agent-specific-issues">Agent-Specific Issues<a class="headerlink" href="#agent-specific-issues" title="Permanent link">&para;</a></h3>
+<h4 id="claude-code">Claude Code<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="c1"># Reset skills directory</span>
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.claude/skills/
+</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a>
+</span><span id="__span-46-5"><a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="c1"># Reinstall</span>
+</span><span id="__span-46-6"><a id="__codelineno-46-6" name="__codelineno-46-6" href="#__codelineno-46-6"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--agent<span class="w"> </span>claude
+</span></code></pre></div>
+<h4 id="cursor">Cursor<a class="headerlink" href="#cursor" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="c1"># Cursor uses project-local skills</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="c1"># Verify project directory has .cursor/skills/</span>
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>
+</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a>ls<span class="w"> </span>.cursor/skills/
+</span></code></pre></div>
+<h4 id="vs-codecopilot">VS Code/Copilot<a class="headerlink" href="#vs-codecopilot" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="c1"># GitHub Copilot uses .github/skills/</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="c1"># Verify directory structure</span>
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>ls<span class="w"> </span>.github/skills/
+</span></code></pre></div>
+<hr />
+<h2 id="uninstallation">Uninstallation<a class="headerlink" href="#uninstallation" title="Permanent link">&para;</a></h2>
+<h3 id="universal-installer-all-agents">Universal Installer (All Agents)<a class="headerlink" href="#universal-installer-all-agents" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="c1"># Remove from Claude Code</span>
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.claude/skills/borghei/Claude-Skills/
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="c1"># Remove from Cursor</span>
+</span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>.cursor/skills/borghei/Claude-Skills/
+</span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a>
+</span><span id="__span-49-7"><a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="c1"># Remove from VS Code</span>
+</span><span id="__span-49-8"><a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a>rm<span class="w"> </span>-rf<span class="w"> </span>.github/skills/borghei/Claude-Skills/
+</span><span id="__span-49-9"><a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a>
+</span><span id="__span-49-10"><a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a><span class="c1"># Remove from Goose</span>
+</span><span id="__span-49-11"><a id="__codelineno-49-11" name="__codelineno-49-11" href="#__codelineno-49-11"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.config/goose/skills/borghei/Claude-Skills/
+</span></code></pre></div>
+<h3 id="manual-installation_1">Manual Installation<a class="headerlink" href="#manual-installation_1" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># Clone directory</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>claude-skills/
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="c1"># Copied skills</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.claude/skills/marketing/
+</span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.claude/skills/engineering/
+</span><span id="__span-50-7"><a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="c1"># etc.</span>
+</span></code></pre></div>
+<h3 id="remove-individual-skills">Remove Individual Skills<a class="headerlink" href="#remove-individual-skills" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># Example: Remove content-creator from Claude Code</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.claude/skills/content-creator/
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="c1"># Example: Remove fullstack-engineer from Cursor</span>
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>.cursor/skills/fullstack-engineer/
+</span></code></pre></div>
+<hr />
+<h2 id="openai-codex-installation">OpenAI Codex Installation<a class="headerlink" href="#openai-codex-installation" title="Permanent link">&para;</a></h2>
+<p>OpenAI Codex users can install skills using the methods below. This repository provides full Codex compatibility through a <code>.codex/skills/</code> directory with symlinks to all 43 skills.</p>
+<h3 id="method-1-universal-installer-recommended">Method 1: Universal Installer (Recommended)<a class="headerlink" href="#method-1-universal-installer-recommended" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># Install all skills to Codex</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--agent<span class="w"> </span>codex
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="c1"># Preview before installing</span>
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>npx<span class="w"> </span>agent-skills-cli<span class="w"> </span>add<span class="w"> </span>borghei/Claude-Skills<span class="w"> </span>--agent<span class="w"> </span>codex<span class="w"> </span>--dry-run
+</span></code></pre></div>
+<h3 id="method-2-direct-installation-script">Method 2: Direct Installation Script<a class="headerlink" href="#method-2-direct-installation-script" title="Permanent link">&para;</a></h3>
+<p>For manual installation using the provided scripts:</p>
+<p><strong>macOS/Linux:</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="c1"># Clone repository</span>
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/borghei/Claude-Skills.git
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="nb">cd</span><span class="w"> </span>claude-skills
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a>
+</span><span id="__span-53-5"><a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a><span class="c1"># Generate symlinks (if not already present)</span>
+</span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>python<span class="w"> </span>scripts/sync-codex-skills.py
+</span><span id="__span-53-7"><a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a>
+</span><span id="__span-53-8"><a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a><span class="c1"># Install all skills to ~/.codex/skills/</span>
+</span><span id="__span-53-9"><a id="__codelineno-53-9" name="__codelineno-53-9" href="#__codelineno-53-9"></a>./scripts/codex-install.sh
+</span><span id="__span-53-10"><a id="__codelineno-53-10" name="__codelineno-53-10" href="#__codelineno-53-10"></a>
+</span><span id="__span-53-11"><a id="__codelineno-53-11" name="__codelineno-53-11" href="#__codelineno-53-11"></a><span class="c1"># Or install specific category</span>
+</span><span id="__span-53-12"><a id="__codelineno-53-12" name="__codelineno-53-12" href="#__codelineno-53-12"></a>./scripts/codex-install.sh<span class="w"> </span>--category<span class="w"> </span>marketing
+</span><span id="__span-53-13"><a id="__codelineno-53-13" name="__codelineno-53-13" href="#__codelineno-53-13"></a>./scripts/codex-install.sh<span class="w"> </span>--category<span class="w"> </span>engineering
+</span><span id="__span-53-14"><a id="__codelineno-53-14" name="__codelineno-53-14" href="#__codelineno-53-14"></a>
+</span><span id="__span-53-15"><a id="__codelineno-53-15" name="__codelineno-53-15" href="#__codelineno-53-15"></a><span class="c1"># Or install single skill</span>
+</span><span id="__span-53-16"><a id="__codelineno-53-16" name="__codelineno-53-16" href="#__codelineno-53-16"></a>./scripts/codex-install.sh<span class="w"> </span>--skill<span class="w"> </span>content-creator
+</span><span id="__span-53-17"><a id="__codelineno-53-17" name="__codelineno-53-17" href="#__codelineno-53-17"></a>
+</span><span id="__span-53-18"><a id="__codelineno-53-18" name="__codelineno-53-18" href="#__codelineno-53-18"></a><span class="c1"># List available skills</span>
+</span><span id="__span-53-19"><a id="__codelineno-53-19" name="__codelineno-53-19" href="#__codelineno-53-19"></a>./scripts/codex-install.sh<span class="w"> </span>--list
+</span></code></pre></div></p>
+<p><strong>Windows:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>REM Clone repository
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>git clone https://github.com/borghei/Claude-Skills.git
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>cd claude-skills
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a>
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a>REM Generate structure (if not already present)
+</span><span id="__span-54-6"><a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a>python scripts\sync-codex-skills.py
+</span><span id="__span-54-7"><a id="__codelineno-54-7" name="__codelineno-54-7" href="#__codelineno-54-7"></a>
+</span><span id="__span-54-8"><a id="__codelineno-54-8" name="__codelineno-54-8" href="#__codelineno-54-8"></a>REM Install all skills to %USERPROFILE%\.codex\skills\
+</span><span id="__span-54-9"><a id="__codelineno-54-9" name="__codelineno-54-9" href="#__codelineno-54-9"></a>scripts\codex-install.bat
+</span><span id="__span-54-10"><a id="__codelineno-54-10" name="__codelineno-54-10" href="#__codelineno-54-10"></a>
+</span><span id="__span-54-11"><a id="__codelineno-54-11" name="__codelineno-54-11" href="#__codelineno-54-11"></a>REM Or install single skill
+</span><span id="__span-54-12"><a id="__codelineno-54-12" name="__codelineno-54-12" href="#__codelineno-54-12"></a>scripts\codex-install.bat --skill content-creator
+</span><span id="__span-54-13"><a id="__codelineno-54-13" name="__codelineno-54-13" href="#__codelineno-54-13"></a>
+</span><span id="__span-54-14"><a id="__codelineno-54-14" name="__codelineno-54-14" href="#__codelineno-54-14"></a>REM List available skills
+</span><span id="__span-54-15"><a id="__codelineno-54-15" name="__codelineno-54-15" href="#__codelineno-54-15"></a>scripts\codex-install.bat --list
+</span></code></pre></div></p>
+<h3 id="method-3-manual-installation">Method 3: Manual Installation<a class="headerlink" href="#method-3-manual-installation" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="c1"># Clone repository</span>
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/borghei/Claude-Skills.git
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="nb">cd</span><span class="w"> </span>claude-skills
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>
+</span><span id="__span-55-5"><a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="c1"># Copy skills (following symlinks) to Codex directory</span>
+</span><span id="__span-55-6"><a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.codex/skills
+</span><span id="__span-55-7"><a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a>cp<span class="w"> </span>-rL<span class="w"> </span>.codex/skills/*<span class="w"> </span>~/.codex/skills/
+</span></code></pre></div>
+<h3 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="c1"># Check installed skills</span>
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>ls<span class="w"> </span>~/.codex/skills/
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>
+</span><span id="__span-56-4"><a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="c1"># Verify skill structure</span>
+</span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a>ls<span class="w"> </span>~/.codex/skills/content-creator/
+</span><span id="__span-56-6"><a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a><span class="c1"># Should show: SKILL.md, scripts/, references/, assets/</span>
+</span><span id="__span-56-7"><a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a>
+</span><span id="__span-56-8"><a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a><span class="c1"># Check total skill count</span>
+</span><span id="__span-56-9"><a id="__codelineno-56-9" name="__codelineno-56-9" href="#__codelineno-56-9"></a>ls<span class="w"> </span>~/.codex/skills/<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-56-10"><a id="__codelineno-56-10" name="__codelineno-56-10" href="#__codelineno-56-10"></a><span class="c1"># Should show: 53</span>
+</span></code></pre></div>
+<h3 id="available-categories">Available Categories<a class="headerlink" href="#available-categories" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Skills</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>c-level</strong></td>
+<td>2</td>
+<td>ceo-advisor, cto-advisor</td>
+</tr>
+<tr>
+<td><strong>engineering</strong></td>
+<td>18</td>
+<td>senior-fullstack, aws-solution-architect, senior-ml-engineer</td>
+</tr>
+<tr>
+<td><strong>marketing</strong></td>
+<td>6</td>
+<td>content-creator, marketing-demand-acquisition, social-media-analyzer</td>
+</tr>
+<tr>
+<td><strong>product</strong></td>
+<td>5</td>
+<td>product-manager-toolkit, agile-product-owner, ui-design-system</td>
+</tr>
+<tr>
+<td><strong>project-management</strong></td>
+<td>6</td>
+<td>scrum-master, senior-pm, jira-expert, confluence-expert</td>
+</tr>
+<tr>
+<td><strong>ra-qm</strong></td>
+<td>12</td>
+<td>regulatory-affairs-head, quality-manager-qms-iso13485, gdpr-dsgvo-expert</td>
+</tr>
+<tr>
+<td><strong>business-growth</strong></td>
+<td>3</td>
+<td>customer-success-manager, sales-engineer, revenue-operations</td>
+</tr>
+<tr>
+<td><strong>finance</strong></td>
+<td>1</td>
+<td>financial-analyst</td>
+</tr>
+</tbody>
+</table>
+<p>See <code>.codex/skills-index.json</code> for the complete manifest with descriptions.</p>
+<hr />
+<h2 id="advanced-installation-locations-reference">Advanced: Installation Locations Reference<a class="headerlink" href="#advanced-installation-locations-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Default Location</th>
+<th>Flag</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude Code</strong></td>
+<td><code>~/.claude/skills/</code></td>
+<td><code>--agent claude</code></td>
+<td>User-level installation</td>
+</tr>
+<tr>
+<td><strong>Cursor</strong></td>
+<td><code>.cursor/skills/</code></td>
+<td><code>--agent cursor</code></td>
+<td>Project-level installation</td>
+</tr>
+<tr>
+<td><strong>VS Code/Copilot</strong></td>
+<td><code>.github/skills/</code></td>
+<td><code>--agent vscode</code></td>
+<td>Project-level installation</td>
+</tr>
+<tr>
+<td><strong>Goose</strong></td>
+<td><code>~/.config/goose/skills/</code></td>
+<td><code>--agent goose</code></td>
+<td>User-level installation</td>
+</tr>
+<tr>
+<td><strong>Amp</strong></td>
+<td>Platform-specific</td>
+<td><code>--agent amp</code></td>
+<td>Varies by platform</td>
+</tr>
+<tr>
+<td><strong>Codex</strong></td>
+<td><code>~/.codex/skills/</code></td>
+<td><code>--agent codex</code></td>
+<td>User-level installation</td>
+</tr>
+<tr>
+<td><strong>Letta</strong></td>
+<td>Platform-specific</td>
+<td><code>--agent letta</code></td>
+<td>Varies by platform</td>
+</tr>
+<tr>
+<td><strong>OpenCode</strong></td>
+<td>Platform-specific</td>
+<td><code>--agent opencode</code></td>
+<td>Varies by platform</td>
+</tr>
+<tr>
+<td><strong>Project</strong></td>
+<td><code>.skills/</code></td>
+<td><code>--agent project</code></td>
+<td>Portable, project-specific</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
+<p><strong>Installation Issues?</strong>
+- Check <a href="#troubleshooting">Troubleshooting</a> section above
+- Review <a href="https://github.com/Karanjot786/agent-skills-cli">Agent Skills CLI documentation</a>
+- Open issue: https://github.com/borghei/Claude-Skills/issues</p>
+<p><strong>Feature Requests:</strong>
+- Submit via GitHub Issues with <code>enhancement</code> label</p>
+<p><strong>General Questions:</strong>
+- Visit: https://borghei.me
+- Blog: https://medium.com/@borghei</p>
+<hr />
+<p><strong>Last Updated:</strong> February 2026
+<strong>Skills Version:</strong> 4.11.0 (368 production skills, 859 Python tools, 76 agents, 26 slash commands, 21 compound sub-skills, 8 CI/CD workflows)
+<strong>Universal Installer:</strong> <a href="https://github.com/Karanjot786/agent-skills-cli">Agent Skills CLI</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024-2026 Amin Borghei &mdash; MIT + Commons Clause
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://borghei.me" target="_blank" rel="noopener" title="borghei.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

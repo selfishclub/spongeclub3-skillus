@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;word-break:keep-all}
+  body{width:1200px;background:#0b0b0e;color:#f3f4ef;font-family:"Pretendard",sans-serif;padding:44px 48px}
+  .h{font-weight:900;font-size:40px;letter-spacing:-.02em}
+  .h .ac{color:#c8f135}
+  .sub{color:#8f8f88;font-size:16px;font-weight:700;margin-top:8px}
+  .cols{display:grid;grid-template-columns:1fr 1.35fr;gap:20px;margin-top:30px}
+  .card{background:#131417;border:1.5px solid #26282d;border-radius:18px;padding:26px 26px}
+  .tag{display:inline-block;font-weight:900;font-size:13px;padding:5px 12px;border-radius:999px;letter-spacing:.02em}
+  .tag.t1{background:#1b2b13;color:#c8f135;border:1px solid #3a5a1e}
+  .tag.t2{background:#1a1e2b;color:#8fb0ff;border:1px solid #2f3d63}
+  .ct{font-weight:900;font-size:24px;margin:14px 0 4px}
+  .cs{color:#9a9a92;font-size:14.5px;margin-bottom:16px;line-height:1.5}
+  .step{display:flex;gap:12px;align-items:flex-start;margin-bottom:13px}
+  .n{flex:0 0 28px;height:28px;border-radius:8px;background:#c8f135;color:#111;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .t2wrap .n{background:#8fb0ff}
+  .stext{font-size:16px;font-weight:600;line-height:1.45}
+  .stext b{font-weight:900}
+  .code{display:inline-block;background:#0a0a0c;border:1px solid #2a2c31;border-radius:7px;padding:2px 9px;font-size:14px;color:#dfeeb0}
+  .arrow{color:#5a5a52;font-weight:900;padding:0 4px}
+  .foot{margin-top:24px;background:#12140c;border:1px solid #34401b;border-radius:14px;padding:16px 20px;font-size:15px;font-weight:700;color:#d7e6a8;line-height:1.5}
+  .foot .em{font-size:18px}
+  .call{margin-top:14px;font-size:14px;color:#8f8f88;font-weight:600}
+  .call b{color:#f3f4ef}
+</style></head><body>
+  <div class="h">공유회-OS 설치 — <span class="ac">30초</span></div>
+  <div class="sub">1시간 발표를 주제부터 발표 대본까지. 터미널이든 앱이든, 한 번만 깔면 됩니다.</div>
+
+  <div class="cols">
+    <div class="card">
+      <span class="tag t1">터미널 · Claude Code</span>
+      <div class="ct">링크 붙여넣고<br>“이거 설치해줘”</div>
+      <div class="cs">클로드가 알아서 받아서 깔아줘요.</div>
+      <div class="step"><div class="n">1</div><div class="stext">Claude Code에 링크 붙여넣기<br><span class="code">github.com/Koo-bon/skillers-share</span></div></div>
+      <div class="step"><div class="n">2</div><div class="stext"><b>“이거 설치해줘”</b> 라고 말하기 → 끝</div></div>
+    </div>
+
+    <div class="card t2wrap">
+      <span class="tag t2">claude.ai · 앱 · 웹 · 폰</span>
+      <div class="ct">zip 받아서 → 스킬 업로드에 드래그</div>
+      <div class="cs">claude.ai는 스킬을 <b>업로드로만</b> 설치해요. <b>한 번만</b> 올리면 웹·앱·폰 전부에 떠요.</div>
+      <div class="step"><div class="n">1</div><div class="stext">릴리스 <b>zip 받기</b> (아래 링크)</div></div>
+      <div class="step"><div class="n">2</div><div class="stext">claude.ai → <b>설정</b> <span class="arrow">›</span> <b>사용자 지정</b> <span class="arrow">›</span> <b>스킬</b></div></div>
+      <div class="step"><div class="n">3</div><div class="stext">오른쪽 위 <b>[추가 ▾]</b> <span class="arrow">›</span> <b>스킬 업로드</b></div></div>
+      <div class="step"><div class="n">4</div><div class="stext">받은 <b>zip을 상자에 끌어다 놓기</b> → 끝</div></div>
+    </div>
+  </div>
+
+  <div class="foot"><span class="em">📱</span> <b>폰만 있어요?</b> — 업로드(드래그)는 <b>PC나 데스크톱 앱에서 한 번만</b> 하세요. 그다음엔 폰 앱에서도 자동으로 떠서 “공유회 준비해줘” 만 하면 돼요.</div>
+  <div class="call">설치 후 어디서나 → <b>“공유회 준비해줘”</b> · 덱은 <b>PDF로 저장</b>·<b>폰에서 열기</b>도 됩니다.</div>
+</body></html>

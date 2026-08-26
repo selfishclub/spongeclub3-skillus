@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/marcuswebb/Documents/virtual-team/shared/hooks/heartbeat-context.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

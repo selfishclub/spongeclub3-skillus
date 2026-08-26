@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><title>표지 시안 · 볼드 고딕 6종 (정적)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0b0b0e;font-family:"Pretendard",sans-serif;padding:32px;color:#eee}
+  h1{font-size:20px;font-weight:900;margin-bottom:4px}
+  .lead{color:#8a8594;font-size:13.5px;margin-bottom:20px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  /* clean 모드 — PPT 삽입용: 제목·설명 빼고 표지 6개(3열×2행) + 작은 컨셉 라벨 */
+  body.clean{padding:16px}
+  body.clean h1,body.clean .lead{display:none}
+  body.clean .grid{grid-template-columns:1fr 1fr 1fr;gap:14px}
+  body.clean .cap{font-size:12px;margin-top:6px;line-height:1.4}
+  .cover{aspect-ratio:16/9;border-radius:12px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:center;padding:7% 7.5%;border:1px solid #23232a}
+  .cap{margin-top:8px;color:#9a94a8;font-size:12.5px}
+  .cap b{color:#c8f135}
+  .up{text-transform:uppercase}
+
+  /* A · 화이트 + 애플 톤 */
+  .c-white{background:#fff;color:#1d1d1f;align-items:center;text-align:center}
+  .c-white .k{color:#86868b;font-weight:800;font-size:11px}
+  .c-white .h{font-weight:900;font-size:46px;letter-spacing:-.02em;line-height:1.02;margin:8px 0}
+  .c-white .h .ac{background:linear-gradient(90deg,#0071e3,#8a5cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* B · 다크 오케 — 표지답게(큰 타이틀, 칩 없음) */
+  .c-dark{background:radial-gradient(120% 100% at 22% 12%,#241a44 0%,#0b0910 62%);color:#fff;justify-content:center}
+  .c-dark .k{color:#b9a7ff;font-weight:800;font-size:11px;letter-spacing:.18em}
+  .c-dark .h{font-weight:900;font-size:54px;line-height:.98;margin-top:8px;letter-spacing:-.02em}
+  .c-dark .h .ac{color:#9d7bff}
+  .c-dark .u{margin-top:16px;width:64px;height:5px;border-radius:3px;background:#9d7bff}
+
+  /* C · 스폰지클럽 — 흰 배경 + 라임 강조 (내지는 검정) */
+  .c-sponge{background:#fff;color:#111;justify-content:center}
+  .c-sponge .k{color:#111;font-weight:900;font-size:11px;letter-spacing:.14em}
+  .c-sponge .h{font-weight:900;font-size:44px;line-height:1.42;margin-top:10px;letter-spacing:-.02em}
+  .c-sponge .h mark{background:#d4f733;color:#111;padding:3px 10px;border-radius:5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .c-sponge .bar{position:absolute;left:0;right:0;bottom:0;background:#111;color:#fff;font-weight:800;font-size:13px;padding:12px 7.5%}
+
+  /* D · SpaceX — 순수 블랙 풀블리드, 화이트 대문자, 고스트 필 (정적) */
+  .c-space{background:#000;color:#fff;justify-content:flex-end;overflow:hidden}
+  .c-space::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 130% at 62% 115%,#2a3540 0%,#0a0d10 55%,#000 80%)}
+  .c-space>*{position:relative;z-index:2}
+  .c-space .k{font-size:10px;letter-spacing:.2em;font-weight:700}
+  .c-space .h{font-weight:900;font-size:44px;line-height:.92;letter-spacing:.02em;margin-top:6px}
+  .c-space .pill{margin-top:12px;display:inline-block;border:1.5px solid #fff;border-radius:32px;padding:7px 18px;font-size:10px;font-weight:800;letter-spacing:.1em}
+
+  /* E · 애플 이모지 컨셉 — 흰 배경 + 큰 이모지 강조 */
+  .c-emoji{background:#fbfbfd;color:#1d1d1f;justify-content:center}
+  .c-emoji .k{color:#86868b;font-weight:800;font-size:11px;letter-spacing:.02em}
+  .c-emoji .em{font-size:40px;margin:6px 0 2px}
+  .c-emoji .h{font-weight:900;font-size:38px;line-height:1.05;letter-spacing:-.02em}
+  .c-emoji .toc{display:flex;gap:16px;margin-top:16px;color:#4a4a4f;font-size:14px;font-weight:700}
+  .c-emoji .toc span b{font-size:18px}
+
+  /* F · 포트폴리오 표지 스타일 — 파란 배경 초대형 글씨 + 하단 메타줄(①②③) */
+  .c-port{background:#1832e8;color:#fff;justify-content:center;align-items:center;text-align:center;overflow:hidden}
+  .c-port::after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;background:linear-gradient(180deg,transparent,rgba(0,0,10,.32))}
+  .c-port>*{position:relative;z-index:2}
+  .c-port .big{font-weight:900;font-size:82px;line-height:.86;letter-spacing:-.045em;text-shadow:0 6px 30px rgba(0,0,0,.25)}
+  .c-port .row{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;padding:14px 6%;font-size:11px;font-weight:800;letter-spacing:.03em;color:#dfe4ff}
+  .c-port .row .items{display:flex;gap:16px}
+  .c-port .row .items span b{color:#fff}
+</style><script>if(location.search.indexOf('clean')>=0)document.documentElement.addEventListener('DOMContentLoaded',()=>{});</script></head><body>
+  <script>if(location.search.indexOf('clean')>=0)document.body.classList.add('clean');</script>
+  <h1>표지 시안 · 볼드 고딕 6종 — 세리프 없음 · 애니메이션 없음(정적)</h1>
+  <div class="lead">A 화이트·애플 · B 다크 오케(표지) · C 스폰지클럽 흰+<b>라임</b> · D SpaceX 블랙 · E 애플 이모지 · F Behance 대형 B&W</div>
+  <div class="grid">
+    <div><div class="cover c-white"><div class="k">AI 실험실 · 공유회</div>
+      <div class="h">제품이,<br><span class="ac">주인공일 때.</span></div></div>
+      <div class="cap">A · 화이트 + 애플 톤 — 여백·미니멀. 제품 발표</div></div>
+
+    <div><div class="cover c-dark"><div class="k up">Automation · 공유회</div>
+      <div class="h">스킬을,<br><span class="ac">부리는 법.</span></div><div class="u"></div></div>
+      <div class="cap">B · 다크 오케 <b>표지</b> — 큰 타이틀 + 보라 액센트. 자동화 발표</div></div>
+
+    <div><div class="cover c-sponge"><div class="k">SKILLERS · 공유회</div>
+      <div class="h">공유회 차례,<br><mark>무섭지 않게.</mark></div>
+      <div class="bar">아끼면 아무 일도 안 일어나요 — 꺼내놓는 순간 남습니다</div></div>
+      <div class="cap">C · <b>스폰지클럽 스타일</b> — 흰 배경 + 라임 강조 + 검정 바(내지 장표는 검정 배경)</div></div>
+
+    <div><div class="cover c-space"><div class="k up">Skillers Unit</div>
+      <div class="h up">Made for<br>Skillers</div>
+      <div class="pill up">Watch ↗</div></div>
+      <div class="cap">D · SpaceX 스타일 — 순수 블랙 풀블리드 + 대문자 + 고스트 필</div></div>
+
+    <div><div class="cover c-emoji"><div class="k">SKILLERS · 공유회</div>
+      <div class="em">🎤 ✨ 🚀</div>
+      <div class="h">오늘, 당신 차례예요.</div></div>
+      <div class="cap">E · <b>애플 이모지</b> 컨셉 — 흰 배경 + 강조/목차에 이모지. 입문·친근</div></div>
+
+    <div><div class="cover c-port">
+      <div class="big">공유회-OS</div>
+      <div class="row"><div>SKILLERS UNIT<br>2026 SHARE-SESSION</div>
+        <div class="items"><span>① <b>주제</b></span><span>② <b>목차</b></span><span>③ <b>덱·대본</b></span></div>
+        <div>koo-bon</div></div></div>
+      <div class="cap">F · 포트폴리오 표지 스타일 — 파란 배경 + 초대형 글씨 + 하단 ①②③ 메타줄</div></div>
+  </div>
+</body></html>

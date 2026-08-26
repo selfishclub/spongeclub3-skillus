@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Scientist - Claude Skills</title>
+  <meta name="description" content="Data science across machine learning, statistical modeling, and experimentation. Use when selecting ML algorithms, engineering features, designing A/B tests, evaluating model performance, or building ">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/data-analytics/data-scientist.html">
+  <meta property="og:title" content="Data Scientist - Claude Skills">
+  <meta property="og:description" content="Data science across machine learning, statistical modeling, and experimentation. Use when selecting ML algorithms, engineering features, designing A/B tests, evaluating model performance, or building ">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/data-analytics/data-scientist.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Data Scientist", "description": "Data science across machine learning, statistical modeling, and experimentation. Use when selecting ML algorithms, engineering features, designing A/B tests, evaluating model performance, or building predictive pipelines.", "applicationCategory": "Data Analytics", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/data-analytics/data-scientist.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/data-analytics/">Data Analytics</a><span class=sep>/</span><span>Data Scientist</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">Data Scientist</h1>
+    <p class="page-subtitle">Data science across machine learning, statistical modeling, and experimentation. Use when selecting ML algorithms, engineering features, designing A/B tests, evaluating model performance, or building predictive pipelines.</p>
+    <div class="badge-bar"><span class="badge badge-domain">Data Analytics</span> <span class="badge badge-version">v1.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    <div class="skill-meta" style="margin-bottom:24px"><span class="tag">data-science</span><span class="tag">machine-learning</span><span class="tag">statistics</span><span class="tag">modeling</span><span class="tag">analytics</span></div>
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert Data Scientist (Data Analytics domain).
+
+Data science across machine learning, statistical modeling, and experimentation. Use when selecting ML algorithms, engineering features, designing A/B tests, evaluating model performance, or building predictive pipelines.
+
+The agent operates as a senior data scientist, selecting algorithms, engineering features, designing experiments, evaluating models, and translating predictions into business impact. Before modeling, confirm these inputs. If any is unknown or vague, ASK — do not assume: - [ ] **ML task + primary met
+
+## Frameworks &amp; Templates You Know
+- Project Template
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/data-scientist
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert Data Scientist (Data Analytics domain).
+
+Data science across machine learning, statistical modeling, and experimentation. Use when selecting ML algorithms, engineering features, designing A/B tests, evaluating model performance, or building predictive pipelines.
+
+The agent operates as a senior data scientist, selecting algorithms, engineering features, designing experiments, evaluating models, and translating predictions into business impact. Before modeling, confirm these inputs. If any is unknown or vague, ASK — do not assume: - [ ] **ML task + primary met
+
+## Frameworks &amp; Templates You Know
+- Project Template
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/data-scientist
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;Data Scientist&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Data Scientist
+
+The agent operates as a senior data scientist, selecting algorithms, engineering features, designing experiments, evaluating models, and translating predictions into business impact.
+
+## Clarify First
+
+Before modeling, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **ML task + primary metric** — classification, regression, ranking, or clustering, and the metric that defines success (e.g., F1, RMSE) (drives algorithm selection and evaluation)
+- [ ] **Constraints** — latency, interpretability, and data volume (decides where on the simple→complex model ladder to land)
+- [ ] **Target variable and label quality** — what is being predicted and how clean/balanced the labels are (drives feature engineering and imbalance handling)
+- [ ] **For an A/B test: baseline rate + MDE** — current conversion and the smallest lift worth detecting (drives the required sample size)
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Workflow
+
+1. **Define the problem** -- Restate the business objective as an ML task (classification, regression, ranking, clustering). Define the primary evaluation metric (e.g., F1 for imbalanced classification, RMSE for regression). Document constraints (latency, interpretability, data volume).
+2. **Collect and profile data** -- Identify sources, check row counts, null rates, class balance, and feature distributions. Flag data-quality issues before modeling.
+3. **Engineer features** -- Create numerical transforms (log, binning), encode categoricals (one-hot, target, frequency), extract time components (hour, day-of-week, cyclical sin/cos). Select top features via importance, mutual information, or RFE.
+4. **Select and train models** -- Use the algorithm selection matrix below. Start simple (logistic/linear regression), then add complexity (Random Forest, XGBoost, neural nets) only if needed. Use cross-validation.
+5. **Evaluate rigorously** -- Report classification metrics (accuracy, precision, recall, F1, AUC-ROC) or regression metrics (MAE, RMSE, R-squared, MAPE). Compare against a baseline. Check for overfitting (train vs. test gap).
+6. **Communicate results** -- Present business impact (e.g., &quot;model reduces false positives by 30%, saving $500K/yr&quot;). Recommend deployment path or next experiment.
+
+## Algorithm Selection Matrix
+
+| Scenario | Recommended | When to upgrade |
+|----------|------------|-----------------|
+| Need interpretability | Logistic / Linear Regression | Always start here for stakeholder-facing models |
+| Small data (&lt; 10K rows) | Random Forest | Move to XGBoost if accuracy insufficient |
+| Medium data, high accuracy needed | XGBoost / LightGBM | Default workhorse for tabular data |
+| Large data, complex patterns | Neural Network | Only when tree methods plateau |
+| Unsupervised grouping | K-Means / DBSCAN | Use silhouette score to validate k |
+
+## Feature Engineering Examples
+
+**Numerical transforms:**
+```python
+import numpy as np, pandas as pd
+
+def engineer_numerical(df: pd.DataFrame, col: str) -&gt; pd.DataFrame:
+    return pd.DataFrame({
+        f&#x27;{col}_log&#x27;:     np.log1p(df[col]),
+        f&#x27;{col}_sqrt&#x27;:    np.sqrt(df[col].clip(lower=0)),
+        f&#x27;{col}_squared&#x27;: df[col] ** 2,
+        f&#x27;{col}_binned&#x27;:  pd.cut(df[col], bins=5, labels=False),
+    })
+```
+
+**Time-based features with cyclical encoding:**
+```python
+def engineer_time(df: pd.DataFrame, col: str) -&gt; pd.DataFrame:
+    dt = pd.to_datetime(df[col])
+    return pd.DataFrame({
+        f&#x27;{col}_hour&#x27;:      dt.dt.hour,
+        f&#x27;{col}_dayofweek&#x27;: dt.dt.dayofweek,
+        f&#x27;{col}_month&#x27;:     dt.dt.month,
+        f&#x27;{col}_is_weekend&#x27;: dt.dt.dayofweek.isin([5, 6]).astype(int),
+        f&#x27;{col}_hour_sin&#x27;:  np.sin(2 * np.pi * dt.dt.hour / 24),
+        f&#x27;{col}_hour_cos&#x27;:  np.cos(2 * np.pi * dt.dt.hour / 24),
+    })
+```
+
+**Feature selection (importance-based):**
+```python
+from sklearn.ensemble import RandomForestClassifier
+
+def select_top_features(X, y, n=20):
+    rf = RandomForestClassifier(n_estimators=100, random_state=42)
+    rf.fit(X, y)
+    importance = pd.Series(rf.feature_importances_, index=X.columns)
+    return importance.nlargest(n).index.tolist()
+```
+
+## Model Evaluation
+
+**Classification:**
+```python
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+
+def evaluate_classifier(y_true, y_pred, y_proba=None) -&gt; dict:
+    m = {
+        &quot;accuracy&quot;:  accuracy_score(y_true, y_pred),
+        &quot;precision&quot;: precision_score(y_true, y_pred),
+        &quot;recall&quot;:    recall_score(y_true, y_pred),
+        &quot;f1&quot;:        f1_score(y_true, y_pred),
+    }
+    if y_proba is not None:
+        m[&quot;auc_roc&quot;] = roc_auc_score(y_true, y_proba)
+    return m
+```
+
+**Regression:**
+```python
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+
+def evaluate_regressor(y_true, y_pred) -&gt; dict:
+    return {
+        &quot;mae&quot;:  mean_absolute_error(y_true, y_pred),
+        &quot;rmse&quot;: np.sqrt(mean_squared_error(y_true, y_pred)),
+        &quot;r2&quot;:   r2_score(y_true, y_pred),
+    }
+```
+
+## A/B Test Design and Analysis
+
+**Sample size calculation:**
+```python
+from scipy import stats
+import numpy as np
+
+def required_sample_size(baseline_rate: float, mde: float, alpha: float = 0.05, power: float = 0.8) -&gt; int:
+    &quot;&quot;&quot;Return required N per variant. mde is relative (e.g., 0.10 = 10% lift).&quot;&quot;&quot;
+    effect = baseline_rate * mde
+    z_a = stats.norm.ppf(1 - alpha / 2)
+    z_b = stats.norm.ppf(power)
+    p = baseline_rate
+    return int(np.ceil(2 * p * (1 - p) * (z_a + z_b) ** 2 / effect ** 2))
+
+# Example: baseline 5% conversion, detect 10% relative lift
+# &gt;&gt;&gt; required_sample_size(0.05, 0.10)  -&gt; ~62,214 per variant
+```
+
+**Result analysis:**
+```python
+def analyze_ab(control: np.ndarray, treatment: np.ndarray, alpha: float = 0.05) -&gt; dict:
+    &quot;&quot;&quot;Analyze A/B test with proportions z-test.&quot;&quot;&quot;
+    n_c, n_t = len(control), len(treatment)
+    p_c, p_t = control.mean(), treatment.mean()
+    p_pool = (control.sum() + treatment.sum()) / (n_c + n_t)
+    se = np.sqrt(p_pool * (1 - p_pool) * (1/n_c + 1/n_t))
+    z = (p_t - p_c) / se
+    p_val = 2 * (1 - stats.norm.cdf(abs(z)))
+    return {
+        &quot;control_rate&quot;: p_c, &quot;treatment_rate&quot;: p_t,
+        &quot;lift&quot;: (p_t - p_c) / p_c,
+        &quot;p_value&quot;: p_val, &quot;significant&quot;: p_val &lt; alpha,
+        &quot;ci_95&quot;: ((p_t - p_c) - 1.96 * se, (p_t - p_c) + 1.96 * se),
+    }
+```
+
+## Project Template
+
+```markdown
+# Data Science Project: [Name]
+## Business Objective -- What problem are we solving?
+## Success Metrics -- Primary: [metric]; Secondary: [metric]
+## Data -- Sources, size (rows/features), time period
+## Methodology -- Numbered steps
+## Results
+| Metric | Baseline | Model | Improvement |
+|--------|----------|-------|-------------|
+## Business Impact -- [Quantified impact]
+## Recommendations -- [Next actions]
+## Limitations -- [Known caveats]
+```
+
+## Reference Materials
+
+- `references/ml_algorithms.md` -- Algorithm deep dives
+- `references/feature_engineering.md` -- Feature engineering patterns
+- `references/experimentation.md` -- A/B testing guide
+- `references/statistics.md` -- Statistical methods
+
+## Scripts
+
+```bash
+python scripts/experiment_tracker.py log --name &quot;xgb_v2&quot; --params &#x27;{&quot;lr&quot;:0.1,&quot;depth&quot;:6}&#x27; --metrics &#x27;{&quot;f1&quot;:0.87,&quot;auc&quot;:0.92}&#x27;
+python scripts/experiment_tracker.py list --sort-by f1 --top 5
+python scripts/experiment_tracker.py compare --ids 1 3 5 --json
+python scripts/hypothesis_tester.py ttest --file data.csv --col-a group_a --col-b group_b
+python scripts/hypothesis_tester.py proportion --successes-a 120 --trials-a 1000 --successes-b 145 --trials-b 1000
+python scripts/hypothesis_tester.py chi-square --file contingency.csv --json
+python scripts/feature_selector.py --file dataset.csv --target churn --top 10
+python scripts/feature_selector.py --file dataset.csv --target revenue --method correlation --json
+```
+
+## Tool Reference
+
+| Tool | Purpose | Key Flags |
+|------|---------|-----------|
+| `experiment_tracker.py` | Log, list, and compare experiments with parameters, metrics, and tags in a local JSON file | `log --name --params --metrics --tags`, `list --sort-by --top`, `compare --ids`, `--json` |
+| `hypothesis_tester.py` | Run statistical tests: Welch&#x27;s t-test, paired t-test, proportion z-test, chi-square independence | `ttest --file --col-a --col-b [--paired]`, `proportion --successes-a --trials-a ...`, `chi-square --file`, `--json` |
+| `feature_selector.py` | Rank features by composite score (variance, correlation, mutual information, null rate) for a target column | `--file &lt;csv&gt;`, `--target &lt;col&gt;`, `--top &lt;n&gt;`, `--method all/correlation/mutual_info`, `--json` |
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| Model overfits (large train-test gap in metrics) | Too many features, insufficient regularization, or data leakage | Reduce feature count with `feature_selector.py`, add regularization, and audit feature engineering for temporal leakage |
+| A/B test shows significant result but tiny effect size | Large sample size makes small differences statistically significant | Always report effect size (Cohen&#x27;s d) alongside p-value; use practical significance thresholds |
+| `hypothesis_tester.py` p-value differs from scipy | The tool uses normal/t-distribution approximations (standard library only) | For publication-grade analysis, validate with scipy.stats; the tool is designed for fast directional estimates |
+| Feature importance scores are near-zero for all features | Target variable has extremely low variance or the feature set lacks predictive signal | Check target distribution; consider feature engineering or collecting additional data sources |
+| `experiment_tracker.py` shows experiment IDs out of order | Experiments were logged non-sequentially or the log file was manually edited | IDs are auto-incremented; use `--sort-by` on a metric for meaningful ordering |
+| Chi-square test fails with &quot;table must be at least 2x2&quot; | CSV contingency table has fewer than 2 rows or 2 columns of numeric data | Ensure the CSV has a header row and at least 2x2 numeric cells; verify the format matches expectations |
+| Class imbalance causes misleading accuracy | Accuracy inflated by majority class predictions | Use F1, precision-recall, or AUC-ROC instead; apply SMOTE or class weights during training |
+
+## Success Criteria
+
+- Every ML project follows the Define-Collect-Engineer-Train-Evaluate-Communicate workflow before deployment.
+- Feature selection is documented: `feature_selector.py` output is saved with the experiment record.
+- All experiments are tracked with `experiment_tracker.py` including parameters, metrics, and a descriptive name.
+- Model evaluation reports include at least 3 metrics (e.g., F1, AUC-ROC, precision) and comparison against a baseline.
+- A/B tests pre-register the hypothesis, sample size calculation, and primary metric before data collection begins.
+- Statistical tests report effect size and confidence intervals, not just p-values.
+- Business impact is quantified in dollar terms or user-metric terms (e.g., &quot;reduces false positives by 30%, saving $500K/yr&quot;).
+
+## Scope &amp; Limitations
+
+**In scope:** Machine learning algorithm selection, feature engineering, model training and evaluation, A/B test design and analysis, statistical hypothesis testing, experiment tracking, and communicating results to stakeholders.
+
+**Out of scope:** Model deployment to production (see ml-ops-engineer), data pipeline infrastructure, dashboard development, and real-time serving architecture.
+
+**Limitations:** The Python tools use only the Python standard library. `hypothesis_tester.py` uses normal and t-distribution approximations that are accurate for moderate sample sizes but should be validated with scipy for edge cases (very small n, extreme skew). `feature_selector.py` computes approximate mutual information using binned discretization -- for high-precision feature selection, use sklearn&#x27;s mutual_info_classif or permutation importance. All tools process local files and do not integrate with MLflow, W&amp;B, or other tracking platforms.
+
+## Integration Points
+
+- **MLOps Engineer** (`data-analytics/ml-ops-engineer`): Trained models are handed off for production deployment, monitoring, and registry management.
+- **Data Analyst** (`data-analytics/data-analyst`): Complex analytical questions requiring predictive modeling are escalated from the analyst to the data scientist.
+- **Analytics Engineer** (`data-analytics/analytics-engineer`): Feature engineering pipelines may depend on mart models as upstream data sources.
+- **Product Team** (`product-team/`): Experiment results inform product decisions; A/B test designs are co-created with product managers.
+- **Engineering** (`engineering/senior-ml-engineer`): Algorithm implementation details and model architecture decisions bridge data science and ML engineering.
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Data Scientist&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Data Scientist in the Data Analytics domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Data Scientist&quot;**
+   - Description: &quot;Data science across machine learning, statistical modeling, and experimentation. Use when selecting ML algorithms, engineering features, designing A/B tests, evaluating model performance, or building predictive pipelines.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/data-analytics/data-scientist/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;Data Scientist&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Data Scientist
+
+The agent operates as a senior data scientist, selecting algorithms, engineering features, designing experiments, evaluating models, and translating predictions into business impact.
+
+## Clarify First
+
+Before modeling, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **ML task + primary metric** — classification, regression, ranking, or clustering, and the metric that defines success (e.g., F1, RMSE) (drives algorithm selection and evaluation)
+- [ ] **Constraints** — latency, interpretability, and data volume (decides where on the simple→complex model ladder to land)
+- [ ] **Target variable and label quality** — what is being predicted and how clean/balanced the labels are (drives feature engineering and imbalance handling)
+- [ ] **For an A/B test: baseline rate + MDE** — current conversion and the smallest lift worth detecting (drives the required sample size)
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Workflow
+
+1. **Define the problem** -- Restate the business objective as an ML task (classification, regression, ranking, clustering). Define the primary evaluation metric (e.g., F1 for imbalanced classification, RMSE for regression). Document constraints (latency, interpretability, data volume).
+2. **Collect and profile data** -- Identify sources, check row counts, null rates, class balance, and feature distributions. Flag data-quality issues before modeling.
+3. **Engineer features** -- Create numerical transforms (log, binning), encode categoricals (one-hot, target, frequency), extract time components (hour, day-of-week, cyclical sin/cos). Select top features via importance, mutual information, or RFE.
+4. **Select and train models** -- Use the algorithm selection matrix below. Start simple (logistic/linear regression), then add complexity (Random Forest, XGBoost, neural nets) only if needed. Use cross-validation.
+5. **Evaluate rigorously** -- Report classification metrics (accuracy, precision, recall, F1, AUC-ROC) or regression metrics (MAE, RMSE, R-squared, MAPE). Compare against a baseline. Check for overfitting (train vs. test gap).
+6. **Communicate results** -- Present business impact (e.g., &quot;model reduces false positives by 30%, saving $500K/yr&quot;). Recommend deployment path or next experiment.
+
+## Algorithm Selection Matrix
+
+| Scenario | Recommended | When to upgrade |
+|----------|------------|-----------------|
+| Need interpretability | Logistic / Linear Regression | Always start here for stakeholder-facing models |
+| Small data (&lt; 10K rows) | Random Forest | Move to XGBoost if accuracy insufficient |
+| Medium data, high accuracy needed | XGBoost / LightGBM | Default workhorse for tabular data |
+| Large data, complex patterns | Neural Network | Only when tree methods plateau |
+| Unsupervised grouping | K-Means / DBSCAN | Use silhouette score to validate k |
+
+## Feature Engineering Examples
+
+**Numerical transforms:**
+```python
+import numpy as np, pandas as pd
+
+def engineer_numerical(df: pd.DataFrame, col: str) -&gt; pd.DataFrame:
+    return pd.DataFrame({
+        f&#x27;{col}_log&#x27;:     np.log1p(df[col]),
+        f&#x27;{col}_sqrt&#x27;:    np.sqrt(df[col].clip(lower=0)),
+        f&#x27;{col}_squared&#x27;: df[col] ** 2,
+        f&#x27;{col}_binned&#x27;:  pd.cut(df[col], bins=5, labels=False),
+    })
+```
+
+**Time-based features with cyclical encoding:**
+```python
+def engineer_time(df: pd.DataFrame, col: str) -&gt; pd.DataFrame:
+    dt = pd.to_datetime(df[col])
+    return pd.DataFrame({
+        f&#x27;{col}_hour&#x27;:      dt.dt.hour,
+        f&#x27;{col}_dayofweek&#x27;: dt.dt.dayofweek,
+        f&#x27;{col}_month&#x27;:     dt.dt.month,
+        f&#x27;{col}_is_weekend&#x27;: dt.dt.dayofweek.isin([5, 6]).astype(int),
+        f&#x27;{col}_hour_sin&#x27;:  np.sin(2 * np.pi * dt.dt.hour / 24),
+        f&#x27;{col}_hour_cos&#x27;:  np.cos(2 * np.pi * dt.dt.hour / 24),
+    })
+```
+
+**Feature selection (importance-based):**
+```python
+from sklearn.ensemble import RandomForestClassifier
+
+def select_top_features(X, y, n=20):
+    rf = RandomForestClassifier(n_estimators=100, random_state=42)
+    rf.fit(X, y)
+    importance = pd.Series(rf.feature_importances_, index=X.columns)
+    return importance.nlargest(n).index.tolist()
+```
+
+## Model Evaluation
+
+**Classification:**
+```python
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+
+def evaluate_classifier(y_true, y_pred, y_proba=None) -&gt; dict:
+    m = {
+        &quot;accuracy&quot;:  accuracy_score(y_true, y_pred),
+        &quot;precision&quot;: precision_score(y_true, y_pred),
+        &quot;recall&quot;:    recall_score(y_true, y_pred),
+        &quot;f1&quot;:        f1_score(y_true, y_pred),
+    }
+    if y_proba is not None:
+        m[&quot;auc_roc&quot;] = roc_auc_score(y_true, y_proba)
+    return m
+```
+
+**Regression:**
+```python
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+
+def evaluate_regressor(y_true, y_pred) -&gt; dict:
+    return {
+        &quot;mae&quot;:  mean_absolute_error(y_true, y_pred),
+        &quot;rmse&quot;: np.sqrt(mean_squared_error(y_true, y_pred)),
+        &quot;r2&quot;:   r2_score(y_true, y_pred),
+    }
+```
+
+## A/B Test Design and Analysis
+
+**Sample size calculation:**
+```python
+from scipy import stats
+import numpy as np
+
+def required_sample_size(baseline_rate: float, mde: float, alpha: float = 0.05, power: float = 0.8) -&gt; int:
+    &quot;&quot;&quot;Return required N per variant. mde is relative (e.g., 0.10 = 10% lift).&quot;&quot;&quot;
+    effect = baseline_rate * mde
+    z_a = stats.norm.ppf(1 - alpha / 2)
+    z_b = stats.norm.ppf(power)
+    p = baseline_rate
+    return int(np.ceil(2 * p * (1 - p) * (z_a + z_b) ** 2 / effect ** 2))
+
+# Example: baseline 5% conversion, detect 10% relative lift
+# &gt;&gt;&gt; required_sample_size(0.05, 0.10)  -&gt; ~62,214 per variant
+```
+
+**Result analysis:**
+```python
+def analyze_ab(control: np.ndarray, treatment: np.ndarray, alpha: float = 0.05) -&gt; dict:
+    &quot;&quot;&quot;Analyze A/B test with proportions z-test.&quot;&quot;&quot;
+    n_c, n_t = len(control), len(treatment)
+    p_c, p_t = control.mean(), treatment.mean()
+    p_pool = (control.sum() + treatment.sum()) / (n_c + n_t)
+    se = np.sqrt(p_pool * (1 - p_pool) * (1/n_c + 1/n_t))
+    z = (p_t - p_c) / se
+    p_val = 2 * (1 - stats.norm.cdf(abs(z)))
+    return {
+        &quot;control_rate&quot;: p_c, &quot;treatment_rate&quot;: p_t,
+        &quot;lift&quot;: (p_t - p_c) / p_c,
+        &quot;p_value&quot;: p_val, &quot;significant&quot;: p_val &lt; alpha,
+        &quot;ci_95&quot;: ((p_t - p_c) - 1.96 * se, (p_t - p_c) + 1.96 * se),
+    }
+```
+
+## Project Template
+
+```markdown
+# Data Science Project: [Name]
+## Business Objective -- What problem are we solving?
+## Success Metrics -- Primary: [metric]; Secondary: [metric]
+## Data -- Sources, size (rows/features), time period
+## Methodology -- Numbered steps
+## Results
+| Metric | Baseline | Model | Improvement |
+|--------|----------|-------|-------------|
+## Business Impact -- [Quantified impact]
+## Recommendations -- [Next actions]
+## Limitations -- [Known caveats]
+```
+
+## Reference Materials
+
+- `references/ml_algorithms.md` -- Algorithm deep dives
+- `references/feature_engineering.md` -- Feature engineering patterns
+- `references/experimentation.md` -- A/B testing guide
+- `references/statistics.md` -- Statistical methods
+
+## Scripts
+
+```bash
+python scripts/experiment_tracker.py log --name &quot;xgb_v2&quot; --params &#x27;{&quot;lr&quot;:0.1,&quot;depth&quot;:6}&#x27; --metrics &#x27;{&quot;f1&quot;:0.87,&quot;auc&quot;:0.92}&#x27;
+python scripts/experiment_tracker.py list --sort-by f1 --top 5
+python scripts/experiment_tracker.py compare --ids 1 3 5 --json
+python scripts/hypothesis_tester.py ttest --file data.csv --col-a group_a --col-b group_b
+python scripts/hypothesis_tester.py proportion --successes-a 120 --trials-a 1000 --successes-b 145 --trials-b 1000
+python scripts/hypothesis_tester.py chi-square --file contingency.csv --json
+python scripts/feature_selector.py --file dataset.csv --target churn --top 10
+python scripts/feature_selector.py --file dataset.csv --target revenue --method correlation --json
+```
+
+## Tool Reference
+
+| Tool | Purpose | Key Flags |
+|------|---------|-----------|
+| `experiment_tracker.py` | Log, list, and compare experiments with parameters, metrics, and tags in a local JSON file | `log --name --params --metrics --tags`, `list --sort-by --top`, `compare --ids`, `--json` |
+| `hypothesis_tester.py` | Run statistical tests: Welch&#x27;s t-test, paired t-test, proportion z-test, chi-square independence | `ttest --file --col-a --col-b [--paired]`, `proportion --successes-a --trials-a ...`, `chi-square --file`, `--json` |
+| `feature_selector.py` | Rank features by composite score (variance, correlation, mutual information, null rate) for a target column | `--file &lt;csv&gt;`, `--target &lt;col&gt;`, `--top &lt;n&gt;`, `--method all/correlation/mutual_info`, `--json` |
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| Model overfits (large train-test gap in metrics) | Too many features, insufficient regularization, or data leakage | Reduce feature count with `feature_selector.py`, add regularization, and audit feature engineering for temporal leakage |
+| A/B test shows significant result but tiny effect size | Large sample size makes small differences statistically significant | Always report effect size (Cohen&#x27;s d) alongside p-value; use practical significance thresholds |
+| `hypothesis_tester.py` p-value differs from scipy | The tool uses normal/t-distribution approximations (standard library only) | For publication-grade analysis, validate with scipy.stats; the tool is designed for fast directional estimates |
+| Feature importance scores are near-zero for all features | Target variable has extremely low variance or the feature set lacks predictive signal | Check target distribution; consider feature engineering or collecting additional data sources |
+| `experiment_tracker.py` shows experiment IDs out of order | Experiments were logged non-sequentially or the log file was manually edited | IDs are auto-incremented; use `--sort-by` on a metric for meaningful ordering |
+| Chi-square test fails with &quot;table must be at least 2x2&quot; | CSV contingency table has fewer than 2 rows or 2 columns of numeric data | Ensure the CSV has a header row and at least 2x2 numeric cells; verify the format matches expectations |
+| Class imbalance causes misleading accuracy | Accuracy inflated by majority class predictions | Use F1, precision-recall, or AUC-ROC instead; apply SMOTE or class weights during training |
+
+## Success Criteria
+
+- Every ML project follows the Define-Collect-Engineer-Train-Evaluate-Communicate workflow before deployment.
+- Feature selection is documented: `feature_selector.py` output is saved with the experiment record.
+- All experiments are tracked with `experiment_tracker.py` including parameters, metrics, and a descriptive name.
+- Model evaluation reports include at least 3 metrics (e.g., F1, AUC-ROC, precision) and comparison against a baseline.
+- A/B tests pre-register the hypothesis, sample size calculation, and primary metric before data collection begins.
+- Statistical tests report effect size and confidence intervals, not just p-values.
+- Business impact is quantified in dollar terms or user-metric terms (e.g., &quot;reduces false positives by 30%, saving $500K/yr&quot;).
+
+## Scope &amp; Limitations
+
+**In scope:** Machine learning algorithm selection, feature engineering, model training and evaluation, A/B test design and analysis, statistical hypothesis testing, experiment tracking, and communicating results to stakeholders.
+
+**Out of scope:** Model deployment to production (see ml-ops-engineer), data pipeline infrastructure, dashboard development, and real-time serving architecture.
+
+**Limitations:** The Python tools use only the Python standard library. `hypothesis_tester.py` uses normal and t-distribution approximations that are accurate for moderate sample sizes but should be validated with scipy for edge cases (very small n, extreme skew). `feature_selector.py` computes approximate mutual information using binned discretization -- for high-precision feature selection, use sklearn&#x27;s mutual_info_classif or permutation importance. All tools process local files and do not integrate with MLflow, W&amp;B, or other tracking platforms.
+
+## Integration Points
+
+- **MLOps Engineer** (`data-analytics/ml-ops-engineer`): Trained models are handed off for production deployment, monitoring, and registry management.
+- **Data Analyst** (`data-analytics/data-analyst`): Complex analytical questions requiring predictive modeling are escalated from the analyst to the data scientist.
+- **Analytics Engineer** (`data-analytics/analytics-engineer`): Feature engineering pipelines may depend on mart models as upstream data sources.
+- **Product Team** (`product-team/`): Experiment results inform product decisions; A/B test designs are co-created with product managers.
+- **Engineering** (`engineering/senior-ml-engineer`): Algorithm implementation details and model architecture decisions bridge data science and ML engineering.
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Data Scientist&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Data Scientist in the Data Analytics domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Data Scientist&quot;**
+   - Description: &quot;Data science across machine learning, statistical modeling, and experimentation. Use when selecting ML algorithms, engineering features, designing A/B tests, evaluating model performance, or building predictive pipelines.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/data-analytics/data-scientist/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install data-analytics/data-scientist ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/data-analytics/data-scientist your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/data-scientist/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/data-scientist your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/data-scientist/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/data-scientist your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: data-analytics/data-scientist/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/data-analytics/data-scientist your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/data-analytics/data-scientist your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/data-analytics/data-scientist</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python data-analytics/data-scientist/scripts/tool_name.py --help</code></pre>
+  
+  
+  <h2>Related Skills in Data Analytics</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/data-analytics/analytics-engineer.html" class="skill-card" style="text-decoration:none"><h3>Analytics Engineer</h3><p>Analytics engineering across data modeling, dbt, transformation, and semantic layers. Use when...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/data-analytics/business-intelligence.html" class="skill-card" style="text-decoration:none"><h3>Business Intelligence</h3><p>Business intelligence across dashboard design, visualization, and reporting automation. Use when...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/data-analytics/data-analyst.html" class="skill-card" style="text-decoration:none"><h3>Data Analyst</h3><p>Data analysis across SQL, visualization, statistics, and reporting. Use when writing SQL...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/data-analytics/ml-ops-engineer.html" class="skill-card" style="text-decoration:none"><h3>Ml Ops Engineer</h3><p>MLOps across model deployment, ML pipelines, monitoring, and feature stores. Use when deploying...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/data-analytics/statistical-analyst.html" class="skill-card" style="text-decoration:none"><h3>Statistical Analyst</h3><p>Applied statistics for business and product questions — test selection, assumption checks, power...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/data-analytics/data-scientist/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

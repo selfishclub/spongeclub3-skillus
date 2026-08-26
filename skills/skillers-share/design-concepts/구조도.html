@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><title>skillers-share 구조도 (공유회-OS)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{width:1600px;background:#0a0a0c;color:#eef0ea;font-family:"Pretendard",sans-serif}
+  .wrap{padding:44px 48px 40px}
+  h1{font-size:30px;font-weight:900;letter-spacing:-.01em}
+  .sub{color:#8a8f84;font-size:16px;font-weight:700;margin-top:6px}
+  .sec{color:#c8f135;font-weight:900;font-size:15px;margin:30px 0 12px;letter-spacing:.02em}
+  /* 조직: 사용자 → OS → 3기둥 */
+  .stem{display:flex;justify-content:center}
+  .os{background:#161a0c;border:2px solid #c8f135;border-radius:16px;padding:16px 30px;text-align:center;box-shadow:0 0 34px rgba(200,241,53,.18)}
+  .os .r{color:#c8f135;font-weight:800;font-size:13px;letter-spacing:.06em}
+  .os .nm{font-weight:900;font-size:26px;margin-top:2px}
+  .os .d{color:#9aa08f;font-size:12.5px;margin-top:4px}
+  .down{color:#4a4d42;text-align:center;font-size:20px;margin:8px 0}
+  .pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .col{background:#121316;border:1.5px solid #262a2e;border-radius:14px;padding:16px 16px}
+  .col .ct{font-weight:900;font-size:16px}
+  .col .cs{color:#8a8f84;font-size:11.5px;margin:3px 0 10px}
+  .chip{display:block;background:rgba(200,241,53,.09);border:1px solid rgba(200,241,53,.28);color:#dfeeb0;font-weight:700;font-size:12.5px;padding:6px 10px;border-radius:9px;margin-bottom:6px}
+  .chip.call{background:rgba(255,255,255,.05);border-color:#33373b;color:#c7ccc0}
+  .chip b{color:#c8f135}
+  /* 흐름 9단계 + 게이트 */
+  .flow{display:flex;align-items:stretch;gap:5px;flex-wrap:nowrap}
+  .st{flex:1;min-width:0;background:#121316;border:1.5px solid #2a2e32;border-radius:12px;padding:11px 6px;text-align:center}
+  .st .n{color:#6f7468;font-weight:800;font-size:10px}
+  .st .t{font-weight:800;font-size:13.5px;margin-top:3px;white-space:nowrap}
+  .gate{flex:0 0 auto;align-self:center;border:1.5px dashed #ff5470;border-radius:10px;padding:9px 7px;text-align:center}
+  .gate .t{color:#ff8b8b;font-weight:900;font-size:11px;white-space:nowrap}
+  .arw{align-self:center;color:#44483f;font-weight:800;font-size:14px}
+  .note{color:#8a8f84;font-size:13px;margin-top:12px}.note b{color:#c8f135}
+  .foot{color:#63675d;font-size:12.5px;margin-top:22px;border-top:1px solid #1c1e21;padding-top:13px}
+  .foot b{color:#9aa08f}
+</style></head><body><div class="wrap">
+  <h1>🧩 skillers-share 구조 — <span style="color:#c8f135">공유회-OS</span></h1>
+  <div class="sub">1시간 공유회 발표를 주제 스캔부터 발표 대본까지 만드는 오케스트레이션 스킬. proposal-os와 같은 방식 — 부장이 지휘, 게이트에서 사람이 컨펌.</div>
+
+  <div class="sec">① 지휘 — 오케스트레이터가 흐름을 강제한다</div>
+  <div class="stem"><div class="os"><div class="r">오케스트레이터 (하네스)</div><div class="nm">SKILL.md · 공유회-OS</div><div class="d">순서·게이트·계약 강제 · 사람은 게이트에서 컨펌만</div></div></div>
+  <div class="down">▼ 아래 셋을 부려서 발표를 만든다</div>
+
+  <div class="pillars">
+    <div class="col"><div class="ct">📚 references — 지침</div><div class="cs">각 단계에 뭘·어떻게</div>
+      <span class="chip">interview · 질문 3개</span><span class="chip">types · 공유회 유형 6종</span><span class="chip">titles · 제목 패턴</span><span class="chip">timeline · 1시간 배분</span><span class="chip">script · 발표 대본</span><span class="chip">themes · 디자인·표지</span></div>
+    <div class="col"><div class="ct">⚙️ engine — 도구</div><div class="cs">덱을 실제로 찍어냄</div>
+      <span class="chip">build-deck.sh · 덱 생성</span><span class="chip">deploy.sh · 인터넷 배포</span><span class="chip">share-extend · 노트·타이머·테마</span><span class="chip">webdeck 엔진 <b>(install.sh가 최신 받음)</b></span></div>
+    <div class="col"><div class="ct">🛠 부르는 스킬 (사원)</div><div class="cs">번들로 같이 설치</div>
+      <span class="chip call"><b>훅카피</b> · 제목·표지 문구</span><span class="chip call"><b>크리틱디렉터</b> · 후킹 검수</span><span class="chip call"><b>spec-guard</b> · 합격기준 락·대조</span></div>
+  </div>
+
+  <div class="sec">② 흐름 9단계 — 게이트(✋)에서만 사람이 고른다</div>
+  <div class="flow">
+    <div class="st"><div class="n">①</div><div class="t">스캔</div></div><div class="arw">→</div>
+    <div class="st"><div class="n">②</div><div class="t">질문 3개</div></div><div class="gate"><div class="t">✋ 소재</div></div>
+    <div class="st"><div class="n">③</div><div class="t">락</div></div><div class="arw">→</div>
+    <div class="st"><div class="n">④</div><div class="t">내용 듣기</div></div><div class="gate"><div class="t">✋ 내용</div></div>
+    <div class="st"><div class="n">⑤</div><div class="t">제목</div></div><div class="gate"><div class="t">✋ 제목</div></div>
+    <div class="st"><div class="n">⑥</div><div class="t">목차</div></div><div class="gate"><div class="t">✋ 목차</div></div>
+    <div class="st"><div class="n">⑦</div><div class="t">덱 생성</div></div><div class="arw">→</div>
+    <div class="st"><div class="n">⑧</div><div class="t">스크립트</div></div><div class="arw">→</div>
+    <div class="st"><div class="n">⑨</div><div class="t">검수</div></div>
+  </div>
+  <div class="note">필수 컨펌 4곳 — <b>소재·내용·제목·목차</b>. 나머지는 자동. 앞 산출물이 있어야 다음이 돈다(계약). 발표 내용은 지어내지 않고 <b>발표자에게 물어 채운다.</b></div>
+
+  <div class="sec">③ 설치 — 두 줄</div>
+  <div class="note"><b>git clone</b> → <b>bash install.sh</b> : 공유회-OS를 <code>~/.claude/skills</code>에 넣고, webdeck 엔진과 부르는 스킬 3종을 원본에서 최신으로 받아 조립한다. 산출물은 <b>deploy.sh</b>로 인터넷 링크(GitHub Pages)까지.</div>
+
+  <div class="foot">repo <b>github.com/Koo-bon/skillers-share</b> · 덱 엔진 <b>github.com/Koo-bon/webdeck</b> · 홍보 <b>koo-bon.github.io/skillers-share-promo</b></div>
+</div></body></html>

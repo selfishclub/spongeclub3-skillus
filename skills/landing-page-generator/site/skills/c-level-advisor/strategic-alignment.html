@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategic Alignment - Claude Skills</title>
+  <meta name="description" content="Cascades strategy from boardroom to individual contributor and detects misalignment. Use when teams pull in different directions, OKRs don&#x27;t connect, departments optimize locally at company expense, o">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/strategic-alignment.html">
+  <meta property="og:title" content="Strategic Alignment - Claude Skills">
+  <meta property="og:description" content="Cascades strategy from boardroom to individual contributor and detects misalignment. Use when teams pull in different directions, OKRs don&#x27;t connect, departments optimize locally at company expense, o">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/strategic-alignment.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Strategic Alignment", "description": "Cascades strategy from boardroom to individual contributor and detects misalignment. Use when teams pull in different directions, OKRs don't connect, departments optimize locally at company expense, or strategy doesn't translate to execution.", "applicationCategory": "C-Level Advisory", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/c-level-advisor/strategic-alignment.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/">C-Level Advisory</a><span class=sep>/</span><span>Strategic Alignment</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">Strategic Alignment</h1>
+    <p class="page-subtitle">Cascades strategy from boardroom to individual contributor and detects misalignment. Use when teams pull in different directions, OKRs don&#x27;t connect, departments optimize locally at company expense, or strategy doesn&#x27;t translate to execution.</p>
+    <div class="badge-bar"><span class="badge badge-domain">C-Level Advisory</span> <span class="badge badge-version">v2.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert Strategic Alignment (C-Level Advisory domain).
+
+Cascades strategy from boardroom to individual contributor and detects misalignment. Use when teams pull in different directions, OKRs don&#x27;t connect, departments optimize locally at company expense, or strategy doesn&#x27;t translate to execution.
+
+Strategy fails at the cascade, not the boardroom. This skill detects misalignment before it becomes dysfunction and builds systems that keep strategy connected from CEO to individual contributor. strategic alignment, strategy cascade, OKR alignment, orphan OKRs, conflicting goals, silos, communicati
+
+## Your Key Capabilities
+- The 5-Person Test
+- Strategy Format Test
+- Cascade Visualization
+- Cascade Validation Questions
+- Pattern 1: Orphan Goals
+- Pattern 2: Conflicting Goals
+
+## Frameworks &amp; Templates You Know
+- | &quot;Quarterly alignment check&quot; | Quarterly check process + report template |
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/strategic-alignment
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert Strategic Alignment (C-Level Advisory domain).
+
+Cascades strategy from boardroom to individual contributor and detects misalignment. Use when teams pull in different directions, OKRs don&#x27;t connect, departments optimize locally at company expense, or strategy doesn&#x27;t translate to execution.
+
+Strategy fails at the cascade, not the boardroom. This skill detects misalignment before it becomes dysfunction and builds systems that keep strategy connected from CEO to individual contributor. strategic alignment, strategy cascade, OKR alignment, orphan OKRs, conflicting goals, silos, communicati
+
+## Your Key Capabilities
+- The 5-Person Test
+- Strategy Format Test
+- Cascade Visualization
+- Cascade Validation Questions
+- Pattern 1: Orphan Goals
+- Pattern 2: Conflicting Goals
+
+## Frameworks &amp; Templates You Know
+- | &quot;Quarterly alignment check&quot; | Quarterly check process + report template |
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/strategic-alignment
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;Strategic Alignment&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Strategic Alignment Engine
+
+Strategy fails at the cascade, not the boardroom. This skill detects misalignment before it becomes dysfunction and builds systems that keep strategy connected from CEO to individual contributor.
+
+## Keywords
+
+strategic alignment, strategy cascade, OKR alignment, orphan OKRs, conflicting goals, silos, communication gap, department alignment, strategy articulation, cross-functional alignment, goal cascade, misalignment, alignment score, local optimization, strategy communication, cascade mapping
+
+---
+
+## The Alignment Problem
+
+**The further a goal gets from the strategy that created it, the less likely it reflects the original intent.**
+
+This is the organizational telephone game. It happens at every stage. The question is how bad it is and how to fix it.
+
+```
+CEO says: &quot;We need to win the mid-market healthcare segment&quot;
+VP hears: &quot;Healthcare is the priority&quot;
+Director translates: &quot;Build healthcare features&quot;
+Team executes: &quot;Add HIPAA compliance checkbox to the roadmap&quot;
+IC works on: &quot;HIPAA feature that nobody asked for and doesn&#x27;t close deals&quot;
+
+Result: Effort spent, strategy not advanced.
+```
+
+---
+
+## Clarify First
+
+Before generating, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Which deliverable is needed** (full diagnostic, cascade map, silo diagnosis, communication-gap analysis, or workshop agenda) — each uses a different step of the framework
+- [ ] **The current strategy stated in one sentence** — alignment is tested against the source; if the strategy itself is vague, fix that before cascading
+- [ ] **The actual goals/OKRs at company, team, and individual levels** — orphan, conflict, and coverage-gap detection needs the real cascade, not a hypothetical one
+- [ ] **Company size and structure** — the 5-person test and hierarchical cascade assumptions need adapting for large or matrixed orgs
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+---
+
+## Step 1: Strategy Articulation Test
+
+Before checking cascade, check the source.
+
+### The 5-Person Test
+
+Ask five people from five different teams:
+
+&gt; &quot;What is the company&#x27;s most important strategic priority right now?&quot;
+
+| Result | Score | Diagnosis |
+|--------|-------|-----------|
+| All 5 give the same answer | 10/10 | Clear articulation. Check cascade. |
+| 4 give similar answers | 7-8/10 | Close. Clarify the outlier. |
+| 3 agree | 5-6/10 | Loose alignment. Re-communicate. |
+| 2 agree | 2-4/10 | Strategy is unclear. Fix before cascade. |
+| No agreement | 0-1/10 | No shared strategy exists. Start here. |
+
+### Strategy Format Test
+
+The strategy must be statable in one sentence.
+
+| Format | Score |
+|--------|-------|
+| One clear sentence | Good |
+| Two sentences | Acceptable |
+| A paragraph | Too complex to cascade |
+| A document | Too complex to internalize |
+
+**Examples**:
+
+| Bad | Why | Good |
+|-----|-----|------|
+| &quot;Focus on growth while maintaining enterprise relationships and expanding internationally and investing in platform&quot; | Four priorities = no priority | &quot;Win the mid-market healthcare segment in DACH before Series B&quot; |
+| &quot;Be the best at what we do&quot; | Not falsifiable | &quot;Reach $5M ARR by Q4 with 110%+ NRR&quot; |
+| &quot;Customer-first approach to innovation&quot; | Sounds nice, means nothing | &quot;Ship the workflow automation feature that our top 10 prospects asked for&quot; |
+
+---
+
+## Step 2: Cascade Mapping
+
+Map the flow from company strategy through every organizational level.
+
+### Cascade Visualization
+
+```
+Company Level:  Strategy Statement
+                    |
+                Company OKR-1    Company OKR-2    Company OKR-3
+                    |                 |                 |
+Dept Level:    Sales OKRs       Eng OKRs         Product OKRs
+                    |                 |                 |
+Team Level:    Team A OKRs      Team B OKRs       Team C OKRs
+                    |                 |                 |
+Individual:    Personal goals    Personal goals    Personal goals
+```
+
+### Cascade Validation Questions
+
+For each goal at every level:
+
+| Question | Purpose |
+|----------|---------|
+| Which company goal does this support? | Tests upward connection |
+| If achieved 100%, how much does it move the parent goal? | Tests impact significance |
+| Is the connection direct or theoretical? | Tests proximity of impact |
+| Who else is working on the same parent goal? | Tests coverage and overlap |
+
+---
+
+## Step 3: Alignment Failure Detection
+
+Three failure patterns to detect:
+
+### Pattern 1: Orphan Goals
+
+Goals that don&#x27;t connect to any company-level objective.
+
+| Symptom | Root Cause | Fix |
+|---------|-----------|-----|
+| &quot;We&#x27;ve been working on this all quarter and nobody cares&quot; | Goals set bottom-up without reconciliation | Connect or cut. Every goal needs a parent. |
+| Team proud of achievement, leadership unaware | Misaligned definition of success | Explicit cascade mapping before quarter starts |
+| Individual goals from last quarter carried forward | Inertia, not intention | Fresh cascade each quarter |
+
+### Pattern 2: Conflicting Goals
+
+Two teams&#x27; goals, when both succeed, create a worse outcome.
+
+| Example | Conflict | Fix |
+|---------|----------|-----|
+| Sales: maximize new logos / CS: maximize NPS | Sales closes bad-fit customers, CS suffers | Shared goal: qualified new logos that retain |
+| Product: ship fast / Security: no vulnerabilities | Speed vs. quality tension | Shared SLA: ship within X days with Y security checks |
+| Marketing: maximize leads / Sales: close enterprise | Marketing optimizes for volume, sales needs quality | Shared metric: qualified pipeline $, not lead count |
+
+### Pattern 3: Coverage Gaps
+
+Company has 3 OKRs. 5 teams support OKR-1, 2 teams support OKR-2, 0 teams support OKR-3.
+
+| Detection | Impact | Fix |
+|-----------|--------|-----|
+| Company OKR consistently misses while others hit | Nobody actually owns the failing OKR | Explicit team assignment to every company OKR |
+| Resource allocation does not match priority | Top priority underfunded | Align resources to stated priorities |
+| Strategy says X is important but no team&#x27;s goals reflect it | Strategy is aspirational, not operational | Translate strategy to owned team goals |
+
+---
+
+## Step 4: Silo Diagnosis
+
+Silos exist when teams optimize for local metrics at the expense of company metrics.
+
+### Silo Detection Matrix
+
+| Signal | Score (1-5) | Weight |
+|--------|-------------|--------|
+| Department hits goals while company misses | 5 = always | 25% |
+| Teams don&#x27;t know other teams&#x27; priorities | 5 = never | 20% |
+| &quot;That&#x27;s not our problem&quot; is common | 5 = daily | 20% |
+| Cross-functional escalations only flow up | 5 = always | 15% |
+| Data not shared between dependent teams | 5 = never shared | 10% |
+| Cross-functional projects take 3x expected time | 5 = always | 10% |
+
+**Score 30+**: Severe silos. Immediate intervention required.
+**Score 20-29**: Moderate silos. Address in next quarter.
+**Score 10-19**: Minor friction. Monitor and address specific hot spots.
+**Score &lt; 10**: Healthy cross-functional operation.
+
+### Silo Root Causes and Fixes
+
+| Root Cause | Fix | Owner |
+|-----------|-----|-------|
+| Incentive misalignment | Create shared goals where teams interact | CEO + COO |
+| No shared goals | Add 1 cross-functional OKR per interacting team pair | COO |
+| No shared language | Cross-functional show-and-tell monthly | Culture Architect |
+| Geography/timezone | Intentional async overlap + quarterly in-person | COO + CHRO |
+| Org design | Consider restructuring to reduce handoffs | CEO + CHRO |
+
+---
+
+## Step 5: Communication Gap Analysis
+
+What the CEO says is not what teams hear. The gap grows with company size.
+
+### Message Decay Model
+
+```
+CEO communicates strategy
+  |
+  v [10-20% loss]
+VP interprets through their lens
+  |
+  v [10-20% loss]
+Manager translates for team
+  |
+  v [10-20% loss]
+IC receives modified version
+  |
+  v [10-20% loss]
+IC interprets further based on daily work
+
+Total signal loss: 40-80% from CEO to IC
+```
+
+### Communication Gap Sources
+
+| Source | Detection | Fix |
+|--------|-----------|-----|
+| Ambiguity | Different teams interpret differently | Make strategy specific enough to be wrong |
+| Frequency | Said once, expected to stick | Repeat strategy 7x through different channels |
+| Medium mismatch | Written doc for visual thinkers | Use multiple formats (written, visual, verbal) |
+| Trust deficit | Team doesn&#x27;t believe strategy is real | Show resource allocation that proves it |
+| Filtering | Managers edit the message | Skip-level communication + all-hands |
+
+---
+
+## Step 6: Realignment Protocol
+
+How to fix misalignment without creating fear.
+
+### Realignment Decision Tree
+
+```
+START: Misalignment detected
+  |
+  v
+[Is the problem at the strategy level or the cascade level?]
+  |
+  +-- STRATEGY (Step 1 failed)
+  |     --&gt; CEO rewrites strategy as one sentence
+  |     --&gt; Re-communicate through all channels
+  |     --&gt; Re-run 5-person test after 2 weeks
+  |
+  +-- CASCADE (Step 2-3 failures)
+  |     |
+  |     v
+  |   [Which failure pattern?]
+  |     |
+  |     +-- Orphan goals --&gt; Connect or cut workshop
+  |     +-- Conflicting goals --&gt; Cross-functional OKR review
+  |     +-- Coverage gaps --&gt; Assign explicit ownership
+  |
+  +-- SILOS (Step 4)
+  |     --&gt; Fix incentives first
+  |     --&gt; Add shared metrics
+  |     --&gt; Consider org design change
+  |
+  +-- COMMUNICATION (Step 5)
+        --&gt; Increase frequency (weekly, not quarterly)
+        --&gt; Add skip-level communication
+        --&gt; Show resource proof (money follows words)
+```
+
+### Realignment Workshop (Half-day)
+
+```
+Agenda:
+  1. CEO restates strategy (15 min)
+  2. Each dept maps their goals to strategy (45 min)
+  3. Identify orphans, conflicts, gaps together (30 min)
+  4. Fix orphans: connect or cut (30 min)
+  5. Fix conflicts: shared metrics or priority resolution (30 min)
+  6. Fix gaps: assign ownership (15 min)
+  7. Communication plan (15 min)
+```
+
+---
+
+## Alignment Score
+
+Quick health check. Score each area 0-10.
+
+| Area | Question | Score |
+|------|----------|-------|
+| Strategy clarity | Can 5 people from different teams state strategy consistently? | /10 |
+| Cascade completeness | Do all team goals connect to company goals? | /10 |
+| Conflict detection | Have cross-team OKR conflicts been reviewed and resolved? | /10 |
+| Coverage | Does each company OKR have explicit team ownership? | /10 |
+| Communication | Do teams&#x27; behaviors reflect the strategy? | /10 |
+
+### Score Interpretation
+
+| Total (/50) | Status | Action |
+|-------------|--------|--------|
+| 45-50 | Excellent | Maintain the system. Quarterly check is sufficient. |
+| 35-44 | Good | Address specific weak areas in next OKR cycle. |
+| 20-34 | Misalignment costing you | Immediate attention. Workshop within 2 weeks. |
+| &lt; 20 | Strategic drift | Crisis-level intervention. CEO-led realignment. |
+
+---
+
+## Quarterly Alignment Check
+
+Prevent recurrence with a quarterly check:
+
+| Activity | When | Who | Duration |
+|----------|------|-----|----------|
+| 5-person articulation test | Week 1 of quarter | Random selection across levels | 15 min |
+| Cascade map review | Week 1 | Leadership team | 1 hour |
+| Conflict scan | Week 1 | COO + department leads | 30 min |
+| Coverage audit | Week 1 | COO | 30 min |
+| Silo pulse check | Week 2 | Cross-functional survey | 5 min survey |
+| Report to CEO | Week 2 | COO or Chief of Staff | 15 min presentation |
+
+---
+
+## Red Flags
+
+- Teams consistently hit goals while company misses targets -- local optimization
+- Cross-functional projects take 3x longer than expected -- coordination failure
+- Strategy updated quarterly but team priorities don&#x27;t change -- cascade is broken
+- &quot;That&#x27;s a leadership problem&quot; at team level -- ownership gap
+- New initiatives without connecting to existing OKRs -- strategy drift
+- Department heads optimize for headcount/budget, not company outcomes -- incentive misalignment
+- Same alignment problems reappear quarter after quarter -- systemic issue, not a one-time fix
+- No one can name the company&#x27;s top priority -- strategy is not communicated
+
+---
+
+## Integration with C-Suite
+
+| When... | Work With... | To... |
+|---------|-------------|-------|
+| New strategy set | CEO + COO | Cascade into rocks before announcing |
+| OKR cycle starts | COO (`coo-advisor`) | Cross-team conflict check before finalizing |
+| Team misses goals | CHRO (`chro-advisor`) | Diagnose: capability gap or alignment gap? |
+| Silo identified | COO | Design shared metrics or cross-functional OKRs |
+| Post-M&amp;A | CEO + Culture Architect | Detect strategy conflicts between merged entities |
+| Quarterly planning | Company OS (`company-os`) | Integrate alignment check into planning rhythm |
+| Change rollout | Change Management (`change-management`) | Ensure change aligns with strategy |
+
+---
+
+## Output Artifacts
+
+| Request | Deliverable |
+|---------|-------------|
+| &quot;Check our alignment&quot; | Full 6-step diagnostic with alignment score |
+| &quot;Are our OKRs aligned?&quot; | Cascade map with orphans, conflicts, and gaps identified |
+| &quot;We have silos&quot; | Silo diagnosis with root causes and specific fixes |
+| &quot;Strategy isn&#x27;t translating to execution&quot; | Communication gap analysis + fix plan |
+| &quot;Run an alignment workshop&quot; | Workshop agenda + facilitation guide |
+| &quot;Quarterly alignment check&quot; | Quarterly check process + report template |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| 5-person test scores below 5/10 despite strategy existing | Strategy too complex, too vague, or communicated only once | Rewrite strategy as one falsifiable sentence; communicate through 7+ channels; repeat weekly for 4 weeks then re-test |
+| Cascade map shows orphan goals but teams resist cutting them | Teams emotionally attached to work-in-progress; sunk cost fallacy | Frame as &quot;connect or cut&quot;: every goal must have a parent OKR; if no parent exists, either create the connection or stop the work |
+| Conflicting goals identified but no resolution reached | Department heads unwilling to compromise; incentive misalignment | Escalate to CEO for priority decision; create shared metric that both teams own; use balanced scorecard perspective alignment |
+| Silo score above 30 but no one acknowledges the problem | Each silo operates well internally; pain is only felt at interfaces | Show cross-functional project data: 3x expected timeline; present customer impact of handoff failures; use strategy map visualization |
+| Communication gap persists despite increased frequency | Wrong medium, wrong messenger, or message too abstract | Vary communication format (written, visual, verbal); use skip-level conversations; show resource allocation as proof of strategy (&quot;money follows words&quot;) |
+| Alignment workshop produces action items that are never implemented | No follow-up mechanism; workshop treated as event not process | Assign every action item an owner and deadline during the workshop; review at next weekly leadership meeting; track completion rate |
+| Quarterly alignment check becomes a checkbox exercise | No consequences for misalignment; diagnostic not connected to decisions | Tie alignment score to OKR cycle planning; Red alignment areas must be addressed before new OKRs are finalized |
+
+---
+
+## Success Criteria
+
+- 5-person articulation test scores 8/10 or higher within 30 days of strategy communication
+- Zero orphan goals remain after quarterly cascade mapping review
+- All identified goal conflicts have documented resolution with shared metrics within 2 weeks
+- Silo detection score below 20 (minor friction or healthy) maintained across 3 consecutive quarters
+- Communication gap analysis shows &lt; 30% signal loss from CEO to IC level (measured by strategy comprehension survey)
+- Alignment score (5 areas, /50) at 35 or above and trending stable or improving
+- Quarterly alignment check completed within first 2 weeks of every quarter
+
+---
+
+## Scope &amp; Limitations
+
+- **In scope:** Strategy articulation testing, cascade mapping and validation, orphan goal detection, conflicting goal identification, coverage gap analysis, silo diagnosis, communication gap analysis, realignment protocols, alignment scoring, quarterly check cadence
+- **Out of scope:** OKR writing and goal-setting methodology (use project management or Company OS skills); individual performance management (use CHRO Advisor); strategy formulation (use CEO Advisor -- this skill assumes strategy exists and tests its cascade)
+- **Limitation:** Alignment diagnostics are point-in-time assessments; alignment degrades continuously and requires quarterly maintenance
+- **Limitation:** The 5-person test is a heuristic, not a statistically rigorous survey; for organizations &gt; 200 people, supplement with broader pulse survey
+- **Limitation:** Silo detection matrix relies on self-reported data; supplement with objective measures (cross-functional project timelines, escalation patterns)
+- **Limitation:** Framework assumes a hierarchical OKR cascade; matrix organizations and flat structures may need adapted cascade mapping
+
+---
+
+## Integration Points
+
+| Skill | Integration | Data Flow |
+|-------|-------------|-----------|
+| `ceo-advisor` | Strategy must exist before alignment can be tested | CEO strategy statement → Alignment articulation test |
+| `coo-advisor` | Operations owns the alignment cadence and cross-functional OKRs | Alignment conflicts → COO shared metric design |
+| `company-os` | Alignment check integrates into planning rhythm | Alignment cadence → Company OS quarterly cycle |
+| `chief-of-staff` | CoS facilitates alignment workshops and tracks follow-through | Alignment action items → CoS tracking |
+| `culture-architect` | Silos are both structural and cultural problems | Alignment silo diagnosis → Culture intervention |
+| `change-management` | Strategy changes require alignment cascade update | Change plan → Alignment re-cascade |
+| `org-health-diagnostic` | Operational Health dimension reflects alignment quality | Health operations score → Alignment priority |
+| `internal-narrative` | Strategy communication depends on narrative clarity | Alignment communication gaps → Narrative improvement |
+
+---
+
+## Python Tools
+
+| Tool | Purpose | Usage |
+|------|---------|-------|
+| `scripts/okr_cascade_validator.py` | Validate that team OKRs connect to company OKRs, detecting orphans, conflicts, and coverage gaps | `python scripts/okr_cascade_validator.py --company-okrs company_okrs.csv --team-okrs team_okrs.csv --json` |
+| `scripts/strategy_map_generator.py` | Generate a balanced scorecard strategy map linking financial, customer, process, and learning perspectives | `python scripts/strategy_map_generator.py --objective &quot;Win mid-market healthcare in DACH&quot; --financial &quot;5M ARR by Q4&quot; --customer &quot;NPS &gt; 40&quot; --process &quot;Ship workflow automation&quot; --learning &quot;Hire 3 healthcare domain experts&quot; --json` |
+| `scripts/alignment_scorer.py` | Calculate alignment score across 5 dimensions with trend tracking and recommendations | `python scripts/alignment_scorer.py --clarity 8 --cascade 6 --conflicts 7 --coverage 5 --communication 6 --previous-score 28 --json` |
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Strategic Alignment&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Strategic Alignment in the C-Level Advisory domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Strategic Alignment&quot;**
+   - Description: &quot;Cascades strategy from boardroom to individual contributor and detects misalignment. Use when teams pull in different directions, OKRs don&#x27;t connect, departments optimize locally at company expense, or strategy doesn&#x27;t translate to execution.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/strategic-alignment/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;Strategic Alignment&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Strategic Alignment Engine
+
+Strategy fails at the cascade, not the boardroom. This skill detects misalignment before it becomes dysfunction and builds systems that keep strategy connected from CEO to individual contributor.
+
+## Keywords
+
+strategic alignment, strategy cascade, OKR alignment, orphan OKRs, conflicting goals, silos, communication gap, department alignment, strategy articulation, cross-functional alignment, goal cascade, misalignment, alignment score, local optimization, strategy communication, cascade mapping
+
+---
+
+## The Alignment Problem
+
+**The further a goal gets from the strategy that created it, the less likely it reflects the original intent.**
+
+This is the organizational telephone game. It happens at every stage. The question is how bad it is and how to fix it.
+
+```
+CEO says: &quot;We need to win the mid-market healthcare segment&quot;
+VP hears: &quot;Healthcare is the priority&quot;
+Director translates: &quot;Build healthcare features&quot;
+Team executes: &quot;Add HIPAA compliance checkbox to the roadmap&quot;
+IC works on: &quot;HIPAA feature that nobody asked for and doesn&#x27;t close deals&quot;
+
+Result: Effort spent, strategy not advanced.
+```
+
+---
+
+## Clarify First
+
+Before generating, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Which deliverable is needed** (full diagnostic, cascade map, silo diagnosis, communication-gap analysis, or workshop agenda) — each uses a different step of the framework
+- [ ] **The current strategy stated in one sentence** — alignment is tested against the source; if the strategy itself is vague, fix that before cascading
+- [ ] **The actual goals/OKRs at company, team, and individual levels** — orphan, conflict, and coverage-gap detection needs the real cascade, not a hypothetical one
+- [ ] **Company size and structure** — the 5-person test and hierarchical cascade assumptions need adapting for large or matrixed orgs
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+---
+
+## Step 1: Strategy Articulation Test
+
+Before checking cascade, check the source.
+
+### The 5-Person Test
+
+Ask five people from five different teams:
+
+&gt; &quot;What is the company&#x27;s most important strategic priority right now?&quot;
+
+| Result | Score | Diagnosis |
+|--------|-------|-----------|
+| All 5 give the same answer | 10/10 | Clear articulation. Check cascade. |
+| 4 give similar answers | 7-8/10 | Close. Clarify the outlier. |
+| 3 agree | 5-6/10 | Loose alignment. Re-communicate. |
+| 2 agree | 2-4/10 | Strategy is unclear. Fix before cascade. |
+| No agreement | 0-1/10 | No shared strategy exists. Start here. |
+
+### Strategy Format Test
+
+The strategy must be statable in one sentence.
+
+| Format | Score |
+|--------|-------|
+| One clear sentence | Good |
+| Two sentences | Acceptable |
+| A paragraph | Too complex to cascade |
+| A document | Too complex to internalize |
+
+**Examples**:
+
+| Bad | Why | Good |
+|-----|-----|------|
+| &quot;Focus on growth while maintaining enterprise relationships and expanding internationally and investing in platform&quot; | Four priorities = no priority | &quot;Win the mid-market healthcare segment in DACH before Series B&quot; |
+| &quot;Be the best at what we do&quot; | Not falsifiable | &quot;Reach $5M ARR by Q4 with 110%+ NRR&quot; |
+| &quot;Customer-first approach to innovation&quot; | Sounds nice, means nothing | &quot;Ship the workflow automation feature that our top 10 prospects asked for&quot; |
+
+---
+
+## Step 2: Cascade Mapping
+
+Map the flow from company strategy through every organizational level.
+
+### Cascade Visualization
+
+```
+Company Level:  Strategy Statement
+                    |
+                Company OKR-1    Company OKR-2    Company OKR-3
+                    |                 |                 |
+Dept Level:    Sales OKRs       Eng OKRs         Product OKRs
+                    |                 |                 |
+Team Level:    Team A OKRs      Team B OKRs       Team C OKRs
+                    |                 |                 |
+Individual:    Personal goals    Personal goals    Personal goals
+```
+
+### Cascade Validation Questions
+
+For each goal at every level:
+
+| Question | Purpose |
+|----------|---------|
+| Which company goal does this support? | Tests upward connection |
+| If achieved 100%, how much does it move the parent goal? | Tests impact significance |
+| Is the connection direct or theoretical? | Tests proximity of impact |
+| Who else is working on the same parent goal? | Tests coverage and overlap |
+
+---
+
+## Step 3: Alignment Failure Detection
+
+Three failure patterns to detect:
+
+### Pattern 1: Orphan Goals
+
+Goals that don&#x27;t connect to any company-level objective.
+
+| Symptom | Root Cause | Fix |
+|---------|-----------|-----|
+| &quot;We&#x27;ve been working on this all quarter and nobody cares&quot; | Goals set bottom-up without reconciliation | Connect or cut. Every goal needs a parent. |
+| Team proud of achievement, leadership unaware | Misaligned definition of success | Explicit cascade mapping before quarter starts |
+| Individual goals from last quarter carried forward | Inertia, not intention | Fresh cascade each quarter |
+
+### Pattern 2: Conflicting Goals
+
+Two teams&#x27; goals, when both succeed, create a worse outcome.
+
+| Example | Conflict | Fix |
+|---------|----------|-----|
+| Sales: maximize new logos / CS: maximize NPS | Sales closes bad-fit customers, CS suffers | Shared goal: qualified new logos that retain |
+| Product: ship fast / Security: no vulnerabilities | Speed vs. quality tension | Shared SLA: ship within X days with Y security checks |
+| Marketing: maximize leads / Sales: close enterprise | Marketing optimizes for volume, sales needs quality | Shared metric: qualified pipeline $, not lead count |
+
+### Pattern 3: Coverage Gaps
+
+Company has 3 OKRs. 5 teams support OKR-1, 2 teams support OKR-2, 0 teams support OKR-3.
+
+| Detection | Impact | Fix |
+|-----------|--------|-----|
+| Company OKR consistently misses while others hit | Nobody actually owns the failing OKR | Explicit team assignment to every company OKR |
+| Resource allocation does not match priority | Top priority underfunded | Align resources to stated priorities |
+| Strategy says X is important but no team&#x27;s goals reflect it | Strategy is aspirational, not operational | Translate strategy to owned team goals |
+
+---
+
+## Step 4: Silo Diagnosis
+
+Silos exist when teams optimize for local metrics at the expense of company metrics.
+
+### Silo Detection Matrix
+
+| Signal | Score (1-5) | Weight |
+|--------|-------------|--------|
+| Department hits goals while company misses | 5 = always | 25% |
+| Teams don&#x27;t know other teams&#x27; priorities | 5 = never | 20% |
+| &quot;That&#x27;s not our problem&quot; is common | 5 = daily | 20% |
+| Cross-functional escalations only flow up | 5 = always | 15% |
+| Data not shared between dependent teams | 5 = never shared | 10% |
+| Cross-functional projects take 3x expected time | 5 = always | 10% |
+
+**Score 30+**: Severe silos. Immediate intervention required.
+**Score 20-29**: Moderate silos. Address in next quarter.
+**Score 10-19**: Minor friction. Monitor and address specific hot spots.
+**Score &lt; 10**: Healthy cross-functional operation.
+
+### Silo Root Causes and Fixes
+
+| Root Cause | Fix | Owner |
+|-----------|-----|-------|
+| Incentive misalignment | Create shared goals where teams interact | CEO + COO |
+| No shared goals | Add 1 cross-functional OKR per interacting team pair | COO |
+| No shared language | Cross-functional show-and-tell monthly | Culture Architect |
+| Geography/timezone | Intentional async overlap + quarterly in-person | COO + CHRO |
+| Org design | Consider restructuring to reduce handoffs | CEO + CHRO |
+
+---
+
+## Step 5: Communication Gap Analysis
+
+What the CEO says is not what teams hear. The gap grows with company size.
+
+### Message Decay Model
+
+```
+CEO communicates strategy
+  |
+  v [10-20% loss]
+VP interprets through their lens
+  |
+  v [10-20% loss]
+Manager translates for team
+  |
+  v [10-20% loss]
+IC receives modified version
+  |
+  v [10-20% loss]
+IC interprets further based on daily work
+
+Total signal loss: 40-80% from CEO to IC
+```
+
+### Communication Gap Sources
+
+| Source | Detection | Fix |
+|--------|-----------|-----|
+| Ambiguity | Different teams interpret differently | Make strategy specific enough to be wrong |
+| Frequency | Said once, expected to stick | Repeat strategy 7x through different channels |
+| Medium mismatch | Written doc for visual thinkers | Use multiple formats (written, visual, verbal) |
+| Trust deficit | Team doesn&#x27;t believe strategy is real | Show resource allocation that proves it |
+| Filtering | Managers edit the message | Skip-level communication + all-hands |
+
+---
+
+## Step 6: Realignment Protocol
+
+How to fix misalignment without creating fear.
+
+### Realignment Decision Tree
+
+```
+START: Misalignment detected
+  |
+  v
+[Is the problem at the strategy level or the cascade level?]
+  |
+  +-- STRATEGY (Step 1 failed)
+  |     --&gt; CEO rewrites strategy as one sentence
+  |     --&gt; Re-communicate through all channels
+  |     --&gt; Re-run 5-person test after 2 weeks
+  |
+  +-- CASCADE (Step 2-3 failures)
+  |     |
+  |     v
+  |   [Which failure pattern?]
+  |     |
+  |     +-- Orphan goals --&gt; Connect or cut workshop
+  |     +-- Conflicting goals --&gt; Cross-functional OKR review
+  |     +-- Coverage gaps --&gt; Assign explicit ownership
+  |
+  +-- SILOS (Step 4)
+  |     --&gt; Fix incentives first
+  |     --&gt; Add shared metrics
+  |     --&gt; Consider org design change
+  |
+  +-- COMMUNICATION (Step 5)
+        --&gt; Increase frequency (weekly, not quarterly)
+        --&gt; Add skip-level communication
+        --&gt; Show resource proof (money follows words)
+```
+
+### Realignment Workshop (Half-day)
+
+```
+Agenda:
+  1. CEO restates strategy (15 min)
+  2. Each dept maps their goals to strategy (45 min)
+  3. Identify orphans, conflicts, gaps together (30 min)
+  4. Fix orphans: connect or cut (30 min)
+  5. Fix conflicts: shared metrics or priority resolution (30 min)
+  6. Fix gaps: assign ownership (15 min)
+  7. Communication plan (15 min)
+```
+
+---
+
+## Alignment Score
+
+Quick health check. Score each area 0-10.
+
+| Area | Question | Score |
+|------|----------|-------|
+| Strategy clarity | Can 5 people from different teams state strategy consistently? | /10 |
+| Cascade completeness | Do all team goals connect to company goals? | /10 |
+| Conflict detection | Have cross-team OKR conflicts been reviewed and resolved? | /10 |
+| Coverage | Does each company OKR have explicit team ownership? | /10 |
+| Communication | Do teams&#x27; behaviors reflect the strategy? | /10 |
+
+### Score Interpretation
+
+| Total (/50) | Status | Action |
+|-------------|--------|--------|
+| 45-50 | Excellent | Maintain the system. Quarterly check is sufficient. |
+| 35-44 | Good | Address specific weak areas in next OKR cycle. |
+| 20-34 | Misalignment costing you | Immediate attention. Workshop within 2 weeks. |
+| &lt; 20 | Strategic drift | Crisis-level intervention. CEO-led realignment. |
+
+---
+
+## Quarterly Alignment Check
+
+Prevent recurrence with a quarterly check:
+
+| Activity | When | Who | Duration |
+|----------|------|-----|----------|
+| 5-person articulation test | Week 1 of quarter | Random selection across levels | 15 min |
+| Cascade map review | Week 1 | Leadership team | 1 hour |
+| Conflict scan | Week 1 | COO + department leads | 30 min |
+| Coverage audit | Week 1 | COO | 30 min |
+| Silo pulse check | Week 2 | Cross-functional survey | 5 min survey |
+| Report to CEO | Week 2 | COO or Chief of Staff | 15 min presentation |
+
+---
+
+## Red Flags
+
+- Teams consistently hit goals while company misses targets -- local optimization
+- Cross-functional projects take 3x longer than expected -- coordination failure
+- Strategy updated quarterly but team priorities don&#x27;t change -- cascade is broken
+- &quot;That&#x27;s a leadership problem&quot; at team level -- ownership gap
+- New initiatives without connecting to existing OKRs -- strategy drift
+- Department heads optimize for headcount/budget, not company outcomes -- incentive misalignment
+- Same alignment problems reappear quarter after quarter -- systemic issue, not a one-time fix
+- No one can name the company&#x27;s top priority -- strategy is not communicated
+
+---
+
+## Integration with C-Suite
+
+| When... | Work With... | To... |
+|---------|-------------|-------|
+| New strategy set | CEO + COO | Cascade into rocks before announcing |
+| OKR cycle starts | COO (`coo-advisor`) | Cross-team conflict check before finalizing |
+| Team misses goals | CHRO (`chro-advisor`) | Diagnose: capability gap or alignment gap? |
+| Silo identified | COO | Design shared metrics or cross-functional OKRs |
+| Post-M&amp;A | CEO + Culture Architect | Detect strategy conflicts between merged entities |
+| Quarterly planning | Company OS (`company-os`) | Integrate alignment check into planning rhythm |
+| Change rollout | Change Management (`change-management`) | Ensure change aligns with strategy |
+
+---
+
+## Output Artifacts
+
+| Request | Deliverable |
+|---------|-------------|
+| &quot;Check our alignment&quot; | Full 6-step diagnostic with alignment score |
+| &quot;Are our OKRs aligned?&quot; | Cascade map with orphans, conflicts, and gaps identified |
+| &quot;We have silos&quot; | Silo diagnosis with root causes and specific fixes |
+| &quot;Strategy isn&#x27;t translating to execution&quot; | Communication gap analysis + fix plan |
+| &quot;Run an alignment workshop&quot; | Workshop agenda + facilitation guide |
+| &quot;Quarterly alignment check&quot; | Quarterly check process + report template |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Resolution |
+|---------|-------------|------------|
+| 5-person test scores below 5/10 despite strategy existing | Strategy too complex, too vague, or communicated only once | Rewrite strategy as one falsifiable sentence; communicate through 7+ channels; repeat weekly for 4 weeks then re-test |
+| Cascade map shows orphan goals but teams resist cutting them | Teams emotionally attached to work-in-progress; sunk cost fallacy | Frame as &quot;connect or cut&quot;: every goal must have a parent OKR; if no parent exists, either create the connection or stop the work |
+| Conflicting goals identified but no resolution reached | Department heads unwilling to compromise; incentive misalignment | Escalate to CEO for priority decision; create shared metric that both teams own; use balanced scorecard perspective alignment |
+| Silo score above 30 but no one acknowledges the problem | Each silo operates well internally; pain is only felt at interfaces | Show cross-functional project data: 3x expected timeline; present customer impact of handoff failures; use strategy map visualization |
+| Communication gap persists despite increased frequency | Wrong medium, wrong messenger, or message too abstract | Vary communication format (written, visual, verbal); use skip-level conversations; show resource allocation as proof of strategy (&quot;money follows words&quot;) |
+| Alignment workshop produces action items that are never implemented | No follow-up mechanism; workshop treated as event not process | Assign every action item an owner and deadline during the workshop; review at next weekly leadership meeting; track completion rate |
+| Quarterly alignment check becomes a checkbox exercise | No consequences for misalignment; diagnostic not connected to decisions | Tie alignment score to OKR cycle planning; Red alignment areas must be addressed before new OKRs are finalized |
+
+---
+
+## Success Criteria
+
+- 5-person articulation test scores 8/10 or higher within 30 days of strategy communication
+- Zero orphan goals remain after quarterly cascade mapping review
+- All identified goal conflicts have documented resolution with shared metrics within 2 weeks
+- Silo detection score below 20 (minor friction or healthy) maintained across 3 consecutive quarters
+- Communication gap analysis shows &lt; 30% signal loss from CEO to IC level (measured by strategy comprehension survey)
+- Alignment score (5 areas, /50) at 35 or above and trending stable or improving
+- Quarterly alignment check completed within first 2 weeks of every quarter
+
+---
+
+## Scope &amp; Limitations
+
+- **In scope:** Strategy articulation testing, cascade mapping and validation, orphan goal detection, conflicting goal identification, coverage gap analysis, silo diagnosis, communication gap analysis, realignment protocols, alignment scoring, quarterly check cadence
+- **Out of scope:** OKR writing and goal-setting methodology (use project management or Company OS skills); individual performance management (use CHRO Advisor); strategy formulation (use CEO Advisor -- this skill assumes strategy exists and tests its cascade)
+- **Limitation:** Alignment diagnostics are point-in-time assessments; alignment degrades continuously and requires quarterly maintenance
+- **Limitation:** The 5-person test is a heuristic, not a statistically rigorous survey; for organizations &gt; 200 people, supplement with broader pulse survey
+- **Limitation:** Silo detection matrix relies on self-reported data; supplement with objective measures (cross-functional project timelines, escalation patterns)
+- **Limitation:** Framework assumes a hierarchical OKR cascade; matrix organizations and flat structures may need adapted cascade mapping
+
+---
+
+## Integration Points
+
+| Skill | Integration | Data Flow |
+|-------|-------------|-----------|
+| `ceo-advisor` | Strategy must exist before alignment can be tested | CEO strategy statement → Alignment articulation test |
+| `coo-advisor` | Operations owns the alignment cadence and cross-functional OKRs | Alignment conflicts → COO shared metric design |
+| `company-os` | Alignment check integrates into planning rhythm | Alignment cadence → Company OS quarterly cycle |
+| `chief-of-staff` | CoS facilitates alignment workshops and tracks follow-through | Alignment action items → CoS tracking |
+| `culture-architect` | Silos are both structural and cultural problems | Alignment silo diagnosis → Culture intervention |
+| `change-management` | Strategy changes require alignment cascade update | Change plan → Alignment re-cascade |
+| `org-health-diagnostic` | Operational Health dimension reflects alignment quality | Health operations score → Alignment priority |
+| `internal-narrative` | Strategy communication depends on narrative clarity | Alignment communication gaps → Narrative improvement |
+
+---
+
+## Python Tools
+
+| Tool | Purpose | Usage |
+|------|---------|-------|
+| `scripts/okr_cascade_validator.py` | Validate that team OKRs connect to company OKRs, detecting orphans, conflicts, and coverage gaps | `python scripts/okr_cascade_validator.py --company-okrs company_okrs.csv --team-okrs team_okrs.csv --json` |
+| `scripts/strategy_map_generator.py` | Generate a balanced scorecard strategy map linking financial, customer, process, and learning perspectives | `python scripts/strategy_map_generator.py --objective &quot;Win mid-market healthcare in DACH&quot; --financial &quot;5M ARR by Q4&quot; --customer &quot;NPS &gt; 40&quot; --process &quot;Ship workflow automation&quot; --learning &quot;Hire 3 healthcare domain experts&quot; --json` |
+| `scripts/alignment_scorer.py` | Calculate alignment score across 5 dimensions with trend tracking and recommendations | `python scripts/alignment_scorer.py --clarity 8 --cascade 6 --conflicts 7 --coverage 5 --communication 6 --previous-score 28 --json` |
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Strategic Alignment&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Strategic Alignment in the C-Level Advisory domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Strategic Alignment&quot;**
+   - Description: &quot;Cascades strategy from boardroom to individual contributor and detects misalignment. Use when teams pull in different directions, OKRs don&#x27;t connect, departments optimize locally at company expense, or strategy doesn&#x27;t translate to execution.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/strategic-alignment/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install c-level-advisor/strategic-alignment ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/strategic-alignment your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/strategic-alignment/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/strategic-alignment your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/strategic-alignment/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/strategic-alignment your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: c-level-advisor/strategic-alignment/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/strategic-alignment your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/c-level-advisor/strategic-alignment your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/c-level-advisor/strategic-alignment</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python c-level-advisor/strategic-alignment/scripts/tool_name.py --help</code></pre>
+  
+  
+  <h2>Related Skills in C-Level Advisory</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/board-deck-builder.html" class="skill-card" style="text-decoration:none"><h3>Board Deck Builder</h3><p>Assembles board and investor update decks by pulling perspectives from all C-suite roles. Use...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/board-meeting.html" class="skill-card" style="text-decoration:none"><h3>Board Meeting</h3><p>Multi-agent board meeting protocol running a structured 6-phase deliberation with isolated...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/ceo-advisor.html" class="skill-card" style="text-decoration:none"><h3>Ceo Advisor</h3><p>Executive leadership guidance for strategic decisions, org development, and stakeholder...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/cfo-advisor.html" class="skill-card" style="text-decoration:none"><h3>Cfo Advisor</h3><p>Financial leadership advisor on financial planning, fundraising, investor reporting, and unit...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/change-management.html" class="skill-card" style="text-decoration:none"><h3>Change Management</h3><p>Framework for rolling out organizational changes without chaos, using ADKAR adapted for...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/c-level-advisor/chief-ai-officer-advisor.html" class="skill-card" style="text-decoration:none"><h3>Chief Ai Officer Advisor</h3><p>AI leadership advisor on AI strategy, governance, risk, investment, and org design. Use when...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor/strategic-alignment/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

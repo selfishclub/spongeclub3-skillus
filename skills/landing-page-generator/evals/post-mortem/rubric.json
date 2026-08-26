@@ -1,0 +1,121 @@
+{
+  "skill": "post-mortem",
+  "version": "1.0.0",
+  "description": "Scores a blameless post-mortem against Google SRE / Allspaw / Dekker standards: severity, timeline, what-went-well, contributing factors (plural), 5 Whys or causal tree, action items with owners + dates + tickets.",
+  "criteria": [
+    {
+      "id": "severity_classification",
+      "name": "Severity classification (Sev0/1/2/3) declared",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "Sev\\s?[0-4]|Severity[:\\s]+(Sev|S)?\\s?[0-4]|SEV-?[0-4]", "flags": "im"}
+    },
+    {
+      "id": "summary_section",
+      "name": "Summary section present",
+      "weight": 5,
+      "check": {"type": "section_present", "heading": "Summary"}
+    },
+    {
+      "id": "impact_section",
+      "name": "Impact section present",
+      "weight": 5,
+      "check": {"type": "section_present", "heading": "Impact"}
+    },
+    {
+      "id": "timeline_section",
+      "name": "Timeline section present",
+      "weight": 7,
+      "check": {"type": "section_present", "heading": "Timeline"}
+    },
+    {
+      "id": "timeline_has_timestamps",
+      "name": "Timeline contains timestamps",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "\\b\\d{1,2}:\\d{2}\\b", "flags": ""}
+    },
+    {
+      "id": "what_went_well_section",
+      "name": "What went well section present (often-skipped)",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "^##\\s+(?:\\d+\\.\\s+)?(What went well|Went well|Successes)", "flags": "im"}
+    },
+    {
+      "id": "what_went_wrong_section",
+      "name": "What went wrong section present",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "^##\\s+(?:\\d+\\.\\s+)?(What went wrong|Went wrong)", "flags": "im"}
+    },
+    {
+      "id": "contributing_factors_plural",
+      "name": "Contributing factors enumerated (plural — not single root cause)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["Contributing factors", "contributing factor", "Causal tree", "causal-tree"]}
+    },
+    {
+      "id": "five_whys_or_causal_tree",
+      "name": "5 Whys or Causal Tree method used and named",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["5 Whys", "Five Whys", "5-whys", "Causal Tree", "causal tree", "Why did"]}
+    },
+    {
+      "id": "action_items_section",
+      "name": "Action items section present",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "^##\\s+(?:\\d+\\.\\s+)?(Action [Ii]tems|Action-?items)", "flags": "im"}
+    },
+    {
+      "id": "action_items_have_owners",
+      "name": "Action items have named owners and due dates",
+      "weight": 7,
+      "check": {"type": "keyword_all", "keywords": ["Owner", "Due"]}
+    },
+    {
+      "id": "action_items_have_tickets",
+      "name": "Action items have tracker ticket IDs",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "(PAY|ENG|DOC|PROJ|JIRA|LIN|AI-)\\-?\\d+", "flags": ""}
+    },
+    {
+      "id": "no_blame_should_have",
+      "name": "No blame language ('should have', 'failed to', 'if only')",
+      "weight": 8,
+      "check": {"type": "regex_not", "pattern": "(should have (noticed|caught|known|escalated)|failed to (deploy|notice|catch|escalate)|if only)", "flags": "im"}
+    },
+    {
+      "id": "no_human_error",
+      "name": "Does not declare 'human error' as a cause (Dekker)",
+      "weight": 5,
+      "check": {"type": "regex_not", "pattern": "(root cause:?\\s+human\\s+error|human\\s+error\\s+(is the|was the)\\s+(cause|root))", "flags": "im"}
+    },
+    {
+      "id": "blameless_role_labels",
+      "name": "Uses role labels (on-call, engineer, SRE) — preferred over names in narrative",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["on-call", "on call", "the engineer", "the SRE", "the team", "incident commander", "Eng Lead", "PM facilitator"]}
+    },
+    {
+      "id": "detect_prevent_mitigate_categories",
+      "name": "Action items categorized (prevent / detect / mitigate / respond / process)",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["Prevent", "Detect", "Mitigate", "Respond", "Process", "category"]}
+    },
+    {
+      "id": "lessons_learned_section",
+      "name": "Lessons learned section present",
+      "weight": 4,
+      "check": {"type": "regex", "pattern": "^##\\s+(?:\\d+\\.\\s+)?Lessons learned", "flags": "im"}
+    },
+    {
+      "id": "no_generic_action_items",
+      "name": "Action items not all vague ('improve monitoring' alone)",
+      "weight": 4,
+      "check": {"type": "regex_not", "pattern": "^\\s*[-*]\\s*Improve monitoring\\s*$", "flags": "im"}
+    },
+    {
+      "id": "allspaw_test_or_signoff",
+      "name": "Allspaw test or sign-off referenced",
+      "weight": 3,
+      "check": {"type": "keyword_any", "keywords": ["Allspaw", "Allspaw test", "sign-off", "approved by", "Sign-off"]}
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "skill": "ai-feature-prd",
+  "version": "1.0.0",
+  "description": "Scores an 11-section AI Feature PRD against AI-specific success criteria: model selection w/ fallback, numeric eval thresholds, guardrails, deployment ramp w/ gates, HIL, EU AI Act tier — anchored to references/red-flags.md.",
+  "criteria": [
+    {
+      "id": "summary_present",
+      "name": "Section 1 (Summary) names the model class explicitly",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Claude", "GPT", "Sonnet", "Haiku", "Llama", "Gemini", "BERT", "fine-tuned", "RAG", "LLM"]}
+    },
+    {
+      "id": "objective_present",
+      "name": "Section 4 (Objective) with Key Results",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "KR\\d|Key Result", "flags": "im"}
+    },
+    {
+      "id": "ai_system_design_section",
+      "name": "Section 9 (AI System Design) present",
+      "weight": 6,
+      "check": {"type": "regex", "pattern": "^##\\s+(?:9\\.?\\s+|Section\\s+9:?\\s+)?AI System Design", "flags": "im"}
+    },
+    {
+      "id": "model_selection_with_fallback",
+      "name": "Model selection includes a primary AND a fallback",
+      "weight": 7,
+      "check": {"type": "keyword_all", "keywords": ["primary", "fallback"]}
+    },
+    {
+      "id": "switch_trigger",
+      "name": "Model switch trigger named (outage, regression, cost cap)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["switch trigger", "fail over", "outage", "regression", "cost cap"]}
+    },
+    {
+      "id": "architecture_pattern",
+      "name": "Architecture pattern declared (prompt / RAG / fine-tune / agent) with rejected alternatives",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Prompt + RAG", "RAG", "fine-tune", "agentic", "rejected", "alternatives"]}
+    },
+    {
+      "id": "eval_safety_section",
+      "name": "Section 10 (Eval & Safety Plan) present",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "^##\\s+(?:10\\.?\\s+|Section\\s+10:?\\s+)?Eval", "flags": "im"}
+    },
+    {
+      "id": "eval_numeric_thresholds",
+      "name": "Eval section has numeric thresholds (%, ms, $)",
+      "weight": 7,
+      "check": {"type": "regex", "pattern": "(acceptance.*\\d+%|hallucinat.*\\d+%|>= ?\\d+%|<= ?\\d+%|p95.*\\d+\\s?ms|\\$0\\.\\d+)", "flags": "im"}
+    },
+    {
+      "id": "hallucination_target",
+      "name": "Hallucination rate target named",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "hallucinat[a-z]+\\s*(rate)?\\s*(<=|<|under|less than|of)?\\s*\\d", "flags": "im"}
+    },
+    {
+      "id": "refusal_policy",
+      "name": "Refusal policy explicit (enumerated categories, not one sentence)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["Refusal policy", "refuses to", "never:", "redirect"]}
+    },
+    {
+      "id": "golden_set_committed",
+      "name": "Golden set / eval set is concrete (size + composition, not 'TBD')",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["golden set", "gold set", "200-item", "evals/", "adversarial", "common", "edge cases"]}
+    },
+    {
+      "id": "no_tbd_eval",
+      "name": "No 'golden set TBD' or 'eval TBD' deferral",
+      "weight": 4,
+      "check": {"type": "regex_not", "pattern": "(golden\\s*set|gold\\s*set|eval[a-z]*)\\s*:?\\s*TBD", "flags": "im"}
+    },
+    {
+      "id": "guardrails_layers",
+      "name": "Guardrails section enumerates layers (input / output / HIL / etc.)",
+      "weight": 5,
+      "check": {"type": "keyword_all", "keywords": ["input", "output", "guardrail"]}
+    },
+    {
+      "id": "human_in_the_loop",
+      "name": "Human-in-the-loop checkpoints declared",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["human-in-the-loop", "human in the loop", "HIL", "hard gate", "soft gate", "sampling review"]}
+    },
+    {
+      "id": "failure_modes_table",
+      "name": "Failure modes enumerated with detection + response",
+      "weight": 5,
+      "check": {"type": "keyword_all", "keywords": ["failure", "detection"]}
+    },
+    {
+      "id": "eu_ai_act_tier",
+      "name": "EU AI Act risk tier declared (minimal / limited / high / unacceptable)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["EU AI Act", "Limited Risk", "High Risk", "High-risk", "Minimal Risk", "risk tier"]}
+    },
+    {
+      "id": "operations_cost_section",
+      "name": "Section 11 (Operations & Cost) present",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "^##\\s+(?:11\\.?\\s+|Section\\s+11:?\\s+)?(Operations|Cost)", "flags": "im"}
+    },
+    {
+      "id": "cost_model_with_scale",
+      "name": "Cost model includes 10x / scale scenario or per-tenant alerts",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["10x", "per-tenant", "80% of budget", "auto-throttle", "throttle at", "cost-per", "$/Mtok"]}
+    },
+    {
+      "id": "deployment_ramp_gates",
+      "name": "Deployment ramp shadow -> internal -> canary -> GA with gate metrics",
+      "weight": 6,
+      "check": {"type": "keyword_all", "keywords": ["shadow", "canary"]}
+    },
+    {
+      "id": "no_100_percent_target",
+      "name": "No naive 100% acceptance target (red flag #4)",
+      "weight": 3,
+      "check": {"type": "regex_not", "pattern": "acceptance.{0,30}(100%|>=\\s*99%|99\\.9%)", "flags": "im"}
+    },
+    {
+      "id": "no_buzzwords",
+      "name": "No marketing buzzwords",
+      "weight": 2,
+      "check": {"type": "keyword_none", "keywords": ["revolutionary", "next-generation", "world-class", "seamless"]}
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "skill": "pricing-prd",
+  "version": "1.0.0",
+  "description": "Scores a tactical pricing PRD against Ramanujam / Van Westendorp / Reforge discipline: pricing model + packaging + WTP research + grandfathering + A/B design + rollback + communication plan + regional considerations.",
+  "criteria": [
+    {
+      "id": "summary_present",
+      "name": "Summary section present",
+      "weight": 4,
+      "check": {"type": "section_present", "heading": "Summary"}
+    },
+    {
+      "id": "background_with_market_context",
+      "name": "Background includes market / competitor context",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["competitor", "GitHub Copilot", "Linear", "anchors", "market context", "competing"]}
+    },
+    {
+      "id": "pricing_model_declared",
+      "name": "Pricing model declared (tier / usage / hybrid)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["pricing model", "Tier structure", "usage-based", "per-seat", "Hybrid", "per-conversation", "flat fee", "metered"]}
+    },
+    {
+      "id": "wtp_research_cited",
+      "name": "Willingness-to-pay research cited (Van Westendorp PSM, conjoint, OPP, IPP)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["Van Westendorp", "PSM", "Price Sensitivity Meter", "OPP", "IPP", "Optimal Price Point", "conjoint", "willingness to pay", "willingness-to-pay"]}
+    },
+    {
+      "id": "wtp_segmented",
+      "name": "WTP segmented (not aggregate)",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "(per segment|segmented|by segment|SMB.*\\$|enterprise.*\\$|segment-specific|per-segment)", "flags": "im"}
+    },
+    {
+      "id": "packaging_decisions",
+      "name": "Packaging decisions (tier structure, value carrier, boundaries)",
+      "weight": 6,
+      "check": {"type": "keyword_any", "keywords": ["packaging", "Tier structure", "tier boundaries", "value carrier", "Good/Better/Best", "feature mix"]}
+    },
+    {
+      "id": "grandfathering_policy",
+      "name": "Grandfathering policy explicit",
+      "weight": 8,
+      "check": {"type": "keyword_any", "keywords": ["Grandfathering", "grandfathered", "grandfather policy", "existing customers stay", "price-freeze"]}
+    },
+    {
+      "id": "grandfathering_duration",
+      "name": "Grandfathering duration stated (months/years)",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "(grandfather[a-z]*\\s+(for\\s+)?\\d+\\s*(month|year)|(\\d+)\\s*(month|year)s?\\s+grandfather)", "flags": "im"}
+    },
+    {
+      "id": "ab_test_design",
+      "name": "A/B test design section (hypothesis, primary metric, MDE, holdout)",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["A/B test", "A/B design", "experiment design", "hypothesis", "MDE", "holdout"]}
+    },
+    {
+      "id": "ab_primary_metric_arpu",
+      "name": "Primary metric is ARPU / revenue / gross margin (not just conversion)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["ARPU", "revenue per visitor", "gross margin", "net revenue", "LTV"]}
+    },
+    {
+      "id": "ab_sample_or_holdout",
+      "name": "Holdout / sample size specified",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["holdout", "sample size", "5% holdout", "10% holdout", "power", "significance"]}
+    },
+    {
+      "id": "rollback_criteria",
+      "name": "Rollback criteria with numeric thresholds",
+      "weight": 8,
+      "check": {"type": "keyword_any", "keywords": ["Rollback criteria", "rollback threshold", "rollback if", "reverse if", "trigger", "pause if"]}
+    },
+    {
+      "id": "rollback_numeric_threshold",
+      "name": "Rollback thresholds are numeric (%, x baseline)",
+      "weight": 5,
+      "check": {"type": "regex", "pattern": "(>\\s*\\d+\\s*(pp|%|x baseline|points)|drops\\s+>\\s*\\d|\\d+x\\s+baseline)", "flags": "im"}
+    },
+    {
+      "id": "counter_metrics_downstream",
+      "name": "Counter / secondary metrics for downstream impact (churn, NPS, retention)",
+      "weight": 5,
+      "check": {"type": "keyword_any", "keywords": ["churn", "NPS", "D30 retention", "D90 retention", "downgrade", "secondary metrics", "counter"]}
+    },
+    {
+      "id": "communication_plan",
+      "name": "Communication plan section present",
+      "weight": 7,
+      "check": {"type": "keyword_any", "keywords": ["Communication plan", "communication strategy", "customer email", "sales enablement", "support enablement"]}
+    },
+    {
+      "id": "comm_channels_covered",
+      "name": "Communication covers multiple channels (sales / support / in-app / email / pricing page)",
+      "weight": 5,
+      "check": {"type": "keyword_all", "keywords": ["sales", "support"]}
+    },
+    {
+      "id": "legal_reviewed",
+      "name": "Legal / regulatory review referenced",
+      "weight": 4,
+      "check": {"type": "keyword_any", "keywords": ["Legal", "GDPR", "consumer law", "ToS", "Terms of Service", "EU consumer", "CCPA"]}
+    },
+    {
+      "id": "no_public_enterprise_pricing",
+      "name": "Top tier is sales-led ('Contact sales' or 'Custom') — no public enterprise number",
+      "weight": 3,
+      "check": {"type": "keyword_any", "keywords": ["Contact sales", "Contact us", "Custom", "sales-led", "Enterprise (custom)", "Enterprise tier", "talk to sales"]}
+    },
+    {
+      "id": "no_per_seat_for_ai",
+      "name": "No naive per-seat-only pricing for an AI product (per-usage / per-conversation considered)",
+      "weight": 3,
+      "check": {"type": "keyword_any", "keywords": ["per-conversation", "per conversation", "usage-based", "metered", "per-token", "flat fee"]}
+    },
+    {
+      "id": "no_buzzwords",
+      "name": "No marketing buzzwords",
+      "weight": 2,
+      "check": {"type": "keyword_none", "keywords": ["revolutionary", "next-generation", "seamless", "world-class"]}
+    }
+  ]
+}

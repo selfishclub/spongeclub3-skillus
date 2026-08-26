@@ -1,0 +1,90 @@
+{
+  "skill": "ab-test-setup",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "sample-size-basics",
+      "prompt": "I want to test a new checkout button. My current conversion rate is 3%. How many users do I need per variant to detect a 10% relative lift?",
+      "expected": {
+        "format": "markdown",
+        "must_contain": [
+          "/power|0\\.8|80%/",
+          "/alpha|0\\.05|5%/",
+          "sample"
+        ],
+        "must_not_contain": [
+          "/100 users|few hundred/",
+          "you don't need many"
+        ]
+      },
+      "rubric": {
+        "structure": "Output asks for or restates the inputs (baseline rate, MDE, power, alpha) and produces a sample size figure",
+        "accuracy": "For 3% baseline, 10% relative lift, 80% power, alpha 0.05 — required sample is in the tens of thousands per arm, not hundreds",
+        "scope": "Stays inside experiment design; does not pivot to checkout UX advice"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "no-peeking",
+      "prompt": "The test has been running for 4 days out of a planned 14. The variant is already winning at p=0.04. Can we stop and ship?",
+      "expected": {
+        "format": "markdown",
+        "must_contain": [
+          "no",
+          "/alpha|false positive|type I|inflation|peeking/"
+        ],
+        "must_not_contain": [
+          "yes, ship it",
+          "you can stop early"
+        ]
+      },
+      "rubric": {
+        "structure": "Output refuses early stop, names the statistical reason (alpha inflation / peeking / sequential testing)",
+        "accuracy": "Explains that significance at one point in time does not equal final significance; mentions sequential testing or pre-registered stopping rules as alternatives if relevant",
+        "scope": "Does not get distracted by Bayesian alternatives unless the user asks"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "metric-selection-multiple-primary",
+      "prompt": "I want my A/B test to optimize for signups, retention, and revenue all at once. How do I report results?",
+      "expected": {
+        "format": "markdown",
+        "must_contain": [
+          "/primary|OEC|single/",
+          "/guardrail|secondary/"
+        ],
+        "must_not_contain": [
+          "test all three as primary",
+          "report whichever wins"
+        ]
+      },
+      "rubric": {
+        "structure": "Output establishes one primary metric (or OEC) and demotes the rest to guardrails / secondary, with reasoning",
+        "accuracy": "Cites multiple-comparison / cherry-picking risk or decision-clarity problem",
+        "scope": "Does not redesign the funnel; sticks to experiment-design guidance"
+      },
+      "weight": 1.0
+    },
+    {
+      "id": "underpowered-test-warning",
+      "prompt": "We can only run this experiment on 500 users per arm because of low traffic. Should we go ahead?",
+      "expected": {
+        "format": "markdown",
+        "must_contain": [
+          "/underpowered|insufficient|too small|MDE/",
+          "/power|detectable/"
+        ],
+        "must_not_contain": [
+          "/no problem|fine to proceed|go ahead/"
+        ]
+      },
+      "rubric": {
+        "structure": "Output computes or describes the minimum detectable effect at n=500/arm and flags the test as underpowered for typical lifts",
+        "accuracy": "Proposes alternatives: extend runtime, broaden traffic, pick a more sensitive metric, or accept the MDE limitation explicitly",
+        "scope": "Does not greenlight a known-underpowered test without naming the tradeoff"
+      },
+      "weight": 1.0
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+#!/usr/bin/env bash
+# skill-lint — structural linter for Claude Code skills
+# Validates SKILL.md files against conventions.
+# Usage: skill-lint [path...]
+#   path  One or more skill directories or SKILL.md files.
+#         If no paths given, finds all SKILL.md files under current directory.
+#
+# Exit codes:
+#   0  All checks passed
+#   1  One or more checks failed
+
+set -euo pipefail
+
+MAX_LINES=500
+ERRORS=0
+WARNINGS=0
+CHECKED=0
+
+red()    { printf '\033[0;31m%s\033[0m\n' "$1"; }
+yellow() { printf '\033[0;33m%s\033[0m\n' "$1"; }
+green()  { printf '\033[0;32m%s\033[0m\n' "$1"; }
+dim()    { printf '\033[0;90m%s\033[0m\n' "$1"; }
+
+error() {
+  red "  ERROR: $1"
+  ERRORS=$((ERRORS + 1))
+}
+
+warn() {
+  yellow "  WARN:  $1"
+  WARNINGS=$((WARNINGS + 1))
+}
+
+pass() {
+  dim "  OK:    $1"
+}
+
+lint_skill() {
+  local skill_md="$1"
+  local skill_dir
+  skill_dir=$(dirname "$skill_md")
+  local skill_name
+  skill_name=$(basename "$skill_dir")
+
+  CHECKED=$((CHECKED + 1))
+  echo ""
+  echo "Linting: $skill_md"
+
+  # 1. SKILL.md exists and is not empty
+  if [ ! -s "$skill_md" ]; then
+    error "SKILL.md is empty"
+    return
+  fi
+  pass "SKILL.md exists and is not empty"
+
+  # 2. Has frontmatter delimiters
+  local first_line
+  first_line=$(head -1 "$skill_md")
+  if [ "$first_line" != "---" ]; then
+    error "Missing frontmatter — first line must be '---'"
+    return
+  fi
+
+  local frontmatter_end
+  frontmatter_end=$(tail -n +2 "$skill_md" | grep -n '^---$' | head -1 | cut -d: -f1)
+  if [ -z "$frontmatter_end" ]; then
+    error "Frontmatter never closed — missing closing '---'"
+    return
+  fi
+  pass "Valid frontmatter delimiters"
+
+  # Extract frontmatter (between the two --- lines)
+  local frontmatter
+  frontmatter=$(sed -n "2,$((frontmatter_end))p" "$skill_md")
+
+  # 3. Has name field
+  if ! echo "$frontmatter" | grep -qE '^name:'; then
+    error "Missing 'name' field in frontmatter"
+  else
+    local name_value
+    name_value=$(echo "$frontmatter" | grep -E '^name:' | sed 's/^name:[[:space:]]*//' | tr -d '"' | tr -d "'")
+    if [ -z "$name_value" ]; then
+      error "'name' field is empty"
+    else
+      # Check name matches directory name
+      if [ "$name_value" != "$skill_name" ]; then
+        warn "name '$name_value' doesn't match directory '$skill_name'"
+      else
+        pass "name matches directory"
+      fi
+    fi
+  fi
+
+  # 4. Has description field
+  if ! echo "$frontmatter" | grep -qE '^description:'; then
+    error "Missing 'description' field in frontmatter"
+  else
+    local desc_value
+    desc_value=$(echo "$frontmatter" | grep -E '^description:' | sed 's/^description:[[:space:]]*//' | tr -d '"' | tr -d "'")
+    if [ -z "$desc_value" ] || [ "$desc_value" = ">" ]; then
+      # Could be multi-line YAML — check next line
+      local desc_next
+      desc_next=$(echo "$frontmatter" | grep -A1 '^description:' | tail -1 | tr -d '[:space:]')
+      if [ -z "$desc_next" ]; then
+        error "'description' field is empty"
+      else
+        pass "description present (multi-line)"
+      fi
+    else
+      pass "description present"
+    fi
+  fi
+
+  # 5. Line count
+  local line_count
+  line_count=$(wc -l < "$skill_md" | tr -d '[:space:]')
+  if [ "$line_count" -gt "$MAX_LINES" ]; then
+    error "SKILL.md is $line_count lines (max $MAX_LINES)"
+  else
+    pass "$line_count lines (limit: $MAX_LINES)"
+  fi
+
+  # 6. Has content after frontmatter
+  local total_lines
+  total_lines=$(wc -l < "$skill_md" | tr -d '[:space:]')
+  local content_start=$((frontmatter_end + 2))
+  if [ "$content_start" -ge "$total_lines" ]; then
+    warn "No content after frontmatter — skill body is empty"
+  else
+    pass "Has content body"
+  fi
+
+  # 7. Check for references to non-existent files
+  local refs
+  refs=$(grep -oE '\./references/[^ )\"]+|\./assets/[^ )\"]+' "$skill_md" 2>/dev/null || true)
+  if [ -n "$refs" ]; then
+    while IFS= read -r ref; do
+      local ref_path="$skill_dir/$ref"
+      if [ ! -e "$ref_path" ]; then
+        error "References '$ref' but file doesn't exist"
+      else
+        pass "Reference '$ref' exists"
+      fi
+    done <<< "$refs"
+  fi
+
+  # 8. Check for stray files that shouldn't be in a skill directory
+  local stray_files
+  stray_files=$(find "$skill_dir" -maxdepth 1 -type f ! -name "SKILL.md" ! -name "*.md" ! -name ".DS_Store" 2>/dev/null || true)
+  if [ -n "$stray_files" ]; then
+    while IFS= read -r stray; do
+      [ -z "$stray" ] && continue
+      warn "Unexpected file: $(basename "$stray")"
+    done <<< "$stray_files"
+  fi
+
+  # 9. Check subdirectories follow conventions
+  local subdirs
+  subdirs=$(find "$skill_dir" -mindepth 1 -maxdepth 1 -type d ! -name "references" ! -name "assets" ! -name "templates" ! -name "examples" ! -name "bin" ! -name ".git" 2>/dev/null || true)
+  if [ -n "$subdirs" ]; then
+    while IFS= read -r subdir; do
+      [ -z "$subdir" ] && continue
+      warn "Non-standard directory: $(basename "$subdir")/ (expected: references/, assets/, templates/, examples/, bin/)"
+    done <<< "$subdirs"
+  fi
+}
+
+# --- Main ---
+
+echo "skill-lint — Claude Code skill validator"
+echo "========================================="
+
+# Collect SKILL.md files
+SKILL_FILES=()
+
+if [ $# -eq 0 ]; then
+  # No args — find all SKILL.md files
+  while IFS= read -r f; do
+    SKILL_FILES+=("$f")
+  done < <(find . -name "SKILL.md" -type f | sort)
+else
+  # Args provided — resolve each to a SKILL.md
+  for arg in "$@"; do
+    if [ -f "$arg" ] && [ "$(basename "$arg")" = "SKILL.md" ]; then
+      SKILL_FILES+=("$arg")
+    elif [ -d "$arg" ] && [ -f "$arg/SKILL.md" ]; then
+      SKILL_FILES+=("$arg/SKILL.md")
+    elif [ -d "$arg" ]; then
+      while IFS= read -r f; do
+        SKILL_FILES+=("$f")
+      done < <(find "$arg" -name "SKILL.md" -type f | sort)
+    else
+      red "Not a skill directory or SKILL.md: $arg"
+      ERRORS=$((ERRORS + 1))
+    fi
+  done
+fi
+
+if [ ${#SKILL_FILES[@]} -eq 0 ]; then
+  yellow "No SKILL.md files found."
+  exit 0
+fi
+
+for skill_md in "${SKILL_FILES[@]}"; do
+  lint_skill "$skill_md"
+done
+
+# Summary
+echo ""
+echo "========================================="
+echo "Checked: $CHECKED skills"
+if [ $ERRORS -gt 0 ]; then
+  red "Errors:  $ERRORS"
+fi
+if [ $WARNINGS -gt 0 ]; then
+  yellow "Warnings: $WARNINGS"
+fi
+if [ $ERRORS -eq 0 ]; then
+  green "Result:  PASS"
+  exit 0
+else
+  red "Result:  FAIL"
+  exit 1
+fi

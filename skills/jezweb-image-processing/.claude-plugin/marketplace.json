@@ -1,0 +1,71 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "jezweb-skills",
+  "description": "Workflow skills for Claude Code — each produces tangible output",
+  "owner": {
+    "name": "Jeremy Dawes / Jezweb",
+    "email": "jeremy@jezweb.net"
+  },
+  "plugins": [
+    {
+      "name": "cloudflare",
+      "description": "Scaffold Cloudflare Workers, Hono APIs, D1/Drizzle schemas, D1 migration workflows, full-stack Vite+Workers apps, and TanStack Start SSR dashboards.",
+      "source": "./plugins/cloudflare",
+      "category": "development"
+    },
+    {
+      "name": "web-design",
+      "description": "Local business SEO setup with JSON-LD schema, meta tags, robots.txt, and sitemap.",
+      "source": "./plugins/web-design",
+      "category": "design"
+    },
+    {
+      "name": "frontend",
+      "description": "Tailwind v4 theming, shadcn/ui, landing pages, design system extraction, autonomous multi-page site building, and React patterns.",
+      "source": "./plugins/frontend",
+      "category": "design"
+    },
+    {
+      "name": "design-assets",
+      "description": "Generate colour palettes, favicon packages, custom SVG icon sets, and image processing (resize, convert, optimise).",
+      "source": "./plugins/design-assets",
+      "category": "design"
+    },
+    {
+      "name": "integrations",
+      "description": "Google Chat webhooks, Google Apps Script automation, ElevenLabs voice agents, MCP server building, and Australian parcel tracking.",
+      "source": "./plugins/integrations",
+      "category": "productivity"
+    },
+    {
+      "name": "dev-tools",
+      "description": "Project health and permission management, dev sessions, team updates with feedback triage, GitHub releases, multi-model brains trust, git workflows, UX audits, responsive layout testing, and browser automation.",
+      "source": "./plugins/dev-tools",
+      "category": "development"
+    },
+    {
+      "name": "writing",
+      "description": "Business English writing styles (AU, US, UK, NZ) and professional document skills (resumes, proposals, awards, strategy).",
+      "source": "./plugins/writing",
+      "category": "productivity"
+    },
+    {
+      "name": "shopify",
+      "description": "Manage Shopify stores: product creation, bulk imports, content pages, blog posts, and SEO metadata.",
+      "source": "./plugins/shopify",
+      "category": "productivity"
+    },
+    {
+      "name": "wordpress",
+      "description": "Manage WordPress sites: content creation, blog posts, media, Elementor page editing, and WP-CLI workflows.",
+      "source": "./plugins/wordpress",
+      "category": "productivity"
+    },
+    {
+      "name": "social-media",
+      "description": "Social media content creation — platform-formatted posts for LinkedIn, Facebook, Instagram, and Reddit with character limits, hashtag strategies, and image specs.",
+      "source": "./plugins/social-media",
+      "category": "productivity"
+    }
+  ]
+}

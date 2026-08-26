@@ -1,0 +1,202 @@
+# PRD Framework & Pre-PRD Techniques
+
+Read this when writing the PRD itself: the two pre-PRD framing techniques, the full 8-section framework with per-section guidance, writing principles, the scaffolder flag reference, troubleshooting, and success criteria.
+
+---
+
+## Pre-PRD Techniques
+
+Before writing the PRD, use one or both of these techniques to sharpen the problem definition and align the team on value.
+
+### Technique A: Problem Framing Canvas
+
+Frame the problem from the user's perspective before jumping to solutions. This canvas produces the narrative that feeds directly into PRD Sections 3 (Background) and 5 (Market Segments).
+
+```markdown
+## Problem Framing Canvas
+
+### Problem Framing Narrative
+
+**I am**: [Describe the key persona experiencing the problem]
+- [Key characteristic 1]
+- [Key characteristic 2]
+- [Key characteristic 3]
+
+**Trying to**: [A single sentence listing the desired outcomes]
+
+**But**:
+- [Barrier preventing outcomes 1]
+- [Barrier 2]
+- [Barrier 3]
+
+**Because**: [Root cause explanation in empathetic language]
+
+**Which makes me feel**: [Emotional impact from persona perspective]
+
+### Context & Constraints
+- [Geographic, technological, time-based, organizational constraints]
+
+### Final Problem Statement
+- [Single concise, empathetic summary for stakeholder alignment]
+
+### Assumptions to Validate
+- [Assumption 1]
+- [Assumption 2]
+```
+
+**Next steps:** Generate testable solution hypotheses, convert into a workshop facilitation guide, or create stakeholder-specific variants (Exec, Eng, Design).
+
+### Technique B: Working Backwards Press Release
+
+Write an Amazon-style "future press release" announcing the product as if it already shipped. This forces you to articulate customer value before implementation.
+
+```markdown
+## Working Backwards Press Release
+
+"[Product Name] by [Company] Aims to [Main Purpose/Goal]"
+
+"[City], [Date] --"
+
+"Today, [Company], a [type of organization], announced [product/feature],
+a [brief description]. This [product] is set to [main benefit], addressing
+[key issue or need]."
+
+"[Product] will [what it does/solves]. [Quote from key person]:
+'[customer-outcome-focused quote].' This initiative reflects [Company]'s
+commitment to [core value]."
+
+"In addition to [mentioned features], [product] also [additional benefits].
+According to [source], [relevant data supporting the news]."
+
+**Media Contact:** [Name, Title, Email]
+```
+
+**Writing rules:**
+- Focus on customer outcomes, not feature lists.
+- Avoid hype; favor credible claims and concrete benefits.
+- If you can't write a compelling PR, the product concept needs more work.
+
+**Next steps:** Generate an FAQ, create stakeholder-specific variants, generate objection-handling talking points, or define launch success metrics.
+
+---
+
+## PRD Framework (8 Sections)
+
+### Section 1: Summary
+
+Write 2-3 sentences that a busy executive can read in 10 seconds and understand the full scope. Answer three questions: What is this? Who is it for? Why are we doing it now?
+
+Do not use marketing language. State the product, the user, and the expected outcome plainly.
+
+### Section 2: Contacts
+
+A table of people involved in the decision:
+
+| Name | Role | Responsibility |
+|------|------|----------------|
+| ... | Product Manager | Final decision on scope |
+| ... | Engineering Lead | Technical feasibility |
+| ... | Design Lead | UX direction |
+| ... | Stakeholder | Business approval |
+
+Keep this short. Only list people who will actively contribute or approve.
+
+### Section 3: Background
+
+Answer three questions:
+
+1. **Context** -- What is the current state? What exists today?
+2. **Why now?** -- What changed in the market, technology, or business that makes this urgent?
+3. **What recently became possible?** -- New capabilities, partnerships, data, or insights that enable this initiative.
+
+This section sets the stage. A reader who skips every other section should still understand the motivation after reading Background.
+
+### Section 4: Objective
+
+State the business benefit and the customer benefit separately:
+
+- **Business benefit**: How does this move a business metric? (revenue, retention, cost reduction, market share)
+- **Customer benefit**: How does this improve the user's life? (time saved, friction removed, new capability)
+
+Then define 2-4 SMART Key Results in OKR format:
+
+- **Objective**: [qualitative, inspirational statement]
+- **KR1**: [metric] from [current] to [target] by [date]
+- **KR2**: [metric] from [current] to [target] by [date]
+- **KR3**: [metric] from [current] to [target] by [date]
+
+### Section 5: Market Segment(s)
+
+Define segments by the problems they face or jobs they need done -- not by demographics. A segment is a group of people who share a common struggle or desired outcome.
+
+Format: "[Segment name]: People who need to [job/problem] because [context]."
+
+Bad: "Millennials aged 25-35 in urban areas"
+Good: "Time-constrained professionals who need to coordinate schedules across 3+ tools because their organization lacks a unified calendar system"
+
+### Section 6: Value Proposition(s)
+
+For each market segment, define:
+
+1. **Jobs addressed** -- What tasks or goals does this product help accomplish?
+2. **Gains created** -- What positive outcomes does the user experience?
+3. **Pains relieved** -- What frustrations, risks, or obstacles are removed?
+4. **Competitive advantage** -- Why is our approach better than existing alternatives?
+
+Use the **Value Curve** framework to visualize where you compete, where you exceed, and where you deliberately underinvest relative to alternatives.
+
+### Section 7: Solution
+
+Break into subsections:
+
+- **UX / Prototypes** -- Key screens, flows, or interaction patterns. Link to design files.
+- **Key Features** -- Numbered list of features with one-sentence descriptions. Mark each as P0 (must-have), P1 (important), or P2 (nice-to-have).
+- **Technology** (optional) -- Architecture decisions, integrations, or infrastructure requirements that constrain the solution.
+- **Assumptions** -- Explicit list of things you believe to be true but have not validated. Each assumption should have a plan to validate it.
+
+### Section 8: Release
+
+- **Relative timeline** -- Use T-shirt sizes (S/M/L/XL) or Now/Next/Later rather than specific dates, unless dates are firm.
+- **v1 scope** -- What ships in the first version? Draw a clear line.
+- **Future versions** -- What is explicitly deferred? List it so stakeholders know it was considered but intentionally excluded.
+- **Success criteria** -- When do we know v1 succeeded? Reference the Key Results from Section 4.
+
+## Writing Principles
+
+- **Plain language** -- No jargon, no acronyms without definition, no buzzwords.
+- **One idea per sentence** -- If a sentence has "and" connecting two distinct ideas, split it.
+- **Specificity over abstraction** -- "Reduce onboarding from 12 steps to 4" beats "Simplify onboarding."
+- **Saved as**: `PRD-[product-name].md`
+
+## Tool Reference: prd_scaffolder.py
+
+Generates a complete 8-section PRD markdown skeleton with guided placeholders, market segment sections, and value proposition templates.
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--product-name` | string | (required) | Name of the product (used in title and headers) |
+| `--objective` | string | (required) | Short description of the product objective (1-2 sentences) |
+| `--segments` | string | (required) | Comma-separated list of market segments |
+| `--output` | string | stdout | Output file path; if omitted, prints to stdout |
+
+## Troubleshooting
+
+| Symptom | Likely Cause | Resolution |
+|---------|-------------|------------|
+| PRD scaffolder output is too generic | Only product name provided; objective and segments need specificity | Write a 1-2 sentence objective that states the outcome, not just the product category; define segments by jobs-to-be-done, not demographics |
+| Stakeholders skip reading the PRD | Document too long, too jargon-heavy, or lacks a clear Summary section | Ensure Section 1 (Summary) answers What/Who/Why in 3 sentences; cut any section beyond 1 page that is not Section 7 |
+| Engineering team builds the wrong thing | PRD focuses on solution before establishing problem context | Strengthen Section 3 (Background) and Section 5 (Market Segments); ensure problem definition precedes solution |
+| PRD assumptions never validated | Assumptions listed in Section 7 but no validation plan assigned | Add a validation plan column to the Assumptions table; link each assumption to `identify-assumptions/` or `brainstorm-experiments/` |
+| Scope creep after PRD approval | Section 8 (Release) does not clearly separate v1 from future versions | Be explicit about "Explicitly Deferred" items; ensure every stakeholder has seen and acknowledged the deferred list |
+| PRD becomes stale during development | Treated as a static document rather than a living reference | Update after implementation decisions change; archive final state and link to retrospective notes |
+| `--segments` flag parsing fails | Segments not properly comma-separated or contain special characters | Wrap the segments argument in quotes: `--segments "Segment A, Segment B"` |
+
+## Success Criteria
+
+- PRD passes the "10-second executive test" -- a busy executive understands scope from Section 1 alone
+- All 8 sections are complete before development begins (no placeholder sections remain)
+- Market segments defined by jobs-to-be-done, not demographics
+- Key Results in Section 4 are measurable with baselines, targets, and deadlines
+- Every assumption in Section 7 has a validation plan and owner
+- PRD reviewed by PM, Engineering Lead, Design Lead, and at least one stakeholder before commitment
+- v1 scope in Section 8 draws a clear line between what ships and what is explicitly deferred

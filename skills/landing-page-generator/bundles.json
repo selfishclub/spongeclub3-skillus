@@ -1,0 +1,323 @@
+{
+  "version": "1.0.0",
+  "description": "Curated skill bundles for common roles and team configurations",
+  "repository": "https://github.com/borghei/Claude-Skills",
+  "bundles": {
+    "saas-founder": {
+      "name": "SaaS Founder Kit",
+      "description": "Everything a solo SaaS founder needs — from strategy and metrics to marketing and product",
+      "skills": [
+        "c-level-advisor/ceo-advisor",
+        "finance/saas-metrics-coach",
+        "marketing/launch-strategy",
+        "marketing/content-creator",
+        "marketing/seo-audit",
+        "business-growth/pricing-strategy",
+        "product-team/product-manager-toolkit",
+        "engineering/senior-fullstack"
+      ],
+      "persona": "solo-founder"
+    },
+    "devops-team": {
+      "name": "DevOps & Infrastructure",
+      "description": "CI/CD pipelines, cloud architecture, observability, incident response, plus reliability engineering (chaos, feature flags, K8s operators)",
+      "skills": [
+        "engineering/ci-cd-pipeline-builder",
+        "engineering/aws-solution-architect",
+        "engineering/azure-cloud-architect",
+        "engineering/gcp-cloud-architect",
+        "engineering/senior-cloud-architect",
+        "engineering/observability-designer",
+        "engineering/incident-commander",
+        "engineering/chaos-engineering",
+        "engineering/feature-flags-architect",
+        "engineering/kubernetes-operator",
+        "engineering/data-quality-auditor",
+        "engineering/docker-development",
+        "engineering/helm-chart-builder",
+        "engineering/env-secrets-manager"
+      ],
+      "persona": "devops-engineer"
+    },
+    "agency-freelancer": {
+      "name": "Agency & Freelancer Toolkit",
+      "description": "Win clients, deliver projects, and grow a services business",
+      "skills": [
+        "business-growth/contract-and-proposal-writer",
+        "marketing/content-creator",
+        "marketing/copywriting",
+        "marketing/landing-page-generator",
+        "marketing/seo-audit",
+        "business-growth/pricing-strategy",
+        "project-management/senior-pm",
+        "engineering/senior-fullstack"
+      ],
+      "persona": "freelancer"
+    },
+    "engineering-lead": {
+      "name": "Engineering Lead Kit",
+      "description": "Code quality, architecture, team workflows, and technical debt management",
+      "skills": [
+        "engineering/senior-architect",
+        "engineering/code-reviewer",
+        "engineering/pr-review-expert",
+        "engineering/tech-debt-tracker",
+        "engineering/database-schema-designer",
+        "engineering/performance-profiler",
+        "engineering/dependency-auditor",
+        "engineering/codebase-onboarding",
+        "c-level-advisor/cto-advisor"
+      ],
+      "persona": "engineering-lead"
+    },
+    "growth-team": {
+      "name": "Growth Team Bundle",
+      "description": "Full-funnel growth — acquisition, activation, retention, revenue, plus AEO (LLM citation)",
+      "skills": [
+        "marketing/growth-marketer",
+        "marketing/campaign-analytics",
+        "marketing/analytics-tracking",
+        "marketing/ab-test-setup",
+        "marketing/email-sequence",
+        "marketing/seo-specialist",
+        "marketing/ai-seo",
+        "marketing/aeo",
+        "business-growth/signup-flow-cro",
+        "business-growth/onboarding-cro",
+        "business-growth/churn-prevention",
+        "data-analytics/data-analyst"
+      ],
+      "persona": "growth-marketer"
+    },
+    "compliance-officer": {
+      "name": "Compliance & Risk Management",
+      "description": "Regulatory compliance across SOC 2, GDPR, ISO, FDA, and more — plus audit-prep playbooks for imminent audits",
+      "skills": [
+        "ra-qm-team/soc2-compliance-expert",
+        "ra-qm-team/gdpr-dsgvo-expert",
+        "ra-qm-team/information-security-manager-iso27001",
+        "ra-qm-team/nist-csf-specialist",
+        "ra-qm-team/risk-management-specialist",
+        "ra-qm-team/infrastructure-compliance-auditor",
+        "ra-qm-team/quality-documentation-manager",
+        "ra-qm-team/audit-prep/soc2-audit-prep",
+        "ra-qm-team/audit-prep/gdpr-audit-prep",
+        "ra-qm-team/audit-prep/compliance-readiness",
+        "c-level-advisor/ciso-advisor"
+      ],
+      "persona": "compliance-officer"
+    },
+    "saas-commercial-ops": {
+      "name": "SaaS Commercial Ops Kit",
+      "description": "Deal mechanics, channel strategy, partnerships, commercial policy — the ops layer between pricing and revenue (Apr 2026)",
+      "skills": [
+        "business-growth/deal-desk",
+        "business-growth/commercial-policy",
+        "business-growth/channel-economics",
+        "business-growth/partnerships-architect",
+        "business-growth/pricing-strategy",
+        "business-growth/revenue-operations",
+        "business-growth/contract-and-proposal-writer",
+        "sales-success/sales-operations"
+      ],
+      "persona": "revenue-operations-lead"
+    },
+    "ai-governance-kit": {
+      "name": "AI Governance Kit",
+      "description": "EU AI Act, ISO 42001 AIMS, audit-prep playbooks — plus CAIO strategic advisor (May 2026)",
+      "skills": [
+        "c-level-advisor/chief-ai-officer-advisor",
+        "ra-qm-team/eu-ai-act-specialist",
+        "ra-qm-team/iso42001-ai-management",
+        "ra-qm-team/audit-prep/ai-act-readiness",
+        "ra-qm-team/audit-prep/aims-audit",
+        "ra-qm-team/gdpr-dsgvo-expert",
+        "ra-qm-team/audit-prep/compliance-readiness"
+      ],
+      "persona": "ai-governance-lead"
+    },
+    "medical-device-compliance": {
+      "name": "Medical Device Compliance Kit",
+      "description": "ISO 13485 + ISO 14971 + MDR + FDA QSR/QMSR — including 483/WL response prep",
+      "skills": [
+        "ra-qm-team/quality-manager-qms-iso13485",
+        "ra-qm-team/risk-management-specialist",
+        "ra-qm-team/mdr-745-specialist",
+        "ra-qm-team/fda-consultant-specialist",
+        "ra-qm-team/capa-officer",
+        "ra-qm-team/qms-audit-expert",
+        "ra-qm-team/audit-prep/fda-qsr-audit-prep",
+        "ra-qm-team/regulatory-affairs-head"
+      ],
+      "persona": "regulatory-affairs-lead"
+    },
+    "product-team": {
+      "name": "Product Team Essentials",
+      "description": "Product strategy, user research, design systems, agile delivery — plus Tier 2: product analytics, research synthesis, spec-to-repo, roadmap communication (May 2026)",
+      "skills": [
+        "product-team/product-manager-toolkit",
+        "product-team/product-strategist",
+        "product-team/ux-researcher-designer",
+        "product-team/design-system-lead",
+        "product-team/ab-test-setup",
+        "product-team/product-analytics",
+        "product-team/research-summarizer",
+        "product-team/spec-to-repo",
+        "product-team/roadmap-communicator",
+        "project-management/scrum-master",
+        "data-analytics/data-analyst"
+      ],
+      "persona": "product-manager"
+    },
+    "ai-builder": {
+      "name": "AI Builder Kit",
+      "description": "Design, build, and deploy AI-powered applications and agents",
+      "skills": [
+        "engineering/agent-designer",
+        "engineering/rag-architect",
+        "engineering/senior-ml-engineer",
+        "engineering/prompt-engineer-toolkit",
+        "engineering/mcp-server-builder",
+        "engineering/llm-cost-optimizer",
+        "engineering/senior-data-scientist",
+        "data-analytics/ml-ops-engineer"
+      ],
+      "persona": "ai-engineer"
+    },
+    "pm-starter-pack": {
+      "name": "PM Starter Pack",
+      "description": "The 10 essential PM skills — discovery, definition, prioritization, status, and career growth",
+      "skills": [
+        "project-management/execution/create-prd",
+        "project-management/execution/prfaq",
+        "project-management/execution/prioritization-frameworks",
+        "project-management/execution/backlog-refinement",
+        "project-management/execution/status-update-generator",
+        "project-management/execution/north-star-metric",
+        "project-management/discovery/identify-assumptions",
+        "project-management/discovery/interview-synthesis",
+        "project-management/senior-pm",
+        "project-management/career/pm-interview-prep"
+      ],
+      "persona": "product-manager"
+    },
+    "pm-scrum-master": {
+      "name": "Scrum Master Toolkit",
+      "description": "Sprint analytics, refinement, splitting, flow metrics, retrospectives",
+      "skills": [
+        "project-management/scrum-master",
+        "project-management/execution/backlog-refinement",
+        "project-management/execution/story-splitting",
+        "project-management/execution/cycle-time-analyzer",
+        "project-management/execution/dependency-map",
+        "project-management/sprint-retrospective",
+        "project-management/execution/daci-framework",
+        "project-management/agile-coach"
+      ],
+      "persona": "scrum-master"
+    },
+    "pm-discovery-coach": {
+      "name": "Product Discovery Coach",
+      "description": "Idea → assumption → experiment → opportunity tree, end-to-end",
+      "skills": [
+        "project-management/discovery/brainstorm-ideas",
+        "project-management/discovery/identify-assumptions",
+        "project-management/discovery/brainstorm-experiments",
+        "project-management/discovery/pre-mortem",
+        "project-management/discovery/interview-synthesis",
+        "project-management/execution/job-stories",
+        "project-management/execution/north-star-metric",
+        "project-management/execution/outcome-roadmap"
+      ],
+      "persona": "product-manager"
+    },
+    "pm-career-track": {
+      "name": "PM Career Growth",
+      "description": "Interview prep, career ladder, onboarding, and 1:1s — for PMs growing their craft",
+      "skills": [
+        "project-management/career/pm-interview-prep",
+        "project-management/career/pm-career-ladder",
+        "project-management/career/pm-onboarding",
+        "project-management/career/pm-1on1s",
+        "project-management/senior-pm",
+        "project-management/execution/daci-framework"
+      ],
+      "persona": "product-manager"
+    },
+    "research-stack": {
+      "name": "Research Stack",
+      "description": "Systematic research — literature review, grant proposals, patent landscape, intelligence dossiers (May 2026)",
+      "skills": [
+        "research/litreview",
+        "research/grants",
+        "research/patent",
+        "research/dossier",
+        "product-team/research-summarizer",
+        "business-growth/competitive-teardown"
+      ],
+      "persona": "researcher"
+    },
+    "fractional-c-suite": {
+      "name": "Fractional C-Suite Advisory",
+      "description": "Strategic advisors for the full executive bench — CEO, CTO, CFO, CMO, CRO, CPO, CHRO, CISO, plus Tier 2: CAIO, CDO, CCO, GC, VPE (May 2026)",
+      "skills": [
+        "c-level-advisor/ceo-advisor",
+        "c-level-advisor/cto-advisor",
+        "c-level-advisor/cfo-advisor",
+        "c-level-advisor/cmo-advisor",
+        "c-level-advisor/cro-advisor",
+        "c-level-advisor/cpo-advisor",
+        "c-level-advisor/chro-advisor",
+        "c-level-advisor/ciso-advisor",
+        "c-level-advisor/chief-ai-officer-advisor",
+        "c-level-advisor/chief-data-officer-advisor",
+        "c-level-advisor/chief-customer-officer-advisor",
+        "c-level-advisor/general-counsel-advisor",
+        "c-level-advisor/vpe-advisor"
+      ],
+      "persona": "ceo"
+    },
+    "customer-experience-stack": {
+      "name": "Customer Experience Stack",
+      "description": "CCO-level strategy + operational CS tactics + retention/expansion — full post-sale toolkit (May 2026)",
+      "skills": [
+        "c-level-advisor/chief-customer-officer-advisor",
+        "business-growth/customer-success-manager",
+        "business-growth/churn-prevention",
+        "business-growth/onboarding-cro",
+        "business-growth/referral-program",
+        "marketing/email-sequence"
+      ],
+      "persona": "customer-success-lead"
+    },
+    "strategy-frameworks-kit": {
+      "name": "Strategy Frameworks Kit",
+      "description": "Classic + modern strategy frameworks for PMs, founders, advisors — BMC, Lean Canvas, SWOT, Porter's, Ansoff (May 2026, Tier 3)",
+      "skills": [
+        "project-management/strategy-frameworks/business-model-canvas",
+        "project-management/strategy-frameworks/lean-canvas",
+        "project-management/strategy-frameworks/swot-analysis",
+        "project-management/strategy-frameworks/porters-five-forces",
+        "project-management/strategy-frameworks/ansoff-matrix",
+        "project-management/discovery/opportunity-solution-tree",
+        "project-management/execution/north-star-metric"
+      ],
+      "persona": "founder-or-strategist"
+    },
+    "gtm-launch-kit": {
+      "name": "GTM Launch Kit",
+      "description": "Full go-to-market: ICP, strategy, stakeholder management, sprint planning, metrics, launch sequence (May 2026, Tier 3)",
+      "skills": [
+        "project-management/gtm/gtm-strategy",
+        "project-management/gtm/ideal-customer-profile",
+        "project-management/execution/stakeholder-map",
+        "project-management/execution/sprint-plan",
+        "project-management/discovery/metrics-dashboard",
+        "project-management/discovery/opportunity-solution-tree",
+        "marketing/launch-strategy",
+        "c-level-advisor/cro-advisor"
+      ],
+      "persona": "gtm-lead"
+    }
+  }
+}

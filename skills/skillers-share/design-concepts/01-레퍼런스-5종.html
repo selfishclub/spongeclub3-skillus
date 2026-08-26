@@ -1,0 +1,164 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#191919;font-family:'Pretendard',-apple-system,sans-serif;padding:28px 20px 60px;color:#ddd}
+h1{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:6px;color:#fff}
+.lead{font-size:13px;color:#8a8a8a;margin-bottom:30px;line-height:1.7}
+.set{margin-bottom:44px}
+.hd{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+.no{font-family:'JetBrains Mono',monospace;font-size:11px;color:#666;letter-spacing:.1em}
+.nm{font-size:16px;font-weight:600;color:#fff;letter-spacing:-.01em}
+.src{font-size:11px;color:#777;font-family:'JetBrains Mono',monospace}
+.why{font-size:12px;color:#8a8a8a;margin-bottom:12px;line-height:1.65}
+.pair{display:grid;grid-template-columns:1fr;gap:14px;max-width:1080px}
+.f{aspect-ratio:16/9;position:relative;overflow:hidden;border-radius:3px}
+.cap{font-size:10px;color:#666;margin-top:5px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+
+
+/* ─ 1 · BEAR/SQUAD ─ */
+.c1{background:#050506;padding:8% 8.5%;display:flex;flex-direction:column;justify-content:center}
+.c1 .kk{font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#FF3B1F;letter-spacing:.2em;margin-bottom:2.4%}
+.c1 h2{font-size:10.4cqw;font-weight:800;line-height:.98;letter-spacing:-.035em;color:#FF3B1F}
+.c1 h2 em{font-style:normal;color:#fff}
+.c1 .sb{font-size:.98cqw;color:#C4776A;margin-top:3.5%;line-height:1.7;letter-spacing:.01em}
+.c1 .fr{position:absolute;inset:3.5%;border:1px solid #FF3B1F;opacity:.16;pointer-events:none}
+.c1i{background:#050506;padding:6% 6% 7%;display:flex;flex-direction:column;justify-content:flex-end}
+.c1i h3{font-size:4.2cqw;font-weight:700;letter-spacing:-.03em;color:#EDE9E6;line-height:1.12;margin-bottom:4%}
+.c1i .row{display:flex;gap:4%}
+.c1i .it{flex:1;border-top:2px solid #FF3B1F;padding-top:2.4%}
+.c1i .n{font-family:'JetBrains Mono',monospace;font-size:.8cqw;color:#FF3B1F;letter-spacing:.14em;margin-bottom:1.4%}
+.c1i .t{font-size:1.8cqw;font-weight:700;color:#EDE9E6;letter-spacing:-.02em;margin-bottom:1%}
+.c1i .d{font-size:1.1cqw;color:#948D86;line-height:1.65}
+
+/* ─ 2 · HuskyFox ─ */
+.c2{background:#3DE87A;padding:5.5% 6%;display:flex;flex-direction:column;justify-content:space-between}
+.c2 .cr{font-size:1.05cqw;font-weight:700;color:#050505;line-height:1.85;letter-spacing:-.01em}
+.c2 .blob{position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:52%;aspect-ratio:1;border-radius:50%;background:#050505}
+.c2 h2{font-size:7.4cqw;font-weight:800;line-height:.98;letter-spacing:-.035em;color:#050505;position:relative;z-index:1}
+.c2i{background:#3DE87A;padding:6% 6% 7%;display:flex;flex-direction:column;justify-content:flex-end}
+.c2i h3{font-size:4cqw;font-weight:800;letter-spacing:-.03em;color:#050505;margin-bottom:4%;line-height:1.12}
+.c2i .row{display:flex;gap:4%}
+.c2i .it{flex:1}
+.c2i .n{font-size:2.6cqw;font-weight:800;color:#050505;line-height:1;margin-bottom:1.6%}
+.c2i .t{font-size:1.55cqw;font-weight:700;color:#050505;margin-bottom:.8%;letter-spacing:-.02em}
+.c2i .d{font-size:1.1cqw;color:#0d5c2e;line-height:1.65;font-weight:500}
+
+/* ─ 3 · KBS ─ */
+.c3{background:#1B5FD9;overflow:hidden}
+.c3 .g1{position:absolute;left:0;top:0;width:34%;height:52%;background:#F5B731;clip-path:polygon(0 0,100% 0,0 100%)}
+.c3 .g2{position:absolute;left:-6%;bottom:-14%;width:44%;aspect-ratio:1;border-radius:50%;background:#F2D65C}
+.c3 .g3{position:absolute;left:16%;bottom:0;width:38%;height:34%;background:#F0908A;clip-path:polygon(0 100%,100% 0,100% 100%)}
+.c3 .tx{position:absolute;right:5.5%;top:14%;text-align:right;z-index:2}
+.c3 h2{font-size:5.4cqw;font-weight:800;color:#fff;letter-spacing:-.035em;line-height:1.06}
+.c3 .sb{font-size:1.5cqw;color:#DCE9FF;margin-top:2%;font-weight:500}
+.c3 .bar{position:absolute;left:0;right:0;bottom:0;background:#080808;padding:1.8% 5.5%;font-size:.92cqw;color:#B9C6DB;line-height:1.75;z-index:2}
+.c3i{background:#F4F2ED;padding:6% 6% 7%;display:flex;flex-direction:column;justify-content:flex-end}
+.c3i .blk{position:absolute;right:0;top:0;width:26%;height:100%;background:#1B5FD9}
+.c3i h3{font-size:3.8cqw;font-weight:800;color:#111;letter-spacing:-.04em;margin-bottom:4%;line-height:1.05;position:relative}
+.c3i .row{display:flex;gap:4%;width:70%;position:relative}
+.c3i .it{flex:1}
+.c3i .n{font-size:1cqw;font-weight:800;color:#1B5FD9;letter-spacing:.1em;margin-bottom:1.2%}
+.c3i .t{font-size:1.5cqw;font-weight:700;color:#111;margin-bottom:.8%;letter-spacing:-.02em}
+.c3i .d{font-size:1.08cqw;color:#5b5b5b;line-height:1.65}
+
+/* ─ 4 · SU LEE ─ */
+.c4{background:#040404;padding:4.5% 5.5%;display:flex;flex-direction:column;justify-content:flex-end}
+.c4 .tl{position:absolute;left:5.5%;top:6%;font-family:'Playfair Display',serif;font-style:italic;font-size:1cqw;color:#8d8d8d;letter-spacing:.04em}
+.c4 .tr{position:absolute;right:5.5%;top:6%;font-family:'Playfair Display',serif;font-style:italic;font-size:1cqw;color:#8d8d8d;letter-spacing:.04em}
+.c4 .it2{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:3.4cqw;color:#e8e4de;letter-spacing:0;line-height:1.1;margin-bottom:.4%}
+.c4 h2{font-family:'Gowun Batang',serif;font-size:6.6cqw;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.08}
+.c4 .sb{font-size:1.15cqw;color:#7d7d7d;margin-top:2.6%;line-height:1.7}
+.c4i{background:#040404;padding:6% 6% 7%;display:flex;flex-direction:column;justify-content:flex-end}
+.c4i h3{font-family:'Gowun Batang',serif;font-size:4cqw;font-weight:700;color:#f0ece6;letter-spacing:-.02em;margin-bottom:4.5%;line-height:1.15}
+.c4i .row{display:flex;gap:5%}
+.c4i .it{flex:1;border-top:1px solid #3a3632;padding-top:2.2%}
+.c4i .n{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3cqw;color:#8d8d8d;margin-bottom:1.2%}
+.c4i .t{font-family:'Gowun Batang',serif;font-size:1.75cqw;font-weight:700;color:#f0ece6;margin-bottom:1%}
+.c4i .d{font-size:1.08cqw;color:#948E87;line-height:1.7}
+
+/* ─ 5 · Omnui ─ */
+.c5{background:#F7EE8F;padding:5.5% 6%;display:flex;flex-direction:column;justify-content:center}
+.c5 .kk{font-size:.9cqw;font-weight:700;color:#111;letter-spacing:.18em;margin-bottom:2.6%}
+.c5 h2{font-size:8.4cqw;font-weight:800;line-height:.98;letter-spacing:-.04em;color:#0A0A0A}
+.c5 .sb{font-size:.82cqw;color:#5c5836;margin-top:3.4%;line-height:1.7;font-weight:500}
+.c5i{background:#F7EE8F;padding:6% 6% 7%;display:flex;flex-direction:column;justify-content:flex-end}
+.c5i h3{font-size:4.2cqw;font-weight:800;color:#0A0A0A;letter-spacing:-.03em;margin-bottom:4%;line-height:1.12}
+.c5i .row{display:flex;gap:4%}
+.c5i .it{flex:1;border-left:3px solid #0A0A0A;padding-left:2.6%}
+.c5i .n{font-size:.9cqw;font-weight:800;color:#0A0A0A;letter-spacing:.14em;margin-bottom:1.2%}
+.c5i .t{font-size:1.6cqw;font-weight:800;color:#0A0A0A;margin-bottom:.8%;letter-spacing:-.025em}
+.c5i .d{font-size:1.1cqw;color:#5c5836;line-height:1.65;font-weight:500}
+.f>*{container-type:inline-size}
+.f{container-type:inline-size}
+</style>
+
+<h1>공유회 덱 디자인 컨셉 5종</h1>
+<p class="lead">같은 내용(제목·부제·3항목)으로 표지와 내지를 각각 만들었습니다. 각 컨셉은 무드보드의 실제 프로젝트 한 개에서 감도를 뽑았습니다.</p>
+
+<div class="set">
+  <div class="hd"><span class="no">01</span><span class="nm">인더스트리얼 모노</span><span class="src">← ©BEAR/SQUAD · Egor Nazarov</span></div>
+  <p class="why">순수 검정 + 형광 주홍 하나. 모노 넘버링과 헤어라인 프레임이 정보 밀도를 만든다. 자동화·개발 주제에 맞는다.</p>
+  <div class="pair">
+    <div><div class="f c1"><div class="fr"></div><div class="kk">— 스폰지클럽 이기적 공유회</div><h2>복붙 없이<br><em>제안서 한 편</em></h2><div class="sb">스킬 하나씩은 쓰는데 이어 붙이진 못하는 분들께</div></div><div class="cap">COVER</div></div>
+    <div><div class="f c1i"><div class="fr"></div><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">/01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">/02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 한 편 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">/03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>
+
+<div class="set">
+  <div class="hd"><span class="no">02</span><span class="nm">형광 팝</span><span class="src">← NAVER Pay Brand Identity · HuskyFox</span></div>
+  <p class="why">형광 단색이 화면을 덮고 검정 오브젝트가 잘려 나간다. 크레딧을 좌상단 블록으로 쌓는 게 이 스튜디오의 서명. 밝고 강해서 초반 집중을 뺏는다.</p>
+  <div class="pair">
+    <div><div class="f c2"><div class="blob"></div><div class="cr">스폰지클럽 이기적 공유회<br>2026 · 8주차<br><br>발표 · 본(구본혁)<br>주제 · 스킬 오케스트레이션</div><h2>복붙 없이<br>제안서 한 편</h2></div><div class="cap">COVER</div></div>
+    <div><div class="f c2i"><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 한 편 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>
+
+<div class="set">
+  <div class="hd"><span class="no">03</span><span class="nm">지오메트릭 블록</span><span class="src">← KBS Channel Rebranding</span></div>
+  <p class="why">거대 기하 도형이 화면을 분할하고 타이포는 구석으로 물러난다. 도형이 주인공이라 이미지가 없어도 화면이 빈 느낌이 없다. 내지는 밝게 뒤집어 대비를 준다.</p>
+  <div class="pair">
+    <div><div class="f c3"><div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="tx"><h2>복붙 없이<br>제안서 한 편</h2><div class="sb">스킬 4개를 하나의 흐름으로</div></div><div class="bar">스킬 하나씩은 쓰는데 이어 붙이진 못하는 분들께 · 스폰지클럽 이기적 공유회</div></div><div class="cap">COVER</div></div>
+    <div><div class="f c3i"><div class="blk"></div><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>
+
+<div class="set">
+  <div class="hd"><span class="no">04</span><span class="nm">세리프 느와르</span><span class="src">← 2026 Design Portfolio · SU LEE</span></div>
+  <p class="why">검정 위 세리프. 이탤릭 한 줄과 초대형 명조를 겹쳐 쌓고, 양 구석에 미세 라벨을 건다. 다섯 중 가장 정제됐고 본업·브랜딩 주제에 맞는다.</p>
+  <div class="pair">
+    <div><div class="f c4"><div class="tl">Sponge Club</div><div class="tr">2026</div><div class="it2">The end of</div><h2>복붙 없이<br>제안서 한 편</h2><div class="sb">스킬 하나씩은 쓰는데 이어 붙이진 못하는 분들께</div></div><div class="cap">COVER</div></div>
+    <div><div class="f c4i"><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 한 편 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>
+
+<div class="set">
+  <div class="hd"><span class="no">05</span><span class="nm">파스텔 헤비</span><span class="src">← Omnui Wellness Branding · Velvele Studio</span></div>
+  <p class="why">밝은 파스텔 단색 + 검정 초헤비 산세리프. 밝은데 약하지 않은 유일한 조합이다. 줌 화면에서 눈이 제일 편하고, 입문·초보 대상 주제에 맞는다.</p>
+  <div class="pair">
+    <div><div class="f c5"><div class="kk">스폰지클럽 이기적 공유회</div><h2>복붙 없이<br>제안서 한 편</h2><div class="sb">스킬 하나씩은 쓰는데 이어 붙이진 못하는 분들께 · 스킬 4개를 하나의 흐름으로</div></div><div class="cap">COVER</div></div>
+    <div><div class="f c5i"><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 한 편 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>

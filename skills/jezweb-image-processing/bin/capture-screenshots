@@ -1,0 +1,217 @@
+#!/usr/bin/env node
+// capture-screenshots — Playwright-based screenshot capture for product showcases
+//
+// Usage:
+//   capture-screenshots <url> [options]
+//
+// Options:
+//   --output, -o <dir>     Output directory (default: ./screenshots)
+//   --width, -w <px>       Viewport width (default: 1280)
+//   --height, -h <px>      Viewport height (default: 720)
+//   --mobile               Also capture at 375px width
+//   --dark                 Also capture in dark mode (prefers-color-scheme)
+//   --full-page            Capture full scrollable page
+//   --wait <ms>            Wait after load before capture (default: 1000)
+//   --prefix <name>        Filename prefix (default: "screen")
+//   --format <fmt>         png or webp (default: png)
+//   --pages <urls>         Comma-separated list of paths to capture (e.g. /,/features,/about)
+//   --auth <user:pass>     Basic auth credentials
+//   --cookie <name=value>  Set a cookie before capture
+//
+// Examples:
+//   capture-screenshots http://localhost:5173
+//   capture-screenshots https://app.example.com --pages /,/dashboard,/settings --mobile --dark
+//   capture-screenshots http://localhost:3000 -o showcase/screenshots --prefix hero --full-page
+//
+// Requires: npx playwright install chromium (one-time setup)
+
+const { chromium } = require('playwright');
+const path = require('path');
+const fs = require('fs');
+
+// --- Parse args ---
+const args = process.argv.slice(2);
+if (args.length === 0 || args[0] === '--help') {
+  console.log(`capture-screenshots — Playwright screenshot capture for product showcases
+
+Usage: capture-screenshots <url> [options]
+
+Options:
+  --output, -o <dir>     Output directory (default: ./screenshots)
+  --width, -w <px>       Viewport width (default: 1280)
+  --height <px>          Viewport height (default: 720)
+  --mobile               Also capture at 375px width
+  --dark                 Also capture in dark mode
+  --full-page            Capture full scrollable page
+  --wait <ms>            Wait after load before capture (default: 1000)
+  --prefix <name>        Filename prefix (default: "screen")
+  --format <fmt>         png or webp (default: png)
+  --pages <paths>        Comma-separated URL paths (default: /)
+  --auth <user:pass>     Basic auth credentials
+  --cookie <name=value>  Set cookie before capture
+
+Examples:
+  capture-screenshots http://localhost:5173
+  capture-screenshots https://app.example.com --pages /,/dashboard,/settings --mobile --dark
+  capture-screenshots http://localhost:3000 -o showcase/screenshots --prefix hero --full-page`);
+  process.exit(0);
+}
+
+function getArg(names, defaultVal) {
+  if (!Array.isArray(names)) names = [names];
+  for (const name of names) {
+    const idx = args.indexOf(name);
+    if (idx !== -1 && idx + 1 < args.length) {
+      return args[idx + 1];
+    }
+  }
+  return defaultVal;
+}
+
+function hasFlag(names) {
+  if (!Array.isArray(names)) names = [names];
+  return names.some(n => args.includes(n));
+}
+
+const baseUrl = args[0].startsWith('--') ? null : args[0];
+if (!baseUrl) {
+  console.error('Error: URL is required as first argument');
+  process.exit(1);
+}
+
+const config = {
+  output: getArg(['--output', '-o'], './screenshots'),
+  width: parseInt(getArg(['--width', '-w'], '1280')),
+  height: parseInt(getArg(['--height'], '720')),
+  mobile: hasFlag(['--mobile']),
+  dark: hasFlag(['--dark']),
+  fullPage: hasFlag(['--full-page']),
+  wait: parseInt(getArg(['--wait'], '1000')),
+  prefix: getArg(['--prefix'], 'screen'),
+  format: getArg(['--format'], 'png'),
+  pages: getArg(['--pages'], '/').split(',').map(p => p.trim()),
+  auth: getArg(['--auth'], null),
+  cookie: getArg(['--cookie'], null),
+};
+
+// --- Main ---
+async function captureScreenshots() {
+  fs.mkdirSync(config.output, { recursive: true });
+
+  console.log(`capture-screenshots`);
+  console.log(`==================`);
+  console.log(`URL:        ${baseUrl}`);
+  console.log(`Pages:      ${config.pages.join(', ')}`);
+  console.log(`Viewport:   ${config.width}x${config.height}`);
+  console.log(`Output:     ${config.output}/`);
+  console.log(`Format:     ${config.format}`);
+  if (config.mobile) console.log(`Mobile:     yes (375px)`);
+  if (config.dark) console.log(`Dark mode:  yes`);
+  if (config.fullPage) console.log(`Full page:  yes`);
+  console.log('');
+
+  const browser = await chromium.launch({ headless: true });
+  const captured = [];
+
+  try {
+    // Desktop captures
+    for (const pagePath of config.pages) {
+      const url = new URL(pagePath, baseUrl).href;
+      const pageName = pagePath === '/' ? 'home' : pagePath.replace(/^\//, '').replace(/\//g, '-');
+
+      // Light mode
+      const context = await browser.newContext({
+        viewport: { width: config.width, height: config.height },
+        colorScheme: 'light',
+        httpCredentials: config.auth ? {
+          username: config.auth.split(':')[0],
+          password: config.auth.split(':').slice(1).join(':')
+        } : undefined,
+      });
+
+      if (config.cookie) {
+        const [name, value] = config.cookie.split('=');
+        const urlObj = new URL(baseUrl);
+        await context.addCookies([{ name, value, domain: urlObj.hostname, path: '/' }]);
+      }
+
+      const page = await context.newPage();
+      await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+      await page.waitForTimeout(config.wait);
+
+      const filename = `${config.prefix}-${pageName}.${config.format}`;
+      const filepath = path.join(config.output, filename);
+      await page.screenshot({ path: filepath, fullPage: config.fullPage });
+      console.log(`  ✓ ${filename} (${config.width}x${config.height})`);
+      captured.push(filepath);
+
+      // Dark mode variant
+      if (config.dark) {
+        const darkCtx = await browser.newContext({
+          viewport: { width: config.width, height: config.height },
+          colorScheme: 'dark',
+          httpCredentials: config.auth ? {
+            username: config.auth.split(':')[0],
+            password: config.auth.split(':').slice(1).join(':')
+          } : undefined,
+        });
+        if (config.cookie) {
+          const [name, value] = config.cookie.split('=');
+          const urlObj = new URL(baseUrl);
+          await darkCtx.addCookies([{ name, value, domain: urlObj.hostname, path: '/' }]);
+        }
+        const darkPage = await darkCtx.newPage();
+        await darkPage.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+        await darkPage.waitForTimeout(config.wait);
+
+        const darkFilename = `${config.prefix}-${pageName}-dark.${config.format}`;
+        const darkFilepath = path.join(config.output, darkFilename);
+        await darkPage.screenshot({ path: darkFilepath, fullPage: config.fullPage });
+        console.log(`  ✓ ${darkFilename} (dark mode)`);
+        captured.push(darkFilepath);
+        await darkCtx.close();
+      }
+
+      // Mobile variant
+      if (config.mobile) {
+        const mobileCtx = await browser.newContext({
+          viewport: { width: 375, height: 812 },
+          colorScheme: 'light',
+          isMobile: true,
+          httpCredentials: config.auth ? {
+            username: config.auth.split(':')[0],
+            password: config.auth.split(':').slice(1).join(':')
+          } : undefined,
+        });
+        if (config.cookie) {
+          const [name, value] = config.cookie.split('=');
+          const urlObj = new URL(baseUrl);
+          await mobileCtx.addCookies([{ name, value, domain: urlObj.hostname, path: '/' }]);
+        }
+        const mobilePage = await mobileCtx.newPage();
+        await mobilePage.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+        await mobilePage.waitForTimeout(config.wait);
+
+        const mobileFilename = `${config.prefix}-${pageName}-mobile.${config.format}`;
+        const mobileFilepath = path.join(config.output, mobileFilename);
+        await mobilePage.screenshot({ path: mobileFilepath, fullPage: config.fullPage });
+        console.log(`  ✓ ${mobileFilename} (375x812)`);
+        captured.push(mobileFilepath);
+        await mobileCtx.close();
+      }
+
+      await context.close();
+    }
+  } finally {
+    await browser.close();
+  }
+
+  console.log('');
+  console.log(`Done: ${captured.length} screenshots captured to ${config.output}/`);
+  return captured;
+}
+
+captureScreenshots().catch(err => {
+  console.error('Error:', err.message);
+  process.exit(1);
+});

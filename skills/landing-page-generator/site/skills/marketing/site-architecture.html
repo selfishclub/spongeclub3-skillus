@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Architecture - Claude Skills</title>
+  <meta name="description" content="Information architecture, URL hierarchy, internal linking strategy, navigation design, and silo structure for websites. Covers architectural audits, new site planning, crawl equity optimization, and t">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/marketing/site-architecture.html">
+  <meta property="og:title" content="Site Architecture - Claude Skills">
+  <meta property="og:description" content="Information architecture, URL hierarchy, internal linking strategy, navigation design, and silo structure for websites. Covers architectural audits, new site planning, crawl equity optimization, and t">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/marketing/site-architecture.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Site Architecture", "description": "Information architecture, URL hierarchy, internal linking strategy, navigation design, and silo structure for websites. Covers architectural audits, new site planning, crawl equity optimization, and topic cluster mapping.", "applicationCategory": "Marketing", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/marketing/site-architecture.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/marketing/">Marketing</a><span class=sep>/</span><span>Site Architecture</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">Site Architecture</h1>
+    <p class="page-subtitle">Information architecture, URL hierarchy, internal linking strategy, navigation design, and silo structure for websites. Covers architectural audits, new site planning, crawl equity optimization, and topic cluster mapping.</p>
+    <div class="badge-bar"><span class="badge badge-domain">Marketing</span> <span class="badge badge-version">v1.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert Site Architecture (Marketing domain).
+
+Information architecture, URL hierarchy, internal linking strategy, navigation design, and silo structure for websites. Covers architectural audits, new site planning, crawl equity optimization, and topic cluster mapping.
+
+Production-grade website architecture framework covering URL hierarchy design, internal linking strategy, navigation optimization, silo structure, and crawl equity management. Handles architecture audits, new site planning, and restructuring existing sites. - [Operating Modes](#operating-modes) - [U
+
+## Your Key Capabilities
+- Mode 1: Audit Current Architecture
+- Mode 2: Plan New Architecture
+- Mode 3: Internal Linking Optimization
+- Mode 4: URL Restructuring
+- Depth Guidelines
+- URL Construction Rules
+
+## Frameworks &amp; Templates You Know
+- - [Architecture Audit Framework](#architecture-audit-framework)
+- Architecture Audit Framework
+- - CMS development or template coding
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/site-architecture
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert Site Architecture (Marketing domain).
+
+Information architecture, URL hierarchy, internal linking strategy, navigation design, and silo structure for websites. Covers architectural audits, new site planning, crawl equity optimization, and topic cluster mapping.
+
+Production-grade website architecture framework covering URL hierarchy design, internal linking strategy, navigation optimization, silo structure, and crawl equity management. Handles architecture audits, new site planning, and restructuring existing sites. - [Operating Modes](#operating-modes) - [U
+
+## Your Key Capabilities
+- Mode 1: Audit Current Architecture
+- Mode 2: Plan New Architecture
+- Mode 3: Internal Linking Optimization
+- Mode 4: URL Restructuring
+- Depth Guidelines
+- URL Construction Rules
+
+## Frameworks &amp; Templates You Know
+- - [Architecture Audit Framework](#architecture-audit-framework)
+- Architecture Audit Framework
+- - CMS development or template coding
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/site-architecture
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;Site Architecture&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Site Architecture &amp; Internal Linking
+
+Production-grade website architecture framework covering URL hierarchy design, internal linking strategy, navigation optimization, silo structure, and crawl equity management. Handles architecture audits, new site planning, and restructuring existing sites.
+
+---
+
+## Table of Contents
+
+- [Operating Modes](#operating-modes)
+- [URL Structure Design](#url-structure-design)
+- [Navigation Architecture](#navigation-architecture)
+- [Silo Structure and Topic Clusters](#silo-structure-and-topic-clusters)
+- [Internal Linking Strategy](#internal-linking-strategy)
+- [Crawl Equity Management](#crawl-equity-management)
+- [Architecture Audit Framework](#architecture-audit-framework)
+- [Restructuring Playbook](#restructuring-playbook)
+- [Architecture Patterns by Site Type](#architecture-patterns-by-site-type)
+- [Common Mistakes](#common-mistakes)
+- [Output Artifacts](#output-artifacts)
+- [Related Skills](#related-skills)
+
+---
+
+## Clarify First
+
+Before generating the architecture, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Operating mode** — audit current, plan new, internal-linking optimization, or URL restructuring — determines the artifact produced
+- [ ] **Site type** — SaaS, e-commerce, blog/content, local, docs, or marketplace — selects the URL pattern and architecture template
+- [ ] **Core topics / silos** — the 3-7 topic clusters the site covers — drives the hub-and-spoke and internal-linking plan
+- [ ] **Current URLs / crawl data** — sitemap or URL export — required for audits and redirect mapping
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Operating Modes
+
+### Mode 1: Audit Current Architecture
+Existing site needs structural assessment. Analyze depth distribution, orphan pages, link equity flow, and navigation effectiveness.
+
+### Mode 2: Plan New Architecture
+Building from scratch or full redesign. Map business goals to site sections, design URL hierarchy, plan navigation, and define content silos.
+
+### Mode 3: Internal Linking Optimization
+Structure is fine but link equity flow needs improvement. Identify hub pages, map spoke content, fix orphans, and optimize anchor text.
+
+### Mode 4: URL Restructuring
+Changing URLs on an existing site. Plan the new structure, build redirect maps, and manage the migration.
+
+---
+
+## URL Structure Design
+
+### Depth Guidelines
+
+| Depth | Example | Use When | SEO Impact |
+|-------|---------|----------|------------|
+| 1 level (flat) | `/cold-email-tips` | Blog posts, standalone pages | Best crawl equity per page |
+| 2 levels | `/email-marketing/cold-email-tips` | Category is a rankable page itself | Good, category page accumulates authority |
+| 3 levels | `/solutions/marketing/email-automation` | Product families, nested services | Acceptable if each level has content |
+| 4+ levels | `/a/b/c/d/page` | Never | Diluted equity, poor UX, crawl issues |
+
+**Decision rule:** If the intermediate directory URL (`/email-marketing/`) will NOT be a real page with its own content and ranking target, do not create the directory. Flat is better than empty hierarchy.
+
+### URL Construction Rules
+
+| Rule | Good | Bad | Why |
+|------|------|-----|-----|
+| Use hyphens | `/seo-audit` | `/seo_audit` | Underscores are not word separators for Google |
+| Be descriptive | `/pricing` | `/pricing-page` | Redundant suffixes add nothing |
+| Keep short | `/guides/technical-seo` | `/guides/technical-seo-audit-checklist-complete-guide` | Readability matters |
+| Include keyword | `/guides/seo-audit` | `/guides/article?id=4827` | Descriptive URLs rank better |
+| Be consistent with trailing slashes | Pick one: `/about` or `/about/` | Mix of both | Inconsistency creates duplicate content |
+| Use lowercase | `/about-us` | `/About-Us` | Case sensitivity varies by server |
+
+### URL Patterns by Site Type
+
+| Site Type | Pattern | Example |
+|-----------|---------|---------|
+| SaaS | `/features/[feature]`, `/solutions/[use-case]`, `/integrations/[partner]` | `/features/analytics`, `/solutions/marketing`, `/integrations/slack` |
+| E-commerce | `/[category]/[subcategory]/[product]` | `/mens/shoes/running-shoes-pro` |
+| Blog/Content | `/blog/[slug]` or `/blog/[category]/[slug]` | `/blog/seo-audit-guide` |
+| Local business | `/[service]/[location]` | `/plumbing/austin-tx` |
+| Documentation | `/docs/[section]/[page]` | `/docs/api/authentication` |
+| Marketplace | `/[category]/[listing]` | `/designers/john-smith` |
+
+---
+
+## Navigation Architecture
+
+### Navigation Zones
+
+Every site has 6 navigation zones. Each serves a different purpose and carries different SEO weight.
+
+| Zone | Items | SEO Weight | Design Rule |
+|------|-------|------------|-------------|
+| Primary nav | 5-8 items max | High (sitewide equity) | Only pages you want to rank for. Never &quot;Resources&quot; without a landing page. |
+| Secondary nav | 3-7 per section | Medium | Sub-navigation within a section/silo |
+| Breadcrumbs | Dynamic | High (upward equity) | Every non-homepage page. Each segment must be a real link. |
+| Footer nav | 8-15 items max | Low-Medium | Key pages only. Not a dumping ground for every page. |
+| Contextual (in-content) | 3-5 per page | Highest | Most powerful signal. Natural editorial links within body content. |
+| Sidebar | 5-10 items | Low-Medium | Related content, category listing |
+
+### Primary Navigation Design
+
+**Rules:**
+- 5-8 items maximum. Cognitive overload starts at 9+ items.
+- Every nav item links to a page you actively want to rank.
+- Dropdown menus are fine, but the parent item must be a clickable, crawlable link (not just a hover trigger).
+- Do not put utility pages (Contact, Privacy, Terms) in primary nav -- they belong in the footer.
+- Mobile nav must expose the same structure as desktop nav (no hidden critical pages).
+
+### Breadcrumb Implementation
+
+Add breadcrumbs to every non-homepage page. They serve three functions:
+
+1. **UX**: Show users their location in the hierarchy
+2. **SEO**: Create sitewide upward internal links to hub/category pages
+3. **Rich results**: Enable BreadcrumbList schema for SERP breadcrumbs
+
+**Format:** `Home &gt; Category &gt; Subcategory &gt; Current Page`
+
+**Rules:**
+- Every breadcrumb segment must be a real, crawlable link
+- Never use breadcrumbs as styled text without links
+- Add BreadcrumbList schema markup alongside visible breadcrumbs
+- Breadcrumb hierarchy should match URL hierarchy
+
+---
+
+## Silo Structure and Topic Clusters
+
+### Hub-and-Spoke Model
+
+A silo is a self-contained cluster of content about one topic, where all pages link to each other and to a central hub page.
+
+```
+                    ┌──────────────────┐
+                    │     HUB PAGE     │
+                    │   /seo/          │
+                    │   (Pillar content)│
+                    └────────┬─────────┘
+            ┌────────────────┼────────────────┐
+       ┌────┴────┐      ┌───┴────┐      ┌────┴────┐
+       │ SPOKE 1 │      │ SPOKE 2│      │ SPOKE 3 │
+       │technical│      │on-page │      │  link   │
+       │  seo    │      │  seo   │      │building │
+       └────┬────┘      └───┬────┘      └────┬────┘
+            │                │                │
+       Cross-links     Cross-links      Cross-links
+       between         between          between
+       related         related          related
+       spokes          spokes           spokes
+```
+
+### Building Topic Clusters
+
+**Step 1:** Identify 3-7 core topics for your site (these become your silos)
+
+**Step 2:** For each topic, create one pillar page (the hub) that covers the topic broadly
+
+**Step 3:** Create spoke content for each major sub-question or sub-topic
+
+**Step 4:** Implement linking:
+- Hub links DOWN to every spoke
+- Every spoke links UP to the hub (with keyword-rich anchor text)
+- Spokes link ACROSS to related spokes within the same silo
+- Cross-silo links are fine when contextually genuine
+
+**Step 5:** Build the content before building the links. Links to non-existent content are useless.
+
+### Silo Depth Guidelines
+
+| Silo Size | Recommended Depth | Structure |
+|-----------|------------------|-----------|
+| 3-5 spokes | Flat | Hub + spokes, all at same level |
+| 6-15 spokes | Shallow nested | Hub &gt; Sub-hubs &gt; Spokes |
+| 16-50 spokes | Two-level | Hub &gt; Category sub-hubs &gt; Individual spokes |
+| 50+ spokes | Paginated | Hub &gt; Category sub-hubs &gt; Paginated spoke listings |
+
+---
+
+## Internal Linking Strategy
+
+### Link Equity Power Stack
+
+Not all internal links carry equal weight. From most to least powerful:
+
+| Rank | Link Type | Weight | When to Use |
+|------|-----------|--------|-------------|
+| 1 | In-content contextual link | Highest | Natural editorial links within body copy |
+| 2 | Hub page link | High | Pillar page linking to all its spokes |
+| 3 | Navigation link | Medium | Sitewide, consistent, but diluted by ubiquity |
+| 4 | Breadcrumb link | Medium | Upward equity flow, consistent |
+| 5 | Footer link | Low | Sitewide, Google discounts these |
+| 6 | Sidebar link | Low | Often not in main content flow |
+
+### Anchor Text Strategy
+
+| Type | Example | Usage | Signal Strength |
+|------|---------|-------|-----------------|
+| Partial match | &quot;effective cold email strategies&quot; | Primary approach (60-70% of links) | Strong |
+| Exact match | &quot;cold email templates&quot; | Use sparingly (10-15% of links) | Strong but risky if overused |
+| Branded | &quot;our email guide&quot; | Natural variation (10-15%) | Moderate |
+| Descriptive | &quot;this comprehensive guide&quot; | Natural variation (5-10%) | Weak but natural |
+| Generic | &quot;click here&quot;, &quot;learn more&quot; | Avoid (&lt; 5%) | None -- wasted signal |
+| Naked URL | `https://example.com/guide` | Never for internal links | None |
+
+### Orphan Page Detection and Resolution
+
+An orphan page is indexed in Google but has zero inbound internal links. It is invisible to the site&#x27;s link graph.
+
+**Detection method:**
+1. Export all indexed URLs (GSC Coverage or site: query)
+2. Export all internal link targets (crawl tool or link extraction)
+3. Pages in set A but not set B are orphans
+
+**Resolution actions:**
+
+| Orphan Type | Action |
+|-------------|--------|
+| Valuable content, belongs in a silo | Add contextual links from 3+ related pages |
+| Old content, still relevant | Link from hub page and 1-2 spokes |
+| Outdated content, no value | Redirect to relevant page or noindex |
+| Utility page (shouldn&#x27;t be indexed) | Add noindex |
+
+### Internal Linking Audit Checklist
+
+| Check | Pass Criteria |
+|-------|---------------|
+| Every content page has 3-5 outbound internal links | No page links only to itself or navigation |
+| Every target page has 3+ inbound internal links | No orphans in the indexed set |
+| Hub pages link to all their spokes | Complete coverage |
+| Anchor text is descriptive and varied | No &gt; 30% exact match for any keyword |
+| No broken internal links | 0 broken links |
+| Link depth from homepage &lt; 4 clicks | 95%+ of pages within 3 clicks |
+
+---
+
+## Crawl Equity Management
+
+### Homepage Equity Distribution
+
+The homepage is your highest-equity page. Use it wisely.
+
+| Homepage Link Target | Priority |
+|---------------------|----------|
+| Hub/pillar pages (top of each silo) | Highest -- link from homepage content area |
+| Key product/service pages | High -- link from homepage or primary nav |
+| Top-performing content | Medium -- link if contextually relevant |
+| Utility pages (contact, about) | Low -- footer links only |
+| Blog index | Medium -- primary or secondary nav |
+
+### Crawl Budget Allocation
+
+| Page Category | % of Crawl Budget | Optimization |
+|--------------|-------------------|--------------|
+| Money pages (product, pricing, features) | 20-30% | Internal link from homepage + nav |
+| Pillar content (hub pages) | 20-30% | Extensive internal linking |
+| Spoke content (blog, guides) | 30-40% | Linked from hubs + contextual |
+| Utility pages (about, contact, legal) | 5-10% | Footer links only, minimal crawl |
+| Tag/archive/pagination | &lt; 5% | Noindex if thin, limit crawling |
+
+---
+
+## Architecture Audit Framework
+
+### Audit Scorecard
+
+| Dimension | Weight | Check |
+|-----------|--------|-------|
+| Crawl depth | 20% | 95%+ pages within 3 clicks of homepage |
+| Orphan pages | 20% | 0 orphan pages in indexed set |
+| URL cleanliness | 15% | Clean, descriptive, consistent URLs |
+| Navigation completeness | 15% | All key pages accessible via primary/secondary nav |
+| Internal link coverage | 15% | Every page has 3+ inbound internal links |
+| Silo coherence | 10% | Topic clusters are well-defined with clear hub-spoke relationships |
+| Breadcrumb implementation | 5% | Present on all non-homepage pages with schema |
+
+### Red Flag Indicators
+
+| Signal | Severity | Action |
+|--------|----------|--------|
+| Pages &gt; 3 clicks from homepage | High | Create shortcuts via nav or hub page links |
+| Hub page has no content (just links) | High | Add pillar content to all hub pages |
+| Generic anchor text dominant (&gt; 30%) | Medium | Rewrite anchor text to be descriptive |
+| No breadcrumbs on deep pages | Medium | Implement breadcrumbs with BreadcrumbList schema |
+| Sitemap includes noindex pages | Medium | Filter sitemap to only indexable pages |
+| Primary nav links to utility pages | Low | Move Contact/Privacy to footer |
+| Footer contains 50+ links | Low | Reduce to 8-15 key pages |
+
+---
+
+## Restructuring Playbook
+
+### When to Restructure
+
+| Signal | Restructure? | Alternative |
+|--------|-------------|-------------|
+| Complete URL overhaul needed | Yes | -- |
+| Adding 3 new sections | Partial -- new sections only | -- |
+| Fixing orphan pages | No | Add internal links, no URL changes needed |
+| Improving nav | No | Update navigation, keep URLs |
+| Moving to new CMS | Yes (usually) | Keep URL structure if CMS supports it |
+
+### Restructuring Steps
+
+1. **Crawl current site** -- Export all URLs, internal links, and rankings
+2. **Map current to new** -- Create 1:1 URL redirect mapping
+3. **Build redirect rules** -- 301 redirects for every changed URL
+4. **Chain existing redirects** -- Update old redirects to point to final destination
+5. **Update internal links** -- Point to new URLs (do not rely on redirects for internal links)
+6. **Update sitemap** -- Reflect new URL structure
+7. **Monitor for 60 days** -- Watch for crawl errors, ranking changes, traffic impact
+
+---
+
+## Architecture Patterns by Site Type
+
+### SaaS Website
+
+```
+/                           Homepage
+├── /features/              Features hub
+│   ├── /features/analytics Analytics feature
+│   └── /features/reporting Reporting feature
+├── /solutions/             Solutions hub (by use case)
+│   ├── /solutions/marketing Marketing use case
+│   └── /solutions/sales    Sales use case
+├── /integrations/          Integrations hub
+│   ├── /integrations/slack Slack integration
+│   └── /integrations/salesforce Salesforce integration
+├── /pricing                Pricing page
+├── /blog/                  Blog index
+│   ├── /blog/seo-guide     Blog post
+│   └── /blog/growth-tips   Blog post
+├── /docs/                  Documentation
+└── /about                  About page
+```
+
+### E-commerce Site
+
+```
+/                           Homepage
+├── /[category]/            Category page (with content)
+│   ├── /[category]/[subcategory]/ Subcategory (with content)
+│   │   └── /[category]/[subcategory]/[product] Product page
+│   └── /[category]/[product]      Product (if no subcategory)
+├── /brands/                Brand hub
+│   └── /brands/[brand]     Brand page
+├── /blog/                  Content hub
+└── /sale/                  Promotions hub
+```
+
+### Content/Media Site
+
+```
+/                           Homepage
+├── /[topic]/               Topic hub (pillar content)
+│   ├── /[topic]/[subtopic] Subtopic article
+│   └── /[topic]/[guide]    In-depth guide
+├── /authors/               Author hub
+│   └── /authors/[name]     Author page
+├── /tools/                 Free tools hub
+│   └── /tools/[tool]       Individual tool
+└── /newsletter             Newsletter signup
+```
+
+---
+
+## Common Mistakes
+
+| Mistake | Why It Hurts | Fix |
+|---------|-------------|-----|
+| Orphan pages | No equity flows in, Google deprioritizes | Add contextual internal links from related content |
+| URL changes without redirects | Lost link equity and broken backlinks | Always 301 redirect old URLs |
+| Deep nesting (4+ levels) | Diluted crawl equity, confusing UX | Flatten structure |
+| Empty category pages | Thin pages do not rank | Add pillar content to all category/hub pages |
+| Homepage linking to nothing | Wastes highest-equity page | Link from home to all hub pages |
+| Footer with 100+ links | Dilutes equity across too many targets | Limit footer to 8-15 key pages |
+| Navigation not matching user mental model | Users leave, engagement drops | Run card-sort testing with real users |
+| Dynamic parameter URLs | Creates duplicate content | Canonicalize or block with robots.txt |
+| Sitewide sidebar links to every post | Diluted equity, adds noise | Remove or limit to &quot;popular&quot; posts |
+
+---
+
+## Output Artifacts
+
+| Artifact | Format | Description |
+|----------|--------|-------------|
+| Architecture Audit Scorecard | Weighted score table | Per-dimension scores with red flag indicators |
+| Site Tree Diagram | Text-based hierarchy | Visual URL structure with annotations |
+| URL Specification Table | Table | URL pattern, title template, parent page, schema type per section |
+| Internal Linking Plan | Hub-spoke map | Topic cluster map with anchor text guidelines and orphan fix list |
+| Redirect Map | Before/after URL table | 1:1 mapping for URL restructuring with 301 implementation |
+| Navigation Spec | Zone-by-zone design | Primary, secondary, breadcrumb, footer, and contextual nav plans |
+
+---
+
+## Related Skills
+
+- **seo-audit** -- For comprehensive SEO audits where architecture is one of several problem areas. Use seo-audit for the full picture, site-architecture for deep structural work.
+- **schema-markup** -- For adding BreadcrumbList and other structured data after architecture decisions are finalized.
+- **programmatic-seo** -- For hub-and-spoke structures at scale when generating hundreds of template-based pages.
+- **content-creator** -- For creating the pillar content that hub pages need to rank effectively.
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Fix |
+|---------|-------------|-----|
+| Orphan pages appearing in Google index | Pages exist in sitemap or have external links but no internal links pointing to them | Add contextual internal links from 3+ related pages; update hub pages to include them |
+| Crawl depth exceeds 4+ clicks for key pages | Flat navigation missing or hub pages not linking to spokes | Create shortcut links via primary nav, hub page content blocks, or featured sections |
+| Category/hub pages ranking poorly | Hub pages have no substantive content — just link lists | Add 800+ words of pillar content to every hub page; they must rank on their own merit |
+| Redirect chains after site migration | Old redirects not updated to point to final destination; chains accumulate over multiple migrations | Audit all existing redirects; collapse chains so every redirect points directly to the final URL |
+| Internal links using generic anchor text | &quot;Click here&quot; and &quot;learn more&quot; anchor text dominating internal links | Rewrite anchors to be descriptive with partial-match keywords; aim for 60-70% partial match |
+| New sections not getting crawled | No internal links from existing high-authority pages to new section | Add contextual links from homepage and related hub pages; submit new section sitemap |
+
+---
+
+## Success Criteria
+
+- **Crawl depth**: 95%+ of indexable pages reachable within 3 clicks from homepage
+- **Zero orphan pages**: No indexed pages without at least 3 inbound internal links
+- **URL cleanliness**: 100% of URLs follow the established pattern — lowercase, hyphenated, descriptive, consistent trailing slash policy
+- **Navigation coverage**: All key revenue and pillar pages accessible via primary or secondary navigation
+- **Internal link density**: Every content page has 3-5 outbound contextual internal links with descriptive anchor text
+- **Silo coherence**: Each topic cluster has a defined hub page with bidirectional links to all spokes
+- **Breadcrumb coverage**: BreadcrumbList schema present on 100% of non-homepage pages
+
+---
+
+## Scope &amp; Limitations
+
+**In scope:**
+- URL hierarchy design and restructuring
+- Navigation architecture (primary, secondary, breadcrumb, footer, contextual, sidebar)
+- Silo structure and topic cluster planning
+- Internal linking strategy and optimization
+- Crawl equity analysis and optimization
+- Architecture audits with scored reports
+- URL migration planning with redirect mapping
+
+**Out of scope:**
+- Content creation for hub pages (use Content Production)
+- Schema markup implementation (use Schema Markup)
+- Technical SEO beyond architecture (use SEO Audit)
+- Visual design or UX design of navigation
+- CMS development or template coding
+- External link building
+
+**Known limitations:**
+- Crawl equity distribution is estimated — Google does not publish exact PageRank flow data
+- Architecture changes on large sites (10K+ pages) require careful phased migration to avoid traffic loss
+- Navigation testing (card sorts, tree tests) requires user research tools and participants
+- Cross-silo linking recommendations are qualitative — no deterministic formula exists for optimal cross-linking density
+
+---
+
+## Scripts
+
+```bash
+# Analyze sitemap for depth and structure issues
+python scripts/sitemap_analyzer.py --file sitemap.xml --json
+
+# Check URLs for redirect chains and patterns
+python scripts/redirect_checker.py --file urls.txt --json
+
+# Map internal link structure from a sitemap
+python scripts/link_mapper.py --sitemap sitemap.xml --json
+```
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Site Architecture&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Site Architecture in the Marketing domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Site Architecture&quot;**
+   - Description: &quot;Information architecture, URL hierarchy, internal linking strategy, navigation design, and silo structure for websites. Covers architectural audits, new site planning, crawl equity optimization, and topic cluster mapping.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/marketing/site-architecture/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;Site Architecture&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Site Architecture &amp; Internal Linking
+
+Production-grade website architecture framework covering URL hierarchy design, internal linking strategy, navigation optimization, silo structure, and crawl equity management. Handles architecture audits, new site planning, and restructuring existing sites.
+
+---
+
+## Table of Contents
+
+- [Operating Modes](#operating-modes)
+- [URL Structure Design](#url-structure-design)
+- [Navigation Architecture](#navigation-architecture)
+- [Silo Structure and Topic Clusters](#silo-structure-and-topic-clusters)
+- [Internal Linking Strategy](#internal-linking-strategy)
+- [Crawl Equity Management](#crawl-equity-management)
+- [Architecture Audit Framework](#architecture-audit-framework)
+- [Restructuring Playbook](#restructuring-playbook)
+- [Architecture Patterns by Site Type](#architecture-patterns-by-site-type)
+- [Common Mistakes](#common-mistakes)
+- [Output Artifacts](#output-artifacts)
+- [Related Skills](#related-skills)
+
+---
+
+## Clarify First
+
+Before generating the architecture, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Operating mode** — audit current, plan new, internal-linking optimization, or URL restructuring — determines the artifact produced
+- [ ] **Site type** — SaaS, e-commerce, blog/content, local, docs, or marketplace — selects the URL pattern and architecture template
+- [ ] **Core topics / silos** — the 3-7 topic clusters the site covers — drives the hub-and-spoke and internal-linking plan
+- [ ] **Current URLs / crawl data** — sitemap or URL export — required for audits and redirect mapping
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Operating Modes
+
+### Mode 1: Audit Current Architecture
+Existing site needs structural assessment. Analyze depth distribution, orphan pages, link equity flow, and navigation effectiveness.
+
+### Mode 2: Plan New Architecture
+Building from scratch or full redesign. Map business goals to site sections, design URL hierarchy, plan navigation, and define content silos.
+
+### Mode 3: Internal Linking Optimization
+Structure is fine but link equity flow needs improvement. Identify hub pages, map spoke content, fix orphans, and optimize anchor text.
+
+### Mode 4: URL Restructuring
+Changing URLs on an existing site. Plan the new structure, build redirect maps, and manage the migration.
+
+---
+
+## URL Structure Design
+
+### Depth Guidelines
+
+| Depth | Example | Use When | SEO Impact |
+|-------|---------|----------|------------|
+| 1 level (flat) | `/cold-email-tips` | Blog posts, standalone pages | Best crawl equity per page |
+| 2 levels | `/email-marketing/cold-email-tips` | Category is a rankable page itself | Good, category page accumulates authority |
+| 3 levels | `/solutions/marketing/email-automation` | Product families, nested services | Acceptable if each level has content |
+| 4+ levels | `/a/b/c/d/page` | Never | Diluted equity, poor UX, crawl issues |
+
+**Decision rule:** If the intermediate directory URL (`/email-marketing/`) will NOT be a real page with its own content and ranking target, do not create the directory. Flat is better than empty hierarchy.
+
+### URL Construction Rules
+
+| Rule | Good | Bad | Why |
+|------|------|-----|-----|
+| Use hyphens | `/seo-audit` | `/seo_audit` | Underscores are not word separators for Google |
+| Be descriptive | `/pricing` | `/pricing-page` | Redundant suffixes add nothing |
+| Keep short | `/guides/technical-seo` | `/guides/technical-seo-audit-checklist-complete-guide` | Readability matters |
+| Include keyword | `/guides/seo-audit` | `/guides/article?id=4827` | Descriptive URLs rank better |
+| Be consistent with trailing slashes | Pick one: `/about` or `/about/` | Mix of both | Inconsistency creates duplicate content |
+| Use lowercase | `/about-us` | `/About-Us` | Case sensitivity varies by server |
+
+### URL Patterns by Site Type
+
+| Site Type | Pattern | Example |
+|-----------|---------|---------|
+| SaaS | `/features/[feature]`, `/solutions/[use-case]`, `/integrations/[partner]` | `/features/analytics`, `/solutions/marketing`, `/integrations/slack` |
+| E-commerce | `/[category]/[subcategory]/[product]` | `/mens/shoes/running-shoes-pro` |
+| Blog/Content | `/blog/[slug]` or `/blog/[category]/[slug]` | `/blog/seo-audit-guide` |
+| Local business | `/[service]/[location]` | `/plumbing/austin-tx` |
+| Documentation | `/docs/[section]/[page]` | `/docs/api/authentication` |
+| Marketplace | `/[category]/[listing]` | `/designers/john-smith` |
+
+---
+
+## Navigation Architecture
+
+### Navigation Zones
+
+Every site has 6 navigation zones. Each serves a different purpose and carries different SEO weight.
+
+| Zone | Items | SEO Weight | Design Rule |
+|------|-------|------------|-------------|
+| Primary nav | 5-8 items max | High (sitewide equity) | Only pages you want to rank for. Never &quot;Resources&quot; without a landing page. |
+| Secondary nav | 3-7 per section | Medium | Sub-navigation within a section/silo |
+| Breadcrumbs | Dynamic | High (upward equity) | Every non-homepage page. Each segment must be a real link. |
+| Footer nav | 8-15 items max | Low-Medium | Key pages only. Not a dumping ground for every page. |
+| Contextual (in-content) | 3-5 per page | Highest | Most powerful signal. Natural editorial links within body content. |
+| Sidebar | 5-10 items | Low-Medium | Related content, category listing |
+
+### Primary Navigation Design
+
+**Rules:**
+- 5-8 items maximum. Cognitive overload starts at 9+ items.
+- Every nav item links to a page you actively want to rank.
+- Dropdown menus are fine, but the parent item must be a clickable, crawlable link (not just a hover trigger).
+- Do not put utility pages (Contact, Privacy, Terms) in primary nav -- they belong in the footer.
+- Mobile nav must expose the same structure as desktop nav (no hidden critical pages).
+
+### Breadcrumb Implementation
+
+Add breadcrumbs to every non-homepage page. They serve three functions:
+
+1. **UX**: Show users their location in the hierarchy
+2. **SEO**: Create sitewide upward internal links to hub/category pages
+3. **Rich results**: Enable BreadcrumbList schema for SERP breadcrumbs
+
+**Format:** `Home &gt; Category &gt; Subcategory &gt; Current Page`
+
+**Rules:**
+- Every breadcrumb segment must be a real, crawlable link
+- Never use breadcrumbs as styled text without links
+- Add BreadcrumbList schema markup alongside visible breadcrumbs
+- Breadcrumb hierarchy should match URL hierarchy
+
+---
+
+## Silo Structure and Topic Clusters
+
+### Hub-and-Spoke Model
+
+A silo is a self-contained cluster of content about one topic, where all pages link to each other and to a central hub page.
+
+```
+                    ┌──────────────────┐
+                    │     HUB PAGE     │
+                    │   /seo/          │
+                    │   (Pillar content)│
+                    └────────┬─────────┘
+            ┌────────────────┼────────────────┐
+       ┌────┴────┐      ┌───┴────┐      ┌────┴────┐
+       │ SPOKE 1 │      │ SPOKE 2│      │ SPOKE 3 │
+       │technical│      │on-page │      │  link   │
+       │  seo    │      │  seo   │      │building │
+       └────┬────┘      └───┬────┘      └────┬────┘
+            │                │                │
+       Cross-links     Cross-links      Cross-links
+       between         between          between
+       related         related          related
+       spokes          spokes           spokes
+```
+
+### Building Topic Clusters
+
+**Step 1:** Identify 3-7 core topics for your site (these become your silos)
+
+**Step 2:** For each topic, create one pillar page (the hub) that covers the topic broadly
+
+**Step 3:** Create spoke content for each major sub-question or sub-topic
+
+**Step 4:** Implement linking:
+- Hub links DOWN to every spoke
+- Every spoke links UP to the hub (with keyword-rich anchor text)
+- Spokes link ACROSS to related spokes within the same silo
+- Cross-silo links are fine when contextually genuine
+
+**Step 5:** Build the content before building the links. Links to non-existent content are useless.
+
+### Silo Depth Guidelines
+
+| Silo Size | Recommended Depth | Structure |
+|-----------|------------------|-----------|
+| 3-5 spokes | Flat | Hub + spokes, all at same level |
+| 6-15 spokes | Shallow nested | Hub &gt; Sub-hubs &gt; Spokes |
+| 16-50 spokes | Two-level | Hub &gt; Category sub-hubs &gt; Individual spokes |
+| 50+ spokes | Paginated | Hub &gt; Category sub-hubs &gt; Paginated spoke listings |
+
+---
+
+## Internal Linking Strategy
+
+### Link Equity Power Stack
+
+Not all internal links carry equal weight. From most to least powerful:
+
+| Rank | Link Type | Weight | When to Use |
+|------|-----------|--------|-------------|
+| 1 | In-content contextual link | Highest | Natural editorial links within body copy |
+| 2 | Hub page link | High | Pillar page linking to all its spokes |
+| 3 | Navigation link | Medium | Sitewide, consistent, but diluted by ubiquity |
+| 4 | Breadcrumb link | Medium | Upward equity flow, consistent |
+| 5 | Footer link | Low | Sitewide, Google discounts these |
+| 6 | Sidebar link | Low | Often not in main content flow |
+
+### Anchor Text Strategy
+
+| Type | Example | Usage | Signal Strength |
+|------|---------|-------|-----------------|
+| Partial match | &quot;effective cold email strategies&quot; | Primary approach (60-70% of links) | Strong |
+| Exact match | &quot;cold email templates&quot; | Use sparingly (10-15% of links) | Strong but risky if overused |
+| Branded | &quot;our email guide&quot; | Natural variation (10-15%) | Moderate |
+| Descriptive | &quot;this comprehensive guide&quot; | Natural variation (5-10%) | Weak but natural |
+| Generic | &quot;click here&quot;, &quot;learn more&quot; | Avoid (&lt; 5%) | None -- wasted signal |
+| Naked URL | `https://example.com/guide` | Never for internal links | None |
+
+### Orphan Page Detection and Resolution
+
+An orphan page is indexed in Google but has zero inbound internal links. It is invisible to the site&#x27;s link graph.
+
+**Detection method:**
+1. Export all indexed URLs (GSC Coverage or site: query)
+2. Export all internal link targets (crawl tool or link extraction)
+3. Pages in set A but not set B are orphans
+
+**Resolution actions:**
+
+| Orphan Type | Action |
+|-------------|--------|
+| Valuable content, belongs in a silo | Add contextual links from 3+ related pages |
+| Old content, still relevant | Link from hub page and 1-2 spokes |
+| Outdated content, no value | Redirect to relevant page or noindex |
+| Utility page (shouldn&#x27;t be indexed) | Add noindex |
+
+### Internal Linking Audit Checklist
+
+| Check | Pass Criteria |
+|-------|---------------|
+| Every content page has 3-5 outbound internal links | No page links only to itself or navigation |
+| Every target page has 3+ inbound internal links | No orphans in the indexed set |
+| Hub pages link to all their spokes | Complete coverage |
+| Anchor text is descriptive and varied | No &gt; 30% exact match for any keyword |
+| No broken internal links | 0 broken links |
+| Link depth from homepage &lt; 4 clicks | 95%+ of pages within 3 clicks |
+
+---
+
+## Crawl Equity Management
+
+### Homepage Equity Distribution
+
+The homepage is your highest-equity page. Use it wisely.
+
+| Homepage Link Target | Priority |
+|---------------------|----------|
+| Hub/pillar pages (top of each silo) | Highest -- link from homepage content area |
+| Key product/service pages | High -- link from homepage or primary nav |
+| Top-performing content | Medium -- link if contextually relevant |
+| Utility pages (contact, about) | Low -- footer links only |
+| Blog index | Medium -- primary or secondary nav |
+
+### Crawl Budget Allocation
+
+| Page Category | % of Crawl Budget | Optimization |
+|--------------|-------------------|--------------|
+| Money pages (product, pricing, features) | 20-30% | Internal link from homepage + nav |
+| Pillar content (hub pages) | 20-30% | Extensive internal linking |
+| Spoke content (blog, guides) | 30-40% | Linked from hubs + contextual |
+| Utility pages (about, contact, legal) | 5-10% | Footer links only, minimal crawl |
+| Tag/archive/pagination | &lt; 5% | Noindex if thin, limit crawling |
+
+---
+
+## Architecture Audit Framework
+
+### Audit Scorecard
+
+| Dimension | Weight | Check |
+|-----------|--------|-------|
+| Crawl depth | 20% | 95%+ pages within 3 clicks of homepage |
+| Orphan pages | 20% | 0 orphan pages in indexed set |
+| URL cleanliness | 15% | Clean, descriptive, consistent URLs |
+| Navigation completeness | 15% | All key pages accessible via primary/secondary nav |
+| Internal link coverage | 15% | Every page has 3+ inbound internal links |
+| Silo coherence | 10% | Topic clusters are well-defined with clear hub-spoke relationships |
+| Breadcrumb implementation | 5% | Present on all non-homepage pages with schema |
+
+### Red Flag Indicators
+
+| Signal | Severity | Action |
+|--------|----------|--------|
+| Pages &gt; 3 clicks from homepage | High | Create shortcuts via nav or hub page links |
+| Hub page has no content (just links) | High | Add pillar content to all hub pages |
+| Generic anchor text dominant (&gt; 30%) | Medium | Rewrite anchor text to be descriptive |
+| No breadcrumbs on deep pages | Medium | Implement breadcrumbs with BreadcrumbList schema |
+| Sitemap includes noindex pages | Medium | Filter sitemap to only indexable pages |
+| Primary nav links to utility pages | Low | Move Contact/Privacy to footer |
+| Footer contains 50+ links | Low | Reduce to 8-15 key pages |
+
+---
+
+## Restructuring Playbook
+
+### When to Restructure
+
+| Signal | Restructure? | Alternative |
+|--------|-------------|-------------|
+| Complete URL overhaul needed | Yes | -- |
+| Adding 3 new sections | Partial -- new sections only | -- |
+| Fixing orphan pages | No | Add internal links, no URL changes needed |
+| Improving nav | No | Update navigation, keep URLs |
+| Moving to new CMS | Yes (usually) | Keep URL structure if CMS supports it |
+
+### Restructuring Steps
+
+1. **Crawl current site** -- Export all URLs, internal links, and rankings
+2. **Map current to new** -- Create 1:1 URL redirect mapping
+3. **Build redirect rules** -- 301 redirects for every changed URL
+4. **Chain existing redirects** -- Update old redirects to point to final destination
+5. **Update internal links** -- Point to new URLs (do not rely on redirects for internal links)
+6. **Update sitemap** -- Reflect new URL structure
+7. **Monitor for 60 days** -- Watch for crawl errors, ranking changes, traffic impact
+
+---
+
+## Architecture Patterns by Site Type
+
+### SaaS Website
+
+```
+/                           Homepage
+├── /features/              Features hub
+│   ├── /features/analytics Analytics feature
+│   └── /features/reporting Reporting feature
+├── /solutions/             Solutions hub (by use case)
+│   ├── /solutions/marketing Marketing use case
+│   └── /solutions/sales    Sales use case
+├── /integrations/          Integrations hub
+│   ├── /integrations/slack Slack integration
+│   └── /integrations/salesforce Salesforce integration
+├── /pricing                Pricing page
+├── /blog/                  Blog index
+│   ├── /blog/seo-guide     Blog post
+│   └── /blog/growth-tips   Blog post
+├── /docs/                  Documentation
+└── /about                  About page
+```
+
+### E-commerce Site
+
+```
+/                           Homepage
+├── /[category]/            Category page (with content)
+│   ├── /[category]/[subcategory]/ Subcategory (with content)
+│   │   └── /[category]/[subcategory]/[product] Product page
+│   └── /[category]/[product]      Product (if no subcategory)
+├── /brands/                Brand hub
+│   └── /brands/[brand]     Brand page
+├── /blog/                  Content hub
+└── /sale/                  Promotions hub
+```
+
+### Content/Media Site
+
+```
+/                           Homepage
+├── /[topic]/               Topic hub (pillar content)
+│   ├── /[topic]/[subtopic] Subtopic article
+│   └── /[topic]/[guide]    In-depth guide
+├── /authors/               Author hub
+│   └── /authors/[name]     Author page
+├── /tools/                 Free tools hub
+│   └── /tools/[tool]       Individual tool
+└── /newsletter             Newsletter signup
+```
+
+---
+
+## Common Mistakes
+
+| Mistake | Why It Hurts | Fix |
+|---------|-------------|-----|
+| Orphan pages | No equity flows in, Google deprioritizes | Add contextual internal links from related content |
+| URL changes without redirects | Lost link equity and broken backlinks | Always 301 redirect old URLs |
+| Deep nesting (4+ levels) | Diluted crawl equity, confusing UX | Flatten structure |
+| Empty category pages | Thin pages do not rank | Add pillar content to all category/hub pages |
+| Homepage linking to nothing | Wastes highest-equity page | Link from home to all hub pages |
+| Footer with 100+ links | Dilutes equity across too many targets | Limit footer to 8-15 key pages |
+| Navigation not matching user mental model | Users leave, engagement drops | Run card-sort testing with real users |
+| Dynamic parameter URLs | Creates duplicate content | Canonicalize or block with robots.txt |
+| Sitewide sidebar links to every post | Diluted equity, adds noise | Remove or limit to &quot;popular&quot; posts |
+
+---
+
+## Output Artifacts
+
+| Artifact | Format | Description |
+|----------|--------|-------------|
+| Architecture Audit Scorecard | Weighted score table | Per-dimension scores with red flag indicators |
+| Site Tree Diagram | Text-based hierarchy | Visual URL structure with annotations |
+| URL Specification Table | Table | URL pattern, title template, parent page, schema type per section |
+| Internal Linking Plan | Hub-spoke map | Topic cluster map with anchor text guidelines and orphan fix list |
+| Redirect Map | Before/after URL table | 1:1 mapping for URL restructuring with 301 implementation |
+| Navigation Spec | Zone-by-zone design | Primary, secondary, breadcrumb, footer, and contextual nav plans |
+
+---
+
+## Related Skills
+
+- **seo-audit** -- For comprehensive SEO audits where architecture is one of several problem areas. Use seo-audit for the full picture, site-architecture for deep structural work.
+- **schema-markup** -- For adding BreadcrumbList and other structured data after architecture decisions are finalized.
+- **programmatic-seo** -- For hub-and-spoke structures at scale when generating hundreds of template-based pages.
+- **content-creator** -- For creating the pillar content that hub pages need to rank effectively.
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Fix |
+|---------|-------------|-----|
+| Orphan pages appearing in Google index | Pages exist in sitemap or have external links but no internal links pointing to them | Add contextual internal links from 3+ related pages; update hub pages to include them |
+| Crawl depth exceeds 4+ clicks for key pages | Flat navigation missing or hub pages not linking to spokes | Create shortcut links via primary nav, hub page content blocks, or featured sections |
+| Category/hub pages ranking poorly | Hub pages have no substantive content — just link lists | Add 800+ words of pillar content to every hub page; they must rank on their own merit |
+| Redirect chains after site migration | Old redirects not updated to point to final destination; chains accumulate over multiple migrations | Audit all existing redirects; collapse chains so every redirect points directly to the final URL |
+| Internal links using generic anchor text | &quot;Click here&quot; and &quot;learn more&quot; anchor text dominating internal links | Rewrite anchors to be descriptive with partial-match keywords; aim for 60-70% partial match |
+| New sections not getting crawled | No internal links from existing high-authority pages to new section | Add contextual links from homepage and related hub pages; submit new section sitemap |
+
+---
+
+## Success Criteria
+
+- **Crawl depth**: 95%+ of indexable pages reachable within 3 clicks from homepage
+- **Zero orphan pages**: No indexed pages without at least 3 inbound internal links
+- **URL cleanliness**: 100% of URLs follow the established pattern — lowercase, hyphenated, descriptive, consistent trailing slash policy
+- **Navigation coverage**: All key revenue and pillar pages accessible via primary or secondary navigation
+- **Internal link density**: Every content page has 3-5 outbound contextual internal links with descriptive anchor text
+- **Silo coherence**: Each topic cluster has a defined hub page with bidirectional links to all spokes
+- **Breadcrumb coverage**: BreadcrumbList schema present on 100% of non-homepage pages
+
+---
+
+## Scope &amp; Limitations
+
+**In scope:**
+- URL hierarchy design and restructuring
+- Navigation architecture (primary, secondary, breadcrumb, footer, contextual, sidebar)
+- Silo structure and topic cluster planning
+- Internal linking strategy and optimization
+- Crawl equity analysis and optimization
+- Architecture audits with scored reports
+- URL migration planning with redirect mapping
+
+**Out of scope:**
+- Content creation for hub pages (use Content Production)
+- Schema markup implementation (use Schema Markup)
+- Technical SEO beyond architecture (use SEO Audit)
+- Visual design or UX design of navigation
+- CMS development or template coding
+- External link building
+
+**Known limitations:**
+- Crawl equity distribution is estimated — Google does not publish exact PageRank flow data
+- Architecture changes on large sites (10K+ pages) require careful phased migration to avoid traffic loss
+- Navigation testing (card sorts, tree tests) requires user research tools and participants
+- Cross-silo linking recommendations are qualitative — no deterministic formula exists for optimal cross-linking density
+
+---
+
+## Scripts
+
+```bash
+# Analyze sitemap for depth and structure issues
+python scripts/sitemap_analyzer.py --file sitemap.xml --json
+
+# Check URLs for redirect chains and patterns
+python scripts/redirect_checker.py --file urls.txt --json
+
+# Map internal link structure from a sitemap
+python scripts/link_mapper.py --sitemap sitemap.xml --json
+```
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Site Architecture&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Site Architecture in the Marketing domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Site Architecture&quot;**
+   - Description: &quot;Information architecture, URL hierarchy, internal linking strategy, navigation design, and silo structure for websites. Covers architectural audits, new site planning, crawl equity optimization, and topic cluster mapping.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/marketing/site-architecture/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install marketing/site-architecture ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/marketing/site-architecture your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/site-architecture/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/site-architecture your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/site-architecture/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/site-architecture your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: marketing/site-architecture/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/marketing/site-architecture your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/marketing/site-architecture your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/marketing/site-architecture</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python marketing/site-architecture/scripts/tool_name.py --help</code></pre>
+  
+  
+  <h2>Related Skills in Marketing</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/marketing/ab-test-setup.html" class="skill-card" style="text-decoration:none"><h3>Ab Test Setup</h3><p>Design and analyze A/B tests: sample size, test duration, and statistical significance for...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/ad-creative.html" class="skill-card" style="text-decoration:none"><h3>Ad Creative</h3><p>Design ad creative across Google, Meta, LinkedIn, Twitter/X, and TikTok with platform format...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/aeo.html" class="skill-card" style="text-decoration:none"><h3>Aeo</h3><p>Answer Engine Optimization (AEO): optimize content to be cited by LLMs (ChatGPT, Claude,...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/ai-seo.html" class="skill-card" style="text-decoration:none"><h3>Ai Seo</h3><p>Optimize content to rank in AI search engines (AI Overviews, Perplexity, ChatGPT) via generative...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/analytics-tracking.html" class="skill-card" style="text-decoration:none"><h3>Analytics Tracking</h3><p>End-to-end analytics implementation for web and SaaS: GA4, Google Tag Manager, event taxonomy,...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/app-store-optimization.html" class="skill-card" style="text-decoration:none"><h3>App Store Optimization</h3><p>App Store Optimization toolkit for researching keywords, optimizing metadata, and tracking...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/marketing/site-architecture/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

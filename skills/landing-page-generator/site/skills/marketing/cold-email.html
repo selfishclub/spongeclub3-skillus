@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cold Email - Claude Skills</title>
+  <meta name="description" content="Write and optimize B2B cold email outreach sequences that get replies, covering personalization, follow-up cadence, deliverability, and compliance. Use when writing cold outreach, prospecting/SDR emai">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/marketing/cold-email.html">
+  <meta property="og:title" content="Cold Email - Claude Skills">
+  <meta property="og:description" content="Write and optimize B2B cold email outreach sequences that get replies, covering personalization, follow-up cadence, deliverability, and compliance. Use when writing cold outreach, prospecting/SDR emai">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/marketing/cold-email.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Cold Email", "description": "Write and optimize B2B cold email outreach sequences that get replies, covering personalization, follow-up cadence, deliverability, and compliance. Use when writing cold outreach, prospecting/SDR emails, or building outbound sequences.", "applicationCategory": "Marketing", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/marketing/cold-email.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/marketing/">Marketing</a><span class=sep>/</span><span>Cold Email</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">Cold Email</h1>
+    <p class="page-subtitle">Write and optimize B2B cold email outreach sequences that get replies, covering personalization, follow-up cadence, deliverability, and compliance. Use when writing cold outreach, prospecting/SDR emails, or building outbound sequences.</p>
+    <div class="badge-bar"><span class="badge badge-domain">Marketing</span> <span class="badge badge-version">v1.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert Cold Email (Marketing domain).
+
+Write and optimize B2B cold email outreach sequences that get replies, covering personalization, follow-up cadence, deliverability, and compliance. Use when writing cold outreach, prospecting/SDR emails, or building outbound sequences.
+
+Production-grade B2B cold email that sounds like it came from a person, not a sequence tool. - [Keywords](#keywords) - [Quick Start](#quick-start)
+
+## Your Key Capabilities
+- Write a First-Touch Email
+- Build a Full Sequence
+- Single First-Touch Email
+- Full Sequence Build
+- Performance Iteration
+- 1. Write Like a Peer, Not a Vendor
+
+## Frameworks &amp; Templates You Know
+- - [Subject Line Framework](#subject-line-framework)
+- - [Personalization Framework](#personalization-framework)
+- **Step 2: Choose Framework**
+- | Framework | Best When | Structure |
+- Template:
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/cold-email
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert Cold Email (Marketing domain).
+
+Write and optimize B2B cold email outreach sequences that get replies, covering personalization, follow-up cadence, deliverability, and compliance. Use when writing cold outreach, prospecting/SDR emails, or building outbound sequences.
+
+Production-grade B2B cold email that sounds like it came from a person, not a sequence tool. - [Keywords](#keywords) - [Quick Start](#quick-start)
+
+## Your Key Capabilities
+- Write a First-Touch Email
+- Build a Full Sequence
+- Single First-Touch Email
+- Full Sequence Build
+- Performance Iteration
+- 1. Write Like a Peer, Not a Vendor
+
+## Frameworks &amp; Templates You Know
+- - [Subject Line Framework](#subject-line-framework)
+- - [Personalization Framework](#personalization-framework)
+- **Step 2: Choose Framework**
+- | Framework | Best When | Structure |
+- Template:
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/cold-email
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;Cold Email&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Cold Email Outreach
+
+Production-grade B2B cold email that sounds like it came from a person, not a sequence tool.
+
+---
+
+## Table of Contents
+
+- [Keywords](#keywords)
+- [Quick Start](#quick-start)
+- [Core Workflows](#core-workflows)
+- [Writing Principles](#writing-principles)
+- [Voice Calibration by Audience](#voice-calibration-by-audience)
+- [Subject Line Framework](#subject-line-framework)
+- [Follow-Up Strategy](#follow-up-strategy)
+- [Personalization Framework](#personalization-framework)
+- [Deliverability Setup](#deliverability-setup)
+- [Compliance Requirements](#compliance-requirements)
+- [Anti-Patterns](#anti-patterns)
+- [Best Practices](#best-practices)
+- [Integration Points](#integration-points)
+
+---
+
+## Keywords
+
+cold email, cold outreach, prospecting email, SDR email, sales email, first-touch email, follow-up sequence, email prospecting, outbound email, sales development, sequence building, email personalization, email deliverability, CAN-SPAM, GDPR, B2B outreach, email compliance, subject lines, reply rates, breakup email
+
+---
+
+## Clarify First
+
+Before generating the email, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **ICP / prospect context** — job title, company type/size, seniority (drives the opener, relevance, and voice calibration)
+- [ ] **Specific problem + outreach trigger** — the pain and why now (selects the framework and shapes the opener)
+- [ ] **The one proof point** — a specific number, named customer, or result (drives the credibility line)
+- [ ] **The single CTA / goal** — book a call, get a reply, or get a referral (drives the one ask)
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Quick Start
+
+### Write a First-Touch Email
+
+1. Define the ICP, specific problem, and outreach trigger
+2. Select voice calibration based on recipient seniority
+3. Write opener about their world (not yours)
+4. State relevance in 1-2 sentences with specific proof
+5. Close with a single, low-friction ask
+6. Generate 3 subject line variants
+7. Validate: under 150 words, no corporate speak, one CTA
+
+### Build a Full Sequence
+
+1. Write the first email (above)
+2. Plan 4-5 follow-ups, each with a different angle
+3. Set escalating gap cadence (Day 1, 4, 9, 16, 25, 35)
+4. Write each follow-up as a standalone (recipient does not remember earlier emails)
+5. End with a breakup email that closes the loop professionally
+6. Validate deliverability setup before sending
+
+---
+
+## Core Workflows
+
+### Workflow 1: Single First-Touch Email
+
+**Step 1: Gather Context**
+
+Required information:
+- **Sender context**: Role, company, what they sell, key proof points
+- **Prospect context**: Job title, company type/size, likely problem, trigger for outreach
+- **Goal**: Book a call? Get a reply? Get a referral?
+
+**Step 2: Choose Framework**
+
+| Framework | Best When | Structure |
+|-----------|-----------|-----------|
+| Problem-First | Prospect has a visible pain point | Problem observation &gt; Relevance &gt; Ask |
+| Trigger-Based | There is a specific event (funding, hiring, news) | Trigger reference &gt; Connection to problem &gt; Ask |
+| Mutual Connection | Referral or shared network | Name drop &gt; Context &gt; Ask |
+| Value-First | You have something genuinely useful to share | Insight/resource &gt; Brief context &gt; Ask |
+| Direct Ask | Prospect is high-intent or very senior | Brief context &gt; Direct question |
+
+**Step 3: Draft the Email**
+
+Structure:
+```
+Subject: [2-4 words, looks like an internal email]
+
+[Opener: 1 sentence about their world — trigger, observation, or question]
+
+[Relevance: 1-2 sentences connecting their situation to what you do]
+
+[Proof: 1 sentence of credible evidence — specific number, named customer, result]
+
+[Ask: 1 sentence with a single, specific, low-friction CTA]
+
+[Sign-off]
+```
+
+**Step 4: Validate**
+
+- [ ] Under 150 words total
+- [ ] Opener is about them, not you
+- [ ] No sentence starts with &quot;I&quot; or &quot;We&quot;
+- [ ] One CTA, not multiple
+- [ ] CTA is a question, not a statement
+- [ ] No jargon or corporate speak
+- [ ] Would a friend send this to another friend in business?
+
+### Workflow 2: Full Sequence Build
+
+**Step 1: Write Email 1 (Using Workflow 1)**
+
+**Step 2: Plan Follow-Up Angles**
+
+Each follow-up needs a distinct angle. Plan before writing:
+
+| Email | Day | Angle | What is New |
+|-------|-----|-------|-------------|
+| 1 | Day 1 | Problem-first | Initial outreach |
+| 2 | Day 4 | New evidence | Case study, data point, or recent result |
+| 3 | Day 9 | Different pain point | Alternative angle on their world |
+| 4 | Day 16 | Industry insight | Something notable about their space |
+| 5 | Day 25 | Direct question | Simple, clear ask without context |
+| 6 | Day 35 | Breakup | Professional close, referral ask |
+
+**Step 3: Write Each Follow-Up**
+
+Rules for every follow-up:
+- Standalone: does not require reading previous emails
+- New angle: brings something the previous email did not
+- Shorter than Email 1 (each subsequent email gets shorter)
+- Never says &quot;just checking in&quot; or &quot;circling back&quot;
+- Never references all previous emails (&quot;As I mentioned in my last three emails...&quot;)
+
+**Step 4: Write the Breakup Email**
+
+The breakup email closes the loop. It signals this is the last one, which paradoxically increases reply rate.
+
+Template:
+```
+Subject: closing the loop
+
+[Name],
+
+Last note from me. If [specific problem] becomes a priority,
+reply here and I&#x27;ll pick it up.
+
+If there&#x27;s someone else at [Company] better suited for this
+conversation, a name would help.
+
+Either way — [genuine well-wish related to something specific].
+
+[Sign-off]
+```
+
+### Workflow 3: Performance Iteration
+
+**Step 1: Diagnose the Problem**
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Low open rate (&lt; 25%) | Subject lines | Test new subject line patterns |
+| Opens but no replies (&lt; 2% reply rate) | Email body | Rewrite with stronger relevance and lower-friction CTA |
+| Replies but wrong outcome | CTA mismatch | Adjust the ask |
+| High bounce rate (&gt; 5%) | List quality | Verify email addresses before sending |
+| Landing in spam | Deliverability | Check SPF/DKIM/DMARC, reduce send volume, warm domain |
+
+**Step 2: Rewrite the Underperforming Element**
+
+Focus on one element at a time. Do not rewrite the entire email when only the subject line is the problem.
+
+**Step 3: Test and Measure**
+
+- A/B test subject lines with minimum 100 sends per variant
+- Test one variable at a time
+- Wait for 3-5 days of data before drawing conclusions
+- Document every test and result for future reference
+
+---
+
+## Writing Principles
+
+### 1. Write Like a Peer, Not a Vendor
+
+The moment your email sounds like marketing copy, it is deleted.
+
+**Test:** Would you send this to a smart colleague at another company? If not, rewrite.
+
+### 2. Every Sentence Earns Its Place
+
+Each sentence must do one of these jobs:
+- Create curiosity
+- Establish relevance
+- Build credibility
+- Drive to the ask
+
+If a sentence does none of these, cut it.
+
+### 3. Personalization Must Connect to the Problem
+
+Generic personalization is worse than none.
+
+- Bad: &quot;I saw you went to Stanford&quot; followed by a pitch unrelated to Stanford
+- Good: &quot;I saw you&#x27;re hiring three SDRs — usually a signal that you&#x27;re scaling cold outreach. That&#x27;s exactly the challenge we help with.&quot;
+
+The personalization must bridge to the reason for reaching out.
+
+### 4. Lead with Their World, Not Yours
+
+The opener should be about their situation, problem, or context. Not about you or your product.
+
+### 5. One Ask Per Email
+
+Do not ask them to book a call, watch a demo, read a case study, AND reply with their timeline. Pick one.
+
+---
+
+## Voice Calibration by Audience
+
+| Audience | Length | Tone | Subject Style | What Works |
+|----------|--------|------|---------------|------------|
+| C-suite (CEO, CRO, CMO) | 3-4 sentences | Ultra-brief, peer-level, strategic | Short, vague, internal-looking | Big problem &gt; relevant proof &gt; one question |
+| VP / Director | 5-7 sentences | Direct, metrics-conscious | Slightly more specific | Specific observation + clear business angle |
+| Manager | 7-10 sentences | Practical, shows homework | Can be descriptive | Specific problem + practical value + easy CTA |
+| Technical (Engineer, Architect) | 7-10 sentences | Precise, no fluff | Technical specificity | Exact problem &gt; precise solution &gt; low-friction ask |
+| Founder / Solo | 5-7 sentences | Empathetic, peer-to-peer | Casual, human | Shared experience + relevant proof + conversational ask |
+
+Rule: The higher up the org chart, the shorter your email needs to be.
+
+---
+
+## Subject Line Framework
+
+### Principles
+
+The goal of a subject line is to get the email opened. Not to convey value, not to be clever. Just opened.
+
+The best cold email subject lines look like internal emails: short, slightly vague, enough curiosity to click.
+
+### Patterns That Work
+
+| Pattern | Example | Why It Works |
+|---------|---------|-------------|
+| Two or three words | &quot;quick question&quot; | Looks like a real email from a colleague |
+| Specific trigger + question | &quot;your TechCrunch piece&quot; | Specific enough to not look like spam |
+| Shared context | &quot;re: Series B&quot; | Feels like a follow-up, not cold |
+| Observation | &quot;your ATS setup&quot; | Relevant, not salesy |
+| Referral hook | &quot;[mutual name] suggested I reach out&quot; | Social proof front-loaded |
+| Role-specific | &quot;SDR team scaling&quot; | Shows you know who they are |
+
+### Patterns That Kill Opens
+
+- ALL CAPS anything
+- Emojis in subject lines
+- Fake Re: or Fwd: (damages trust before the first word)
+- Question format (&quot;Are you struggling with X?&quot;) — sounds like an ad
+- Company name mention (&quot;Acme Corp: helping you achieve...&quot;)
+- Blog headline format (&quot;5 ways to improve your...&quot;)
+- Exclamation marks
+
+---
+
+## Follow-Up Strategy
+
+### Cadence
+
+| Email | Send Day | Gap | Notes |
+|-------|----------|-----|-------|
+| Email 1 | Day 1 | — | First touch |
+| Email 2 | Day 4 | +3 days | New evidence angle |
+| Email 3 | Day 9 | +5 days | Different pain point |
+| Email 4 | Day 16 | +7 days | Industry insight |
+| Email 5 | Day 25 | +9 days | Direct question |
+| Breakup | Day 35 | +10 days | Close the loop |
+
+Gaps increase over time. Persistent but not annoying.
+
+### Follow-Up Angle Rotation
+
+| Angle Type | Description | Example |
+|-----------|-------------|---------|
+| New evidence | Case study, data point, recent result | &quot;Since my last note, we helped [Company] reduce [metric] by [%]&quot; |
+| Different pain | Alternative problem in their world | &quot;Setting aside [topic A] — are you dealing with [topic B]?&quot; |
+| Industry insight | Something notable about their space | &quot;Saw [industry trend]. Most teams are responding by [approach]&quot; |
+| Direct question | Simple ask without buildup | &quot;[Name], quick one: who handles [function] at [Company]?&quot; |
+| Reverse ask | Request for referral | &quot;If this isn&#x27;t your area, who would you point me to?&quot; |
+| Social proof | Relevant peer doing it | &quot;[Similar company] just went through this — here&#x27;s what worked&quot; |
+
+---
+
+## Personalization Framework
+
+### Three Tiers of Personalization
+
+**Tier 1: Segment-Level (Minimum)**
+- Industry-specific pain points
+- Company size-specific challenges
+- Role-specific language and priorities
+
+**Tier 2: Company-Level (Standard)**
+- Recent company news (funding, hiring, product launch)
+- Tech stack signals (what tools they use)
+- Growth signals (job postings, office expansion)
+
+**Tier 3: Individual-Level (Premium)**
+- Content they have published (posts, articles, talks)
+- Career moves (new role, promotion)
+- Shared connections or experiences
+- Specific project or initiative they are leading
+
+### Personalization Sources
+
+| Source | What You Find | How to Use |
+|--------|--------------|-----------|
+| LinkedIn profile | Role, tenure, content they share | Role-specific opener, reference their posts |
+| Company blog | Priorities, culture, technology choices | Connect your solution to their stated priorities |
+| Job postings | Growth areas, pain points, tech stack | &quot;You&#x27;re hiring for X, which usually means...&quot; |
+| Press/news | Funding, partnerships, launches | Trigger-based openers |
+| GitHub/tech blogs | Technical decisions, stack choices | Technical relevance and credibility |
+| Podcast/talks | Opinions, expertise areas | &quot;Your point about X in [talk] resonated...&quot; |
+
+---
+
+## Deliverability Setup
+
+### Infrastructure Requirements
+
+| Component | What | Why |
+|-----------|------|-----|
+| Dedicated sending domain | mail.yourdomain.com or outreach.yourdomain.com | Protects primary domain reputation |
+| SPF record | DNS TXT record authorizing sending servers | Proves you are authorized to send |
+| DKIM signing | Cryptographic signature on emails | Proves emails were not modified in transit |
+| DMARC policy | DNS record specifying SPF/DKIM enforcement | Tells receiving servers how to handle failures |
+| Domain warmup | 4-6 weeks of gradually increasing volume | Builds sender reputation with ISPs |
+
+### Warmup Schedule
+
+| Week | Daily Volume | Notes |
+|------|-------------|-------|
+| 1 | 10-20 | Send to engaged contacts only |
+| 2 | 20-40 | Mix of warm and cold contacts |
+| 3 | 40-70 | Begin cold outreach at low volume |
+| 4 | 70-100 | Monitor bounce rates closely |
+| 5-6 | 100-150 | Increase if bounce rate &lt; 3% |
+| 7+ | 150-200 max | Steady state for cold outreach |
+
+### Deliverability Monitoring
+
+- Bounce rate: Keep under 3% (above 5% damages reputation)
+- Spam complaint rate: Keep under 0.1%
+- Verify email addresses before sending (use verification services)
+- Monitor blacklists monthly (MXToolbox, Google Postmaster)
+- Use mail-tester.com to check deliverability score before campaigns
+
+### Email Format Rules
+
+- Plain text or minimal HTML (no logos, images, or heavy formatting)
+- No tracking pixels if possible (they trigger spam filters)
+- Limit links to 1-2 maximum
+- Avoid spam trigger words: &quot;free,&quot; &quot;guarantee,&quot; &quot;act now,&quot; &quot;limited time&quot;
+- Keep emails under 200 words
+- Include a physical address (CAN-SPAM requirement)
+- Include an unsubscribe mechanism
+
+---
+
+## Compliance Requirements
+
+### CAN-SPAM (United States)
+
+Required for all commercial email to US recipients:
+- [ ] Sender identity is clear and not misleading
+- [ ] Subject line is not deceptive
+- [ ] Physical postal address included
+- [ ] Opt-out mechanism present and functional
+- [ ] Opt-out requests honored within 10 business days
+- [ ] Message identified as an advertisement (if applicable)
+
+### GDPR (European Union)
+
+Required for email to EU/EEA residents:
+- [ ] Legitimate interest basis documented for B2B outreach
+- [ ] Prospect data collected from lawful sources
+- [ ] Privacy notice accessible
+- [ ] Data processing records maintained
+- [ ] Right to erasure honored promptly
+- [ ] Data minimization: only collect what you need
+- [ ] No consent required for B2B if legitimate interest applies, but this must be documented and defensible
+
+### CASL (Canada)
+
+Required for commercial electronic messages to Canadian recipients:
+- [ ] Express or implied consent documented
+- [ ] Sender identification clear
+- [ ] Unsubscribe mechanism functional
+- [ ] Implied consent valid for 2 years from last transaction or 6 months from inquiry
+
+### Best Practice Regardless of Jurisdiction
+
+- Always include an easy unsubscribe option
+- Honor opt-outs immediately (do not wait the legal maximum)
+- Do not buy email lists (poor quality, compliance risk)
+- Document your legal basis for outreach
+- Keep records of consent and opt-out requests
+
+---
+
+## Anti-Patterns
+
+| Pattern | Why It Fails |
+|---------|-------------|
+| &quot;I hope this email finds you well&quot; | Instant signal that this is templated mass outreach |
+| &quot;I wanted to reach out because...&quot; | Three words of nothing before saying anything |
+| Opening with &quot;My name is X and I work at Y&quot; | They can see your name. Start with something useful. |
+| Feature dump in email 1 | Nobody cares about features when they do not trust you yet |
+| HTML templates with logos and colors | Looks like marketing, gets spam-filtered |
+| Fake Re:/Fwd: subject lines | Deceptive, destroys trust |
+| &quot;Just checking in&quot; follow-ups | Adds no value, removes credibility |
+| Social proof without context | &quot;We work with 500 companies&quot; means nothing without relevance |
+| Long-form case study in email 1 | Save it for follow-up |
+| Passive CTAs (&quot;Let me know if you&#x27;re interested&quot;) | Weak. Ask a direct question or propose a specific step. |
+| Multiple CTAs in one email | Creates decision paralysis. One ask per email. |
+| Sending from your primary domain | Risks your entire domain reputation |
+
+---
+
+## Best Practices
+
+1. **Send from a real person, not a company alias** — &quot;sarah@mail.acme.com&quot; outperforms &quot;sales@acme.com&quot; every time.
+
+2. **Read the email aloud before sending** — If you hear yourself droning, cut. If it sounds like a brochure, rewrite.
+
+3. **Time your sends** — Tuesday through Thursday, 8-10 AM in the prospect&#x27;s timezone, produces the highest open rates for B2B.
+
+4. **Verify emails before campaigns** — A 5% bounce rate damages your domain reputation. Verify every address.
+
+5. **Track reply rate, not open rate** — Open tracking is unreliable (privacy features block tracking pixels). Reply rate is the metric that matters.
+
+6. **Build sequences, not individual emails** — Most replies come from follow-ups, not the first email. Plan the full sequence before writing.
+
+7. **Document your playbook** — Every winning email, subject line, and angle should be documented for the team. Build institutional knowledge.
+
+8. **Respect opt-outs immediately** — Not just legally required, but professionally essential. Process within 24 hours.
+
+9. **Rotate sending domains** — Use 2-3 sending domains to distribute volume and protect reputation.
+
+10. **Segment relentlessly** — A generic template sent to 1,000 people will underperform a personalized email sent to 50 who match your ideal profile.
+
+---
+
+## Integration Points
+
+- **Copywriting** — Use for landing page copy and marketing page copy. Cold email follows different constraints (shorter, personal tone, no visual design).
+- **Content Strategy** — Use to create content assets (case studies, guides) referenced in follow-up emails.
+- **Marketing Context** — Use for ICP definition and positioning. If you do not know who you are targeting and why, cold email is the wrong tool.
+- **Marketing Psychology** — Apply psychological principles (reciprocity, social proof, scarcity) to strengthen email messaging.
+- **Campaign Analytics** — Use to track sequence performance and optimize based on data.
+
+---
+
+## Troubleshooting
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Open rate below 15% | Subject lines too long, spammy, or generic | Test 2-4 word internal-email-style subjects. Run `subject_line_scorer.py`. |
+| Opens but reply rate below 1% | Email body lacks relevance or CTA is too high-friction | Rewrite opener about their world. Use a question CTA, not a statement. |
+| Emails landing in spam (2026) | Missing SPF/DKIM/DMARC or RFC 8058 one-click unsubscribe | Gmail/Yahoo/Microsoft now reject non-compliant bulk mail. Run `deliverability_checker.py`. |
+| Bounce rate above 3% | Unverified email list or role-based addresses | Verify every address before sending. Remove catch-alls and role accounts. |
+| Spam complaint rate above 0.10% | Irrelevant targeting or too-frequent sends | Gmail enforces 0.10% threshold as of 2026. Improve targeting and reduce volume per domain. |
+| Replies but wrong outcome | CTA mismatch with funnel stage | Align CTA friction to prospect readiness. C-suite wants a question; managers accept a demo link. |
+| Domain blacklisted | Sending from primary domain or too-high volume | Use dedicated sending subdomains. Warm new domains 4-6 weeks. Max 100 emails/day/address. |
+
+---
+
+## Success Criteria
+
+- Open rate consistently above 35% across sequence (benchmark: 25-40% for cold B2B)
+- Reply rate above 3% (benchmark: 2-5% for well-targeted cold outreach)
+- Bounce rate below 2% on every campaign (Gmail/Microsoft 2026 threshold)
+- Spam complaint rate below 0.10% (2026 Gmail/Yahoo hard enforcement line)
+- Deliverability rate above 95% with SPF/DKIM/DMARC/RFC 8058 fully configured
+- Sequence produces replies from emails 2-5, not just email 1 (follow-ups carry 60%+ of replies)
+- Every email under 150 words with one CTA and zero corporate speak
+
+---
+
+## Scope &amp; Limitations
+
+**In Scope:**
+- B2B cold email outreach strategy and copy
+- Multi-email sequence design and optimization
+- Subject line and body copy frameworks
+- Deliverability infrastructure setup (SPF, DKIM, DMARC, domain warming)
+- CAN-SPAM, GDPR, CASL compliance guidance
+- Performance diagnosis and iteration methodology
+
+**Out of Scope:**
+- Email HTML template design (use email-template-builder)
+- Marketing automation platform configuration (Outreach, Salesloft, Apollo)
+- Email list building or scraping (compliance risk)
+- Warm/inbound email sequences (use email-sequence)
+- Phone call scripts or LinkedIn outreach sequences
+- Legal advice on compliance (consult legal counsel for jurisdiction-specific requirements)
+
+**Limitations:**
+- Scripts use heuristic analysis, not live inbox testing (use mail-tester.com for production validation)
+- Deliverability checker cannot perform live DNS lookups (verify SPF/DKIM/DMARC records separately)
+- Benchmarks are B2B SaaS-focused; adjust thresholds for other industries
+
+---
+
+## Python Automation Tools
+
+### 1. Subject Line Scorer (`scripts/subject_line_scorer.py`)
+Scores cold email subject lines on deliverability, spam risk, and open-rate potential using deterministic heuristics.
+
+```bash
+python scripts/subject_line_scorer.py &quot;quick question&quot;
+python scripts/subject_line_scorer.py --file subjects.txt --json
+```
+
+### 2. Deliverability Checker (`scripts/deliverability_checker.py`)
+Audits email content for spam triggers, HTML complexity, link density, and compliance against 2025-2026 Gmail/Yahoo/Microsoft requirements.
+
+```bash
+python scripts/deliverability_checker.py email.txt
+python scripts/deliverability_checker.py email.txt --domain yourdomain.com --json
+```
+
+### 3. Sequence Optimizer (`scripts/sequence_optimizer.py`)
+Analyzes cold email sequence performance data against industry benchmarks. Diagnoses open rate, reply rate, bounce rate, and cadence issues.
+
+```bash
+python scripts/sequence_optimizer.py sequence_data.json
+python scripts/sequence_optimizer.py --sample --json
+```
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Cold Email&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Cold Email in the Marketing domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Cold Email&quot;**
+   - Description: &quot;Write and optimize B2B cold email outreach sequences that get replies, covering personalization, follow-up cadence, deliverability, and compliance. Use when writing cold outreach, prospecting/SDR emails, or building outbound sequences.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/marketing/cold-email/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;Cold Email&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Cold Email Outreach
+
+Production-grade B2B cold email that sounds like it came from a person, not a sequence tool.
+
+---
+
+## Table of Contents
+
+- [Keywords](#keywords)
+- [Quick Start](#quick-start)
+- [Core Workflows](#core-workflows)
+- [Writing Principles](#writing-principles)
+- [Voice Calibration by Audience](#voice-calibration-by-audience)
+- [Subject Line Framework](#subject-line-framework)
+- [Follow-Up Strategy](#follow-up-strategy)
+- [Personalization Framework](#personalization-framework)
+- [Deliverability Setup](#deliverability-setup)
+- [Compliance Requirements](#compliance-requirements)
+- [Anti-Patterns](#anti-patterns)
+- [Best Practices](#best-practices)
+- [Integration Points](#integration-points)
+
+---
+
+## Keywords
+
+cold email, cold outreach, prospecting email, SDR email, sales email, first-touch email, follow-up sequence, email prospecting, outbound email, sales development, sequence building, email personalization, email deliverability, CAN-SPAM, GDPR, B2B outreach, email compliance, subject lines, reply rates, breakup email
+
+---
+
+## Clarify First
+
+Before generating the email, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **ICP / prospect context** — job title, company type/size, seniority (drives the opener, relevance, and voice calibration)
+- [ ] **Specific problem + outreach trigger** — the pain and why now (selects the framework and shapes the opener)
+- [ ] **The one proof point** — a specific number, named customer, or result (drives the credibility line)
+- [ ] **The single CTA / goal** — book a call, get a reply, or get a referral (drives the one ask)
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the artifact.
+
+## Quick Start
+
+### Write a First-Touch Email
+
+1. Define the ICP, specific problem, and outreach trigger
+2. Select voice calibration based on recipient seniority
+3. Write opener about their world (not yours)
+4. State relevance in 1-2 sentences with specific proof
+5. Close with a single, low-friction ask
+6. Generate 3 subject line variants
+7. Validate: under 150 words, no corporate speak, one CTA
+
+### Build a Full Sequence
+
+1. Write the first email (above)
+2. Plan 4-5 follow-ups, each with a different angle
+3. Set escalating gap cadence (Day 1, 4, 9, 16, 25, 35)
+4. Write each follow-up as a standalone (recipient does not remember earlier emails)
+5. End with a breakup email that closes the loop professionally
+6. Validate deliverability setup before sending
+
+---
+
+## Core Workflows
+
+### Workflow 1: Single First-Touch Email
+
+**Step 1: Gather Context**
+
+Required information:
+- **Sender context**: Role, company, what they sell, key proof points
+- **Prospect context**: Job title, company type/size, likely problem, trigger for outreach
+- **Goal**: Book a call? Get a reply? Get a referral?
+
+**Step 2: Choose Framework**
+
+| Framework | Best When | Structure |
+|-----------|-----------|-----------|
+| Problem-First | Prospect has a visible pain point | Problem observation &gt; Relevance &gt; Ask |
+| Trigger-Based | There is a specific event (funding, hiring, news) | Trigger reference &gt; Connection to problem &gt; Ask |
+| Mutual Connection | Referral or shared network | Name drop &gt; Context &gt; Ask |
+| Value-First | You have something genuinely useful to share | Insight/resource &gt; Brief context &gt; Ask |
+| Direct Ask | Prospect is high-intent or very senior | Brief context &gt; Direct question |
+
+**Step 3: Draft the Email**
+
+Structure:
+```
+Subject: [2-4 words, looks like an internal email]
+
+[Opener: 1 sentence about their world — trigger, observation, or question]
+
+[Relevance: 1-2 sentences connecting their situation to what you do]
+
+[Proof: 1 sentence of credible evidence — specific number, named customer, result]
+
+[Ask: 1 sentence with a single, specific, low-friction CTA]
+
+[Sign-off]
+```
+
+**Step 4: Validate**
+
+- [ ] Under 150 words total
+- [ ] Opener is about them, not you
+- [ ] No sentence starts with &quot;I&quot; or &quot;We&quot;
+- [ ] One CTA, not multiple
+- [ ] CTA is a question, not a statement
+- [ ] No jargon or corporate speak
+- [ ] Would a friend send this to another friend in business?
+
+### Workflow 2: Full Sequence Build
+
+**Step 1: Write Email 1 (Using Workflow 1)**
+
+**Step 2: Plan Follow-Up Angles**
+
+Each follow-up needs a distinct angle. Plan before writing:
+
+| Email | Day | Angle | What is New |
+|-------|-----|-------|-------------|
+| 1 | Day 1 | Problem-first | Initial outreach |
+| 2 | Day 4 | New evidence | Case study, data point, or recent result |
+| 3 | Day 9 | Different pain point | Alternative angle on their world |
+| 4 | Day 16 | Industry insight | Something notable about their space |
+| 5 | Day 25 | Direct question | Simple, clear ask without context |
+| 6 | Day 35 | Breakup | Professional close, referral ask |
+
+**Step 3: Write Each Follow-Up**
+
+Rules for every follow-up:
+- Standalone: does not require reading previous emails
+- New angle: brings something the previous email did not
+- Shorter than Email 1 (each subsequent email gets shorter)
+- Never says &quot;just checking in&quot; or &quot;circling back&quot;
+- Never references all previous emails (&quot;As I mentioned in my last three emails...&quot;)
+
+**Step 4: Write the Breakup Email**
+
+The breakup email closes the loop. It signals this is the last one, which paradoxically increases reply rate.
+
+Template:
+```
+Subject: closing the loop
+
+[Name],
+
+Last note from me. If [specific problem] becomes a priority,
+reply here and I&#x27;ll pick it up.
+
+If there&#x27;s someone else at [Company] better suited for this
+conversation, a name would help.
+
+Either way — [genuine well-wish related to something specific].
+
+[Sign-off]
+```
+
+### Workflow 3: Performance Iteration
+
+**Step 1: Diagnose the Problem**
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Low open rate (&lt; 25%) | Subject lines | Test new subject line patterns |
+| Opens but no replies (&lt; 2% reply rate) | Email body | Rewrite with stronger relevance and lower-friction CTA |
+| Replies but wrong outcome | CTA mismatch | Adjust the ask |
+| High bounce rate (&gt; 5%) | List quality | Verify email addresses before sending |
+| Landing in spam | Deliverability | Check SPF/DKIM/DMARC, reduce send volume, warm domain |
+
+**Step 2: Rewrite the Underperforming Element**
+
+Focus on one element at a time. Do not rewrite the entire email when only the subject line is the problem.
+
+**Step 3: Test and Measure**
+
+- A/B test subject lines with minimum 100 sends per variant
+- Test one variable at a time
+- Wait for 3-5 days of data before drawing conclusions
+- Document every test and result for future reference
+
+---
+
+## Writing Principles
+
+### 1. Write Like a Peer, Not a Vendor
+
+The moment your email sounds like marketing copy, it is deleted.
+
+**Test:** Would you send this to a smart colleague at another company? If not, rewrite.
+
+### 2. Every Sentence Earns Its Place
+
+Each sentence must do one of these jobs:
+- Create curiosity
+- Establish relevance
+- Build credibility
+- Drive to the ask
+
+If a sentence does none of these, cut it.
+
+### 3. Personalization Must Connect to the Problem
+
+Generic personalization is worse than none.
+
+- Bad: &quot;I saw you went to Stanford&quot; followed by a pitch unrelated to Stanford
+- Good: &quot;I saw you&#x27;re hiring three SDRs — usually a signal that you&#x27;re scaling cold outreach. That&#x27;s exactly the challenge we help with.&quot;
+
+The personalization must bridge to the reason for reaching out.
+
+### 4. Lead with Their World, Not Yours
+
+The opener should be about their situation, problem, or context. Not about you or your product.
+
+### 5. One Ask Per Email
+
+Do not ask them to book a call, watch a demo, read a case study, AND reply with their timeline. Pick one.
+
+---
+
+## Voice Calibration by Audience
+
+| Audience | Length | Tone | Subject Style | What Works |
+|----------|--------|------|---------------|------------|
+| C-suite (CEO, CRO, CMO) | 3-4 sentences | Ultra-brief, peer-level, strategic | Short, vague, internal-looking | Big problem &gt; relevant proof &gt; one question |
+| VP / Director | 5-7 sentences | Direct, metrics-conscious | Slightly more specific | Specific observation + clear business angle |
+| Manager | 7-10 sentences | Practical, shows homework | Can be descriptive | Specific problem + practical value + easy CTA |
+| Technical (Engineer, Architect) | 7-10 sentences | Precise, no fluff | Technical specificity | Exact problem &gt; precise solution &gt; low-friction ask |
+| Founder / Solo | 5-7 sentences | Empathetic, peer-to-peer | Casual, human | Shared experience + relevant proof + conversational ask |
+
+Rule: The higher up the org chart, the shorter your email needs to be.
+
+---
+
+## Subject Line Framework
+
+### Principles
+
+The goal of a subject line is to get the email opened. Not to convey value, not to be clever. Just opened.
+
+The best cold email subject lines look like internal emails: short, slightly vague, enough curiosity to click.
+
+### Patterns That Work
+
+| Pattern | Example | Why It Works |
+|---------|---------|-------------|
+| Two or three words | &quot;quick question&quot; | Looks like a real email from a colleague |
+| Specific trigger + question | &quot;your TechCrunch piece&quot; | Specific enough to not look like spam |
+| Shared context | &quot;re: Series B&quot; | Feels like a follow-up, not cold |
+| Observation | &quot;your ATS setup&quot; | Relevant, not salesy |
+| Referral hook | &quot;[mutual name] suggested I reach out&quot; | Social proof front-loaded |
+| Role-specific | &quot;SDR team scaling&quot; | Shows you know who they are |
+
+### Patterns That Kill Opens
+
+- ALL CAPS anything
+- Emojis in subject lines
+- Fake Re: or Fwd: (damages trust before the first word)
+- Question format (&quot;Are you struggling with X?&quot;) — sounds like an ad
+- Company name mention (&quot;Acme Corp: helping you achieve...&quot;)
+- Blog headline format (&quot;5 ways to improve your...&quot;)
+- Exclamation marks
+
+---
+
+## Follow-Up Strategy
+
+### Cadence
+
+| Email | Send Day | Gap | Notes |
+|-------|----------|-----|-------|
+| Email 1 | Day 1 | — | First touch |
+| Email 2 | Day 4 | +3 days | New evidence angle |
+| Email 3 | Day 9 | +5 days | Different pain point |
+| Email 4 | Day 16 | +7 days | Industry insight |
+| Email 5 | Day 25 | +9 days | Direct question |
+| Breakup | Day 35 | +10 days | Close the loop |
+
+Gaps increase over time. Persistent but not annoying.
+
+### Follow-Up Angle Rotation
+
+| Angle Type | Description | Example |
+|-----------|-------------|---------|
+| New evidence | Case study, data point, recent result | &quot;Since my last note, we helped [Company] reduce [metric] by [%]&quot; |
+| Different pain | Alternative problem in their world | &quot;Setting aside [topic A] — are you dealing with [topic B]?&quot; |
+| Industry insight | Something notable about their space | &quot;Saw [industry trend]. Most teams are responding by [approach]&quot; |
+| Direct question | Simple ask without buildup | &quot;[Name], quick one: who handles [function] at [Company]?&quot; |
+| Reverse ask | Request for referral | &quot;If this isn&#x27;t your area, who would you point me to?&quot; |
+| Social proof | Relevant peer doing it | &quot;[Similar company] just went through this — here&#x27;s what worked&quot; |
+
+---
+
+## Personalization Framework
+
+### Three Tiers of Personalization
+
+**Tier 1: Segment-Level (Minimum)**
+- Industry-specific pain points
+- Company size-specific challenges
+- Role-specific language and priorities
+
+**Tier 2: Company-Level (Standard)**
+- Recent company news (funding, hiring, product launch)
+- Tech stack signals (what tools they use)
+- Growth signals (job postings, office expansion)
+
+**Tier 3: Individual-Level (Premium)**
+- Content they have published (posts, articles, talks)
+- Career moves (new role, promotion)
+- Shared connections or experiences
+- Specific project or initiative they are leading
+
+### Personalization Sources
+
+| Source | What You Find | How to Use |
+|--------|--------------|-----------|
+| LinkedIn profile | Role, tenure, content they share | Role-specific opener, reference their posts |
+| Company blog | Priorities, culture, technology choices | Connect your solution to their stated priorities |
+| Job postings | Growth areas, pain points, tech stack | &quot;You&#x27;re hiring for X, which usually means...&quot; |
+| Press/news | Funding, partnerships, launches | Trigger-based openers |
+| GitHub/tech blogs | Technical decisions, stack choices | Technical relevance and credibility |
+| Podcast/talks | Opinions, expertise areas | &quot;Your point about X in [talk] resonated...&quot; |
+
+---
+
+## Deliverability Setup
+
+### Infrastructure Requirements
+
+| Component | What | Why |
+|-----------|------|-----|
+| Dedicated sending domain | mail.yourdomain.com or outreach.yourdomain.com | Protects primary domain reputation |
+| SPF record | DNS TXT record authorizing sending servers | Proves you are authorized to send |
+| DKIM signing | Cryptographic signature on emails | Proves emails were not modified in transit |
+| DMARC policy | DNS record specifying SPF/DKIM enforcement | Tells receiving servers how to handle failures |
+| Domain warmup | 4-6 weeks of gradually increasing volume | Builds sender reputation with ISPs |
+
+### Warmup Schedule
+
+| Week | Daily Volume | Notes |
+|------|-------------|-------|
+| 1 | 10-20 | Send to engaged contacts only |
+| 2 | 20-40 | Mix of warm and cold contacts |
+| 3 | 40-70 | Begin cold outreach at low volume |
+| 4 | 70-100 | Monitor bounce rates closely |
+| 5-6 | 100-150 | Increase if bounce rate &lt; 3% |
+| 7+ | 150-200 max | Steady state for cold outreach |
+
+### Deliverability Monitoring
+
+- Bounce rate: Keep under 3% (above 5% damages reputation)
+- Spam complaint rate: Keep under 0.1%
+- Verify email addresses before sending (use verification services)
+- Monitor blacklists monthly (MXToolbox, Google Postmaster)
+- Use mail-tester.com to check deliverability score before campaigns
+
+### Email Format Rules
+
+- Plain text or minimal HTML (no logos, images, or heavy formatting)
+- No tracking pixels if possible (they trigger spam filters)
+- Limit links to 1-2 maximum
+- Avoid spam trigger words: &quot;free,&quot; &quot;guarantee,&quot; &quot;act now,&quot; &quot;limited time&quot;
+- Keep emails under 200 words
+- Include a physical address (CAN-SPAM requirement)
+- Include an unsubscribe mechanism
+
+---
+
+## Compliance Requirements
+
+### CAN-SPAM (United States)
+
+Required for all commercial email to US recipients:
+- [ ] Sender identity is clear and not misleading
+- [ ] Subject line is not deceptive
+- [ ] Physical postal address included
+- [ ] Opt-out mechanism present and functional
+- [ ] Opt-out requests honored within 10 business days
+- [ ] Message identified as an advertisement (if applicable)
+
+### GDPR (European Union)
+
+Required for email to EU/EEA residents:
+- [ ] Legitimate interest basis documented for B2B outreach
+- [ ] Prospect data collected from lawful sources
+- [ ] Privacy notice accessible
+- [ ] Data processing records maintained
+- [ ] Right to erasure honored promptly
+- [ ] Data minimization: only collect what you need
+- [ ] No consent required for B2B if legitimate interest applies, but this must be documented and defensible
+
+### CASL (Canada)
+
+Required for commercial electronic messages to Canadian recipients:
+- [ ] Express or implied consent documented
+- [ ] Sender identification clear
+- [ ] Unsubscribe mechanism functional
+- [ ] Implied consent valid for 2 years from last transaction or 6 months from inquiry
+
+### Best Practice Regardless of Jurisdiction
+
+- Always include an easy unsubscribe option
+- Honor opt-outs immediately (do not wait the legal maximum)
+- Do not buy email lists (poor quality, compliance risk)
+- Document your legal basis for outreach
+- Keep records of consent and opt-out requests
+
+---
+
+## Anti-Patterns
+
+| Pattern | Why It Fails |
+|---------|-------------|
+| &quot;I hope this email finds you well&quot; | Instant signal that this is templated mass outreach |
+| &quot;I wanted to reach out because...&quot; | Three words of nothing before saying anything |
+| Opening with &quot;My name is X and I work at Y&quot; | They can see your name. Start with something useful. |
+| Feature dump in email 1 | Nobody cares about features when they do not trust you yet |
+| HTML templates with logos and colors | Looks like marketing, gets spam-filtered |
+| Fake Re:/Fwd: subject lines | Deceptive, destroys trust |
+| &quot;Just checking in&quot; follow-ups | Adds no value, removes credibility |
+| Social proof without context | &quot;We work with 500 companies&quot; means nothing without relevance |
+| Long-form case study in email 1 | Save it for follow-up |
+| Passive CTAs (&quot;Let me know if you&#x27;re interested&quot;) | Weak. Ask a direct question or propose a specific step. |
+| Multiple CTAs in one email | Creates decision paralysis. One ask per email. |
+| Sending from your primary domain | Risks your entire domain reputation |
+
+---
+
+## Best Practices
+
+1. **Send from a real person, not a company alias** — &quot;sarah@mail.acme.com&quot; outperforms &quot;sales@acme.com&quot; every time.
+
+2. **Read the email aloud before sending** — If you hear yourself droning, cut. If it sounds like a brochure, rewrite.
+
+3. **Time your sends** — Tuesday through Thursday, 8-10 AM in the prospect&#x27;s timezone, produces the highest open rates for B2B.
+
+4. **Verify emails before campaigns** — A 5% bounce rate damages your domain reputation. Verify every address.
+
+5. **Track reply rate, not open rate** — Open tracking is unreliable (privacy features block tracking pixels). Reply rate is the metric that matters.
+
+6. **Build sequences, not individual emails** — Most replies come from follow-ups, not the first email. Plan the full sequence before writing.
+
+7. **Document your playbook** — Every winning email, subject line, and angle should be documented for the team. Build institutional knowledge.
+
+8. **Respect opt-outs immediately** — Not just legally required, but professionally essential. Process within 24 hours.
+
+9. **Rotate sending domains** — Use 2-3 sending domains to distribute volume and protect reputation.
+
+10. **Segment relentlessly** — A generic template sent to 1,000 people will underperform a personalized email sent to 50 who match your ideal profile.
+
+---
+
+## Integration Points
+
+- **Copywriting** — Use for landing page copy and marketing page copy. Cold email follows different constraints (shorter, personal tone, no visual design).
+- **Content Strategy** — Use to create content assets (case studies, guides) referenced in follow-up emails.
+- **Marketing Context** — Use for ICP definition and positioning. If you do not know who you are targeting and why, cold email is the wrong tool.
+- **Marketing Psychology** — Apply psychological principles (reciprocity, social proof, scarcity) to strengthen email messaging.
+- **Campaign Analytics** — Use to track sequence performance and optimize based on data.
+
+---
+
+## Troubleshooting
+
+| Symptom | Likely Cause | Fix |
+|---------|-------------|-----|
+| Open rate below 15% | Subject lines too long, spammy, or generic | Test 2-4 word internal-email-style subjects. Run `subject_line_scorer.py`. |
+| Opens but reply rate below 1% | Email body lacks relevance or CTA is too high-friction | Rewrite opener about their world. Use a question CTA, not a statement. |
+| Emails landing in spam (2026) | Missing SPF/DKIM/DMARC or RFC 8058 one-click unsubscribe | Gmail/Yahoo/Microsoft now reject non-compliant bulk mail. Run `deliverability_checker.py`. |
+| Bounce rate above 3% | Unverified email list or role-based addresses | Verify every address before sending. Remove catch-alls and role accounts. |
+| Spam complaint rate above 0.10% | Irrelevant targeting or too-frequent sends | Gmail enforces 0.10% threshold as of 2026. Improve targeting and reduce volume per domain. |
+| Replies but wrong outcome | CTA mismatch with funnel stage | Align CTA friction to prospect readiness. C-suite wants a question; managers accept a demo link. |
+| Domain blacklisted | Sending from primary domain or too-high volume | Use dedicated sending subdomains. Warm new domains 4-6 weeks. Max 100 emails/day/address. |
+
+---
+
+## Success Criteria
+
+- Open rate consistently above 35% across sequence (benchmark: 25-40% for cold B2B)
+- Reply rate above 3% (benchmark: 2-5% for well-targeted cold outreach)
+- Bounce rate below 2% on every campaign (Gmail/Microsoft 2026 threshold)
+- Spam complaint rate below 0.10% (2026 Gmail/Yahoo hard enforcement line)
+- Deliverability rate above 95% with SPF/DKIM/DMARC/RFC 8058 fully configured
+- Sequence produces replies from emails 2-5, not just email 1 (follow-ups carry 60%+ of replies)
+- Every email under 150 words with one CTA and zero corporate speak
+
+---
+
+## Scope &amp; Limitations
+
+**In Scope:**
+- B2B cold email outreach strategy and copy
+- Multi-email sequence design and optimization
+- Subject line and body copy frameworks
+- Deliverability infrastructure setup (SPF, DKIM, DMARC, domain warming)
+- CAN-SPAM, GDPR, CASL compliance guidance
+- Performance diagnosis and iteration methodology
+
+**Out of Scope:**
+- Email HTML template design (use email-template-builder)
+- Marketing automation platform configuration (Outreach, Salesloft, Apollo)
+- Email list building or scraping (compliance risk)
+- Warm/inbound email sequences (use email-sequence)
+- Phone call scripts or LinkedIn outreach sequences
+- Legal advice on compliance (consult legal counsel for jurisdiction-specific requirements)
+
+**Limitations:**
+- Scripts use heuristic analysis, not live inbox testing (use mail-tester.com for production validation)
+- Deliverability checker cannot perform live DNS lookups (verify SPF/DKIM/DMARC records separately)
+- Benchmarks are B2B SaaS-focused; adjust thresholds for other industries
+
+---
+
+## Python Automation Tools
+
+### 1. Subject Line Scorer (`scripts/subject_line_scorer.py`)
+Scores cold email subject lines on deliverability, spam risk, and open-rate potential using deterministic heuristics.
+
+```bash
+python scripts/subject_line_scorer.py &quot;quick question&quot;
+python scripts/subject_line_scorer.py --file subjects.txt --json
+```
+
+### 2. Deliverability Checker (`scripts/deliverability_checker.py`)
+Audits email content for spam triggers, HTML complexity, link density, and compliance against 2025-2026 Gmail/Yahoo/Microsoft requirements.
+
+```bash
+python scripts/deliverability_checker.py email.txt
+python scripts/deliverability_checker.py email.txt --domain yourdomain.com --json
+```
+
+### 3. Sequence Optimizer (`scripts/sequence_optimizer.py`)
+Analyzes cold email sequence performance data against industry benchmarks. Diagnoses open rate, reply rate, bounce rate, and cadence issues.
+
+```bash
+python scripts/sequence_optimizer.py sequence_data.json
+python scripts/sequence_optimizer.py --sample --json
+```
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Cold Email&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Cold Email in the Marketing domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Cold Email&quot;**
+   - Description: &quot;Write and optimize B2B cold email outreach sequences that get replies, covering personalization, follow-up cadence, deliverability, and compliance. Use when writing cold outreach, prospecting/SDR emails, or building outbound sequences.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/marketing/cold-email/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install marketing/cold-email ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/marketing/cold-email your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/cold-email/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/cold-email your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/cold-email/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/cold-email your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: marketing/cold-email/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/marketing/cold-email your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/marketing/cold-email your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/marketing/cold-email</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python marketing/cold-email/scripts/tool_name.py --help</code></pre>
+  
+  <h2>Quick Start</h2>### Write a First-Touch Email
+
+1. Define the ICP, specific problem, and outreach trigger
+2. Select voice calibration based on recipient seniority
+3. Write opener about their world (not yours)
+4. State relevance in 1-2 sentences with specific proof
+5. Close with a single, low-friction ask
+6. Generate 3 subject line variants
+7. Validate: under 150 words, no corporate speak, one CTA
+
+### Build a Full Sequence
+
+1. Write the first email (above)
+2. Plan 4-5 follow-ups, each with a different angle
+3. Set escalating gap cadence (Day 1, 4, 9, 16, 25, 35)
+4. Write each follow-up as a standalone (recipient does not remember earlier emails)
+5. End with a breakup email that closes the loop professionally
+6. Validate deliverability setup before sending
+
+---
+  <h2>Related Skills in Marketing</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/marketing/ab-test-setup.html" class="skill-card" style="text-decoration:none"><h3>Ab Test Setup</h3><p>Design and analyze A/B tests: sample size, test duration, and statistical significance for...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/ad-creative.html" class="skill-card" style="text-decoration:none"><h3>Ad Creative</h3><p>Design ad creative across Google, Meta, LinkedIn, Twitter/X, and TikTok with platform format...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/aeo.html" class="skill-card" style="text-decoration:none"><h3>Aeo</h3><p>Answer Engine Optimization (AEO): optimize content to be cited by LLMs (ChatGPT, Claude,...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/ai-seo.html" class="skill-card" style="text-decoration:none"><h3>Ai Seo</h3><p>Optimize content to rank in AI search engines (AI Overviews, Perplexity, ChatGPT) via generative...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/analytics-tracking.html" class="skill-card" style="text-decoration:none"><h3>Analytics Tracking</h3><p>End-to-end analytics implementation for web and SaaS: GA4, Google Tag Manager, event taxonomy,...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/marketing/app-store-optimization.html" class="skill-card" style="text-decoration:none"><h3>App Store Optimization</h3><p>App Store Optimization toolkit for researching keywords, optimizing metadata, and tracking...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/marketing/cold-email/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

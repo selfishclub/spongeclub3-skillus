@@ -1,0 +1,8 @@
+{
+  "name": "design-assets",
+  "description": "Generate colour palettes, favicon packages, custom SVG icon sets, and image processing (resize, convert, optimise).",
+  "author": {
+    "name": "Jeremy Dawes / Jezweb",
+    "email": "jeremy@jezweb.net"
+  }
+}

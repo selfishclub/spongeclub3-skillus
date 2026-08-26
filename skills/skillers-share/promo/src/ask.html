@@ -1,0 +1,58 @@
+<!doctype html><meta charset="utf-8">
+<style>
+:root{--bg:#EFEDE8;--ink:#1A1A18;--dim:#6E6A62;--ac:#C8452F;--line:#DCD7CD}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 'Pretendard','Apple SD Gothic Neo',sans-serif;padding:70px 56px 60px}
+.hd{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.hd b{font-size:26px;letter-spacing:-.02em}
+.hd span{color:var(--ac);font-size:12px;letter-spacing:.14em}
+.lead{color:var(--dim);font-size:14px;margin-bottom:28px}
+.q{border-top:1.5px solid var(--ink);padding:18px 0 22px}
+.q+.q{border-top:1px solid var(--line)}
+.qt{font-size:19px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+.why{color:var(--ac);font-size:12.5px;margin-bottom:14px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.o{border:1px solid var(--line);border-radius:9px;padding:11px 13px;background:#fff}
+.o.esc{background:transparent;border-style:dashed}
+.o b{display:block;font-size:14px;font-weight:700;margin-bottom:3px}
+.o i{font-style:normal;color:var(--dim);font-size:12.5px}
+.tag{display:inline-block;background:var(--ac);color:#fff;font-size:10.5px;padding:1px 6px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.foot{margin-top:24px;border-top:1.5px solid var(--ink);padding-top:14px;color:var(--dim);font-size:13px}
+.foot b{color:var(--ink)}
+</style>
+<div class="hd"><b>① 스캔 → ② 질문 3개</b><span>내 대화 기록에서 보기를 만든다</span></div>
+<div class="lead">주제를 묻지 않는다. 답하기 쉬운 것만 물어서 소재를 역산한다. 세 문항이 한 화면에 같이 뜬다.</div>
+
+<div class="q">
+  <div class="qt">1. 최근에 누가 "그거 어떻게 했어요?"라고 물어본 적 있나요?</div>
+  <div class="why">남이 물어본 건 수요가 이미 검증된 주제다 — 가장 확실한 신호</div>
+  <div class="opts">
+    <div class="o"><b><span class="tag">기록</span>상세페이지 자동화</b><i>대화 25개로 최다 · 상품명·카피 요청이 반복</i></div>
+    <div class="o"><b><span class="tag">기록</span>영상 자막 자동화</b><i>같은 목표를 4번 다르게 시도한 흔적</i></div>
+    <div class="o esc"><b>클로드 밖의 일이에요</b><i>직접 입력</i></div>
+    <div class="o esc"><b>모르겠어요</b><i>내 대화 기록 보고 골라주세요</i></div>
+  </div>
+</div>
+
+<div class="q">
+  <div class="qt">2. 요즘 설명할 때 유독 신나는 게 있나요?</div>
+  <div class="why">1시간을 버티게 하는 건 완성도가 아니라 화력이다</div>
+  <div class="opts">
+    <div class="o"><b><span class="tag">기록</span>학원 상담 스크립트</b><i>"쉽게 설명해줘" 요청이 반복 — 남에게 설명하려던 주제</i></div>
+    <div class="o esc"><b>알아서 정해줘</b><i>겹치는 지점으로 잡습니다</i></div>
+  </div>
+</div>
+
+<div class="q">
+  <div class="qt">3. 최근 한 달, 시간을 제일 많이 쓴 일은?</div>
+  <div class="why">시간을 쓴 곳에 노하우가 쌓인다. 본인만 그걸 별거 아니라고 본다</div>
+  <div class="opts">
+    <div class="o"><b><span class="tag">기록</span>스마트스토어 상세페이지</b><i>한 프로젝트 폴더의 대화 수가 압도적</i></div>
+    <div class="o esc"><b>모르겠어요</b><i>기록으로 골라주세요</i></div>
+  </div>
+</div>
+
+<div class="foot">
+  <b>하나만 답해도 넘어간다.</b> 여럿이면 겹치는 지점을 잡는다 — 남이 물어봤고 + 내가 신나고 + 시간을 많이 쓴 게 겹치면 그게 최적 주제다.<br>
+  이어지는 두 문항: <b>Q2 대상</b>(제목의 "누구를 위한"이 여기서 나온다) · <b>Q3 디자인 컨셉</b>(5종 + 레퍼런스 링크 + 알아서)
+</div>

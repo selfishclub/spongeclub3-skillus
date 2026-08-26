@@ -1,0 +1,141 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initialscale=1.0" />
+    <title>Auto-Defined Elements</title>
+  </head>
+  <body>
+    <div>
+      <h1>Auto-Defined Elements</h1>
+      <div class="container"></div>
+    </div>
+
+    <script type="module">
+      import '../auto/ring.js'
+      import '../auto/ring2.js'
+      import '../auto/tailspin.js'
+      import '../auto/tailChase.js'
+      import '../auto/chaoticOrbit.js'
+      import '../auto/dotPulse.js'
+      import '../auto/dotSpinner.js'
+      import '../auto/dotWave.js'
+      import '../auto/treadmill.js'
+      import '../auto/jelly.js'
+      import '../auto/jellyTriangle.js'
+      import '../auto/leapfrog.js'
+      import '../auto/lineWobble.js'
+      import '../auto/metronome.js'
+      import '../auto/momentum.js'
+      import '../auto/miyagi.js'
+      import '../auto/newtonsCradle.js'
+      import '../auto/orbit.js'
+      import '../auto/ping.js'
+      import '../auto/pinwheel.js'
+      import '../auto/pulsar.js'
+      import '../auto/zoomies.js'
+      import '../auto/ripples.js'
+      import '../auto/superballs.js'
+      import '../auto/trio.js'
+      import '../auto/waveform.js'
+      import '../auto/wobble.js'
+      import '../auto/helix.js'
+      import '../auto/dotStream.js'
+      import '../auto/mirage.js'
+      import '../auto/hatch.js'
+      import '../auto/spiral.js'
+      import '../auto/tailChase.js'
+      import '../auto/bouncy.js'
+      import '../auto/grid.js'
+      import '../auto/hourglass.js'
+      import '../auto/bouncyArc.js'
+      import '../auto/quantum.js'
+      import '../auto/trefoil.js'
+      import '../auto/reuleaux.js'
+      import '../auto/infinity.js'
+      import '../auto/squircle.js'
+      import '../auto/square.js'
+      import '../auto/cardio.js'
+
+      const tags = [
+        'bouncy',
+        'bouncy-arc',
+        'cardio',
+        'chaotic-orbit',
+        'dot-pulse',
+        'dot-spinner',
+        'dot-stream',
+        'dot-wave',
+        'grid',
+        'hatch',
+        'helix',
+        'hourglass',
+        'infinity',
+        'jelly',
+        'mirage',
+        'jelly-triangle',
+        'leapfrog',
+        'line-wobble',
+        'metronome',
+        'miyagi',
+        'momentum',
+        'newtons-cradle',
+        'orbit',
+        'ping',
+        'pinwheel',
+        'pulsar',
+        'quantum',
+        'reuleaux',
+        'ring',
+        'ring-2',
+        'ripples',
+        'spiral',
+        'square',
+        'squircle',
+        'superballs',
+        'tail-chase',
+        'tail-chase',
+        'tailspin',
+        'treadmill',
+        'trefoil',
+        'trio',
+        'waveform',
+        'wobble',
+        'zoomies',
+      ]
+
+      const containerEl = document.querySelector('.container')
+
+      tags.forEach((tag) => {
+        const loaderCard = document.createElement('div')
+        loaderCard.classList.add('cell')
+        loaderCard.innerHTML = `<l-${tag}></l-${tag}>${tag}`
+        containerEl.append(loaderCard)
+      })
+    </script>
+
+    <style>
+      h1 {
+        text-align: center;
+        margin: 60px 0 20px;
+        font-family: monospace;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 300px;
+        gap: 5px;
+        padding: 40px;
+      }
+
+      .cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background-color: #f9f9f9;
+        font-family: monospace;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Cro - Claude Skills</title>
+  <meta name="description" content="Landing page and marketing page conversion rate optimization covering value proposition clarity, headline effectiveness, CTA hierarchy, visual flow, social proof placement, objection handling, and str">
+  <link rel="canonical" href="https://borghei.github.io/Claude-Skills/skills/business-growth/page-cro.html">
+  <meta property="og:title" content="Page Cro - Claude Skills">
+  <meta property="og:description" content="Landing page and marketing page conversion rate optimization covering value proposition clarity, headline effectiveness, CTA hierarchy, visual flow, social proof placement, objection handling, and str">
+  <meta property="og:url" content="https://borghei.github.io/Claude-Skills/skills/business-growth/page-cro.html">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Page Cro", "description": "Landing page and marketing page conversion rate optimization covering value proposition clarity, headline effectiveness, CTA hierarchy, visual flow, social proof placement, objection handling, and structured A/B testing.", "applicationCategory": "Business & Growth", "operatingSystem": "Any", "url": "https://borghei.github.io/Claude-Skills/skills/business-growth/page-cro.html", "author": {"@type": "Person", "name": "borghei"}, "license": "https://opensource.org/licenses/MIT"}</script>
+  <style>
+:root {
+  --bg: #faf9f5;
+  --bg-secondary: #f0eee6;
+  --text: #141413;
+  --text-muted: #5e5d59;
+  --accent: #d97757;
+  --accent-deep: #c6613f;
+  --border: rgba(20,20,19,0.1);
+  --border-strong: rgba(20,20,19,0.18);
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --max-width: 1200px;
+  --shadow-sm: 0 1px 2px rgba(20,20,19,0.04);
+  --shadow: 0 1px 3px rgba(20,20,19,0.06), 0 1px 2px rgba(20,20,19,0.04);
+  --shadow-md: 0 4px 12px rgba(20,20,19,0.08), 0 1px 3px rgba(20,20,19,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--accent-deep); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+code { font-family: var(--font-mono); font-size: 0.875em; }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,245,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo {
+  font-family: var(--font-serif); font-weight: 700; font-size: 1.1rem;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.nav-logo:hover { color: var(--text); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.gh-link { display: inline-flex; align-items: center; gap: 5px; }
+
+/* Breadcrumbs */
+.breadcrumbs { padding: 20px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.breadcrumbs a { color: var(--text-muted); }
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep { margin: 0 8px; opacity: 0.4; }
+
+/* Page header */
+.page-header { padding: 48px 0 32px; }
+.page-title {
+  font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
+  color: var(--text);
+}
+.page-subtitle { color: var(--text-muted); max-width: 700px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Count badge (inline with title) */
+.count-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--accent); background: rgba(217,119,87,0.08);
+  padding: 2px 10px; border-radius: 20px; margin-left: 8px;
+  vertical-align: middle; font-weight: 500;
+}
+
+/* Search + Filter */
+.filter-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-input {
+  flex: 1; min-width: 200px; padding: 10px 14px 10px 38px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+.search-input::placeholder { color: var(--text-muted); }
+.search-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.filter-select {
+  padding: 10px 14px; background: var(--white); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); color: var(--text); font-family: var(--font-sans);
+  font-size: 0.9rem; outline: none; cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217,119,87,0.1); }
+
+/* Card grid */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.skill-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.skill-card h3 a { color: var(--text); }
+.skill-card h3 a:hover { color: var(--accent); }
+.skill-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+/* Badges */
+.badge-bar { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 6px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px;
+  border-radius: 5px; font-weight: 500; white-space: nowrap;
+}
+.badge-domain { background: rgba(217,119,87,0.1); border: 1px solid rgba(217,119,87,0.2); color: var(--accent-deep); }
+.badge-subdomain { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-version { background: rgba(20,20,19,0.03); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-tools { background: rgba(20,20,19,0.04); border: 1px solid var(--border); color: var(--text-muted); }
+.badge-refs { background: rgba(217,119,87,0.06); border: 1px solid rgba(217,119,87,0.15); color: var(--accent); }
+
+/* Tags */
+.skill-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 8px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Example pills on domain summary cards */
+.example-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.example-pill {
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 2px 7px;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-muted);
+}
+
+/* Skill detail page */
+.skill-detail { padding-bottom: 80px; }
+.skill-detail h2 {
+  font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+  margin: 40px 0 16px; padding-top: 16px;
+  border-top: 1px solid var(--border); color: var(--text);
+}
+.skill-detail h3 { font-size: 1.05rem; font-weight: 600; margin: 20px 0 10px; }
+.skill-detail p, .skill-detail li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+.skill-detail ul, .skill-detail ol { margin-left: 20px; margin-bottom: 16px; }
+.skill-detail li { margin-bottom: 6px; }
+.skill-detail pre {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7;
+  color: var(--text); margin: 12px 0 20px;
+}
+.skill-detail code {
+  font-family: var(--font-mono); font-size: 0.85rem;
+  background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;
+}
+.skill-detail pre code { background: none; padding: 0; }
+
+/* Platform tabs */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.tab-btn {
+  padding: 10px 18px; font-size: 0.85rem; font-weight: 500;
+  font-family: var(--font-sans); background: none; border: none;
+  border-bottom: 2px solid transparent; color: var(--text-muted);
+  cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.tab-content pre {
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  margin-top: 0;
+}
+
+/* Quick Start prompt cards */
+.prompt-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding: 20px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+@media (max-width: 640px) { .prompt-cards { grid-template-columns: 1fr; } }
+.prompt-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.prompt-card-featured { border-color: var(--accent); border-width: 2px; }
+.prompt-card-header { display: flex; align-items: center; justify-content: space-between; }
+.prompt-card-header h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text); }
+.prompt-card-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; background: var(--bg-secondary);
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-featured { background: rgba(217,119,87,0.12); color: var(--accent-deep); }
+.prompt-card-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; flex-grow: 1; }
+.copy-btn-featured { background: var(--accent-deep); }
+.prompt-details { margin-top: 4px; }
+.prompt-details summary {
+  font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+  padding: 4px 0; user-select: none;
+}
+.prompt-details summary:hover { color: var(--accent); }
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
+  font-family: var(--font-sans);
+  background: var(--accent); color: var(--white);
+  border: none; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.copy-btn:hover { background: var(--accent-deep); }
+.copy-btn:active { transform: scale(0.97); }
+.copy-btn.copied { background: #2d8a4e; }
+.prompt-preview {
+  max-height: 200px; overflow-y: auto; padding: 16px 18px;
+  font-size: 0.8rem; line-height: 1.5; white-space: pre-wrap;
+  word-wrap: break-word; color: var(--text-muted);
+  background: var(--white); margin: 0; border: none;
+  font-family: var(--font-mono);
+}
+.prompt-hint {
+  padding: 10px 18px; font-size: 0.78rem; color: var(--text-muted);
+  background: var(--bg-secondary); margin: 0; border-top: 1px solid var(--border);
+}
+
+/* Tools list */
+.tool-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 10px;
+}
+.tool-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.tool-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+/* Related skills */
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+
+/* Agents grid */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 60px; }
+.agent-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.agent-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.agent-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.agent-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.agent-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Commands grid */
+.commands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+.command-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.command-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.command-card h3 {
+  font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600;
+  margin-bottom: 6px; color: var(--accent);
+}
+.command-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+.command-card .view-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.8rem; margin-top: 10px; color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: var(--radius); font-size: 0.875rem;
+  font-weight: 500; font-family: var(--font-sans);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+}
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: #2a2a28; color: var(--bg); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.btn-secondary:hover { background: var(--bg-secondary); color: var(--text); box-shadow: var(--shadow-sm); }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  margin-bottom: 20px; color: var(--text);
+}
+
+/* Footer */
+.footer {
+  padding: 36px 0; border-top: 1px solid var(--border); margin-top: 40px;
+  background: var(--bg);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-links {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.85rem; color: var(--text-muted);
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--accent); }
+.footer-sep { color: var(--border-strong); }
+.footer-credit { font-size: 0.85rem; color: var(--text-muted); }
+.footer-credit a { color: var(--text); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .commands-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 16px; }
+  .platform-tabs { overflow-x: auto; }
+  .tab-btn { padding: 8px 12px; font-size: 0.8rem; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .skills-grid, .agents-grid, .related-grid { grid-template-columns: 1fr; }
+  .filter-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <a href="https://borghei.github.io/Claude-Skills/" class="nav-logo">Claude Skills</a>
+    <div class="nav-links">
+      <a href="https://borghei.github.io/Claude-Skills/skills/" class="active">Skills</a>
+      <a href="https://borghei.github.io/Claude-Skills/agents/">Agents</a>
+      <a href="https://borghei.github.io/Claude-Skills/commands/">Commands</a>
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener" class="gh-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumbs container"><a href="https://borghei.github.io/Claude-Skills/">Home</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/">Skills</a><span class=sep>/</span><a href="https://borghei.github.io/Claude-Skills/skills/business-growth/">Business &amp; Growth</a><span class=sep>/</span><span>Page Cro</span></div>
+<main class="container">
+
+<article class="skill-detail">
+  <div class="page-header">
+    <h1 class="page-title">Page Cro</h1>
+    <p class="page-subtitle">Landing page and marketing page conversion rate optimization covering value proposition clarity, headline effectiveness, CTA hierarchy, visual flow, social proof placement, objection handling, and structured A/B testing.</p>
+    <div class="badge-bar"><span class="badge badge-domain">Business &amp; Growth</span> <span class="badge badge-version">v1.0.0</span> <span class="badge badge-tools"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> 3 tools</span></div>
+    <div class="skill-meta" style="margin-bottom:24px"><span class="tag">cro</span><span class="tag">landing-page</span><span class="tag">conversion-optimization</span><span class="tag">copywriting</span><span class="tag">ux</span></div>
+  </div>
+  <h2>How to Use</h2>
+<div class="platform-tabs">
+  <button class="tab-btn active" data-tab="quickstart">Quick Start</button>
+  <button class="tab-btn" data-tab="claude">Claude Code</button>
+  <button class="tab-btn" data-tab="codex">Codex</button>
+  <button class="tab-btn" data-tab="gemini">Gemini CLI</button>
+  <button class="tab-btn" data-tab="cursor">Cursor</button>
+  <button class="tab-btn" data-tab="manual">Manual</button>
+</div>
+<div class="tab-content active" id="tab-quickstart">
+  <div class="prompt-cards">
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <h3>Try in Chat</h3>
+        <span class="prompt-card-badge">Quick</span>
+      </div>
+      <p class="prompt-card-desc">Paste into any AI chat for instant expertise. Works in one conversation -- no setup needed.</p>
+      <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="You are an expert Page Cro (Business &amp; Growth domain).
+
+Landing page and marketing page conversion rate optimization covering value proposition clarity, headline effectiveness, CTA hierarchy, visual flow, social proof placement, objection handling, and structured A/B testing.
+
+Production-grade conversion rate optimization framework for marketing pages. Covers the 7-dimension analysis framework, page-type-specific playbooks, copy alternatives methodology, above-the-fold engineering, social proof hierarchy, objection handling patterns, and structured A/B test design. - [Ini
+
+## Your Key Capabilities
+- Required Context
+- Dimension 1: Value Proposition Clarity (Highest Impact)
+- Dimension 2: Headline Effectiveness
+- Dimension 3: CTA Hierarchy and Placement
+- Dimension 4: Visual Hierarchy and Scannability
+- Dimension 5: Social Proof and Trust
+
+## Frameworks &amp; Templates You Know
+- - [The 7-Dimension CRO Framework](#the-7-dimension-cro-framework)
+- - [A/B Test Framework](#ab-test-framework)
+- The 7-Dimension CRO Framework
+- | Content CTA | Offer a related resource (template, checklist, tool) |
+- Alternative Generation Framework
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/page-cro
+
+---
+Start by asking the user what they need help with.">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy Prompt</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview">You are an expert Page Cro (Business &amp; Growth domain).
+
+Landing page and marketing page conversion rate optimization covering value proposition clarity, headline effectiveness, CTA hierarchy, visual flow, social proof placement, objection handling, and structured A/B testing.
+
+Production-grade conversion rate optimization framework for marketing pages. Covers the 7-dimension analysis framework, page-type-specific playbooks, copy alternatives methodology, above-the-fold engineering, social proof hierarchy, objection handling patterns, and structured A/B test design. - [Ini
+
+## Your Key Capabilities
+- Required Context
+- Dimension 1: Value Proposition Clarity (Highest Impact)
+- Dimension 2: Headline Effectiveness
+- Dimension 3: CTA Hierarchy and Placement
+- Dimension 4: Visual Hierarchy and Scannability
+- Dimension 5: Social Proof and Trust
+
+## Frameworks &amp; Templates You Know
+- - [The 7-Dimension CRO Framework](#the-7-dimension-cro-framework)
+- - [A/B Test Framework](#ab-test-framework)
+- The 7-Dimension CRO Framework
+- | Content CTA | Offer a related resource (template, checklist, tool) |
+- Alternative Generation Framework
+
+## How to Help
+When the user asks for help in this domain:
+1. Ask clarifying questions to understand their context
+2. Apply the relevant framework or workflow from your expertise
+3. Provide actionable, specific output (not generic advice)
+4. Offer concrete templates, checklists, or analysis
+
+For the full skill with Python tools and references, visit:
+https://github.com/borghei/Claude-Skills/tree/main/page-cro
+
+---
+Start by asking the user what they need help with.</pre>
+      </details>
+    </div>
+    <div class="prompt-card prompt-card-featured">
+      <div class="prompt-card-header">
+        <h3>Add to My AI</h3>
+        <span class="prompt-card-badge badge-featured">Full Skill</span>
+      </div>
+      <p class="prompt-card-desc">Creates a permanent Claude Project or Custom GPT with the complete skill. The AI will guide you through setup step by step.</p>
+      <button class="copy-btn copy-btn-featured" onclick="copyPrompt(this)" data-prompt="# Create a &quot;Page Cro&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Page CRO
+
+Production-grade conversion rate optimization framework for marketing pages. Covers the 7-dimension analysis framework, page-type-specific playbooks, copy alternatives methodology, above-the-fold engineering, social proof hierarchy, objection handling patterns, and structured A/B test design.
+
+---
+
+## Table of Contents
+
+- [Initial Assessment](#initial-assessment)
+- [The 7-Dimension CRO Framework](#the-7-dimension-cro-framework)
+- [Above-the-Fold Engineering](#above-the-fold-engineering)
+- [Social Proof Hierarchy](#social-proof-hierarchy)
+- [Objection Handling Architecture](#objection-handling-architecture)
+- [Page-Type Playbooks](#page-type-playbooks)
+- [Copy Alternatives Methodology](#copy-alternatives-methodology)
+- [Traffic Source Matching](#traffic-source-matching)
+- [A/B Test Framework](#ab-test-framework)
+- [Metrics and Benchmarks](#metrics-and-benchmarks)
+- [Output Artifacts](#output-artifacts)
+- [Related Skills](#related-skills)
+
+---
+
+## Clarify First
+
+Before optimizing the page, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Page type** — homepage, landing page, pricing, feature, or blog (selects the page-type playbook and benchmark)
+- [ ] **Traffic source** — organic, paid, email, or social (drives message-match requirements)
+- [ ] **Primary conversion goal + current rate** — focuses the 7-dimension analysis and sets the baseline
+- [ ] **Behavioral data available** — heatmaps / session recordings (reveals friction that analytics alone cannot)
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the audit.
+
+## Initial Assessment
+
+### Required Context
+
+| Question | Why It Matters |
+|----------|---------------|
+| What page type? (homepage, landing page, pricing, feature, blog) | Determines the CRO framework to apply |
+| What is the primary conversion goal? | Focuses the analysis |
+| Where is traffic coming from? (organic, paid, email, social) | Drives message-match requirements |
+| What is the current conversion rate? | Establishes the baseline |
+| What does the post-click flow look like? | The page may convert fine but the next step fails |
+| Do you have heatmaps or session recordings? | Behavioral data reveals what analytics cannot |
+| What have you already tried? | Avoids re-testing failed experiments |
+
+---
+
+## The 7-Dimension CRO Framework
+
+Analyze every marketing page across these 7 dimensions, in order of typical impact.
+
+### Dimension 1: Value Proposition Clarity (Highest Impact)
+
+**The 5-second test:** Can a first-time visitor understand what this is, who it is for, and why they should care within 5 seconds?
+
+| Signal | Pass | Fail |
+|--------|------|------|
+| Primary benefit is stated explicitly | &quot;Save 10 hours/week on reporting&quot; | &quot;Next-generation analytics platform&quot; |
+| Written in customer language | &quot;See which campaigns drive revenue&quot; | &quot;Multi-touch attribution solution&quot; |
+| Differentiator is clear | &quot;The only CRM built for agencies&quot; | &quot;A better CRM&quot; |
+| Specificity | Includes numbers, timeframes, outcomes | Vague superlatives (&quot;powerful&quot;, &quot;innovative&quot;) |
+
+### Dimension 2: Headline Effectiveness
+
+**Headline scoring rubric:**
+
+| Criteria | Score 0 | Score 1 | Score 2 |
+|----------|---------|---------|---------|
+| Communicates core value | No | Partially | Clearly |
+| Specific (numbers, outcomes) | Generic | Somewhat specific | Very specific |
+| Addresses target audience | Generic | Implied | Explicit |
+| Matches traffic source | No connection | Loose match | Exact message match |
+| Emotional or logical hook | Neither | One | Both |
+
+**Total: 0-10. Score &lt; 6 = rewrite needed.**
+
+### Dimension 3: CTA Hierarchy and Placement
+
+| Check | Pass | Fail |
+|-------|------|------|
+| One clear primary CTA | Single, prominent action | Multiple competing CTAs |
+| CTA visible without scrolling | Above the fold | Below the fold only |
+| CTA copy communicates value | &quot;Start Free Trial&quot; | &quot;Submit&quot; |
+| CTA repeated at decision points | After benefits, after social proof, at bottom | Only at top or only at bottom |
+| Secondary CTA is clearly secondary | Smaller, different color, text link | Same visual weight as primary |
+
+### Dimension 4: Visual Hierarchy and Scannability
+
+| Check | Pass | Fail |
+|-------|------|------|
+| Most important element is most prominent | Headline + CTA dominate | Navigation or image dominates |
+| Scannable in 10 seconds | Key points visible via headings, bold, bullets | Wall of text |
+| Adequate white space | Breathing room between sections | Cluttered, dense layout |
+| Images support the message | Product screenshots, relevant imagery | Stock photos, decorative graphics |
+| F-pattern or Z-pattern layout | Content follows natural eye flow | Random placement |
+
+### Dimension 5: Social Proof and Trust
+
+| Check | Pass | Fail |
+|-------|------|------|
+| Customer logos visible | Recognizable logos above the fold | No logos or unknown companies |
+| Testimonials are specific | &quot;Increased revenue by 40%&quot; | &quot;Great product!&quot; |
+| Testimonials are attributed | Full name, title, company, photo | Anonymous or first-name-only |
+| Trust badges present (where relevant) | Security, compliance, awards | No trust indicators |
+| Numbers-based proof | &quot;10,000+ teams use...&quot; | No scale indicators |
+
+### Dimension 6: Objection Handling
+
+| Check | Pass | Fail |
+|-------|------|------|
+| Price/value objection addressed | ROI calculation, &quot;starts at $X&quot; | No pricing context |
+| &quot;Will this work for me?&quot; answered | Use cases, industry examples | Generic positioning only |
+| Risk reduction offered | Free trial, guarantee, no CC required | No risk reversal |
+| Implementation concern addressed | &quot;Set up in 5 minutes&quot; | No setup/complexity context |
+| FAQ section present | Addresses top 5 objections | No FAQ or irrelevant questions |
+
+### Dimension 7: Friction Points
+
+| Check | Pass | Fail |
+|-------|------|------|
+| Form is optimized | Minimal fields, clear labels | Too many fields, unclear purpose |
+| Next step is clear | Obvious path forward from every section | Confusing navigation or dead ends |
+| Mobile experience | Fully responsive, touch-friendly | Desktop-only design |
+| Load time | &lt; 3 seconds | &gt; 5 seconds |
+| No distracting elements | Clean, focused design | Popups, auto-play video, chat widget on load |
+
+---
+
+## Above-the-Fold Engineering
+
+The above-the-fold area is the most valuable real estate on any page. It determines whether visitors scroll or bounce.
+
+### Required Elements (Above the Fold)
+
+```
+┌──────────────────────────────────────────┐
+│  [Nav: Logo + 3-5 links + Primary CTA]  │
+├──────────────────────────────────────────┤
+│                                          │
+│  HEADLINE: Primary value proposition     │
+│                                          │
+│  SUBHEADLINE: Supporting detail          │
+│                                          │
+│  [PRIMARY CTA BUTTON]                   │
+│  [Secondary CTA: text link]             │
+│                                          │
+│  [Social proof: logos or stat]           │
+│                                          │
+│  [Hero image or product screenshot]      │
+│                                          │
+└──────────────────────────────────────────┘
+```
+
+### Above-the-Fold Rules
+
+- Headline is the largest text on the page
+- CTA button is the most visually prominent interactive element
+- Social proof appears above the fold (even just logo strip)
+- Hero image shows the product in use (not abstract graphics)
+- No auto-play video or animation that distracts from the CTA
+- Navigation is minimal (3-5 items max, CTA in nav)
+
+---
+
+## Social Proof Hierarchy
+
+Not all social proof is equal. Use the right type at the right location.
+
+### Social Proof Power Ranking
+
+| Rank | Type | Strength | Best Placement |
+|------|------|----------|----------------|
+| 1 | Case study with metrics | &quot;Company X increased revenue 40% in 3 months&quot; | Mid-page, after benefits section |
+| 2 | Named testimonial with photo | Full name, title, company, headshot | Near CTA, after objection handling |
+| 3 | Aggregate numbers | &quot;10,000+ teams&quot; or &quot;4.8/5 on G2&quot; | Above the fold, near headline |
+| 4 | Customer logos | Recognizable brand logos | Above the fold, logo strip |
+| 5 | Awards/badges | &quot;G2 Leader 2026&quot;, &quot;SOC2 Certified&quot; | Footer or near CTA |
+| 6 | Generic testimonial | &quot;Great product!&quot; -- no specifics | Do not use (no credibility) |
+
+### Placement Rules
+
+- Logo strip: Above the fold, below the CTA
+- Testimonials: After the section that makes the claim they validate
+- Case studies: Mid-page, as their own section
+- Numbers: Inline with headline or subheadline
+- Trust badges: Near the primary CTA and near the form
+
+---
+
+## Objection Handling Architecture
+
+### The 5 Universal Objections
+
+Every product page must address these five objections. If the page does not, conversions leak.
+
+| Objection | How to Address | Page Element |
+|-----------|---------------|--------------|
+| &quot;Is this worth the money?&quot; | ROI calculator, pricing comparison, &quot;saves X hours&quot; | Benefits section + pricing context |
+| &quot;Will this work for my situation?&quot; | Industry examples, use case sections, persona targeting | &quot;Who uses this&quot; section |
+| &quot;Is this hard to set up?&quot; | &quot;Set up in 5 minutes&quot;, onboarding preview, integration logos | Feature section or FAQ |
+| &quot;What if it doesn&#x27;t work?&quot; | Free trial, money-back guarantee, no CC required | Near CTA |
+| &quot;Why this over alternatives?&quot; | Comparison table, differentiators, switcher testimonials | Mid-page or FAQ |
+
+### FAQ Design for Objection Handling
+
+The FAQ section should be the last defense before conversion. Structure it to address the 5 objections:
+
+1. &quot;How long does setup take?&quot; (complexity objection)
+2. &quot;Can I cancel anytime?&quot; (commitment objection)
+3. &quot;What&#x27;s included in the free trial?&quot; (value objection)
+4. &quot;Do you integrate with [popular tool]?&quot; (compatibility objection)
+5. &quot;How is this different from [competitor]?&quot; (alternatives objection)
+
+---
+
+## Page-Type Playbooks
+
+### Homepage
+
+| Element | Best Practice |
+|---------|---------------|
+| Audience | Cold visitors who may not know you |
+| Headline | Position the company, not a single feature |
+| CTA split | Primary: &quot;Start Free Trial&quot; / Secondary: &quot;See Demo&quot; or &quot;Learn More&quot; |
+| Content | Overview of benefits, social proof, feature highlights, use cases |
+| Navigation | Full site navigation (unlike landing pages) |
+
+### Landing Page (Paid Traffic)
+
+| Element | Best Practice |
+|---------|---------------|
+| Navigation | Remove or minimize (no escape routes) |
+| Headline | Message-match with the ad that drove the click |
+| CTA | Single action, repeated 2-3 times down the page |
+| Content | Complete argument on one page: problem &gt; solution &gt; proof &gt; CTA |
+| Social proof | Directly relevant to the ad audience |
+
+### Pricing Page
+
+| Element | Best Practice |
+|---------|---------------|
+| Plan presentation | Good-Better-Best with recommended plan highlighted |
+| Toggle | Annual/Monthly with savings percentage shown |
+| Feature comparison | Full table below the fold |
+| FAQ | &quot;Which plan is right for me?&quot; as first question |
+| CTA | Per-plan CTA with plan-specific copy |
+| Social proof | Logos and testimonials relevant to each tier |
+
+### Feature Page
+
+| Element | Best Practice |
+|---------|---------------|
+| Headline | Benefit of the feature, not the feature name |
+| Content | Use cases &gt; technical capabilities |
+| Demo | Screenshot, GIF, or interactive demo |
+| CTA | &quot;Try this feature&quot; or &quot;Start Free Trial&quot; |
+| Internal links | Link to related features and pricing |
+
+### Blog Post
+
+| Element | Best Practice |
+|---------|---------------|
+| CTA type | Contextual inline CTA matching the content topic |
+| Placement | After introduction, at natural breaks, at end |
+| CTA style | Inline banner or text link, not aggressive popup |
+| Content CTA | Offer a related resource (template, checklist, tool) |
+
+---
+
+## Copy Alternatives Methodology
+
+When recommending copy changes, always provide 2-3 alternatives with reasoning.
+
+### Alternative Generation Framework
+
+For each key element (headline, subheadline, CTA), generate variants across these axes:
+
+| Axis | Variant A | Variant B | Variant C |
+|------|-----------|-----------|-----------|
+| Benefit focus | Outcome-focused | Problem-focused | Feature-focused |
+| Specificity | Numbers and data | Customer quote | Use case scenario |
+| Tone | Direct and assertive | Conversational | Aspirational |
+
+### Example
+
+**Current headline:** &quot;Marketing Automation Software&quot;
+
+| Variant | Copy | Rationale |
+|---------|------|-----------|
+| A (outcome) | &quot;Generate 3X More Qualified Leads Without Adding Headcount&quot; | Specific outcome + pain point |
+| B (problem) | &quot;Stop Losing Leads Because Your Team Can&#x27;t Follow Up Fast Enough&quot; | Addresses the pain directly |
+| C (social proof) | &quot;How 2,000+ Marketing Teams Hit Their Pipeline Targets&quot; | Authority + specificity |
+
+**Recommendation:** Test A first (most specific), B if A does not outperform current (different psychological angle).
+
+---
+
+## Traffic Source Matching
+
+Different traffic sources require different page optimization strategies.
+
+| Source | Visitor State | Page Must Do |
+|--------|-------------|-------------|
+| Paid search (brand) | Knows you, high intent | Fast path to action, minimal education |
+| Paid search (non-brand) | Problem-aware, solution-seeking | Prove you solve their specific problem |
+| Paid social | Interrupted, low intent | Hook attention, educate, build interest |
+| Organic search | Research-mode | Comprehensive content, gradual conversion |
+| Email | Already engaged | Deliver on the email promise, reduce friction |
+| Referral | Pre-sold by referrer | Validate referrer&#x27;s recommendation, fast CTA |
+
+### Message Match Audit
+
+For paid traffic: Compare the ad copy with the landing page headline. They must share:
+- The same language/terminology
+- The same promise
+- The same offer
+- Visual consistency (if display ad)
+
+**Mismatch = wasted ad spend.** Users who click an ad about &quot;free SEO audit&quot; and land on a generic homepage will bounce.
+
+---
+
+## A/B Test Framework
+
+### Test Priority Matrix
+
+| Priority | What to Test | Expected Impact |
+|----------|-------------|-----------------|
+| 1 | Headline copy | 10-30% conversion lift |
+| 2 | CTA copy and color | 5-20% conversion lift |
+| 3 | Social proof placement | 5-15% conversion lift |
+| 4 | Above-the-fold layout | 5-20% conversion lift |
+| 5 | Form field reduction | 5-10% completion lift |
+| 6 | Hero image vs video | 2-10% lift (variable) |
+
+### Test Design Rules
+
+- One variable per test (unless running a multivariate test with sufficient traffic)
+- Minimum 200 conversions per variant before declaring a winner
+- Run for full business cycles (minimum 2 weeks)
+- Track downstream metrics (not just page conversion, but lead quality / revenue)
+
+### Fix vs Test Decision
+
+| Situation | Action |
+|-----------|--------|
+| Obvious UX problem (broken form, missing CTA) | Fix immediately, no test needed |
+| Missing social proof | Add it, no test needed |
+| Headline copy alternative | A/B test |
+| Layout change | A/B test |
+| Removing page elements | A/B test |
+| Adding a new section | A/B test |
+
+---
+
+## Metrics and Benchmarks
+
+### Conversion Rate Benchmarks
+
+| Page Type | Below Average | Average | Good | Excellent |
+|-----------|-------------|---------|------|-----------|
+| SaaS homepage | &lt; 2% | 2-4% | 4-7% | &gt; 7% |
+| Landing page (paid) | &lt; 5% | 5-10% | 10-20% | &gt; 20% |
+| Pricing page | &lt; 3% | 3-5% | 5-10% | &gt; 10% |
+| Blog post (to email) | &lt; 1% | 1-3% | 3-5% | &gt; 5% |
+| Feature page | &lt; 2% | 2-5% | 5-8% | &gt; 8% |
+
+### Key Metrics
+
+| Metric | What It Tells You |
+|--------|------------------|
+| Bounce rate | Is the page meeting visitor expectations? |
+| Scroll depth | How much of the page are visitors seeing? |
+| Time on page | Are visitors reading or immediately leaving? |
+| CTA click rate | Is the CTA compelling and visible? |
+| Form start rate | Are visitors beginning the conversion process? |
+| Form completion rate | Are they finishing it? |
+
+---
+
+## Output Artifacts
+
+| Artifact | Format | Description |
+|----------|--------|-------------|
+| CRO Audit Report | 7-dimension analysis | Per-dimension assessment with severity ratings |
+| Quick Wins List | Bullet list (max 5) | Implementable today with expected impact |
+| High-Impact Recommendations | Structured list | Each with rationale, effort estimate, and success metric |
+| Copy Alternatives | Side-by-side table | 2-3 variants per key element with reasoning |
+| A/B Test Plan | Prioritized table | Hypothesis, variant, success metric, priority |
+| Traffic Source Matching Audit | Source x page element table | Message match assessment per traffic source |
+
+---
+
+## Related Skills
+
+- **form-cro** -- Use when the form on the page is the specific bottleneck (field optimization, validation, mobile form UX).
+- **signup-flow-cro** -- Use when users convert on the page but drop off during the signup/registration process.
+- **popup-cro** -- Use when considering a popup as an additional conversion layer on the page.
+- **onboarding-cro** -- Use when post-conversion activation is the real problem and the page itself converts adequately.
+- **pricing-strategy** -- Use when the pricing page needs structural redesign (tier structure, value metric), not just CRO tweaks.
+
+---
+
+## Tool Reference
+
+### 1. page_cro_scorer.py
+
+**Purpose:** Score a marketing page across the 7 CRO dimensions and generate an audit report with severity ratings.
+
+```bash
+python scripts/page_cro_scorer.py page_audit.json
+python scripts/page_cro_scorer.py page_audit.json --json
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `page_audit.json` | Yes | JSON file with page elements and dimension checks |
+| `--json` | No | Output results as JSON |
+
+### 2. headline_scorer.py
+
+**Purpose:** Score headline effectiveness against the 5-criteria rubric and generate copy alternatives.
+
+```bash
+python scripts/headline_scorer.py --headline &quot;Marketing Automation Software&quot; --audience &quot;B2B marketers&quot; --traffic-source paid-search
+python scripts/headline_scorer.py --headline &quot;Marketing Automation Software&quot; --json
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--headline` | Yes | The headline text to score |
+| `--audience` | No | Target audience description (default: &quot;general&quot;) |
+| `--traffic-source` | No | Primary traffic source: organic, paid-search, paid-social, email, referral (default: organic) |
+| `--json` | No | Output results as JSON |
+
+### 3. conversion_benchmark_calculator.py
+
+**Purpose:** Calculate conversion rate benchmarks for a given page type, traffic source, and industry, and assess current performance.
+
+```bash
+python scripts/conversion_benchmark_calculator.py --page-type landing-page --traffic paid --current-rate 8.5
+python scripts/conversion_benchmark_calculator.py --page-type homepage --traffic organic --current-rate 3.0 --json
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--page-type` | Yes | Page type: homepage, landing-page, pricing, feature, blog |
+| `--traffic` | Yes | Traffic source: organic, paid, email, social, referral |
+| `--current-rate` | Yes | Current conversion rate as percentage |
+| `--industry` | No | Industry for benchmarks: saas, ecommerce, fintech, healthcare, education (default: saas) |
+| `--json` | No | Output results as JSON |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Solution |
+|---------|-------------|----------|
+| High bounce rate (&gt;70%) on landing page | Message mismatch with traffic source or poor above-the-fold | Audit message match: compare ad copy with landing page headline; ensure value proposition is visible in first 5 seconds |
+| Page converts on desktop but not mobile | Mobile UX not optimized | Check touch targets (44px+), form field count on mobile, CTA visibility without scrolling; score with page_cro_scorer.py |
+| CTA click rate below 2% | CTA is generic, below the fold, or visually weak | Replace &quot;Submit&quot; with value-specific copy; ensure CTA is visible above fold and repeated after key sections |
+| High scroll depth but low conversion | Visitors read but are not convinced to act | Add social proof near CTA positions; address objections in FAQ; add risk reversal (free trial, no CC) |
+| A/B test shows no significant winner after 4 weeks | Change too small to detect or insufficient traffic | Use ab_test_calculator.py from form-cro to validate sample size; test bigger changes (headline rewrite vs word swap) |
+| Paid traffic converts worse than organic | Landing page not tailored to paid traffic intent | Create dedicated landing pages for paid campaigns with message match; remove navigation on paid landing pages |
+| Social proof section is ignored | Generic testimonials or poor placement | Use specific, attributed testimonials with metrics; place after the section that makes the claim they validate |
+
+---
+
+## Success Criteria
+
+- Page CRO score of 70+ across the 7-dimension framework (scored by page_cro_scorer.py)
+- Headline scores 7+ on the 10-point rubric (scored by headline_scorer.py)
+- Conversion rate at or above industry benchmark for page type (verified by conversion_benchmark_calculator.py)
+- Above-the-fold contains: headline, CTA, and at least one social proof element
+- Message match verified for all paid traffic campaigns (ad copy matches landing page headline)
+- Mobile conversion rate within 20% of desktop rate
+- Every page addresses at least 3 of the 5 universal objections
+
+---
+
+## Scope &amp; Limitations
+
+- **In scope:** Page-level conversion optimization, headline effectiveness, CTA hierarchy, social proof placement, objection handling, traffic source matching, A/B test prioritization
+- **Out of scope:** Form optimization (use form-cro), signup flow optimization (use signup-flow-cro), popup optimization (use popup-cro), pricing structure changes (use pricing-strategy)
+- **Page speed:** This skill covers CRO elements, not technical performance; pages loading &gt;3 seconds need technical optimization first
+- **Traffic minimum:** A/B testing recommendations require 200+ conversions per variant; low-traffic pages should implement best practices without testing
+- **Qualitative input:** Heatmaps and session recordings provide critical behavioral data that analytics alone cannot reveal; consider investing in these tools
+
+---
+
+## Integration Points
+
+- **form-cro** -- When the form on the page is the bottleneck (field optimization, validation UX, mobile form experience)
+- **signup-flow-cro** -- When users convert on the page but drop off during the signup/registration process
+- **popup-cro** -- When considering a popup as an additional conversion layer on top of the page
+- **onboarding-cro** -- When post-conversion activation is the real problem and the page itself converts adequately
+- **pricing-strategy** -- When the pricing page needs structural redesign (tier structure, value metric), not just CRO tweaks
+- **competitive-teardown** -- When comparison pages need competitive data to build credible content
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Page Cro&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Page Cro in the Business &amp; Growth domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Page Cro&quot;**
+   - Description: &quot;Landing page and marketing page conversion rate optimization covering value proposition clarity, headline effectiveness, CTA hierarchy, visual flow, social proof placement, objection handling, and structured A/B testing.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/business-growth/page-cro/SKILL.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> <span>Copy &amp; Create Skill</span>
+      </button>
+      <details class="prompt-details">
+        <summary>Preview prompt</summary>
+        <pre class="prompt-preview"># Create a &quot;Page Cro&quot; AI Skill
+
+I want you to help me set up a reusable AI skill that I can use in future conversations. Read the complete skill definition below, then help me install it.
+
+## Complete Skill Definition
+
+# Page CRO
+
+Production-grade conversion rate optimization framework for marketing pages. Covers the 7-dimension analysis framework, page-type-specific playbooks, copy alternatives methodology, above-the-fold engineering, social proof hierarchy, objection handling patterns, and structured A/B test design.
+
+---
+
+## Table of Contents
+
+- [Initial Assessment](#initial-assessment)
+- [The 7-Dimension CRO Framework](#the-7-dimension-cro-framework)
+- [Above-the-Fold Engineering](#above-the-fold-engineering)
+- [Social Proof Hierarchy](#social-proof-hierarchy)
+- [Objection Handling Architecture](#objection-handling-architecture)
+- [Page-Type Playbooks](#page-type-playbooks)
+- [Copy Alternatives Methodology](#copy-alternatives-methodology)
+- [Traffic Source Matching](#traffic-source-matching)
+- [A/B Test Framework](#ab-test-framework)
+- [Metrics and Benchmarks](#metrics-and-benchmarks)
+- [Output Artifacts](#output-artifacts)
+- [Related Skills](#related-skills)
+
+---
+
+## Clarify First
+
+Before optimizing the page, confirm these inputs. If any is unknown or vague, ASK — do not assume:
+
+- [ ] **Page type** — homepage, landing page, pricing, feature, or blog (selects the page-type playbook and benchmark)
+- [ ] **Traffic source** — organic, paid, email, or social (drives message-match requirements)
+- [ ] **Primary conversion goal + current rate** — focuses the 7-dimension analysis and sets the baseline
+- [ ] **Behavioral data available** — heatmaps / session recordings (reveals friction that analytics alone cannot)
+
+Stop rule: ask only the 2-3 that most change the output. If the user says &quot;just draft it,&quot; proceed and list your assumptions at the top of the audit.
+
+## Initial Assessment
+
+### Required Context
+
+| Question | Why It Matters |
+|----------|---------------|
+| What page type? (homepage, landing page, pricing, feature, blog) | Determines the CRO framework to apply |
+| What is the primary conversion goal? | Focuses the analysis |
+| Where is traffic coming from? (organic, paid, email, social) | Drives message-match requirements |
+| What is the current conversion rate? | Establishes the baseline |
+| What does the post-click flow look like? | The page may convert fine but the next step fails |
+| Do you have heatmaps or session recordings? | Behavioral data reveals what analytics cannot |
+| What have you already tried? | Avoids re-testing failed experiments |
+
+---
+
+## The 7-Dimension CRO Framework
+
+Analyze every marketing page across these 7 dimensions, in order of typical impact.
+
+### Dimension 1: Value Proposition Clarity (Highest Impact)
+
+**The 5-second test:** Can a first-time visitor understand what this is, who it is for, and why they should care within 5 seconds?
+
+| Signal | Pass | Fail |
+|--------|------|------|
+| Primary benefit is stated explicitly | &quot;Save 10 hours/week on reporting&quot; | &quot;Next-generation analytics platform&quot; |
+| Written in customer language | &quot;See which campaigns drive revenue&quot; | &quot;Multi-touch attribution solution&quot; |
+| Differentiator is clear | &quot;The only CRM built for agencies&quot; | &quot;A better CRM&quot; |
+| Specificity | Includes numbers, timeframes, outcomes | Vague superlatives (&quot;powerful&quot;, &quot;innovative&quot;) |
+
+### Dimension 2: Headline Effectiveness
+
+**Headline scoring rubric:**
+
+| Criteria | Score 0 | Score 1 | Score 2 |
+|----------|---------|---------|---------|
+| Communicates core value | No | Partially | Clearly |
+| Specific (numbers, outcomes) | Generic | Somewhat specific | Very specific |
+| Addresses target audience | Generic | Implied | Explicit |
+| Matches traffic source | No connection | Loose match | Exact message match |
+| Emotional or logical hook | Neither | One | Both |
+
+**Total: 0-10. Score &lt; 6 = rewrite needed.**
+
+### Dimension 3: CTA Hierarchy and Placement
+
+| Check | Pass | Fail |
+|-------|------|------|
+| One clear primary CTA | Single, prominent action | Multiple competing CTAs |
+| CTA visible without scrolling | Above the fold | Below the fold only |
+| CTA copy communicates value | &quot;Start Free Trial&quot; | &quot;Submit&quot; |
+| CTA repeated at decision points | After benefits, after social proof, at bottom | Only at top or only at bottom |
+| Secondary CTA is clearly secondary | Smaller, different color, text link | Same visual weight as primary |
+
+### Dimension 4: Visual Hierarchy and Scannability
+
+| Check | Pass | Fail |
+|-------|------|------|
+| Most important element is most prominent | Headline + CTA dominate | Navigation or image dominates |
+| Scannable in 10 seconds | Key points visible via headings, bold, bullets | Wall of text |
+| Adequate white space | Breathing room between sections | Cluttered, dense layout |
+| Images support the message | Product screenshots, relevant imagery | Stock photos, decorative graphics |
+| F-pattern or Z-pattern layout | Content follows natural eye flow | Random placement |
+
+### Dimension 5: Social Proof and Trust
+
+| Check | Pass | Fail |
+|-------|------|------|
+| Customer logos visible | Recognizable logos above the fold | No logos or unknown companies |
+| Testimonials are specific | &quot;Increased revenue by 40%&quot; | &quot;Great product!&quot; |
+| Testimonials are attributed | Full name, title, company, photo | Anonymous or first-name-only |
+| Trust badges present (where relevant) | Security, compliance, awards | No trust indicators |
+| Numbers-based proof | &quot;10,000+ teams use...&quot; | No scale indicators |
+
+### Dimension 6: Objection Handling
+
+| Check | Pass | Fail |
+|-------|------|------|
+| Price/value objection addressed | ROI calculation, &quot;starts at $X&quot; | No pricing context |
+| &quot;Will this work for me?&quot; answered | Use cases, industry examples | Generic positioning only |
+| Risk reduction offered | Free trial, guarantee, no CC required | No risk reversal |
+| Implementation concern addressed | &quot;Set up in 5 minutes&quot; | No setup/complexity context |
+| FAQ section present | Addresses top 5 objections | No FAQ or irrelevant questions |
+
+### Dimension 7: Friction Points
+
+| Check | Pass | Fail |
+|-------|------|------|
+| Form is optimized | Minimal fields, clear labels | Too many fields, unclear purpose |
+| Next step is clear | Obvious path forward from every section | Confusing navigation or dead ends |
+| Mobile experience | Fully responsive, touch-friendly | Desktop-only design |
+| Load time | &lt; 3 seconds | &gt; 5 seconds |
+| No distracting elements | Clean, focused design | Popups, auto-play video, chat widget on load |
+
+---
+
+## Above-the-Fold Engineering
+
+The above-the-fold area is the most valuable real estate on any page. It determines whether visitors scroll or bounce.
+
+### Required Elements (Above the Fold)
+
+```
+┌──────────────────────────────────────────┐
+│  [Nav: Logo + 3-5 links + Primary CTA]  │
+├──────────────────────────────────────────┤
+│                                          │
+│  HEADLINE: Primary value proposition     │
+│                                          │
+│  SUBHEADLINE: Supporting detail          │
+│                                          │
+│  [PRIMARY CTA BUTTON]                   │
+│  [Secondary CTA: text link]             │
+│                                          │
+│  [Social proof: logos or stat]           │
+│                                          │
+│  [Hero image or product screenshot]      │
+│                                          │
+└──────────────────────────────────────────┘
+```
+
+### Above-the-Fold Rules
+
+- Headline is the largest text on the page
+- CTA button is the most visually prominent interactive element
+- Social proof appears above the fold (even just logo strip)
+- Hero image shows the product in use (not abstract graphics)
+- No auto-play video or animation that distracts from the CTA
+- Navigation is minimal (3-5 items max, CTA in nav)
+
+---
+
+## Social Proof Hierarchy
+
+Not all social proof is equal. Use the right type at the right location.
+
+### Social Proof Power Ranking
+
+| Rank | Type | Strength | Best Placement |
+|------|------|----------|----------------|
+| 1 | Case study with metrics | &quot;Company X increased revenue 40% in 3 months&quot; | Mid-page, after benefits section |
+| 2 | Named testimonial with photo | Full name, title, company, headshot | Near CTA, after objection handling |
+| 3 | Aggregate numbers | &quot;10,000+ teams&quot; or &quot;4.8/5 on G2&quot; | Above the fold, near headline |
+| 4 | Customer logos | Recognizable brand logos | Above the fold, logo strip |
+| 5 | Awards/badges | &quot;G2 Leader 2026&quot;, &quot;SOC2 Certified&quot; | Footer or near CTA |
+| 6 | Generic testimonial | &quot;Great product!&quot; -- no specifics | Do not use (no credibility) |
+
+### Placement Rules
+
+- Logo strip: Above the fold, below the CTA
+- Testimonials: After the section that makes the claim they validate
+- Case studies: Mid-page, as their own section
+- Numbers: Inline with headline or subheadline
+- Trust badges: Near the primary CTA and near the form
+
+---
+
+## Objection Handling Architecture
+
+### The 5 Universal Objections
+
+Every product page must address these five objections. If the page does not, conversions leak.
+
+| Objection | How to Address | Page Element |
+|-----------|---------------|--------------|
+| &quot;Is this worth the money?&quot; | ROI calculator, pricing comparison, &quot;saves X hours&quot; | Benefits section + pricing context |
+| &quot;Will this work for my situation?&quot; | Industry examples, use case sections, persona targeting | &quot;Who uses this&quot; section |
+| &quot;Is this hard to set up?&quot; | &quot;Set up in 5 minutes&quot;, onboarding preview, integration logos | Feature section or FAQ |
+| &quot;What if it doesn&#x27;t work?&quot; | Free trial, money-back guarantee, no CC required | Near CTA |
+| &quot;Why this over alternatives?&quot; | Comparison table, differentiators, switcher testimonials | Mid-page or FAQ |
+
+### FAQ Design for Objection Handling
+
+The FAQ section should be the last defense before conversion. Structure it to address the 5 objections:
+
+1. &quot;How long does setup take?&quot; (complexity objection)
+2. &quot;Can I cancel anytime?&quot; (commitment objection)
+3. &quot;What&#x27;s included in the free trial?&quot; (value objection)
+4. &quot;Do you integrate with [popular tool]?&quot; (compatibility objection)
+5. &quot;How is this different from [competitor]?&quot; (alternatives objection)
+
+---
+
+## Page-Type Playbooks
+
+### Homepage
+
+| Element | Best Practice |
+|---------|---------------|
+| Audience | Cold visitors who may not know you |
+| Headline | Position the company, not a single feature |
+| CTA split | Primary: &quot;Start Free Trial&quot; / Secondary: &quot;See Demo&quot; or &quot;Learn More&quot; |
+| Content | Overview of benefits, social proof, feature highlights, use cases |
+| Navigation | Full site navigation (unlike landing pages) |
+
+### Landing Page (Paid Traffic)
+
+| Element | Best Practice |
+|---------|---------------|
+| Navigation | Remove or minimize (no escape routes) |
+| Headline | Message-match with the ad that drove the click |
+| CTA | Single action, repeated 2-3 times down the page |
+| Content | Complete argument on one page: problem &gt; solution &gt; proof &gt; CTA |
+| Social proof | Directly relevant to the ad audience |
+
+### Pricing Page
+
+| Element | Best Practice |
+|---------|---------------|
+| Plan presentation | Good-Better-Best with recommended plan highlighted |
+| Toggle | Annual/Monthly with savings percentage shown |
+| Feature comparison | Full table below the fold |
+| FAQ | &quot;Which plan is right for me?&quot; as first question |
+| CTA | Per-plan CTA with plan-specific copy |
+| Social proof | Logos and testimonials relevant to each tier |
+
+### Feature Page
+
+| Element | Best Practice |
+|---------|---------------|
+| Headline | Benefit of the feature, not the feature name |
+| Content | Use cases &gt; technical capabilities |
+| Demo | Screenshot, GIF, or interactive demo |
+| CTA | &quot;Try this feature&quot; or &quot;Start Free Trial&quot; |
+| Internal links | Link to related features and pricing |
+
+### Blog Post
+
+| Element | Best Practice |
+|---------|---------------|
+| CTA type | Contextual inline CTA matching the content topic |
+| Placement | After introduction, at natural breaks, at end |
+| CTA style | Inline banner or text link, not aggressive popup |
+| Content CTA | Offer a related resource (template, checklist, tool) |
+
+---
+
+## Copy Alternatives Methodology
+
+When recommending copy changes, always provide 2-3 alternatives with reasoning.
+
+### Alternative Generation Framework
+
+For each key element (headline, subheadline, CTA), generate variants across these axes:
+
+| Axis | Variant A | Variant B | Variant C |
+|------|-----------|-----------|-----------|
+| Benefit focus | Outcome-focused | Problem-focused | Feature-focused |
+| Specificity | Numbers and data | Customer quote | Use case scenario |
+| Tone | Direct and assertive | Conversational | Aspirational |
+
+### Example
+
+**Current headline:** &quot;Marketing Automation Software&quot;
+
+| Variant | Copy | Rationale |
+|---------|------|-----------|
+| A (outcome) | &quot;Generate 3X More Qualified Leads Without Adding Headcount&quot; | Specific outcome + pain point |
+| B (problem) | &quot;Stop Losing Leads Because Your Team Can&#x27;t Follow Up Fast Enough&quot; | Addresses the pain directly |
+| C (social proof) | &quot;How 2,000+ Marketing Teams Hit Their Pipeline Targets&quot; | Authority + specificity |
+
+**Recommendation:** Test A first (most specific), B if A does not outperform current (different psychological angle).
+
+---
+
+## Traffic Source Matching
+
+Different traffic sources require different page optimization strategies.
+
+| Source | Visitor State | Page Must Do |
+|--------|-------------|-------------|
+| Paid search (brand) | Knows you, high intent | Fast path to action, minimal education |
+| Paid search (non-brand) | Problem-aware, solution-seeking | Prove you solve their specific problem |
+| Paid social | Interrupted, low intent | Hook attention, educate, build interest |
+| Organic search | Research-mode | Comprehensive content, gradual conversion |
+| Email | Already engaged | Deliver on the email promise, reduce friction |
+| Referral | Pre-sold by referrer | Validate referrer&#x27;s recommendation, fast CTA |
+
+### Message Match Audit
+
+For paid traffic: Compare the ad copy with the landing page headline. They must share:
+- The same language/terminology
+- The same promise
+- The same offer
+- Visual consistency (if display ad)
+
+**Mismatch = wasted ad spend.** Users who click an ad about &quot;free SEO audit&quot; and land on a generic homepage will bounce.
+
+---
+
+## A/B Test Framework
+
+### Test Priority Matrix
+
+| Priority | What to Test | Expected Impact |
+|----------|-------------|-----------------|
+| 1 | Headline copy | 10-30% conversion lift |
+| 2 | CTA copy and color | 5-20% conversion lift |
+| 3 | Social proof placement | 5-15% conversion lift |
+| 4 | Above-the-fold layout | 5-20% conversion lift |
+| 5 | Form field reduction | 5-10% completion lift |
+| 6 | Hero image vs video | 2-10% lift (variable) |
+
+### Test Design Rules
+
+- One variable per test (unless running a multivariate test with sufficient traffic)
+- Minimum 200 conversions per variant before declaring a winner
+- Run for full business cycles (minimum 2 weeks)
+- Track downstream metrics (not just page conversion, but lead quality / revenue)
+
+### Fix vs Test Decision
+
+| Situation | Action |
+|-----------|--------|
+| Obvious UX problem (broken form, missing CTA) | Fix immediately, no test needed |
+| Missing social proof | Add it, no test needed |
+| Headline copy alternative | A/B test |
+| Layout change | A/B test |
+| Removing page elements | A/B test |
+| Adding a new section | A/B test |
+
+---
+
+## Metrics and Benchmarks
+
+### Conversion Rate Benchmarks
+
+| Page Type | Below Average | Average | Good | Excellent |
+|-----------|-------------|---------|------|-----------|
+| SaaS homepage | &lt; 2% | 2-4% | 4-7% | &gt; 7% |
+| Landing page (paid) | &lt; 5% | 5-10% | 10-20% | &gt; 20% |
+| Pricing page | &lt; 3% | 3-5% | 5-10% | &gt; 10% |
+| Blog post (to email) | &lt; 1% | 1-3% | 3-5% | &gt; 5% |
+| Feature page | &lt; 2% | 2-5% | 5-8% | &gt; 8% |
+
+### Key Metrics
+
+| Metric | What It Tells You |
+|--------|------------------|
+| Bounce rate | Is the page meeting visitor expectations? |
+| Scroll depth | How much of the page are visitors seeing? |
+| Time on page | Are visitors reading or immediately leaving? |
+| CTA click rate | Is the CTA compelling and visible? |
+| Form start rate | Are visitors beginning the conversion process? |
+| Form completion rate | Are they finishing it? |
+
+---
+
+## Output Artifacts
+
+| Artifact | Format | Description |
+|----------|--------|-------------|
+| CRO Audit Report | 7-dimension analysis | Per-dimension assessment with severity ratings |
+| Quick Wins List | Bullet list (max 5) | Implementable today with expected impact |
+| High-Impact Recommendations | Structured list | Each with rationale, effort estimate, and success metric |
+| Copy Alternatives | Side-by-side table | 2-3 variants per key element with reasoning |
+| A/B Test Plan | Prioritized table | Hypothesis, variant, success metric, priority |
+| Traffic Source Matching Audit | Source x page element table | Message match assessment per traffic source |
+
+---
+
+## Related Skills
+
+- **form-cro** -- Use when the form on the page is the specific bottleneck (field optimization, validation, mobile form UX).
+- **signup-flow-cro** -- Use when users convert on the page but drop off during the signup/registration process.
+- **popup-cro** -- Use when considering a popup as an additional conversion layer on the page.
+- **onboarding-cro** -- Use when post-conversion activation is the real problem and the page itself converts adequately.
+- **pricing-strategy** -- Use when the pricing page needs structural redesign (tier structure, value metric), not just CRO tweaks.
+
+---
+
+## Tool Reference
+
+### 1. page_cro_scorer.py
+
+**Purpose:** Score a marketing page across the 7 CRO dimensions and generate an audit report with severity ratings.
+
+```bash
+python scripts/page_cro_scorer.py page_audit.json
+python scripts/page_cro_scorer.py page_audit.json --json
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `page_audit.json` | Yes | JSON file with page elements and dimension checks |
+| `--json` | No | Output results as JSON |
+
+### 2. headline_scorer.py
+
+**Purpose:** Score headline effectiveness against the 5-criteria rubric and generate copy alternatives.
+
+```bash
+python scripts/headline_scorer.py --headline &quot;Marketing Automation Software&quot; --audience &quot;B2B marketers&quot; --traffic-source paid-search
+python scripts/headline_scorer.py --headline &quot;Marketing Automation Software&quot; --json
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--headline` | Yes | The headline text to score |
+| `--audience` | No | Target audience description (default: &quot;general&quot;) |
+| `--traffic-source` | No | Primary traffic source: organic, paid-search, paid-social, email, referral (default: organic) |
+| `--json` | No | Output results as JSON |
+
+### 3. conversion_benchmark_calculator.py
+
+**Purpose:** Calculate conversion rate benchmarks for a given page type, traffic source, and industry, and assess current performance.
+
+```bash
+python scripts/conversion_benchmark_calculator.py --page-type landing-page --traffic paid --current-rate 8.5
+python scripts/conversion_benchmark_calculator.py --page-type homepage --traffic organic --current-rate 3.0 --json
+```
+
+| Flag | Required | Description |
+|------|----------|-------------|
+| `--page-type` | Yes | Page type: homepage, landing-page, pricing, feature, blog |
+| `--traffic` | Yes | Traffic source: organic, paid, email, social, referral |
+| `--current-rate` | Yes | Current conversion rate as percentage |
+| `--industry` | No | Industry for benchmarks: saas, ecommerce, fintech, healthcare, education (default: saas) |
+| `--json` | No | Output results as JSON |
+
+---
+
+## Troubleshooting
+
+| Problem | Likely Cause | Solution |
+|---------|-------------|----------|
+| High bounce rate (&gt;70%) on landing page | Message mismatch with traffic source or poor above-the-fold | Audit message match: compare ad copy with landing page headline; ensure value proposition is visible in first 5 seconds |
+| Page converts on desktop but not mobile | Mobile UX not optimized | Check touch targets (44px+), form field count on mobile, CTA visibility without scrolling; score with page_cro_scorer.py |
+| CTA click rate below 2% | CTA is generic, below the fold, or visually weak | Replace &quot;Submit&quot; with value-specific copy; ensure CTA is visible above fold and repeated after key sections |
+| High scroll depth but low conversion | Visitors read but are not convinced to act | Add social proof near CTA positions; address objections in FAQ; add risk reversal (free trial, no CC) |
+| A/B test shows no significant winner after 4 weeks | Change too small to detect or insufficient traffic | Use ab_test_calculator.py from form-cro to validate sample size; test bigger changes (headline rewrite vs word swap) |
+| Paid traffic converts worse than organic | Landing page not tailored to paid traffic intent | Create dedicated landing pages for paid campaigns with message match; remove navigation on paid landing pages |
+| Social proof section is ignored | Generic testimonials or poor placement | Use specific, attributed testimonials with metrics; place after the section that makes the claim they validate |
+
+---
+
+## Success Criteria
+
+- Page CRO score of 70+ across the 7-dimension framework (scored by page_cro_scorer.py)
+- Headline scores 7+ on the 10-point rubric (scored by headline_scorer.py)
+- Conversion rate at or above industry benchmark for page type (verified by conversion_benchmark_calculator.py)
+- Above-the-fold contains: headline, CTA, and at least one social proof element
+- Message match verified for all paid traffic campaigns (ad copy matches landing page headline)
+- Mobile conversion rate within 20% of desktop rate
+- Every page addresses at least 3 of the 5 universal objections
+
+---
+
+## Scope &amp; Limitations
+
+- **In scope:** Page-level conversion optimization, headline effectiveness, CTA hierarchy, social proof placement, objection handling, traffic source matching, A/B test prioritization
+- **Out of scope:** Form optimization (use form-cro), signup flow optimization (use signup-flow-cro), popup optimization (use popup-cro), pricing structure changes (use pricing-strategy)
+- **Page speed:** This skill covers CRO elements, not technical performance; pages loading &gt;3 seconds need technical optimization first
+- **Traffic minimum:** A/B testing recommendations require 200+ conversions per variant; low-traffic pages should implement best practices without testing
+- **Qualitative input:** Heatmaps and session recordings provide critical behavioral data that analytics alone cannot reveal; consider investing in these tools
+
+---
+
+## Integration Points
+
+- **form-cro** -- When the form on the page is the bottleneck (field optimization, validation UX, mobile form experience)
+- **signup-flow-cro** -- When users convert on the page but drop off during the signup/registration process
+- **popup-cro** -- When considering a popup as an additional conversion layer on top of the page
+- **onboarding-cro** -- When post-conversion activation is the real problem and the page itself converts adequately
+- **pricing-strategy** -- When the pricing page needs structural redesign (tier structure, value metric), not just CRO tweaks
+- **competitive-teardown** -- When comparison pages need competitive data to build credible content
+
+---
+
+## What I Need You to Do
+
+First, detect which platform I&#x27;m using (Claude.ai, ChatGPT, etc.) and follow the matching instructions below.
+
+### If I&#x27;m on Claude.ai:
+
+Walk me through these exact steps:
+
+1. **Create the Project:** Tell me to go to **claude.ai &gt; Projects &gt; Create project** and name it **&quot;Page Cro&quot;**
+
+2. **Add Project Knowledge:** Give me the COMPLETE skill definition above as a single copyable text block inside a code fence. Tell me to click **&quot;Add content&quot; &gt; &quot;Add text content&quot;** inside the project, then paste that entire block. Do NOT say &quot;paste from above&quot; -- give me the actual text to copy right there.
+
+3. **Set Custom Instructions:** Tell me to open project settings and paste this exact instruction:
+   &quot;You are an expert Page Cro in the Business &amp; Growth domain. Use the project knowledge as your expertise. Follow the workflows, frameworks, and templates defined there. Always provide specific, actionable output.&quot;
+
+4. **Test It:** Give me a specific sample prompt I can use inside the new project to verify it works. Pick a real task from the skill&#x27;s workflows.
+
+### If I&#x27;m on ChatGPT:
+
+Walk me through these exact steps:
+
+1. **Create a Custom GPT:** Tell me to go to **chatgpt.com &gt; Explore GPTs &gt; Create**
+2. **Configure it:**
+   - Name: **&quot;Page Cro&quot;**
+   - Description: &quot;Landing page and marketing page conversion rate optimization covering value proposition clarity, headline effectiveness, CTA hierarchy, visual flow, social proof placement, objection handling, and structured A/B testing.&quot;
+   - Instructions: Give me the COMPLETE skill definition above as a single copyable text block inside a code fence to paste into the Instructions field. Do NOT say &quot;paste from above.&quot;
+3. **Test It:** Give me a sample prompt to verify it works.
+
+### If I&#x27;m on another platform:
+Ask which tool I&#x27;m using and adapt the instructions accordingly.
+
+## Important
+- Always provide the full skill text in a ready-to-copy code block -- never tell me to &quot;scroll up&quot; or &quot;copy from above&quot;
+- Keep the setup steps simple and numbered
+- After setup, test it with me using a real workflow from the skill
+
+Source: https://github.com/borghei/Claude-Skills/tree/main/business-growth/page-cro/SKILL.md</pre>
+      </details>
+    </div>
+  </div>
+</div>
+<div class="tab-content" id="tab-claude">
+  <pre><code># Add to your project
+cs install business-growth/page-cro ./
+
+# Or copy directly
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/business-growth/page-cro your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-codex">
+  <pre><code># The skill is available in your Codex workspace at:
+.codex/skills/page-cro/
+
+# Reference the SKILL.md in your Codex instructions
+# or copy it into your project:
+cp -r .codex/skills/page-cro your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-gemini">
+  <pre><code># The skill is available in your Gemini CLI workspace at:
+.gemini/skills/page-cro/
+
+# Reference the SKILL.md in your Gemini instructions
+# or copy it into your project:
+cp -r .gemini/skills/page-cro your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-cursor">
+  <pre><code># Add to your .cursorrules or workspace settings:
+# Reference: business-growth/page-cro/SKILL.md
+
+# Or copy the skill folder into your project:
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/business-growth/page-cro your-project/</code></pre>
+</div>
+<div class="tab-content" id="tab-manual">
+  <pre><code># Clone and copy
+git clone https://github.com/borghei/Claude-Skills.git
+cp -r Claude-Skills/business-growth/page-cro your-project/
+
+# Or download just this skill
+curl -sL https://github.com/borghei/Claude-Skills/archive/main.tar.gz | tar xz --strip=1 Claude-Skills-main/business-growth/page-cro</code></pre>
+</div>
+<h3>Run Python Tools</h3>
+<pre><code>python business-growth/page-cro/scripts/tool_name.py --help</code></pre>
+  
+  
+  <h2>Related Skills in Business &amp; Growth</h2><div class="related-grid"><a href="https://borghei.github.io/Claude-Skills/skills/business-growth/channel-economics.html" class="skill-card" style="text-decoration:none"><h3>Channel Economics</h3><p>Channel economics: design and analyze the financial structure of go-to-market channels. Use when...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/business-growth/churn-prevention.html" class="skill-card" style="text-decoration:none"><h3>Churn Prevention</h3><p>SaaS churn reduction covering cancel flow design, dynamic save offers, exit survey architecture,...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/business-growth/commercial-policy.html" class="skill-card" style="text-decoration:none"><h3>Commercial Policy</h3><p>Commercial policy: the governance framework defining what terms sales can offer and what...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/business-growth/competitive-teardown.html" class="skill-card" style="text-decoration:none"><h3>Competitive Teardown</h3><p>Systematic competitor analysis covering product teardowns, 12-dimension scoring rubric, feature...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/business-growth/competitor-alternatives.html" class="skill-card" style="text-decoration:none"><h3>Competitor Alternatives</h3><p>Create competitor comparison and alternative pages for SEO and sales enablement. Use when...</p></a><a href="https://borghei.github.io/Claude-Skills/skills/business-growth/contract-and-proposal-writer.html" class="skill-card" style="text-decoration:none"><h3>Contract And Proposal Writer</h3><p>Generate business documents — contracts, proposals, SOWs, NDAs, MSAs — with jurisdiction-aware...</p></a></div>
+  <p style="margin-top:32px"><a href="https://github.com/borghei/Claude-Skills/tree/main/business-growth/page-cro/SKILL.md" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></p>
+</article>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">GitHub</a>
+      <span class="footer-sep">&middot;</span>
+      <span>MIT + Commons Clause</span>
+      <span class="footer-sep">&middot;</span>
+      <a href="https://buymeacoffee.com/borghei" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </div>
+    <div class="footer-credit">Built by <a href="https://github.com/borghei" target="_blank" rel="noopener">borghei</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+function copyPrompt(btn){
+  var text=btn.getAttribute('data-prompt');
+  // Decode HTML entities
+  var ta=document.createElement('textarea');
+  ta.innerHTML=text;
+  text=ta.value;
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add('copied');
+    btn.querySelector('span').textContent='Copied!';
+    setTimeout(function(){
+      btn.classList.remove('copied');
+      btn.querySelector('span').textContent='Copy Prompt';
+    },2000);
+  });
+}
+</script>
+</body>
+</html>

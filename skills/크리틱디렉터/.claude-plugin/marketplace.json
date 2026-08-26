@@ -1,0 +1,14 @@
+{
+  "name": "critic-director-marketplace",
+  "owner": { "name": "Koo-bon" },
+  "metadata": {
+    "description": "크리틱디렉터 — 아이디어·제안서·KV·덱을 CD 눈으로 크리틱하는 최종 검수관 스킬 (공유 배포)"
+  },
+  "plugins": [
+    {
+      "name": "critic-director",
+      "source": "./critic-director-plugin",
+      "description": "던진 아이디어부터 완성된 제안서·KV·발표 덱까지, 페르소나·강도 골라 후킹 진단·비주얼 검수·수정안까지 주는 크리틱 스킬"
+    }
+  ]
+}

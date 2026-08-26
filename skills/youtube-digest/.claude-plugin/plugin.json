@@ -1,0 +1,9 @@
+{
+  "name": "youtube-digest",
+  "version": "0.2.0",
+  "description": "Summarize YouTube videos with transcript, insights, Korean translation, and quizzes",
+  "author": {
+    "name": "Team Attention",
+    "url": "https://github.com/team-attention"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "c-level-skills",
+  "description": "31 c level advisor skills: CEO/CTO/CFO/CMO/CRO/CPO/COO/CHRO/CISO advisors plus CAIO, CDO, CCO, General Counsel, and VP Engineering",
+  "version": "1.0.0",
+  "author": {
+    "name": "borghei",
+    "url": "https://borghei.me"
+  },
+  "homepage": "https://github.com/borghei/Claude-Skills/tree/main/c-level-advisor",
+  "repository": "https://github.com/borghei/Claude-Skills",
+  "license": "MIT",
+  "skills": "./"
+}

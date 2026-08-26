@@ -1,0 +1,185 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#191919;font-family:'Pretendard',-apple-system,sans-serif;padding:28px 20px 60px;color:#ddd}
+h1{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:6px;color:#fff}
+.lead{font-size:13px;color:#8a8a8a;margin-bottom:30px;line-height:1.7}
+.set{margin-bottom:44px}
+.hd{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+.no{font-family:'JetBrains Mono',monospace;font-size:11px;color:#666;letter-spacing:.1em}
+.nm{font-size:16px;font-weight:600;color:#fff}
+.tag{font-size:11px;color:#7ad6a0;font-family:'JetBrains Mono',monospace}
+.why{font-size:12px;color:#8a8a8a;margin-bottom:12px;line-height:1.65}
+.pair{display:grid;grid-template-columns:1fr;gap:14px;max-width:1080px}
+.f{aspect-ratio:16/9;position:relative;overflow:hidden;border-radius:3px;container-type:inline-size}
+.cap{font-size:10px;color:#666;margin-top:5px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+
+/* ══ 06 · 애플 선언형 — 정중앙, 배경에 거대 링 ══ */
+.d1{background:#08080A;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.d1 .ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64%;aspect-ratio:1;border-radius:50%;border:1px solid #2A2A30}
+.d1 .ring2{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42%;aspect-ratio:1;border-radius:50%;border:1px solid #35353C}
+.d1 .ring3{position:absolute;left:50%;top:23%;transform:translate(-50%,-50%);width:5.2%;aspect-ratio:1;border-radius:50%;background:#E8452F}
+.d1 h2{position:relative;font-size:6.6cqw;font-weight:600;letter-spacing:-.035em;line-height:1.08;color:#F2EFEA;z-index:2}
+.d1 .sb{position:relative;font-size:1.35cqw;color:#8E8A85;margin-top:2.6%;font-weight:400;z-index:2}
+.d1i{background:#08080A;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6%}
+.d1i h3{font-size:3.4cqw;font-weight:600;color:#F2EFEA;letter-spacing:-.03em;margin-bottom:5%;line-height:1.2}
+.d1i .row{display:flex;gap:6%;width:88%}
+.d1i .it{flex:1}
+.d1i .n{font-size:2.8cqw;font-weight:600;color:#E8E4DE;line-height:1;margin-bottom:1.6%;letter-spacing:-.03em}
+.d1i .t{font-size:1.4cqw;font-weight:600;color:#F2EFEA;margin-bottom:.9%}
+.d1i .d{font-size:1.05cqw;color:#8E8A85;line-height:1.65}
+
+/* ══ 07 · 반복 지옥 — 카드가 계단식으로 쌓임, 카피 우하단 ══ */
+.d2{background:#0F1113;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-end;padding:5.5% 6%;text-align:right}
+.d2 .stk{position:absolute;left:4%;top:50%;transform:translateY(-50%);width:46%;aspect-ratio:1.25}
+.d2 .stk i{position:absolute;left:0;top:0;width:62%;aspect-ratio:1.35;border:1px solid #FFD84D;background:#0F1113;display:block}
+.d2 .stk i:nth-child(1){transform:translate(0,0);opacity:.22}
+.d2 .stk i:nth-child(2){transform:translate(11%,13%);opacity:.38}
+.d2 .stk i:nth-child(3){transform:translate(22%,26%);opacity:.55}
+.d2 .stk i:nth-child(4){transform:translate(33%,39%);opacity:.78}
+.d2 .stk i:nth-child(5){transform:translate(44%,52%);opacity:1;background:#FFD84D}
+.d2 h2{position:relative;font-size:6.4cqw;font-weight:800;letter-spacing:-.035em;line-height:1.0;color:#F5F3EF;z-index:2}
+.d2 h2 em{font-style:normal;color:#FFD84D}
+.d2 .sb{position:relative;font-size:1.15cqw;color:#7E8288;margin-top:2.4%;z-index:2}
+.d2i{background:#0F1113;padding:6% 6% 7%;display:flex;flex-direction:column;justify-content:flex-end}
+.d2i h3{font-size:3.8cqw;font-weight:800;color:#F5F3EF;letter-spacing:-.03em;margin-bottom:4%;line-height:1.12}
+.d2i .row{display:flex;gap:0}
+.d2i .it{flex:1;padding:2.4% 2.6%;border-left:1px solid #2A2E33}
+.d2i .it:first-child{border-left:1px solid #FFD84D}
+.d2i .n{font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#FFD84D;letter-spacing:.12em;margin-bottom:1.4%}
+.d2i .t{font-size:1.6cqw;font-weight:700;color:#F5F3EF;margin-bottom:.9%;letter-spacing:-.02em}
+.d2i .d{font-size:1.05cqw;color:#9AA0A6;line-height:1.65}
+
+/* ══ 08 · 체인 — 4블록 다이어그램이 화면 절반, 카피 좌상단 ══ */
+.d3{background:#EFEDE7;padding:5.5% 6%;display:flex;flex-direction:column;justify-content:flex-start}
+.d3 h2{font-size:5.8cqw;font-weight:800;color:#14140F;letter-spacing:-.035em;line-height:1.02;position:relative;z-index:2}
+.d3 .sb{font-size:1.2cqw;color:#6A665C;margin-top:2%;position:relative;z-index:2}
+.d3 .chain{position:absolute;left:6%;right:6%;bottom:11%;display:flex;align-items:center;gap:0}
+.d3 .chain b{flex:1;height:0;border-top:2px solid #14140F}
+.d3 .chain u{width:7.5%;aspect-ratio:1;border-radius:50%;border:2px solid #14140F;background:#EFEDE7;display:flex;align-items:center;justify-content:center;font-size:1.5cqw;font-weight:800;color:#14140F;text-decoration:none;flex:none}
+.d3 .chain u.on{background:#E8452F;border-color:#E8452F;color:#fff}
+.d3 .lb{position:absolute;left:6%;right:6%;bottom:5.5%;display:flex;font-size:.95cqw;color:#6A665C;font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+.d3 .lb span{flex:1;text-align:center}
+.d3i{background:#EFEDE7;padding:6% 6% 7%;display:flex;flex-direction:column;justify-content:flex-end}
+.d3i h3{font-size:3.8cqw;font-weight:800;color:#14140F;letter-spacing:-.03em;margin-bottom:4%;line-height:1.12}
+.d3i .row{display:flex;gap:4%}
+.d3i .it{flex:1;border-top:2px solid #E8452F;padding-top:2.2%}
+.d3i .n{font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#E8452F;letter-spacing:.12em;margin-bottom:1.2%}
+.d3i .t{font-size:1.6cqw;font-weight:800;color:#14140F;margin-bottom:.9%;letter-spacing:-.02em}
+.d3i .d{font-size:1.05cqw;color:#6A665C;line-height:1.65}
+
+/* ══ 09 · 타이포 풀블리드 — 글자가 화면을 뚫고 잘림, 배경 반복 텍스트 ══ */
+.d4{background:#12100E;overflow:hidden;display:flex;align-items:center}
+.d4 .bgt{position:absolute;inset:0;font-family:'JetBrains Mono',monospace;font-size:1.1cqw;line-height:2.1;color:#E85A2A;opacity:.14;padding:2% 3%;word-break:break-all;letter-spacing:.05em}
+.d4 h2{position:relative;font-size:15cqw;font-weight:800;letter-spacing:-.05em;line-height:1.0;color:#F7F3EE;margin-left:-1.5%;white-space:nowrap;z-index:2}
+.d4 .side{position:absolute;right:4%;top:50%;transform:translateY(-50%) rotate(90deg);transform-origin:right center;font-family:'JetBrains Mono',monospace;font-size:1cqw;color:#E85A2A;letter-spacing:.24em;z-index:3}
+.d4 .btm{position:absolute;left:4%;bottom:5%;font-size:1.15cqw;color:#8A8078;z-index:3}
+.d4i{background:#12100E;padding:6% 6% 7%;display:flex;flex-direction:column;justify-content:flex-end}
+.d4i h3{font-size:3.8cqw;font-weight:800;color:#F7F3EE;letter-spacing:-.03em;margin-bottom:4%;line-height:1.12}
+.d4i .row{display:flex;gap:4%}
+.d4i .it{flex:1}
+.d4i .n{font-family:'JetBrains Mono',monospace;font-size:3cqw;color:#E85A2A;line-height:1;margin-bottom:1.6%;font-weight:700}
+.d4i .t{font-size:1.55cqw;font-weight:700;color:#F7F3EE;margin-bottom:.9%;letter-spacing:-.02em}
+.d4i .d{font-size:1.05cqw;color:#8A8078;line-height:1.65}
+
+/* ══ 10 · 스플릿 — 좌우 반반, 우측에 거대 숫자 ══ */
+.d5{display:flex}
+.d5 .L{width:56%;background:#101418;padding:5.5% 4.5% 5.5% 6%;display:flex;flex-direction:column;justify-content:center}
+.d5 .R{width:44%;background:#3B5BDB;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.d5 .R .big{font-size:19cqw;font-weight:800;color:#fff;line-height:.8;letter-spacing:-.06em}
+.d5 .R .u{font-size:1.5cqw;color:#C5D2FF;font-weight:600;margin-top:2%;letter-spacing:.02em}
+.d5 .R .cn{position:absolute;left:0;right:0;bottom:6%;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#B7C6FF;letter-spacing:.14em}
+.d5 .kk{font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#5C7CFF;letter-spacing:.16em;margin-bottom:3%}
+.d5 h2{font-size:6.4cqw;font-weight:800;color:#F2F5F8;letter-spacing:-.035em;line-height:1.02}
+.d5 .sb{font-size:1.15cqw;color:#7E8895;margin-top:3%;line-height:1.7}
+.d5i{background:#101418;padding:6% 6% 7%;display:flex;flex-direction:column;justify-content:flex-end}
+.d5i .bar{position:absolute;left:0;top:0;width:100%;height:1.6%;background:#3B5BDB}
+.d5i h3{font-size:3.8cqw;font-weight:800;color:#F2F5F8;letter-spacing:-.03em;margin-bottom:4%;line-height:1.12}
+.d5i .row{display:flex;gap:4%}
+.d5i .it{flex:1;background:#171C22;padding:2.4% 2.6%}
+.d5i .n{font-family:'JetBrains Mono',monospace;font-size:.95cqw;color:#5C7CFF;letter-spacing:.12em;margin-bottom:1.2%}
+.d5i .t{font-size:1.55cqw;font-weight:700;color:#F2F5F8;margin-bottom:.9%;letter-spacing:-.02em}
+.d5i .d{font-size:1.05cqw;color:#8A94A0;line-height:1.65}
+</style>
+
+<h1>컨셉 5종 — 비주얼 있는 표지</h1>
+<p class="lead">앞의 다섯은 카피가 전부 좌측 하단에 같은 자리로 있었습니다. 이번엔 <b>카피 위치를 전부 다르게</b> 하고, <b>발표 컨셉(복붙 → 이어 붙이기)에 맞는 비주얼</b>을 표지마다 넣었습니다. 사진 없이 CSS로만 만들어 누구나 재현됩니다.</p>
+
+<div class="set">
+  <div class="hd"><span class="no">06</span><span class="nm">애플 선언형</span><span class="tag">카피 · 정중앙</span></div>
+  <p class="why">긴 문장 없이 선언 하나. 동심원 세 겹이 정중앙에서 한 점으로 수렴한다 — 흩어진 것이 하나로 모이는 구조를 그대로 도형으로 만들었다. 카피가 짧을수록 강해지는 유일한 컨셉.</p>
+  <div class="pair">
+    <div><div class="f d1"><div class="ring"></div><div class="ring2"></div><div class="ring3"></div><h2>복붙은<br>끝났다</h2><div class="sb">스킬 4개, 하나의 흐름</div></div><div class="cap">COVER · 정중앙</div></div>
+    <div><div class="f d1i"><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 한 편 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>
+
+<div class="set">
+  <div class="hd"><span class="no">07</span><span class="nm">반복 지옥</span><span class="tag">카피 · 우하단</span></div>
+  <p class="why">같은 카드가 계단식으로 다섯 번 겹쳐 쌓이고 마지막 하나만 색이 찬다 — <b>복사·붙여넣기의 반복</b>을 그대로 도형으로 옮겼다. 제목을 안 읽어도 무슨 얘긴지 보인다.</p>
+  <div class="pair">
+    <div><div class="f d2"><div class="stk"><i></i><i></i><i></i><i></i><i></i></div><h2>복붙 없이<br><em>제안서 한 편</em></h2><div class="sb">스킬 하나씩은 쓰는데 이어 붙이진 못하는 분들께</div></div><div class="cap">COVER · 우하단</div></div>
+    <div><div class="f d2i"><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 한 편 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>
+
+<div class="set">
+  <div class="hd"><span class="no">08</span><span class="nm">체인</span><span class="tag">카피 · 좌상단</span></div>
+  <p class="why">네 개의 노드가 선으로 이어진 다이어그램이 화면 아래를 가로지른다 — <b>이어 붙인다</b>는 주제 그 자체. 마지막 노드만 붉게 차서 도착점을 만든다. 밝은 지면이라 줌에서 눈이 편하다.</p>
+  <div class="pair">
+    <div><div class="f d3"><h2>복붙 없이<br>제안서 한 편</h2><div class="sb">스킬 하나씩은 쓰는데 이어 붙이진 못하는 분들께</div>
+      <div class="chain"><u>1</u><b></b><u>2</u><b></b><u>3</u><b></b><u class="on">4</u></div>
+      <div class="lb"><span>카피</span><span>비주얼</span><span>덱</span><span>검수</span></div>
+    </div><div class="cap">COVER · 좌상단</div></div>
+    <div><div class="f d3i"><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 한 편 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>
+
+<div class="set">
+  <div class="hd"><span class="no">09</span><span class="nm">타이포 풀블리드</span><span class="tag">카피 · 화면 관통 · 잘림</span></div>
+  <p class="why">글자가 화면 밖으로 나가며 잘린다. 배경에는 <code>Ctrl+C Ctrl+V</code>가 빽빽하게 반복된다 — 지겨움 자체가 배경 텍스처다. 다섯 중 가장 세고, 이미지가 하나도 없어도 화면이 꽉 찬다.</p>
+  <div class="pair">
+    <div><div class="f d4">
+      <div class="bgt">Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V Ctrl+C Ctrl+V</div>
+      <h2>복붙 없이</h2>
+      <div class="side">SPONGE CLUB · 2026</div>
+      <div class="btm">스킬 4개를 하나의 흐름으로 · 제안서 한 편</div>
+    </div><div class="cap">COVER · 화면 관통</div></div>
+    <div><div class="f d4i"><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 한 편 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>
+
+<div class="set">
+  <div class="hd"><span class="no">10</span><span class="nm">스플릿</span><span class="tag">카피 · 좌측 / 비주얼 · 우측</span></div>
+  <p class="why">화면을 반으로 갈라 왼쪽은 카피, 오른쪽은 <b>숫자 하나가 통째로</b> 차지한다. 발표의 핵심 수치를 표지에서 이미 던지는 구조. 숫자만 갈아 끼우면 어떤 주제에도 쓴다.</p>
+  <div class="pair">
+    <div><div class="f d5">
+      <div class="L"><div class="kk">SPONGE CLUB · 이기적 공유회</div><h2>복붙 없이<br>제안서 한 편</h2><div class="sb">스킬 하나씩은 쓰는데<br>이어 붙이진 못하는 분들께</div></div>
+      <div class="R"><div class="big">4</div><div class="u">개의 스킬, 하나의 흐름</div><div class="cn">STEP 01 — 04</div></div>
+    </div><div class="cap">COVER · 좌우 분할</div></div>
+    <div><div class="f d5i"><div class="bar"></div><h3>오늘 가져가실 것</h3><div class="row">
+      <div class="it"><div class="n">01</div><div class="t">만든 순서</div><div class="d">어떤 순서로 붙여 나갔는지</div></div>
+      <div class="it"><div class="n">02</div><div class="t">돌아가는 실물</div><div class="d">라이브로 한 편 만들어 보여드립니다</div></div>
+      <div class="it"><div class="n">03</div><div class="t">부분 채택</div><div class="d">전부 안 갖춰도 쓰는 법</div></div>
+    </div></div><div class="cap">INTERIOR</div></div>
+  </div>
+</div>
