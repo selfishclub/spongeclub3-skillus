@@ -10,7 +10,7 @@
 
 ### Claude Code — 전역 (모든 프로젝트에서 발동)
 ```bash
-mkdir -p ~/.claude/skills && cd ~/.claude/skills && curl -L https://github.com/selfishclub/spongeclub3-skillus/archive/main.tar.gz | tar xz --strip-components=3 spongeclub3-skillus-main/skills/threads-writing
+mkdir -p ~/.claude/skills && cd ~/.claude/skills && curl -L https://github.com/selfishclub/spongeclub3-skillus/archive/main.tar.gz | tar xz --strip-components=2 spongeclub3-skillus-main/skills/threads-writing
 ```
 
 ### Claude Code — 프로젝트 전용
