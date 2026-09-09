@@ -1,6 +1,6 @@
 {
   "note": "스킬 폴더가 처음 올라온 날짜(YYYY-MM-DD). 사이트가 카드 날짜 표시와 NEW 섹션에 쓴다. 새 스킬은 등록 폼이 자동으로 여기에 추가한다.",
-  "generatedAt": "2026-09-09T15:28:49Z",
+  "generatedAt": "2026-09-09T15:40:45Z",
   "dates": {
     "ads-creative-development": "2026-08-26",
     "agent-flow": "2026-08-26",
@@ -29,6 +29,7 @@
     "hookcopy": "2026-08-26",
     "hooks": "2026-08-27",
     "jezweb-image-processing": "2026-08-26",
+    "kakao-lead-nurture": "2026-09-10",
     "korean-date-parser": "2026-08-26",
     "landing-page-generator": "2026-08-26",
     "last30days": "2026-08-26",
