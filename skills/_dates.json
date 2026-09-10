@@ -1,6 +1,6 @@
 {
   "note": "스킬 폴더가 처음 올라온 날짜(YYYY-MM-DD). 사이트가 카드 날짜 표시와 NEW 섹션에 쓴다. 새 스킬은 등록 폼이 자동으로 여기에 추가한다.",
-  "generatedAt": "2026-09-10T12:17:00Z",
+  "generatedAt": "2026-09-10T12:24:41Z",
   "dates": {
     "ads-creative-development": "2026-08-26",
     "agent-flow": "2026-08-26",
@@ -16,6 +16,7 @@
     "claude-youtube": "2026-08-26",
     "competitor-recon": "2026-08-26",
     "conceptual-kv-skill": "2026-08-26",
+    "content-repurpose": "2026-09-10",
     "content-strategy": "2026-08-26",
     "copywriting-coreyhaines": "2026-08-26",
     "coupang-ad-analysis": "2026-09-06",
