@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>A4 전단</title>
+
+<!-- ─────────────────────────────────────────────────────────
+     여기 CONFIG 값만 바꾸면 됩니다. 아래 HTML은 안 건드려도 됩니다.
+     다 바꾼 뒤: 브라우저로 열고 Ctrl+P → 대상을 "PDF로 저장"
+     인쇄 설정에서 "배경 그래픽" 체크를 켜야 색이 나옵니다.
+
+     글씨 안에 태그를 쓸 수 있는 칸은 headline 뿐입니다.
+       <br> 로 줄을 끊고, <em>여기</em> 로 감싸면 강조색이 칠해집니다.
+     sub · bullets · qrLine · deadline · brand 은 태그가 글자 그대로 인쇄됩니다. <br> 을 쓰면 화면에 <br> 이 보입니다.
+───────────────────────────────────────────────────────── -->
+<script>
+const CONFIG = {
+  url:      "https://example.com/apply",   // QR이 가리킬 신청 페이지 주소
+  headline: "결국 직접 쓰고 있다면",          // 짧은 줄 (8~16자)
+  sub:      "프롬프트를 세 번 고쳐 쓰고도 결국 손으로 타이핑한 적, 있으시죠.",
+  bullets: [                               // 3개 이하. 각 한 줄
+    "내가 쓴 프롬프트에서 어디가 문제인지 짚어드립니다",
+    "정답 프롬프트를 주는 게 아니라 보는 눈을 만듭니다",
+    "30분 · 온라인 · 무료"
+  ],
+  qrLine:   "폰 카메라로 찍으면 바로 신청",   // QR 옆 한 줄 (꼬리)
+  deadline: "",                            // 예: "9월 12일 마감 · 선착순 10명" / 없으면 "" 로 비워둡니다
+  brand:    "내 프롬프트 진단소",
+
+  // 강조색. 형광색(#E8FF3A 같은 순형광)은 인쇄(CMYK)에서 반드시 탁해집니다.
+  accent:     "#FFD666",
+  // 강조색 위에 올라가는 글자색. 어두운 강조색을 쓰면 "#FFFFFF" 로 바꾸세요.
+  accentText: "#111111"
+};
+</script>
+
+<style>
+@page { size: A4 portrait; margin: 0; }
+:root { --accent: #FFD666; --accent-text: #111; --ink: #111; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #767676; }
+body { font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", -apple-system, sans-serif; }
+
+.page {
+  width: 210mm; height: 297mm; background: #fff; color: var(--ink);
+  margin: 8mm auto; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  padding: 18mm 16mm 14mm;          /* 안전 여백: 재단선에서 5mm 이상 안쪽 */
+}
+.top { flex: 0 0 auto; }
+.brand { font-size: 10pt; letter-spacing: .08em; font-weight: 700; opacity: .55; }
+.headline {
+  margin: 6mm 0 0; font-size: 40pt; font-weight: 900; line-height: 1.12;
+  letter-spacing: -.02em; word-break: keep-all;
+}
+.headline em { font-style: normal; background: var(--accent); color: var(--accent-text); padding: 0 .12em; }
+.sub { margin: 6mm 0 0; font-size: 13pt; line-height: 1.6; word-break: keep-all; opacity: .8; }
+
+.mid { flex: 1 1 auto; display: flex; align-items: center; }
+ul.bullets { list-style: none; margin: 0; padding: 0; width: 100%; }
+ul.bullets li {
+  font-size: 13.5pt; line-height: 1.5; padding: 4.5mm 0 4.5mm 9mm;
+  border-top: 1.2pt solid #E4E4E4; position: relative; word-break: keep-all;
+}
+ul.bullets li:last-child { border-bottom: 1.2pt solid #E4E4E4; }
+ul.bullets li::before {
+  content: ""; position: absolute; left: 0; top: 7.6mm;
+  width: 4.5mm; height: 4.5mm; background: var(--ink);
+}
+
+.bot { flex: 0 0 auto; display: flex; align-items: flex-end; gap: 8mm; }
+.qrbox {
+  /* QR 자리는 항상 흰 바탕 + 사방 여백(quiet zone). 여기 뭘 겹치지 마세요. */
+  background: #fff; padding: 3.5mm; border: 1.2pt solid var(--ink);
+  flex: 0 0 auto;
+}
+.qrbox > div { width: 38mm; height: 38mm; }   /* 실측 3.8cm — 손에 들고 30cm 거리 기준 */
+.qrbox img, .qrbox canvas { width: 100% !important; height: 100% !important; display: block; }
+.qrtext { flex: 1 1 auto; padding-bottom: 2mm; }
+.qrline { font-size: 14pt; font-weight: 800; line-height: 1.35; word-break: keep-all; }
+.deadline {
+  display: inline-block; margin-top: 4mm; font-size: 11.5pt; font-weight: 800;
+  color: var(--accent-text); background: var(--accent); padding: 2mm 3.5mm;
+}
+.urltext { margin-top: 3.5mm; font-size: 9.5pt; opacity: .5; word-break: break-all; }
+.warn { color: #C00; font-size: 9pt; font-weight: 700; }
+
+@media print { html, body { background: #fff; } .page { margin: 0; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="top">
+    <div class="brand" id="brand"></div>
+    <h1 class="headline" id="headline"></h1>
+    <p class="sub" id="sub"></p>
+  </div>
+
+  <div class="mid"><ul class="bullets" id="bullets"></ul></div>
+
+  <div class="bot">
+    <div class="qrbox"><div id="qr"></div></div>
+    <div class="qrtext">
+      <div class="qrline" id="qrline"></div>
+      <div id="deadlineWrap"></div>
+      <div class="urltext" id="urltext"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        onerror="window.__qrFail=true"></script>
+<script>
+// QR 라이브러리가 canvas와 img를 동시에 만들 때가 있어 하나만 남깁니다.
+// 둘 다 보이면 QR이 두 개로 겹쳐 인쇄돼서, 이 정리 과정이 꼭 필요합니다.
+function renderQR(box, url, px) {
+  if (window.__qrFail || !window.QRCode) {
+    box.innerHTML = '<div class="warn">QR 생성 실패 &mdash; 인터넷 연결 후 새로고침하세요</div>';
+    return;
+  }
+  new QRCode(box, { text: url, width: px, height: px, correctLevel: QRCode.CorrectLevel.M });
+  var fix = function () {
+    var img = box.querySelector('img'), cv = box.querySelector('canvas');
+    var use = (img && img.getAttribute('src')) ? img : cv;
+    if (!use) {
+      box.innerHTML = '<div class="warn">QR 생성 실패 &mdash; 인쇄 전 반드시 확인하세요</div>';
+      return;
+    }
+    [img, cv].forEach(function (el) { if (el) el.style.display = (el === use ? 'block' : 'none'); });
+    use.style.width = '100%'; use.style.height = '100%';
+  };
+  fix();
+  window.addEventListener('load', fix);
+}
+</script>
+<script>
+(function () {
+  document.documentElement.style.setProperty('--accent', CONFIG.accent);
+  document.documentElement.style.setProperty('--accent-text', CONFIG.accentText || '#111');
+  document.getElementById('brand').textContent = CONFIG.brand;
+  document.getElementById('headline').innerHTML = CONFIG.headline;
+  document.getElementById('sub').textContent = CONFIG.sub;
+  document.getElementById('qrline').textContent = CONFIG.qrLine;
+  document.getElementById('urltext').textContent = CONFIG.url;
+  document.getElementById('bullets').innerHTML =
+    CONFIG.bullets.map(function (b) { return '<li>' + b + '</li>'; }).join('');
+  if (CONFIG.deadline) {
+    document.getElementById('deadlineWrap').innerHTML =
+      '<span class="deadline">' + CONFIG.deadline + '</span>';
+  }
+  renderQR(document.getElementById('qr'), CONFIG.url, 512);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>명함 90×50mm (앞뒤)</title>
+
+<!-- ─────────────────────────────────────────────────────────
+     국내 표준 명함 90 × 50mm. 앞면·뒷면이 A4 한 장에 나란히 나옵니다.
+     CONFIG 값만 바꾸세요.
+     인쇄소에 넘길 때는 재단 여백(bleed) 3mm를 인쇄소 양식에 맞춰 다시 잡아야 합니다.
+     이 파일은 시안 확인 · 소량 자가출력용입니다.
+
+     글씨 안에 태그를 쓸 수 있는 칸은 headline 뿐입니다.
+       <br> 로 줄을 끊고, <em>여기</em> 로 감싸면 강조색이 칠해집니다.
+     name · role · contacts · qrLine 은 태그가 글자 그대로 인쇄됩니다. <br> 을 쓰면 화면에 <br> 이 보입니다.
+───────────────────────────────────────────────────────── -->
+<script>
+const CONFIG = {
+  url:      "https://example.com/apply",
+  name:     "홍길동",
+  role:     "내 프롬프트 진단소 운영",
+  contacts: [                              // 2~3개. 공개돼도 괜찮은 것만 넣으세요
+    "hello@example.com",
+    "threads.net/@example"
+  ],
+  headline: "결국 직접 쓰고 있다면",           // 뒷면 짧은 줄
+  qrLine:   "찍으면 30분 진단 신청",
+
+  // 강조색. 형광색(#E8FF3A 같은 순형광)은 인쇄(CMYK)에서 반드시 탁해집니다.
+  accent:     "#FFD666",
+  // 강조색 위에 올라가는 글자색. 어두운 강조색을 쓰면 "#FFFFFF" 로 바꾸세요.
+  accentText: "#111111"
+};
+</script>
+
+<style>
+@page { size: A4 portrait; margin: 12mm; }
+:root { --accent: #FFD666; --accent-text: #111; --ink: #111; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #767676; }
+body { font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", -apple-system, sans-serif;
+       padding: 12mm; }
+
+.label { color: #fff; font-size: 9pt; margin: 0 0 2mm; font-weight: 700; }
+.row { display: flex; gap: 8mm; flex-wrap: wrap; }
+.card {
+  /* flex: 0 0 auto 가 없으면 창이 좁을 때 카드가 찌그러져 실측이 무너집니다 */
+  flex: 0 0 auto; width: 90mm; height: 50mm; background: #fff; color: var(--ink);
+  border: .3pt solid #bbb;              /* 재단선 표시용. 인쇄 후 잘라냅니다 */
+  padding: 6mm; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+/* 앞면 */
+.name { font-size: 17pt; font-weight: 900; letter-spacing: -.02em; }
+.role { font-size: 9pt; margin-top: 1.5mm; opacity: .65; }
+.contacts { font-size: 8.5pt; line-height: 1.65; opacity: .8; }
+.bar { width: 14mm; height: 2.2mm; background: var(--accent); margin-bottom: 3mm; }
+
+/* 뒷면 */
+.back { flex-direction: row; align-items: center; gap: 5mm; }
+.backtext { flex: 1 1 auto; }
+.bhead { font-size: 14pt; font-weight: 900; line-height: 1.25; word-break: keep-all; }
+.bhead em { font-style: normal; background: var(--accent); color: var(--accent-text); padding: 0 .1em; }
+.bline { font-size: 8.5pt; margin-top: 2.5mm; font-weight: 700; opacity: .8; word-break: keep-all; }
+.burl  { font-size: 7pt; margin-top: 1.5mm; opacity: .45; word-break: break-all; }
+.qrbox { flex: 0 0 auto; background: #fff; padding: 1.6mm; border: .8pt solid var(--ink); }
+.qrbox > div { width: 22mm; height: 22mm; }   /* 실측 2.2cm — 20cm 거리 기준 */
+.qrbox img, .qrbox canvas { width: 100% !important; height: 100% !important; display: block; }
+.warn { color: #C00; font-size: 6pt; font-weight: 700; }
+
+@media print { html, body { background: #fff; } body { padding: 0; } .label { color: #666; } }
+</style>
+</head>
+<body>
+
+<p class="label">앞면</p>
+<div class="row">
+  <div class="card">
+    <div>
+      <div class="bar"></div>
+      <div class="name" id="name"></div>
+      <div class="role" id="role"></div>
+    </div>
+    <div class="contacts" id="contacts"></div>
+  </div>
+</div>
+
+<p class="label" style="margin-top:8mm">뒷면</p>
+<div class="row">
+  <div class="card back">
+    <div class="backtext">
+      <div class="bhead" id="bhead"></div>
+      <div class="bline" id="bline"></div>
+      <div class="burl" id="burl"></div>
+    </div>
+    <div class="qrbox"><div id="qr"></div></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        onerror="window.__qrFail=true"></script>
+<script>
+// QR 라이브러리가 canvas와 img를 동시에 만들 때가 있어 하나만 남깁니다.
+// 둘 다 보이면 QR이 두 개로 겹쳐 인쇄돼서, 이 정리 과정이 꼭 필요합니다.
+function renderQR(box, url, px) {
+  if (window.__qrFail || !window.QRCode) {
+    box.innerHTML = '<div class="warn">QR 생성 실패 &mdash; 인터넷 연결 후 새로고침하세요</div>';
+    return;
+  }
+  new QRCode(box, { text: url, width: px, height: px, correctLevel: QRCode.CorrectLevel.M });
+  var fix = function () {
+    var img = box.querySelector('img'), cv = box.querySelector('canvas');
+    var use = (img && img.getAttribute('src')) ? img : cv;
+    if (!use) {
+      box.innerHTML = '<div class="warn">QR 생성 실패 &mdash; 인쇄 전 반드시 확인하세요</div>';
+      return;
+    }
+    [img, cv].forEach(function (el) { if (el) el.style.display = (el === use ? 'block' : 'none'); });
+    use.style.width = '100%'; use.style.height = '100%';
+  };
+  fix();
+  window.addEventListener('load', fix);
+}
+</script>
+<script>
+(function () {
+  document.documentElement.style.setProperty('--accent', CONFIG.accent);
+  document.documentElement.style.setProperty('--accent-text', CONFIG.accentText || '#111');
+  document.getElementById('name').textContent = CONFIG.name;
+  document.getElementById('role').textContent = CONFIG.role;
+  document.getElementById('contacts').innerHTML = CONFIG.contacts.join('<br>');
+  document.getElementById('bhead').innerHTML = CONFIG.headline;
+  document.getElementById('bline').textContent = CONFIG.qrLine;
+  document.getElementById('burl').textContent = CONFIG.url;
+  renderQR(document.getElementById('qr'), CONFIG.url, 512);
+})();
+</script>
+</body>
+</html>

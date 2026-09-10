@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>X배너 600×1800mm</title>
+
+<!-- ─────────────────────────────────────────────────────────
+     X배너 실측 600 × 1800mm. 화면에서는 25% 축소로 보입니다.
+     CONFIG 값만 바꾸세요.
+     인쇄소에 넘길 때: Ctrl+P → PDF로 저장 → "배경 그래픽" 체크 켜기
+     핵심 문구를 위에서 30~50% 지점에 둔 이유 — 서 있는 사람 눈높이가 거기입니다.
+
+     글씨 안에 태그를 쓸 수 있는 칸은 headline 뿐입니다.
+       <br> 로 줄을 끊고, <em>여기</em> 로 감싸면 강조색이 칠해집니다.
+     sub · qrLine · deadline · brand 은 태그가 글자 그대로 인쇄됩니다. <br> 을 쓰면 화면에 <br> 이 보입니다.
+───────────────────────────────────────────────────────── -->
+<script>
+const CONFIG = {
+  url:      "https://example.com/apply",
+  headline: "결국 직접<br>쓰고 있다면",   // 짧은 줄. <br>로 줄을 끊습니다
+  sub:      "내가 쓴 프롬프트에서 어디가 문제인지 짚어드립니다",
+  qrLine:   "찍으면 바로 신청",
+  deadline: "",                          // 예: "9월 12일 마감" / 없으면 ""
+  brand:    "내 프롬프트 진단소",
+
+  // 강조색. 형광색(#E8FF3A 같은 순형광)은 인쇄(CMYK)에서 반드시 탁해집니다.
+  accent:     "#FFD666",
+  // 강조색 위에 올라가는 글자색. 어두운 강조색을 쓰면 "#FFFFFF" 로 바꾸세요.
+  accentText: "#111111"
+};
+</script>
+
+<style>
+@page { size: 600mm 1800mm; margin: 0; }
+:root { --accent: #FFD666; --accent-text: #111; --ink: #111; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #767676; }
+body { font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", -apple-system, sans-serif; }
+
+.page {
+  width: 600mm; height: 1800mm; background: #fff; color: var(--ink);
+  position: relative; overflow: hidden; padding: 0 45mm;
+  transform-origin: top left;
+}
+/* 화면에서만 축소해서 보여줍니다. 인쇄에는 영향 없습니다. */
+@media screen {
+  .stage { width: 150mm; height: 450mm; margin: 10mm auto; overflow: hidden; }
+  .page { transform: scale(0.25); }
+}
+
+.zone { position: absolute; left: 45mm; right: 45mm; }
+.z-brand    { top: 90mm; }
+.z-headline { top: 540mm; }    /* 30% 지점 */
+.z-sub      { top: 990mm; }    /* 55% */
+.z-qr       { top: 1260mm; }   /* 70% */
+
+.brand { font-size: 40pt; font-weight: 800; letter-spacing: .1em; opacity: .55; }
+.headline { font-size: 175pt; font-weight: 900; line-height: 1.08; letter-spacing: -.03em; margin: 0; word-break: keep-all; }
+.headline em { font-style: normal; background: var(--accent); color: var(--accent-text); padding: 0 .1em; }
+.rule { height: 6mm; background: var(--ink); margin: 30mm 0 0; }
+.sub { font-size: 58pt; line-height: 1.5; opacity: .8; margin: 0; word-break: keep-all; }
+
+.z-qr { display: flex; align-items: center; gap: 30mm; }
+.qrbox { background: #fff; padding: 12mm; border: 4mm solid var(--ink); flex: 0 0 auto; }
+.qrbox > div { width: 175mm; height: 175mm; }   /* 실측 17.5cm — 1.5~2m 거리 기준 */
+.qrbox img, .qrbox canvas { width: 100% !important; height: 100% !important; display: block; }
+.qrline { font-size: 62pt; font-weight: 900; line-height: 1.3; word-break: keep-all; }
+.deadline { display: inline-block; margin-top: 20mm; font-size: 48pt; font-weight: 800; color: var(--accent-text); background: var(--accent); padding: 8mm 12mm; }
+.urltext { margin-top: 14mm; font-size: 32pt; opacity: .5; word-break: break-all; }
+.warn { color: #C00; font-size: 40pt; font-weight: 800; }
+
+@media print { html, body { background: #fff; } .stage { width: auto; height: auto; margin: 0; overflow: visible; } .page { transform: none; } }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="page">
+    <div class="zone z-brand"><div class="brand" id="brand"></div></div>
+
+    <div class="zone z-headline">
+      <h1 class="headline" id="headline"></h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="zone z-sub"><p class="sub" id="sub"></p></div>
+
+    <div class="zone z-qr">
+      <div class="qrbox"><div id="qr"></div></div>
+      <div>
+        <div class="qrline" id="qrline"></div>
+        <div id="deadlineWrap"></div>
+        <div class="urltext" id="urltext"></div>
+      </div>
+    </div>
+    <!-- 하단 15%(1530mm 아래)는 비워둡니다. 서 있는 사람 몸에 가리는 구간입니다. -->
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        onerror="window.__qrFail=true"></script>
+<script>
+// QR 라이브러리가 canvas와 img를 동시에 만들 때가 있어 하나만 남깁니다.
+// 둘 다 보이면 QR이 두 개로 겹쳐 인쇄돼서, 이 정리 과정이 꼭 필요합니다.
+function renderQR(box, url, px) {
+  if (window.__qrFail || !window.QRCode) {
+    box.innerHTML = '<div class="warn">QR 생성 실패 &mdash; 인터넷 연결 후 새로고침하세요</div>';
+    return;
+  }
+  new QRCode(box, { text: url, width: px, height: px, correctLevel: QRCode.CorrectLevel.M });
+  var fix = function () {
+    var img = box.querySelector('img'), cv = box.querySelector('canvas');
+    var use = (img && img.getAttribute('src')) ? img : cv;
+    if (!use) {
+      box.innerHTML = '<div class="warn">QR 생성 실패 &mdash; 인쇄 전 반드시 확인하세요</div>';
+      return;
+    }
+    [img, cv].forEach(function (el) { if (el) el.style.display = (el === use ? 'block' : 'none'); });
+    use.style.width = '100%'; use.style.height = '100%';
+  };
+  fix();
+  window.addEventListener('load', fix);
+}
+</script>
+<script>
+(function () {
+  document.documentElement.style.setProperty('--accent', CONFIG.accent);
+  document.documentElement.style.setProperty('--accent-text', CONFIG.accentText || '#111');
+  document.getElementById('brand').textContent = CONFIG.brand;
+  document.getElementById('headline').innerHTML = CONFIG.headline;
+  document.getElementById('sub').textContent = CONFIG.sub;
+  document.getElementById('qrline').textContent = CONFIG.qrLine;
+  document.getElementById('urltext').textContent = CONFIG.url;
+  if (CONFIG.deadline) {
+    document.getElementById('deadlineWrap').innerHTML =
+      '<span class="deadline">' + CONFIG.deadline + '</span>';
+  }
+  renderQR(document.getElementById('qr'), CONFIG.url, 1024);
+})();
+</script>
+</body>
+</html>
