@@ -1,6 +1,6 @@
 {
   "note": "스킬 폴더가 처음 올라온 날짜(YYYY-MM-DD). 사이트가 카드 날짜 표시와 NEW 섹션에 쓴다. 새 스킬은 등록 폼이 자동으로 여기에 추가한다.",
-  "generatedAt": "2026-09-10T05:23:40Z",
+  "generatedAt": "2026-09-10T05:43:30Z",
   "dates": {
     "ads-creative-development": "2026-08-26",
     "agent-flow": "2026-08-26",
@@ -40,6 +40,7 @@
     "marketing-plan": "2026-08-26",
     "marp-deck": "2026-08-26",
     "oh-my-claudecode(omc)": "2026-08-26",
+    "parenting-community-scout": "2026-09-10",
     "pm스킬": "2026-08-26",
     "ponytail": "2026-08-26",
     "service-blueprint": "2026-08-26",
