@@ -15,9 +15,15 @@
 - 리뷰는 산 사람 얘기라 안 산 사람이 왜 떠났는지는 몰라요. 고친 뒤 결제율이나 리뷰 불만이 줄었는지 봐야 맞았는지 알 수 있어요
 
 ## 설치
-⚠️ 이 스킬은 본체(`SKILL.md`)가 아직 없어요. 아래 원본 링크를 보고 직접 가져와야 해요.
+클로드 코드에 이 링크를 주고 "이 스킬 설치해줘" 하면 끝이에요.
+
+```
+https://github.com/selfishclub/spongeclub3-skillus/tree/main/skills/detail-page-diagnosis
+```
+
+직접 할 거면 이 폴더를 `~/.claude/skills/detail-page-diagnosis/` 에 복붙하세요.
 
 ## 원본
-- 링크: https://github.com/selfishclub/spongeclub-3/tree/main/skills/detail-page-diagnosis
+- 링크: https://github.com/yomma39-hub/ganasocks-skills/tree/main/detail-page-diagnosis
 
 > 카테고리: 마케팅 · 올린 사람: 욤마 · 점수: 3/5
