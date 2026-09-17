@@ -71,7 +71,7 @@
 | `ecc/…` | `ecc-(everything-claude-code)/skills/…` | [affaan-m/ECC](https://github.com/affaan-m/ECC) · MIT |
 | `gooseworks…/…` | `gooseworks-ai-competitor-ad-intelligence/skills/…` | [openclaudia/openclaudia-skills](https://github.com/openclaudia/openclaudia-skills) · MIT |
 | `copywriting-coreyhaines/…` | `copywriting-coreyhaines/skills/…` | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) · MIT |
-| `landing-page-generator/…` | `landing-page-generator/marketing/…` | borghei/Claude-Skills · MIT |
+| `landing-page-generator/…` | `landing-page-generator/marketing/…` | [borghei/Claude-Skills](https://github.com/borghei/Claude-Skills) · MIT + Commons Clause (판매 금지) |
 | `hooks` · `cardnews` · `blog-writing` · `threads-writing` · `topic-mining` | 같은 이름 폴더 | 노슈니(오수인) · 스폰지클럽 3기 제공 |
 | `spongeclub3-carousel` | — | 스폰지클럽 3기 제공 |
 | 그 밖 | 같은 이름 폴더 | 각 폴더의 `SOURCE.md` |
@@ -83,6 +83,8 @@
 - 인스타 캐러셀 — [linkfarm](https://linkfarm.ai/blog/instagram-carousel-content-guide-2026)
 - 인스타 인앱 SEO — [포크레터](https://forcreator.co.kr/blog/instagram-search-seo) · [SNS헬프](https://www.helpsns.com/blog/instagram-search-seo-guide/)
 - GEO — [AB180](https://blog.ab180.co/posts/geo-generative-engine-optimization-vs-seo-difference) · [GeoRank](https://georank.co.kr/report/seo-vs-geo-generative-engine-optimization-ai-search)
+- 유튜브 게시물 · 규격 — [YouTube 고객센터](https://support.google.com/youtube/answer/7124474) · [socialrails](https://socialrails.com/blog/youtube-community-posts-guide) · [viraly](https://viraly.io/blog/youtube-image-size-guide)
+- 유튜브 쇼츠 · 글자 수 · 해시태그 — [hashtagtools](https://hashtagtools.io/blog/youtube-shorts-character-limits-title-description-hashtags-2026) · [ShortSync](https://www.shortsync.app/resources/youtube-shorts-upload-requirements-2026)
 - AEO — [WRITER](https://writer.com/blog/geo-aeo-optimization/) · [Jasper](https://www.jasper.ai/blog/geo-aeo) · [Profound](https://www.tryprofound.com/blog/aeo-vs-geo)
 
 **플랫폼 규칙은 바뀐다.** 숫자가 안 맞으면 그 자리에서 다시 확인한다.
