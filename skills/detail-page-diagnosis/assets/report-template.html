@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상세페이지 진단서</title>
+<style>
+  :root{
+    --bg:#f6f5f2; --paper:#fff; --ink:#1d1d1f; --sub:#5f5f66; --line:#e6e4df;
+    --accent:#1f4e79;
+    --obs:#1e7a4f; --obs-bg:#e3f3ea;
+    --data:#1f5fa8; --data-bg:#e3edf9;
+    --hyp:#9a5b00; --hyp-bg:#fbeed6;
+    --chk:#6b6b73; --chk-bg:#ecebe8;
+    --p1:#c2410c; --p2:#b7791f; --p3:#6b7280;
+    --ok:#1e7a4f; --mid:#b7791f; --no:#c0392b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+    font-size:15px;line-height:1.65;word-break:keep-all;overflow-wrap:anywhere}
+  .wrap{max-width:880px;margin:0 auto;padding:32px 16px 64px}
+  h1{font-size:24px;line-height:1.35;margin:0 0 6px}
+  h2{font-size:18px;margin:0 0 14px;display:flex;align-items:center;gap:8px}
+  h2 .num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:6px;background:var(--ink);color:#fff;font-size:13px}
+  h3{font-size:16px;margin:0 0 8px;line-height:1.45}
+  .url{color:var(--sub);font-size:13px;word-break:break-all}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0}
+  .verdict{background:var(--ink);color:#fff;border:0}
+  .verdict .label{font-size:12px;letter-spacing:.08em;opacity:.7}
+  .verdict p{font-size:18px;line-height:1.6;margin:6px 0 0;font-weight:600}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .chip{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--chk-bg);color:var(--ink)}
+  .chip b{font-weight:600;color:var(--sub);margin-right:4px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .stat .n{font-size:26px;font-weight:700;line-height:1.1}
+  .stat .t{font-size:13px;color:var(--sub)}
+  .ev{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:5px;margin:0 2px;vertical-align:1px;white-space:nowrap}
+  .ev.obs{color:var(--obs);background:var(--obs-bg)}
+  .ev.data{color:var(--data);background:var(--data-bg)}
+  .ev.hyp{color:var(--hyp);background:var(--hyp-bg)}
+  .ev.chk{color:var(--chk);background:var(--chk-bg)}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--sub);margin-top:10px}
+  .notice{border-left:4px solid var(--hyp);background:var(--hyp-bg);padding:12px 14px;border-radius:8px;font-size:14px}
+  .notice ul{margin:4px 0 0;padding-left:18px}
+  dl.kv{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;margin:0}
+  dl.kv dt{color:var(--sub);font-size:13px;padding-top:1px}
+  dl.kv dd{margin:0}
+  .checks{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .check{text-align:center;border:1px solid var(--line);border-radius:12px;padding:12px 6px}
+  .check .m{font-size:26px;font-weight:700;line-height:1}
+  .check .m.ok{color:var(--ok)} .check .m.mid{color:var(--mid)} .check .m.no{color:var(--no)} .check .m.hold{color:var(--chk)}
+  .check .q{font-size:13px;margin-top:6px;font-weight:600}
+  .check .d{font-size:12px;color:var(--sub);margin-top:4px;text-align:left}
+  .shot{max-width:260px;border:1px solid var(--line);border-radius:10px;display:block;margin:12px 0}
+  .map{display:grid;grid-template-columns:44px 1fr;gap:14px}
+  .strip{position:relative;background:var(--chk-bg);border-radius:8px;min-height:520px}
+  .seg{position:absolute;left:4px;right:4px;border-radius:4px;background:#cfd8e3}
+  .seg.leak{background:#f3c2a8}
+  .seg .tag{position:absolute;right:-2px;top:-2px;font-size:10px;font-weight:700;color:var(--p1)}
+  .rows{display:flex;flex-direction:column;gap:6px}
+  .row{border:1px solid var(--line);border-radius:10px;padding:8px 12px;display:grid;grid-template-columns:62px 1fr auto;gap:10px;align-items:center}
+  .row.leak{border-color:#f0b999;background:#fff8f3}
+  .row .pos{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
+  .row .nm{font-size:14px}
+  .row .qs{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+  .qtag{font-size:11px;padding:1px 6px;border-radius:5px;background:var(--data-bg);color:var(--data);font-weight:600}
+  .reach{font-size:12px;color:var(--sub)}
+  .qlegend{font-size:12px;color:var(--sub);margin-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px 12px}
+  .leakcard{border:1px solid var(--line);border-radius:12px;padding:16px;margin:10px 0}
+  .type{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;background:#fde7da;color:#9a3412;margin-right:6px}
+  .id{font-size:12px;color:var(--sub);font-weight:700;margin-right:6px}
+  .fix{border:1px solid var(--line);border-left-width:5px;border-radius:12px;padding:14px 16px;margin:10px 0}
+  .fix.P1{border-left-color:var(--p1)} .fix.P2{border-left-color:var(--p2)} .fix.P3{border-left-color:var(--p3)}
+  .pri{font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;color:#fff;margin-right:6px}
+  .pri.P1{background:var(--p1)} .pri.P2{background:var(--p2)} .pri.P3{background:var(--p3)}
+  .from{font-size:12px;color:var(--sub)}
+  .cost{font-size:12px;padding:1px 7px;border-radius:5px;background:var(--chk-bg)}
+  .quote{border-left:3px solid var(--line);padding:2px 0 2px 12px;color:var(--sub);margin:8px 0;font-size:14px}
+  ol.qlist{padding-left:0;list-style:none;margin:0;counter-reset:q}
+  ol.qlist li{counter-increment:q;border:1px solid var(--line);border-radius:10px;padding:12px 14px 12px 46px;margin:8px 0;position:relative}
+  ol.qlist li::before{content:counter(q);position:absolute;left:14px;top:12px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;display:grid;place-items:center}
+  ol.qlist li.done{background:#f3faf6;border-color:#bfe3cf}
+  ol.qlist li.done::before{background:var(--ok);content:"✓"}
+  .ans{font-size:14px;margin-top:6px}
+  .ans small{color:var(--sub)}
+  .cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .cmp ul{margin:0;padding-left:18px}
+  .foot{font-size:12px;color:var(--sub);text-align:center;margin-top:28px}
+  table.rtable{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
+  table.rtable th,table.rtable td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+  table.rtable th{color:var(--sub);font-weight:600;font-size:12px}
+  @media (max-width:640px){
+    .checks{grid-template-columns:repeat(2,1fr)}
+    .map{grid-template-columns:28px 1fr}
+    .row{grid-template-columns:52px 1fr}
+    .row .qs{grid-column:2;justify-content:flex-start}
+    .cmp{grid-template-columns:1fr}
+    dl.kv{grid-template-columns:1fr}
+    dl.kv dt{padding-top:6px}
+  }
+  @media print{body{background:#fff}.card,.stat{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<!--
+  ▼ 진단 결과는 이 JSON만 채운다. 아래 스크립트가 화면을 그린다.
+  - 문장 안에 [관찰] [데이터] [가설] [확인 필요] 를 쓰면 색 배지로 바뀐다
+  - **굵게** 를 쓸 수 있다
+  - 비어 있는 칸은 null 또는 [] 로 둔다
+-->
+<script type="application/json" id="report">
+{
+  "title": "페이지 이름",
+  "url": "https://",
+  "verdict": "가장 큰 누수 하나를 문장으로",
+  "meta": {"진단일": "YYYY-MM-DD", "기준": "모바일 375×812", "누구 페이지": "내 것", "보는 사람": "", "목표 행동": "", "데이터": "", "후기·Q&A": ""},
+  "limits": [],
+  "read": [{"k": "파는 것", "v": ""}],
+  "firstScreen": {"status": "done", "image": null, "area": "", "checks": [
+    {"q": "무엇", "mark": "○", "note": "[관찰]"},
+    {"q": "누구", "mark": "△", "note": "[관찰]"},
+    {"q": "왜 여기서", "mark": "✗", "note": "[관찰]"},
+    {"q": "가격", "mark": "○", "note": "[관찰]"},
+    {"q": "다음 행동", "mark": "○", "note": "[관찰]"}
+  ]},
+  "sections": [{"name": "히어로", "from": 0, "to": 10, "qs": ["Q1"], "reach": null, "leaks": []}],
+  "unanswered": "",
+  "leaks": [{"id": "L1", "type": "빈 답", "title": "", "where": "", "what": "[관찰]", "why": "[가설]", "quote": null}],
+  "fixes": [{"id": "P1-1", "title": "", "from": ["L1"], "now": "", "change": "", "cost": "문구", "check": ""}],
+  "questions": [{"q": "", "answer": null, "source": null}],
+  "notLeaks": [{"k": "겉보기", "why": "의도한 장치라서 누수가 아니다"}],
+  "reviews": {
+    "summary": "58건 중 58건 읽음 (판매자센터 엑셀)",
+    "stats": [{"k": "5점", "n": 0}],
+    "themes": [{"k": "불만 주제", "n": 0, "note": "어떤 상황의 손님이 말했나"}],
+    "items": [{"id": "R1", "date": "YYYY.MM.DD", "star": 3, "text": "리뷰 원문", "complaint": "", "reply": "Y", "status": "답글 받음 / 답글 요청 / 사실 질문"}]
+  },
+  "compare": null,
+  "footer": "detail-page-diagnosis"
+}
+</script>
+
+<script>
+(function () {
+  var R = JSON.parse(document.getElementById('report').textContent);
+  var EV = {'관찰': 'obs', '데이터': 'data', '가설': 'hyp', '확인 필요': 'chk'};
+  var MARK = {'○': 'ok', '△': 'mid', '✗': 'no', '보류': 'hold'};
+  var QNAME = {Q1: '이게 뭐지?', Q2: '나한테 맞나?', Q3: '왜 여기서?', Q4: '얼마고 조건은?', Q5: '믿어도 되나?', Q6: '문제 생기면?', Q7: '지금 뭘 누르지?'};
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]; }); }
+  function rich(s) {
+    return esc(s)
+      .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
+      .replace(/\[(관찰|데이터|가설|확인 필요)([^\]]*)\]/g, function (_, k, rest) {
+        return '<span class="ev ' + EV[k] + '">' + k + esc(rest) + '</span>';
+      });
+  }
+  function card(num, title, body) {
+    return '<section class="card"><h2>' + (num ? '<span class="num">' + num + '</span>' : '') + esc(title) + '</h2>' + body + '</section>';
+  }
+
+  var h = '';
+  h += '<h1>' + esc(R.title) + '</h1><div class="url">' + esc(R.url) + '</div>';
+  h += '<section class="card verdict"><div class="label">한 줄 판정</div><p>' + rich(R.verdict) + '</p><div class="meta">' +
+    Object.keys(R.meta || {}).map(function (k) { return R.meta[k] ? '<span class="chip"><b>' + esc(k) + '</b>' + esc(R.meta[k]) + '</span>' : ''; }).join('') +
+    '</div></section>';
+
+  var p1 = (R.fixes || []).filter(function (f) { return /^P1/.test(f.id); }).length;
+  var open = (R.questions || []).filter(function (q) { return !q.answer; }).length;
+  h += '<div class="stats">' +
+    '<div class="stat"><div class="n">' + (R.leaks || []).length + '</div><div class="t">새는 곳</div></div>' +
+    '<div class="stat"><div class="n" style="color:var(--p1)">' + p1 + '</div><div class="t">먼저 고칠 것 (P1)</div></div>' +
+    '<div class="stat"><div class="n">' + open + '<span style="font-size:15px;color:var(--sub)"> / ' + (R.questions || []).length + '</span></div><div class="t">답을 기다리는 질문</div></div>' +
+    '</div>';
+  h += '<div class="legend">근거 표시 ' + rich('[관찰] 페이지에 그렇게 있음 · [데이터] 숫자 있음 · [가설] 추측 · [확인 필요] 확실히 읽지 못함') + '</div>';
+
+  if (R.limits && R.limits.length) {
+    h += '<div class="card notice"><b>수집 한계</b><ul>' + R.limits.map(function (l) { return '<li>' + rich(l) + '</li>'; }).join('') + '</ul></div>';
+  }
+
+  // 먼저 할 것
+  var fx = R.fixes || [];
+  if (fx.length) h += card('', '수정 목록', fx.map(function (f) {
+    var pr = f.id.slice(0, 2);
+    return '<div class="fix ' + pr + '"><h3><span class="pri ' + pr + '">' + esc(f.id) + '</span>' + rich(f.title) + '</h3>' +
+      '<dl class="kv">' +
+      (f.now ? '<dt>지금</dt><dd>' + rich(f.now) + '</dd>' : '') +
+      (f.change ? '<dt>바꾸면</dt><dd>' + rich(f.change) + '</dd>' : '') +
+      (f.check ? '<dt>확인 방법</dt><dd>' + rich(f.check) + '</dd>' : '') +
+      '</dl><div style="margin-top:8px"><span class="cost">비용 · ' + esc(f.cost) + '</span> ' +
+      (f.from && f.from.length ? '<span class="from">← ' + f.from.map(esc).join(', ') + '</span>' : '') + '</div></div>';
+  }).join(''));
+
+  // 확인 질문
+  h += card('', '확인할 질문', '<ol class="qlist">' + (R.questions || []).map(function (q) {
+    return '<li class="' + (q.answer ? 'done' : '') + '">' + rich(q.q) +
+      (q.answer ? '<div class="ans">' + rich(q.answer) + (q.source ? ' <small>— ' + esc(q.source) + '</small>' : '') + '</div>' : '') + '</li>';
+  }).join('') + '</ol>');
+
+  // 1. 읽은 것
+  h += card(1, '읽은 것', '<dl class="kv">' + (R.read || []).map(function (r) { return '<dt>' + esc(r.k) + '</dt><dd>' + rich(r.v) + '</dd>'; }).join('') + '</dl>');
+
+  // 2. 첫 화면
+  var fs = R.firstScreen || {};
+  var fsBody = '';
+  if (fs.status === 'hold') fsBody += '<p class="notice">' + rich(fs.holdReason || '보류') + '</p>';
+  if (fs.image) fsBody += '<img class="shot" src="' + esc(fs.image) + '" alt="첫 화면 캡처">';
+  if (fs.checks && fs.checks.length) {
+    fsBody += '<div class="checks">' + fs.checks.map(function (c) {
+      return '<div class="check"><div class="m ' + (MARK[c.mark] || 'hold') + '">' + esc(c.mark) + '</div><div class="q">' + esc(c.q) + '</div><div class="d">' + rich(c.note) + '</div></div>';
+    }).join('') + '</div>';
+  }
+  if (fs.area) fsBody += '<p style="margin:12px 0 0">' + rich(fs.area) + '</p>';
+  h += card(2, '첫 화면 3초 점검', fsBody);
+
+  // 3. 섹션 지도
+  var secs = R.sections || [];
+  var strip = '<div class="strip">' + secs.map(function (s) {
+    var lk = s.leaks && s.leaks.length;
+    return '<div class="seg' + (lk ? ' leak' : '') + '" style="top:' + s.from + '%;height:' + Math.max(1.2, s.to - s.from - 0.6) + '%" title="' + esc(s.name) + '">' + (lk ? '<span class="tag">' + esc(s.leaks.join(' ')) + '</span>' : '') + '</div>';
+  }).join('') + '</div>';
+  var rows = '<div class="rows">' + secs.map(function (s) {
+    var lk = s.leaks && s.leaks.length;
+    return '<div class="row' + (lk ? ' leak' : '') + '"><div class="pos">' + s.from + '–' + s.to + '%</div><div class="nm">' + rich(s.name) +
+      (s.reach != null ? ' <span class="reach">도달 ' + esc(s.reach) + '</span>' : '') +
+      (lk ? ' <span class="from" style="color:var(--p1);font-weight:700">' + esc(s.leaks.join(' ')) + '</span>' : '') + '</div><div class="qs">' +
+      (s.qs || []).map(function (q) { return '<span class="qtag" title="' + esc(QNAME[q] || '') + '">' + esc(q) + '</span>'; }).join('') + '</div></div>';
+  }).join('') + '</div>';
+  var mapBody = '<div class="map">' + strip + rows + '</div>' +
+    (R.unanswered ? '<p style="margin:14px 0 0">' + rich(R.unanswered) + '</p>' : '') +
+    '<div class="qlegend">' + Object.keys(QNAME).map(function (k) { return '<span><b>' + k + '</b> ' + QNAME[k] + '</span>'; }).join('') + '</div>';
+  h += card(3, '섹션 지도', mapBody);
+
+  // 4. 누수
+  h += card(4, '새는 곳', (R.leaks || []).map(function (l) {
+    return '<div class="leakcard"><h3><span class="id">' + esc(l.id) + '</span><span class="type">' + esc(l.type) + '</span>' + rich(l.title) + '</h3>' +
+      '<dl class="kv"><dt>어디</dt><dd>' + rich(l.where) + '</dd><dt>무엇</dt><dd>' + rich(l.what) + '</dd>' +
+      (l.quote ? '<dt></dt><dd><div class="quote">' + rich(l.quote) + '</div></dd>' : '') +
+      '<dt>왜 새나</dt><dd>' + rich(l.why) + '</dd></dl></div>';
+  }).join(''));
+
+  // 누수가 아닌 것
+  if (R.notLeaks && R.notLeaks.length) {
+    h += card('', '누수가 아닌 것', '<dl class="kv">' + R.notLeaks.map(function (n) { return '<dt>' + rich(n.k) + '</dt><dd>' + rich(n.why) + '</dd>'; }).join('') + '</dl>');
+  }
+
+  // 리뷰 근거
+  var num = 5;
+  var RV = R.reviews;
+  if (RV) {
+    var rb = '';
+    if (RV.summary) rb += '<p style="margin:0 0 12px">' + rich(RV.summary) + '</p>';
+    if (RV.stats && RV.stats.length) rb += '<div class="meta" style="margin:0 0 12px">' + RV.stats.map(function (s) { return '<span class="chip"><b>' + esc(s.k) + '</b>' + esc(s.n) + '</span>'; }).join('') + '</div>';
+    if (RV.themes && RV.themes.length) rb += '<dl class="kv" style="margin-bottom:12px">' + RV.themes.map(function (t) { return '<dt>' + esc(t.k) + ' · ' + esc(t.n) + '건</dt><dd>' + rich(t.note) + '</dd>'; }).join('') + '</dl>';
+    if (RV.items && RV.items.length) {
+      rb += '<div style="overflow-x:auto"><table class="rtable"><thead><tr><th>#</th><th>날짜 · 별점</th><th>리뷰</th><th>답글</th><th>처리</th></tr></thead><tbody>' +
+        RV.items.map(function (it) {
+          return '<tr><td>' + esc(it.id) + '</td><td style="white-space:nowrap">' + esc(it.date) + ' · ★' + esc(it.star) + '</td><td>' + rich(it.text) +
+            (it.complaint ? '<div class="from">불만: ' + rich(it.complaint) + '</div>' : '') + '</td><td>' + esc(it.reply || '') + '</td><td>' + rich(it.status || '') + '</td></tr>';
+        }).join('') + '</tbody></table></div>';
+    }
+    h += card(num++, '리뷰 근거', rb);
+  }
+
+  // 경쟁사 비교
+  if (R.compare) {
+    var col = function (t, arr) { return '<div class="card" style="margin:0"><h3>' + t + '</h3><ul>' + (arr || []).map(function (x) { return '<li>' + rich(x) + '</li>'; }).join('') + '</ul></div>'; };
+    h += card(num++, '우리 페이지에', '<div class="cmp">' + col('가져올 것', R.compare.take) + col('피할 것', R.compare.avoid) + col('이미 이기는 것', R.compare.win) + '</div>');
+  }
+
+  h += '<div class="foot">' + esc(R.footer || '') + '</div>';
+  document.getElementById('app').innerHTML = h;
+  document.title = R.title + ' — 진단서';
+})();
+</script>
+</body>
+</html>
