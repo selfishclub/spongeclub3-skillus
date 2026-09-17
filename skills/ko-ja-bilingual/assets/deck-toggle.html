@@ -1,0 +1,46 @@
+<!--
+  deck-toggle.html — assets/deck-base.html 에 주입하는 한/일 토글 조각.
+  세 블록을 각각 표시된 위치에 넣는다. 블록 밖의 주석은 복사하지 않는다.
+
+  [1] CSS  → deck-base.html 의  </style>  바로 앞
+  [2] HTML → <div id="hud"> 줄 바로 앞
+  [3] JS   → 마지막 </script> 바로 앞
+
+  토글 후 <html lang> 도 바뀌므로 deck-base 의 html[lang="ko"] 타이포 오버라이드가 같이 따라온다.
+  기본 언어는 ja. 텍스트는 반드시 <span class="x-ja">…</span><span class="x-ko">…</span> 쌍으로 쓴다.
+-->
+
+<!-- ===== [1] CSS : </style> 앞 ===== -->
+/* ---- ko/ja toggle ---- */
+:root:not([data-lang="ko"]) .x-ko{display:none}
+:root[data-lang="ko"] .x-ja{display:none}
+.langswitch{position:fixed;right:22px;bottom:44px;z-index:10;display:inline-flex;padding:3px;
+  background:#fff;border:1px solid var(--line);border-radius:999px;box-shadow:0 6px 20px rgba(15,23,42,.12);
+  font-family:var(--font-display);font-size:13px;font-weight:700;user-select:none}
+.langswitch .thumb{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);
+  border-radius:999px;background:var(--tint-green);transition:transform .2s}
+:root[data-lang="ko"] .langswitch .thumb{transform:translateX(100%)}
+.langswitch button{position:relative;z-index:1;appearance:none;border:0;background:transparent;cursor:pointer;
+  padding:7px 14px;border-radius:999px;color:var(--muted);font:inherit;letter-spacing:.02em}
+.langswitch button[aria-pressed="true"]{color:var(--accent-deep,#04913F)}
+@media print{.langswitch{display:none}}
+
+<!-- ===== [2] HTML : <div id="hud"> 앞 ===== -->
+<div class="langswitch" role="group" aria-label="Language">
+  <span class="thumb" aria-hidden="true"></span>
+  <button type="button" id="btn-ja" aria-pressed="true">日本語</button>
+  <button type="button" id="btn-ko" aria-pressed="false">한국어</button>
+</div>
+
+<!-- ===== [3] JS : 마지막 </script> 앞 ===== -->
+(function(){var root=document.documentElement,KEY='DECK_LANG_KEY';
+var bKo=document.getElementById('btn-ko'),bJa=document.getElementById('btn-ja'),sw=document.querySelector('.langswitch');
+function apply(l){root.setAttribute('data-lang',l);root.setAttribute('lang',l);
+  bKo.setAttribute('aria-pressed',String(l==='ko'));bJa.setAttribute('aria-pressed',String(l==='ja'));
+  try{localStorage.setItem(KEY,l)}catch(e){}}
+var saved='ja';try{saved=localStorage.getItem(KEY)||'ja'}catch(e){}
+apply(saved==='ko'?'ko':'ja');
+sw.addEventListener('click',function(e){e.stopPropagation()});   /* 스테이지 클릭 네비게이션과 분리 */
+bJa.onclick=function(){apply('ja')};bKo.onclick=function(){apply('ko')};
+addEventListener('keydown',function(e){if(e.key==='l'||e.key==='L'){e.preventDefault();
+  apply(root.getAttribute('data-lang')==='ko'?'ja':'ko')}});})();

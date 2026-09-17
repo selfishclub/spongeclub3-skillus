@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DOC_TITLE</title>
+<style>
+:root{
+  --paper:#FFFFFF;--surface:#FFFFFF;--sunken:#F4F2EC;
+  --ink:#1F1B12;--ink-2:#554E3F;--ink-3:#857C6B;
+  --rule:#E3DED1;--rule-soft:#F0ECE2;
+  --brand:#06C755;--accent:#0A7A3A;--accent-2:#E6F6EC;
+  --critical:#A8443A;--critical-2:#F7E6E3;
+  --ochre:#8A6522;--ochre-2:#F7EEDB;
+  --good:#4A6B3F;--good-2:#EAF0E4;
+  --s1:#06C755;--s2:#8A6522;--s3:#2563EB;--s4:#A8443A;--grid:#E3DED1;
+  --sans:-apple-system,system-ui,"Hiragino Sans","Noto Sans JP","Yu Gothic UI","Pretendard","Apple SD Gothic Neo",sans-serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono","Menlo",monospace;
+  --r-lg:24px;--r-md:16px;--r-sm:12px;--bw:2px;
+  --measure:68ch;--pad:clamp(1.1rem,4vw,3rem);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#12140F;--surface:#191C15;--sunken:#20241B;
+  --ink:#E8EDE2;--ink-2:#AAB2A0;--ink-3:#7F8877;
+  --rule:#2C3327;--rule-soft:#222719;
+  --accent:#4FD98A;--accent-2:#16301F;
+  --critical:#DB8C84;--critical-2:#3A2422;
+  --ochre:#CBA458;--ochre-2:#332C1B;
+  --good:#8FB07F;--good-2:#232B1D;
+  --s1:#4FD98A;--s2:#CBA458;--s3:#6E9BF0;--s4:#DB8C84;--grid:#2C3327;}}
+:root[data-theme="dark"]{
+  --paper:#12140F;--surface:#191C15;--sunken:#20241B;
+  --ink:#E8EDE2;--ink-2:#AAB2A0;--ink-3:#7F8877;
+  --rule:#2C3327;--rule-soft:#222719;
+  --accent:#4FD98A;--accent-2:#16301F;
+  --critical:#DB8C84;--critical-2:#3A2422;
+  --ochre:#CBA458;--ochre-2:#332C1B;
+  --good:#8FB07F;--good-2:#232B1D;
+  --s1:#4FD98A;--s2:#CBA458;--s3:#6E9BF0;--s4:#DB8C84;--grid:#2C3327;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.72;-webkit-font-smoothing:antialiased;line-break:strict}
+:root:not([data-lang="ko"]) .x-ko{display:none}
+:root[data-lang="ko"] .x-ja{display:none}
+.x-ko{font-family:-apple-system,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;word-break:keep-all}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 93%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:.55rem var(--pad);display:flex;align-items:center;
+  justify-content:space-between;gap:.7rem;flex-wrap:wrap}
+.tb-left{display:flex;align-items:center;gap:.65rem;min-width:0}
+.dot{width:11px;height:11px;border-radius:3px;background:var(--brand);flex:none}
+.brandmark{font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);white-space:nowrap}
+.sample{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--critical);border:1px solid color-mix(in srgb,var(--critical) 45%,transparent);
+  padding:.16rem .5rem;border-radius:999px;white-space:nowrap}
+.langswitch{position:relative;display:inline-flex;padding:3px;background:var(--sunken);
+  border:var(--bw) solid var(--rule);border-radius:999px}
+.langswitch .thumb{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);
+  background:var(--surface);border-radius:999px;box-shadow:0 1px 3px rgba(0,0,0,.14);
+  transition:transform .26s cubic-bezier(.4,0,.2,1)}
+:root[data-lang="ko"] .langswitch .thumb{transform:translateX(100%)}
+.langswitch button{position:relative;z-index:1;appearance:none;border:0;background:transparent;cursor:pointer;
+  font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--ink-3);
+  padding:.3rem .75rem;border-radius:999px;transition:color .2s;min-width:4.4rem}
+.langswitch button[aria-pressed="true"]{color:var(--accent)}
+main{max-width:1080px;margin:0 auto;padding:0 var(--pad) 5.5rem}
+.prose{max-width:var(--measure)}
+.masthead{padding:clamp(2rem,5vw,3.4rem) 0 1.4rem}
+.eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 .9rem}
+h1{font-size:clamp(1.7rem,4.3vw,2.6rem);line-height:1.23;font-weight:800;margin:0 0 .9rem;
+  letter-spacing:-.025em;text-wrap:balance}
+.lede{font-size:clamp(.98rem,2vw,1.13rem);line-height:1.7;color:var(--ink-2);max-width:var(--measure);margin:0 0 1.6rem}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.8rem;font-family:var(--mono);font-size:.72rem;
+  color:var(--ink-3);letter-spacing:.03em}
+.meta b{color:var(--ink-2);font-weight:700}
+.keyfig{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:.75rem;margin:2rem 0 3rem}
+.keyfig>div{background:var(--surface);border:var(--bw) solid var(--rule);border-radius:var(--r-lg);
+  padding:1.4rem 1.35rem 1.5rem}
+.keyfig .n{font-family:var(--mono);font-size:clamp(1.6rem,4vw,2.3rem);font-weight:700;line-height:1.05;
+  letter-spacing:-.04em;font-variant-numeric:tabular-nums;display:block;margin-bottom:.45rem;color:var(--accent)}
+.keyfig .n.down{color:var(--critical)}
+.keyfig .lbl{font-size:.82rem;color:var(--ink-2);line-height:1.55;display:block}
+section{padding:2.8rem 0 0}
+.sec-head{display:flex;align-items:center;gap:.85rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.sec-no{font-family:var(--mono);font-size:.74rem;font-weight:700;color:var(--paper);background:var(--accent);
+  letter-spacing:.04em;flex:none;padding:.3rem .65rem;border-radius:var(--r-sm)}
+h2{font-size:clamp(1.25rem,2.9vw,1.65rem);font-weight:800;line-height:1.32;margin:0;letter-spacing:-.022em;text-wrap:balance}
+h3{font-size:clamp(1.02rem,2.2vw,1.2rem);font-weight:800;margin:2.4rem 0 .5rem;letter-spacing:-.015em}
+p{margin:0 0 1.1rem;max-width:var(--measure)}
+p:last-child{margin-bottom:0}
+strong{font-weight:700}
+em{font-style:normal;background:var(--accent-2);padding:.1em .4em;border-radius:6px;font-weight:600}
+code{font-family:var(--mono);font-size:.9em;background:var(--sunken);padding:.1em .42em;border-radius:5px;color:var(--ink-2)}
+.tw{overflow-x:auto;margin:1.5rem 0 1.8rem;background:var(--surface);
+  border:var(--bw) solid var(--rule);border-radius:var(--r-md)}
+table{width:100%;border-collapse:collapse;font-size:.87rem;min-width:560px}
+th,td{text-align:left;padding:.65rem .9rem;border-bottom:1px solid var(--rule-soft);vertical-align:top;line-height:1.55}
+th:first-child,td:first-child{padding-left:1.15rem}
+th:last-child,td:last-child{padding-right:1.15rem}
+th{font-size:.67rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700;white-space:nowrap}
+th.num,td.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.lead{font-weight:700}
+tr.hi td{background:var(--accent-2)}
+.t-crit{color:var(--critical);font-weight:700}
+.t-good{color:var(--good);font-weight:700}
+.callout{background:var(--critical-2);border:var(--bw) solid color-mix(in srgb,var(--critical) 40%,transparent);
+  padding:1.5rem 1.6rem;margin:1.8rem 0;border-radius:var(--r-lg)}
+.callout.warn{background:var(--ochre-2);border-color:color-mix(in srgb,var(--ochre) 42%,transparent)}
+.callout.good{background:var(--good-2);border-color:color-mix(in srgb,var(--good) 42%,transparent)}
+.callout h4{margin:0 0 .7rem;font-size:1rem;font-weight:800;color:var(--critical);letter-spacing:-.012em}
+.callout.warn h4{color:var(--ochre)} .callout.good h4{color:var(--good)}
+.callout p{font-size:.92rem;margin-bottom:.8rem}
+.thesis{background:var(--accent-2);border:var(--bw) solid color-mix(in srgb,var(--accent) 36%,transparent);
+  border-radius:var(--r-lg);padding:1.5rem 1.7rem;margin:2rem 0;max-width:var(--measure)}
+.thesis p{font-size:clamp(1rem,2.1vw,1.14rem);line-height:1.64;margin:0}
+ul.ticks{list-style:none;padding:0;margin:1.2rem 0 1.6rem;max-width:var(--measure);display:grid;gap:.72rem}
+ul.ticks li{padding-left:1.35rem;position:relative;font-size:.93rem;line-height:1.66}
+ul.ticks li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;
+  background:var(--accent);border-radius:50%}
+/* ---- charts ---- */
+.chart{background:var(--surface);border:var(--bw) solid var(--rule);border-radius:var(--r-md);
+       padding:1.3rem 1.4rem 1.1rem;margin:1.5rem 0 1.8rem}
+.chart > figcaption{font-size:.8rem;color:var(--ink-3);margin-bottom:.9rem;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin-bottom:1rem;font-size:.76rem;color:var(--ink-2)}
+.legend > span{display:inline-flex;align-items:center;gap:.4rem}
+.legend > span::before{content:"";width:11px;height:11px;border-radius:3px;background:var(--c,var(--s1))}
+.s1{--c:var(--s1)}.s2{--c:var(--s2)}.s3{--c:var(--s3)}.s4{--c:var(--s4)}
+.bars .row{display:grid;grid-template-columns:minmax(5rem,9rem) 1fr;gap:.9rem;align-items:center;
+           padding:.6rem 0;border-bottom:1px solid var(--rule-soft)}
+.bars .row:last-child{border-bottom:0}
+.bars .lbl{font-size:.82rem;font-weight:700;line-height:1.4}
+.bars .group{display:grid;gap:.35rem;min-width:0}
+.bars .track{display:grid;grid-template-columns:1fr 5.6rem;gap:.6rem;align-items:center}
+.bars .b{height:19px;border-radius:4px;background:var(--c,var(--s1));width:var(--v,0%);min-width:2px}
+.bars .val{font-family:var(--mono);font-size:.78rem;text-align:right;color:var(--ink-2);
+           font-variant-numeric:tabular-nums;white-space:nowrap}
+.linechart svg{display:block;width:100%;height:auto}
+.linechart .area{fill:var(--s1);opacity:.13;stroke:none}
+.linechart .ln{fill:none;stroke:var(--s1);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.linechart circle{fill:var(--paper);stroke:var(--s1);stroke-width:2.5}
+.linechart circle.peak{fill:var(--s1)}
+.linechart .ax{stroke:var(--grid);stroke-width:1}
+.xlab{display:flex;justify-content:space-between;margin-top:.5rem;
+      font-family:var(--mono);font-size:.7rem;color:var(--ink-3)}
+footer{margin-top:4rem;border-top:1px solid var(--rule);padding-top:1.7rem;font-size:.8rem;
+  color:var(--ink-3);line-height:1.7}
+footer h4{font-family:var(--mono);font-size:.67rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2);margin:0 0 .8rem;font-weight:700}
+footer p{max-width:var(--measure);margin-bottom:.7rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-in">
+  <div class="tb-left"><span class="dot"></span><span class="brandmark">LY-IPX · DOC LABEL</span></div>
+  <div class="langswitch" role="group" aria-label="Language">
+    <span class="thumb" aria-hidden="true"></span>
+    <button type="button" id="btn-ja" aria-pressed="true">日本語</button>
+    <button type="button" id="btn-ko" aria-pressed="false">한국어</button>
+  </div>
+</div></div>
+
+<main>
+<header class="masthead">
+  <p class="eyebrow">Kicker In English</p>
+  <h1><span class="x-ja">結論を述べる見出し</span><span class="x-ko">결론을 말하는 제목</span></h1>
+  <p class="lede">
+    <span class="x-ja">3〜5行。何を調べ、何が分かり、だから何をすべきか。</span>
+    <span class="x-ko">3~5줄. 무엇을 봤고, 무엇이 나왔고, 그래서 뭐를 해야 하는지.</span>
+  </p>
+  <div class="meta">
+    <span><b>LY-IPX</b> <span class="x-ja">事業企画</span><span class="x-ko">사업기획</span></span>
+    <span class="x-ja">作成 <b>2026.00.00</b></span><span class="x-ko">작성 <b>2026.00.00</b></span>
+  </div>
+</header>
+
+<!-- KEY FIGURES — 3〜4個まで。多いほど一つ一つが弱くなる -->
+<div class="keyfig">
+  <div><span class="n">000</span><span class="lbl">
+    <span class="x-ja">ラベル<br>補足</span><span class="x-ko">라벨<br>보조 설명</span></span></div>
+  <div><span class="n down">000</span><span class="lbl">
+    <span class="x-ja">悪い数字は .down</span><span class="x-ko">나쁜 숫자는 .down</span></span></div>
+</div>
+
+<section>
+  <div class="sec-head"><span class="sec-no">01</span>
+    <h2><span class="x-ja">節の見出しも結論で書く</span><span class="x-ko">섹션 제목도 결론으로 쓴다</span></h2></div>
+
+  <!-- TABLE — 数字は .num 、強調行は tr.hi 、値の良し悪しは t-good / t-crit -->
+  <div class="tw"><table>
+    <thead><tr>
+      <th><span class="x-ja">指標</span><span class="x-ko">지표</span></th>
+      <th class="num"><span class="x-ja">計画</span><span class="x-ko">계획</span></th>
+      <th class="num"><span class="x-ja">実績</span><span class="x-ko">실적</span></th>
+    </tr></thead>
+    <tbody>
+      <tr class="hi"><td class="lead"><span class="x-ja">項目</span><span class="x-ko">항목</span></td>
+        <td class="num">0.0</td><td class="num t-good">0.0</td></tr>
+    </tbody>
+  </table></div>
+
+  <p class="prose"><span class="x-ja">本文。<em>ハイライト</em>と<code>コード</code>が使えます。</span>
+    <span class="x-ko">본문. <em>하이라이트</em>와 <code>코드</code>를 쓸 수 있다.</span></p>
+
+  <!-- THESIS — 文書全体で1〜2回。持ち帰ってほしい一文 -->
+  <div class="thesis"><p><span class="x-ja">この文書の主張を一文で。</span>
+    <span class="x-ko">이 문서의 주장을 한 문장으로.</span></p></div>
+
+  <ul class="ticks">
+    <li><span class="x-ja">箇条書き</span><span class="x-ko">불릿</span></li>
+  </ul>
+
+  <!-- BAR CHART — 系列は s1..s4。--v は最大値=100% としたパーセント、実数は .val に書く -->
+  <figure class="chart">
+    <figcaption><span class="x-ja">単位・出所をここに。</span><span class="x-ko">단위·출처를 여기에.</span></figcaption>
+    <div class="legend"><span class="s1"><span class="x-ja">計画</span><span class="x-ko">계획</span></span>
+      <span class="s2"><span class="x-ja">実績</span><span class="x-ko">실적</span></span></div>
+    <div class="bars">
+      <div class="row"><span class="lbl"><span class="x-ja">1st</span><span class="x-ko">1차</span></span>
+        <div class="group">
+          <div class="track"><span class="b s1" style="--v:52%"></span><span class="val">3,480</span></div>
+          <div class="track"><span class="b s2" style="--v:100%"></span><span class="val">6,880</span></div>
+        </div></div>
+      <div class="row"><span class="lbl"><span class="x-ja">2nd</span><span class="x-ko">2차</span></span>
+        <div class="group">
+          <div class="track"><span class="b s1" style="--v:91%"></span><span class="val">6,270</span></div>
+          <div class="track"><span class="b s2" style="--v:54%"></span><span class="val">3,730</span></div>
+        </div></div>
+    </div>
+  </figure>
+
+  <!-- LINE CHART — 日別カーブ等。data-values に数値、data-labels に軸ラベル -->
+  <figure class="chart">
+    <figcaption><span class="x-ja">日別売上カーブ（単位・出所）</span><span class="x-ko">일별 매출 곡선(단위·출처)</span></figcaption>
+    <div class="linechart" data-values="18,31,44,39,28,22,25,19"
+         data-labels="D1,D2,D3,D4,D5,D6,D7,D8" data-label="daily curve"></div>
+  </figure>
+
+  <!-- CALLOUT — 既定は critical 。.warn は解釈の注意、.good は使える資産 -->
+  <div class="callout warn">
+    <h4><span class="x-ja">見出し</span><span class="x-ko">제목</span></h4>
+    <p><span class="x-ja">本文</span><span class="x-ko">본문</span></p>
+  </div>
+</section>
+
+<footer>
+  <h4>Methodology &amp; Limits</h4>
+  <p><span class="x-ja">対象範囲・取得方法。</span><span class="x-ko">대상 범위·수집 방법.</span></p>
+  <p><span class="x-ja"><strong>限界</strong> — 取れていない指標、分類の誤差、判断の前提。</span>
+     <span class="x-ko"><strong>한계</strong> — 못 가져온 지표, 분류 오차, 판단의 전제.</span></p>
+</footer>
+</main>
+
+<script>document.querySelectorAll('.linechart').forEach(function(el){
+  var v=(el.dataset.values||'').split(',').map(Number).filter(function(n){return !isNaN(n)});
+  if(v.length<2)return;
+  var W=760,H=210,P=18,B=26;
+  var mx=Math.max.apply(null,v), mn=Math.min.apply(null,[0].concat(v));
+  var x=function(i){return P+i*(W-2*P)/(v.length-1)};
+  var y=function(n){return H-B-((n-mn)/((mx-mn)||1))*(H-B-P)};
+  var pts=v.map(function(n,i){return x(i)+','+y(n)}).join(' ');
+  var pk=v.indexOf(mx);
+  var dots=v.map(function(n,i){return '<circle class="'+(i===pk?'peak':'')+'" cx="'+x(i)+'" cy="'+y(n)+'" r="3.5"/>'}).join('');
+  el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+(el.dataset.label||'')+'">'
+    +'<polyline class="area" points="'+P+','+(H-B)+' '+pts+' '+x(v.length-1)+','+(H-B)+'"/>'
+    +'<polyline class="ln" points="'+pts+'"/>'+dots
+    +'<line class="ax" x1="'+P+'" y1="'+(H-B)+'" x2="'+(W-P)+'" y2="'+(H-B)+'"/></svg>';
+  var L=(el.dataset.labels||'').split(',').filter(Boolean);
+  if(L.length){var d=document.createElement('div');d.className='xlab';
+    d.innerHTML=L.map(function(t){return '<span>'+t+'</span>'}).join('');el.appendChild(d);}
+});
+(function(){var root=document.documentElement;
+var bKo=document.getElementById('btn-ko'),bJa=document.getElementById('btn-ja');
+function apply(l){root.setAttribute('data-lang',l);
+  bKo.setAttribute('aria-pressed',String(l==='ko'));
+  bJa.setAttribute('aria-pressed',String(l==='ja'));
+  try{localStorage.setItem('DOC_LANG_KEY',l)}catch(e){}}
+var saved='ja';try{saved=localStorage.getItem('DOC_LANG_KEY')||'ja'}catch(e){}
+apply(saved==='ko'?'ko':'ja');
+bJa.onclick=function(){apply('ja')};bKo.onclick=function(){apply('ko')};})();</script>
+</body>
+</html>
