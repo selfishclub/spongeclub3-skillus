@@ -38,6 +38,24 @@
         "addedAt": "2026-09-20",
         "registeredBy": "욤마"
       }
+    },
+    {
+      "name": "benchmarking-kit",
+      "displayName": "벤치마킹 키트",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ghehfl9640-ops/benchmarking-kit.git"
+      },
+      "description": "따라 하고 싶은 계정을 뜻어서 내 채널에 뭔 가져올지까지 리포트로 내주는 플러그인",
+      "author": {
+        "name": "봉봉이(한지원)"
+      },
+      "category": "콘텐츠",
+      "homepage": "https://github.com/ghehfl9640-ops/benchmarking-kit",
+      "metadata": {
+        "addedAt": "2026-09-21",
+        "registeredBy": "봉봉이(한지원)"
+      }
     }
   ]
 }
