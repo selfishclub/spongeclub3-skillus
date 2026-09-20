@@ -20,6 +20,24 @@
         "addedAt": "2026-09-13",
         "registeredBy": "노슈니(오수인)"
       }
+    },
+    {
+      "name": "detail-page",
+      "displayName": "상세페이지 진단·수정 (detail-page)",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/yomma39-hub/ganasocks-skills.git"
+      },
+      "description": "상세페이지에서 손님이 망설이는 곳을 찾아 진단서를 내고, 그 진단서대로 원본 PSD를 고쳐 올릴 파일까지 만들어주는 플러그인",
+      "author": {
+        "name": "욤마(김영호)"
+      },
+      "category": "마케팅",
+      "homepage": "https://github.com/yomma39-hub/ganasocks-skills",
+      "metadata": {
+        "addedAt": "2026-09-20",
+        "registeredBy": "욤마"
+      }
     }
   ]
 }

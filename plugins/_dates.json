@@ -1,6 +1,7 @@
 {
   "note": "플러그인이 처음 등록된 날짜(YYYY-MM-DD). 사이트가 카드 날짜 표시에 쓴다.",
   "dates": {
+    "detail-page": "2026-09-20",
     "noshooni-threads": "2026-09-13"
   }
 }
