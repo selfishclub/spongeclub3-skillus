@@ -1,0 +1,14 @@
+[
+  {"query": "~/Desktop/2분기_리뷰.md 이거 일본어로도 만들어서 한일 토글 되는 아티팩트로 만들어줘", "should_trigger": true},
+  {"query": "이 문서 일본 팀에도 보내야 하는데 일본어 버전 붙여서 16:9 덱으로 뽑아줘", "should_trigger": true},
+  {"query": "지난번에 만든 review.html 있잖아, 거기에 日本語版 붙여서 버튼으로 전환되게 해줘", "should_trigger": true},
+  {"query": "노션에 있는 온보딩 가이드 페이지를 일본어 병기 문서로 만들어줘. 링크로 공유할 거야", "should_trigger": true},
+  {"query": "제안서.docx 한국어로 써둔 건데 일본어 토글 붙인 슬라이드로 만들어줘", "should_trigger": true},
+  {"query": "이 PDF 내용 그대로 한/일 전환 버튼 있는 웹페이지로 만들어줘", "should_trigger": true},
+  {"query": "この韓国語のレポートを日韓切り替えできるHTMLにしてください", "should_trigger": true},
+  {"query": "아래 글 일본어로 번역해줘. 텍스트로만 주면 돼", "should_trigger": false, "note": "HTML 산출물 없음"},
+  {"query": "6월 팝업 결산 숫자 나왔는데 来場 11,800명 객단가 3,940엔 매출 45.3백만엔이야. 본사 제출용 덱으로 정리해줘", "should_trigger": false, "note": "원자료에서 처음 만드는 것 → lf-report-deck / biz2-navigator"},
+  {"query": "일본어로 된 会議資料를 한국어로 옮겨줘", "should_trigger": false, "note": "방향 반대"},
+  {"query": "모윰 스레드에 올릴 일본어 글 써줘, 젖병 소독 주제로", "should_trigger": false, "note": "moyuum-sns-jp"},
+  {"query": "이 pptx 파일 슬라이드 마스터 유지하면서 일본어 버전 pptx로 만들어줘", "should_trigger": false, "note": "pptx 산출물"}
+]

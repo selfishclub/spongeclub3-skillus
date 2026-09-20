@@ -1,0 +1,23 @@
+/* deck-image-guard — image box that a picture cannot escape.
+   Drop into the deck's <style>. Every <img> in the deck goes inside a .vis with a definite height.
+   Why absolute: a % max-height on a grid/flex child resolves against an auto-sized track, i.e. against
+   the image's own content height, so it constrains nothing. An absolutely positioned child resolves
+   percentages against the box's padding box, which has a real size. */
+.vis{--vp:10px;            /* inner padding (all sides) */
+     --vb:10px;            /* bottom padding — raise it when a figcaption sits at the bottom */
+     position:relative;overflow:hidden;min-height:0;display:block;
+     background:var(--bg-soft,#F8FAFC);border:1px solid var(--line,#E2E8F0);border-radius:12px}
+.vis img{position:absolute;left:50%;top:calc(50% - (var(--vb) - var(--vp))/2);
+     transform:translate(-50%,-50%);width:auto;height:auto;
+     max-width:calc(100% - 2*var(--vp));max-height:calc(100% - var(--vp) - var(--vb));
+     object-fit:contain;display:block}
+/* size variants: the box, never the image, decides the size */
+.vis.main{height:330px}
+.vis.sub{height:210px}
+.vis.fill{height:100%}                 /* inside a grid/flex row that has a definite height */
+.vis.shot{--vp:14px;--vb:56px;height:100%;margin:0}   /* screenshot with caption strip */
+.vis.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px 18px;
+     font-size:.8em;color:var(--ink-2,#334155);background:var(--bg-soft,#F8FAFC);border-top:1px solid var(--line,#E2E8F0)}
+/* thumbnail in a table cell: fixed w/h, cover crop is acceptable here because it is an identifier, not evidence */
+.thumb{display:block;width:64px;height:40px;border-radius:6px;overflow:hidden;background:var(--bg-soft,#F8FAFC)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
