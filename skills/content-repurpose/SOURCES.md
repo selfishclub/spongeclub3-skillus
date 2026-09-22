@@ -29,14 +29,12 @@
 
 | 스킬 | 가져온 것 | 반영한 곳 |
 |---|---|---|
-| `hooks` (노슈니) | 훅 후보는 서로 다른 유형에서 뽑는다 | STEP 4 |
-| `cardnews` (노슈니) | 캐러셀에 정리 장을 둔다 · 장수는 단정하지 않는다 | `carousel.md` |
+| `hooks` (노슈니) | 훅 후보는 서로 다른 유형에서 뽑는다 | STEP 4 · `instagram-caption.md` |
 | `blog-writing` (노슈니) | 네이버 SEO 실무 · 발행 결과를 봤다고 말하지 않는다 | `reach.md` · SKILL |
 | `threads-writing` (노슈니) | 링크·CTA 는 기본적으로 안 붙인다 · 불안으로 닫지 않는다 · 첫 150자 | SKILL · `reach.md` |
 | `topic-mining` (노슈니) · `last30days` | 주제 발굴은 이 스킬 앞 단계 · 건질 게 없으면 없다고 적는다 | STEP 0·9 |
 | `copywriting-coreyhaines/analytics` · `attribution` | UTM 표준과 명명 규칙 · 작은 규모엔 자가보고 경로가 낫다 | `publish-check.md` |
 | `landing-page-generator/campaign-analytics` · `marketing-ops` | 48시간 회고 형식 · 정해 둔 순서를 따른다 | `publish-check.md` |
-| `spongeclub3-carousel` | 인스타 슬라이드는 캐러셀 스킬에 맡긴다 · 댓글 → DM 정책 | STEP 4-3 · `channels.md` |
 
 ## 이 스킬이 직접 확인한 것
 
@@ -60,7 +58,7 @@
 | `크리틱디렉터` 의 「얼마나 매섭게 볼까요(1~4)」 | 질문이 하나 더 는다 |
 | `ads-creative-development` 의 부품 매트릭스 | 광고 A/B 테스트용이다. 한 편을 나누는 일엔 과하다 |
 | `auto-skill-scout` 의 스케줄 회고 | 스킬이 스케줄을 건드리는 건 범위 밖이다 |
-| `cardnews` 의 HTML 제작 | 캐러셀 스킬이 할 일이다 |
+| 캐러셀 슬라이드 제작 전반 (장수 · 장별 구성 · HTML · 이미지) | **캐러셀 스킬이 할 일이다.** 이 스킬은 캡션 글만 쓴다 |
 
 ---
 
@@ -73,7 +71,6 @@
 | `copywriting-coreyhaines/…` | `copywriting-coreyhaines/skills/…` | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) · MIT |
 | `landing-page-generator/…` | `landing-page-generator/marketing/…` | [borghei/Claude-Skills](https://github.com/borghei/Claude-Skills) · MIT + Commons Clause (판매 금지) |
 | `hooks` · `cardnews` · `blog-writing` · `threads-writing` · `topic-mining` | 같은 이름 폴더 | 노슈니(오수인) · 스폰지클럽 3기 제공 |
-| `spongeclub3-carousel` | — | 스폰지클럽 3기 제공 |
 | 그 밖 | 같은 이름 폴더 | 각 폴더의 `SOURCE.md` |
 
 ## 웹 출처
